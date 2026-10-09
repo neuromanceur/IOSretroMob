@@ -1,0 +1,17 @@
+/build*/
+/.local/
+/work/
+/firmware/
+__pycache__/
+*.pyc
+.DS_Store
+*.ipa
+*.ipsw
+*.snap
+*.snap.*
+*.img
+*.dmg
+*.macho
+*.bin
+.env
+.env.*
