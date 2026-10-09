@@ -1,0 +1,180 @@
+{
+  "version": 1,
+  "capture_date": "2026-10-09",
+  "origin_engine": "S5LBox base 6f203ba plus local modifications; see SOURCE_LINEAGE.json",
+  "no_generated_or_composited_captures": true,
+  "no_video_or_continuous_display_rate_claim": true,
+  "captures": [
+    {
+      "id": "uikit",
+      "classification": "authentic historical guest CLCD scanout",
+      "caption": "Own UIKit window, software renderer; no-touch blue control, not evidence of MBX rendering.",
+      "source_png": "reports/unity-compatibility/screenshots/uikit-control-blue-759b.png",
+      "source_provenance": "reports/unity-compatibility/logs/uikit-control-blue-759b-framebuffer.json",
+      "source_provenance_sha256": "0d465b1369ffc3e05c100f0f68ce2bf78426f58740dbe5621c823717d1c6926a",
+      "width": 320,
+      "height": 480,
+      "rgb_sha256": "1af0bbc1289a7a258e2f2818b3be7c2b7c2429a0f70e54c0ac3bdf72018ff866",
+      "encoding": "Lossless RGB8 PNG; pixels identical to PPM, no compositing or image generation.",
+      "files": [
+        {
+          "path": "demos/gallery/uikit.png",
+          "bytes": 9396,
+          "sha256": "9cc71eb7367664f1a96bf41d0e00ab0ca15969f4d4bb14402491e55072e27a88"
+        }
+      ],
+      "original_ppm_sha256": "8acd7770409feb60181ebe995bec43cafce856d52d23b7a833e8cf54e89b9c7c",
+      "original_ppm_included": false
+    },
+    {
+      "id": "triangle",
+      "classification": "authentic historical guest CLCD scanout",
+      "caption": "RMGLES1 coloured triangle at 190 degrees; real CLCD.",
+      "source_png": "reports/unity-compatibility/mbx-triangle-2026-10-09/screenshots/triangle-730b.png",
+      "source_provenance": "reports/unity-compatibility/mbx-triangle-2026-10-09/logs/triangle-730b-framebuffer.json",
+      "source_provenance_sha256": "68ff2e121e1332901e00a333c0d7c7f2766e469db93b041ceba18d0855a00d02",
+      "width": 320,
+      "height": 460,
+      "rgb_sha256": "b052a9529fa40a74ee343b25395754696b288d8c5957de1587211ce9a3e26169",
+      "encoding": "Lossless RGB8 PNG; pixels identical to PPM, no compositing or image generation.",
+      "files": [
+        {
+          "path": "demos/gallery/triangle.png",
+          "bytes": 92073,
+          "sha256": "7532ffc3cda94a5290d1993c9151b1f5ed679461bf32e282c93f0b20f3587f33"
+        },
+        {
+          "path": "demos/gallery/triangle.ppm",
+          "bytes": 441615,
+          "sha256": "4731c975a6ba5bed62ec73e094bb495d894b2a87a5f13e7923aa177af43c8f02"
+        }
+      ],
+      "historical_independent_reference": {
+        "sha256": "4731c975a6ba5bed62ec73e094bb495d894b2a87a5f13e7923aa177af43c8f02",
+        "width": 320,
+        "height": 460,
+        "triangle_pixels_checked": 33489,
+        "excluded_edge_ties": 0,
+        "mismatched_pixels_tolerance_1": 0,
+        "max_channel_error": 0,
+        "reference_scope": "Measured opaque affine triangle, pixel centres; analytic weights independent of C edge rasterizer, one-unit channel tolerance, boundary ties excluded."
+      },
+      "historical_engine_binary_sha256": "131e0abd2662c14874d5f8730d8c6f6743694c65413a5d3376ff0dc08310bdbc",
+      "instruction_limit": 7300000000
+    },
+    {
+      "id": "triangle-rotation",
+      "classification": "authentic historical guest CLCD scanout",
+      "caption": "RMGLES1 coloured triangle at 330 degrees; second sampled scanout, no sustained FPS claim.",
+      "source_png": "reports/unity-compatibility/mbx-triangle-2026-10-09/screenshots/triangle-720b.png",
+      "source_provenance": "reports/unity-compatibility/mbx-triangle-2026-10-09/logs/triangle-720b-framebuffer.json",
+      "source_provenance_sha256": "a9476fe5a0b9af409e3dddbe68299323a64fcdc68f888825a432cb8cb101c375",
+      "width": 320,
+      "height": 460,
+      "rgb_sha256": "80bd45b4b742051f5a86c2a41e4e70f75927e955fc523d2c477ecfa6a9f57fa5",
+      "encoding": "Lossless RGB8 PNG; pixels identical to PPM, no compositing or image generation.",
+      "files": [
+        {
+          "path": "demos/gallery/triangle-rotation.png",
+          "bytes": 93249,
+          "sha256": "467bde5874a973c80a16345cdb17c8da85f2347f668220c2c8a958c98c72749e"
+        },
+        {
+          "path": "demos/gallery/triangle-rotation.ppm",
+          "bytes": 441615,
+          "sha256": "baf263d1811830722784e23ce17f935b861006d90526e3da9e10cd9f337e9d25"
+        }
+      ],
+      "historical_independent_reference": {
+        "sha256": "baf263d1811830722784e23ce17f935b861006d90526e3da9e10cd9f337e9d25",
+        "width": 320,
+        "height": 460,
+        "triangle_pixels_checked": 33488,
+        "excluded_edge_ties": 0,
+        "mismatched_pixels_tolerance_1": 0,
+        "max_channel_error": 0,
+        "reference_scope": "Measured opaque affine triangle, pixel centres; analytic weights independent of C edge rasterizer, one-unit channel tolerance, boundary ties excluded."
+      },
+      "historical_engine_binary_sha256": "131e0abd2662c14874d5f8730d8c6f6743694c65413a5d3376ff0dc08310bdbc",
+      "instruction_limit": 7200000000
+    },
+    {
+      "id": "textured-triangle",
+      "classification": "authentic historical guest CLCD scanout",
+      "caption": "RMTexture RGBA8 textured triangle, GL_NEAREST.",
+      "source_png": "reports/unity-compatibility/mbx-textures-2026-10-09/screenshots/texture-triangle-23.png",
+      "source_provenance": "reports/unity-compatibility/mbx-textures-2026-10-09/logs/texture-triangle-23-capture.json",
+      "source_provenance_sha256": "9b04714f8d189c8ffdc066a9cfabbbd6a13c3e684f651dfd9665369bb0715f93",
+      "width": 320,
+      "height": 460,
+      "rgb_sha256": "c3c9d2a30537b947f672c2160787467994cd9cb0556cf0fd580ef3c4d3258cb3",
+      "encoding": "Lossless RGB8 PNG; pixels identical to PPM, no compositing or image generation.",
+      "files": [
+        {
+          "path": "demos/gallery/textured-triangle.png",
+          "bytes": 2916,
+          "sha256": "3c38fc051745121e73d08a96c213f7416e6bb7928a3129c02e55f2c40fc1b9b2"
+        },
+        {
+          "path": "demos/gallery/textured-triangle.ppm",
+          "bytes": 441615,
+          "sha256": "26d33bbd26b1984f910ec221abb4c5f224d5e76bfb0a6098bc965dfb44ca0361"
+        }
+      ],
+      "independent_reference_inputs": "demos/gallery/textured-triangle-inputs.json",
+      "own_input_source": "reports/unity-compatibility/mbx-textures-2026-10-09/logs/texture-scene-23.json"
+    },
+    {
+      "id": "textured-square",
+      "classification": "authentic historical guest CLCD scanout",
+      "caption": "RMTexture two-triangle square, GL_NEAREST, zero rotation.",
+      "source_png": "reports/unity-compatibility/mbx-textures-2026-10-09/screenshots/texture-square-zero-22.png",
+      "source_provenance": "reports/unity-compatibility/mbx-textures-2026-10-09/logs/texture-square-zero-22-capture.json",
+      "source_provenance_sha256": "4114898ef11408ce44d7ecfdfd2a5ae3b064e47a481789e5a294eda6adc57724",
+      "width": 320,
+      "height": 460,
+      "rgb_sha256": "d01763d9506e57eafa7169a771b852d596bda2542b3dc0f1668ac9215ad0c701",
+      "encoding": "Lossless RGB8 PNG; pixels identical to PPM, no compositing or image generation.",
+      "files": [
+        {
+          "path": "demos/gallery/textured-square.png",
+          "bytes": 3555,
+          "sha256": "c67ce8919f52b09cd02166dfdcfab1105b08e9e5daddf4aa06c9503758fef892"
+        },
+        {
+          "path": "demos/gallery/textured-square.ppm",
+          "bytes": 441615,
+          "sha256": "c05f1157be62be77ce8d39d073b64975a04f25572307779e6ab86845a9c5602b"
+        }
+      ],
+      "independent_reference_inputs": "demos/gallery/textured-square-inputs.json",
+      "own_input_source": "reports/unity-compatibility/mbx-textures-2026-10-09/logs/texture-scene-22.json"
+    },
+    {
+      "id": "linear-filter",
+      "classification": "authentic historical guest CLCD scanout",
+      "caption": "RMTexture square, GL_LINEAR, 270 degrees.",
+      "source_png": "reports/unity-compatibility/mbx-textures-2026-10-09/screenshots/texture-linear-27.png",
+      "source_provenance": "reports/unity-compatibility/mbx-textures-2026-10-09/logs/texture-linear-27-capture.json",
+      "source_provenance_sha256": "0230942648cee48b52313e2bffb6ff15438993823c3364f4a5c53547b80c4031",
+      "width": 320,
+      "height": 460,
+      "rgb_sha256": "f5cf1cd726d898c523b040969f46a1e0c64912f877905f41bc9872c490501c09",
+      "encoding": "Lossless RGB8 PNG; pixels identical to PPM, no compositing or image generation.",
+      "files": [
+        {
+          "path": "demos/gallery/linear-filter.png",
+          "bytes": 51465,
+          "sha256": "0e37baf6dfa171494313c55c222dd55fc3a33cc304fa43d3f88f0f32bc786607"
+        },
+        {
+          "path": "demos/gallery/linear-filter.ppm",
+          "bytes": 441615,
+          "sha256": "61dd0fb6b078d02db9a7ed543fbfea9e0ec2e194dbaf36e14a5e2f7a4f80cc39"
+        }
+      ],
+      "independent_reference_inputs": "demos/gallery/linear-filter-inputs.json",
+      "own_input_source": "reports/unity-compatibility/mbx-textures-2026-10-09/logs/texture-linear-scene-27.json"
+    }
+  ]
+}

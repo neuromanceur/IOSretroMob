@@ -47,15 +47,21 @@
       "tools/guest_apps/ta_inspect.py"
     ],
     "upstream_changed_paths_since_reference": [
+      "app/Sources/AppDelegate.m",
       "app/Sources/EmulatorViewController.h",
+      "app/Sources/EmulatorViewController.m",
       "app/Sources/VMBootOptions.c",
       "app/Sources/VMButtonQueue.c",
       "app/Sources/VMButtonQueue.h",
+      "app/Sources/VMDeviceAutomation.m",
       "app/Sources/VMEngine.h",
+      "app/Sources/VMEngine.m",
       "app/Sources/VMFirmwareBoot.c",
       "app/Sources/VMFirmwareBoot.h",
       "app/Sources/VMFirmwareFormats.h",
       "app/Sources/VMFirmwareHLE.c",
+      "app/Sources/VMFirmwareImportViewController.m",
+      "app/Sources/VMFirmwareImporter.m",
       "app/Sources/VMFirmwareZip.c",
       "app/Sources/VMFrameTelemetry.c",
       "app/Sources/VMFrameTelemetry.h",
@@ -65,10 +71,13 @@
       "app/Sources/VMGuestInstallBuild.c",
       "app/Sources/VMGuestInstallBuild.h",
       "app/Sources/VMGuestInstallViewController.h",
+      "app/Sources/VMGuestInstallViewController.m",
       "app/Sources/VMGuestPackageManifest.c",
       "app/Sources/VMGuestPackageManifest.h",
       "app/Sources/VMGuestRootfsPlan.c",
       "app/Sources/VMGuestRootfsPlan.h",
+      "app/Sources/VMInstanceListViewController.m",
+      "app/Sources/VMManualViewController.m",
       "app/Sources/VMNetworkSession.c",
       "app/Sources/VMNetworkSession.h",
       "app/Sources/VMOptions.c",
@@ -76,7 +85,9 @@
       "app/Sources/VMResumeCheckpoint.c",
       "app/Sources/VMResumeCheckpoint.h",
       "app/Sources/VMSettings.h",
+      "app/Sources/VMSettings.m",
       "app/Sources/VMSettingsViewController.h",
+      "app/Sources/VMSettingsViewController.m",
       "app/Sources/VMTouchQueue.c",
       "app/Sources/VMTouchQueue.h",
       "app/Tests/test_vmbootoptions.c",
@@ -92,6 +103,7 @@
       "app/Tests/test_vmresumecheckpoint.c",
       "app/Tests/test_vmtouchqueue.c",
       "app/project.yml",
+      "core/CMakeLists.txt",
       "core/include/arm.h",
       "core/include/bringup.h",
       "core/include/md_bridge.h",
@@ -141,6 +153,7 @@
       "core/tests/test_uart4.c",
       "docs/ARCHITECTURE.md",
       "docs/multitouch.md",
+      "docs/upstream/README.md",
       "tools/a64_static.c",
       "tools/a64_static.h",
       "tools/bootkernel.c",
@@ -175,7 +188,8 @@
       "app/Sources/VMSnapshotListViewController.m",
       "app/Sources/main.m"
     ],
-    "portability_adaptation": "Diagnostic LLVM directory selected by IOSRETROMOB_LLVM_BIN or PATH, never a personal path."
+    "portability_adaptation": "Diagnostic LLVM directory selected by IOSRETROMOB_LLVM_BIN or PATH, never a personal path.",
+    "source_comparison_scope": "Imported source bytes in historical checkout; product changes tracked separately by IOSretroMob commits."
   },
   "files": [
     {
@@ -233,12 +247,30 @@
       "identical_to_upstream_current": true
     },
     {
+      "path": "app/Sources/AppDelegate.m",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "af75ff4c1e357468078a4a441c98cdb090bf49e3eb978c35ca748e93c8634b27",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "342b75079d4ca18a32a92ccdd513fd92cfb1f96748d2cfd317ab6a3ee7cfc87f",
+      "identical_to_upstream_current": false
+    },
+    {
       "path": "app/Sources/EmulatorViewController.h",
       "origin": "S5LBox MIT baseline",
       "local_sha256": "a9dbb47c3409b1ecd90235d20164c3d5a5033602667e79395fb3594fdfe53b7c",
       "different_from_reference": false,
       "upstream_current_present": true,
       "upstream_current_sha256": "86310ccb6b314e9e6275c1e7b382d05503bc4fe350f45dcdc30e445636e3afea",
+      "identical_to_upstream_current": false
+    },
+    {
+      "path": "app/Sources/EmulatorViewController.m",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "47ef57a13bc08d6a9540ba3277bd2709e4e3110edc6736baa56bbf5e9e2e0008",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "d92fa322e428aaecb8b59703c61e0567ecf71e5d66c05d70796d2a486b439251",
       "identical_to_upstream_current": false
     },
     {
@@ -269,6 +301,15 @@
       "identical_to_upstream_current": true
     },
     {
+      "path": "app/Sources/VMButtonBar.m",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "269676109ee3a482339c74fa5cbe14985b94122351859bcbf7825f9b65d0cbdd",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "269676109ee3a482339c74fa5cbe14985b94122351859bcbf7825f9b65d0cbdd",
+      "identical_to_upstream_current": true
+    },
+    {
       "path": "app/Sources/VMButtonQueue.c",
       "origin": "S5LBox MIT baseline",
       "local_sha256": "44cd4c72b8bd61c33c37f928e1b5008718395001f8ffcab7a4175d834ffa4018",
@@ -293,6 +334,15 @@
       "different_from_reference": false,
       "upstream_current_present": true,
       "upstream_current_sha256": "6071c2c105e9eed5027992c1049bb7677448a723a4f27852ca99ee7a26982f92",
+      "identical_to_upstream_current": true
+    },
+    {
+      "path": "app/Sources/VMConsoleViewController.m",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "815645107eecd15f881be7134036eee2e0fd5b1896fd6942bde94602319c0b77",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "815645107eecd15f881be7134036eee2e0fd5b1896fd6942bde94602319c0b77",
       "identical_to_upstream_current": true
     },
     {
@@ -323,12 +373,30 @@
       "identical_to_upstream_current": true
     },
     {
+      "path": "app/Sources/VMDeviceAutomation.m",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "6388e4f64b8db7134ecc0ae678d4b4d47282702f2c08fe3289020a950a358723",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "e8223bd2d42370025d1e6eb997d086421327ca219c869b0f5dda0a2a7dd7449f",
+      "identical_to_upstream_current": false
+    },
+    {
       "path": "app/Sources/VMEngine.h",
       "origin": "S5LBox MIT baseline",
       "local_sha256": "6a0536b725a1c6c09fce4a19b2d16e0e32b328ef2de5a8ed6a1f18b40f2efff9",
       "different_from_reference": false,
       "upstream_current_present": true,
       "upstream_current_sha256": "ac5a80e838aa9e74d71b0eaaeacbeb287c9ae50a04cbc21b024428deb0429f3c",
+      "identical_to_upstream_current": false
+    },
+    {
+      "path": "app/Sources/VMEngine.m",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "a335027f81a84174b09ac6cab68e88973e24cf4cf88d2068cb2350d908ba912b",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "f631997497ab7f578553ebc5518cd2963eead0e0cfbb4a534e740af826433ded",
       "identical_to_upstream_current": false
     },
     {
@@ -422,6 +490,15 @@
       "identical_to_upstream_current": true
     },
     {
+      "path": "app/Sources/VMFirmwareImportViewController.m",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "b14e652d4cf8f17c89de05fbd0af3249906277f278e74a2b80fb00b964feb5cb",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "af5432439c43b875b5843778aaa69e044b96a2db126d6740ca2298342b13f29f",
+      "identical_to_upstream_current": false
+    },
+    {
       "path": "app/Sources/VMFirmwareImporter.h",
       "origin": "S5LBox MIT baseline",
       "local_sha256": "0f1e6a9e167ebe0947f4059eeb7f2f5478e3ca4ffbc32b8b4c3f5172419a43ab",
@@ -429,6 +506,15 @@
       "upstream_current_present": true,
       "upstream_current_sha256": "0f1e6a9e167ebe0947f4059eeb7f2f5478e3ca4ffbc32b8b4c3f5172419a43ab",
       "identical_to_upstream_current": true
+    },
+    {
+      "path": "app/Sources/VMFirmwareImporter.m",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "cddd5d7ef93de756460d0e7f63173261ffe616c852217b4fdc23ecc9d063bf87",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "45cf6f06f0c4aebede898606f92a1f52a76b8b4623bc1845517d42ea29b416a4",
+      "identical_to_upstream_current": false
     },
     {
       "path": "app/Sources/VMFirmwareInflate.c",
@@ -482,6 +568,15 @@
       "different_from_reference": false,
       "upstream_current_present": true,
       "upstream_current_sha256": "a9d78429407f84e67cf8cbc59ddc6211412bcaa71b06cb9bca02275ae7fa0c69",
+      "identical_to_upstream_current": true
+    },
+    {
+      "path": "app/Sources/VMFramebufferView.m",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "a55782f7772113499855d7d25b56fd1eaaf34c1e7e3bb84a9de548397ca56c7b",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "a55782f7772113499855d7d25b56fd1eaaf34c1e7e3bb84a9de548397ca56c7b",
       "identical_to_upstream_current": true
     },
     {
@@ -548,12 +643,30 @@
       "identical_to_upstream_current": false
     },
     {
+      "path": "app/Sources/VMGuestInstallViewController.m",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "1b56593b084dbd5d906f370a21bc506ae3a70befd9bfbc53be51e3e434f7e46a",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "f2b55dc16d3e17635416c30e928edab917020e5cd50f6dd24965a406973d0aa5",
+      "identical_to_upstream_current": false
+    },
+    {
       "path": "app/Sources/VMGuestPackageDownloader.h",
       "origin": "S5LBox MIT baseline",
       "local_sha256": "35a26f04f083d89a389886b9b6f2e67c8315d27029cd4f14217b338a1d6c3164",
       "different_from_reference": false,
       "upstream_current_present": true,
       "upstream_current_sha256": "35a26f04f083d89a389886b9b6f2e67c8315d27029cd4f14217b338a1d6c3164",
+      "identical_to_upstream_current": true
+    },
+    {
+      "path": "app/Sources/VMGuestPackageDownloader.m",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "810f46b96f6dbd2bb2c8fea59bbae2060186471ef8daa174885051039f8ed921",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "810f46b96f6dbd2bb2c8fea59bbae2060186471ef8daa174885051039f8ed921",
       "identical_to_upstream_current": true
     },
     {
@@ -620,6 +733,15 @@
       "identical_to_upstream_current": true
     },
     {
+      "path": "app/Sources/VMInstanceListViewController.m",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "9d3de268e2eef29e552c2a016b76dbecf501657941347a997ce41985a3631e88",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "0f170e14a60ba2991f3c3ae95f05558ab5f59d8dc70efd750915ccd44eecf203",
+      "identical_to_upstream_current": false
+    },
+    {
       "path": "app/Sources/VMInstancePaths.c",
       "origin": "S5LBox MIT baseline",
       "local_sha256": "d66c5a244d5d425551e11913f40a89a0877b67105a5ed1a560792c0a06b25f86",
@@ -644,6 +766,15 @@
       "different_from_reference": false,
       "upstream_current_present": true,
       "upstream_current_sha256": "8cde7c5a0eb6ef8157cde2167fbc211bb63646f7c09cee1d5905924f04afbf9e",
+      "identical_to_upstream_current": true
+    },
+    {
+      "path": "app/Sources/VMInstanceStore.m",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "7b07f1dc281dd9a83f2f25f0807eff97f868704783a9adf17a4ae782d67e247d",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "7b07f1dc281dd9a83f2f25f0807eff97f868704783a9adf17a4ae782d67e247d",
       "identical_to_upstream_current": true
     },
     {
@@ -690,6 +821,15 @@
       "upstream_current_present": true,
       "upstream_current_sha256": "bedd104dd8183bafa00574864a4c75e328d0e1a3b095f2212fb409537a6201f0",
       "identical_to_upstream_current": true
+    },
+    {
+      "path": "app/Sources/VMManualViewController.m",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "6329a13bfc96dc18ed087845df4a4befcc7cd8c1ea316e1837a86a1a5d9b0407",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "dd630f89507829d2291d2adcbab222c7dbe966034186ed4d12b1727f998b7f0a",
+      "identical_to_upstream_current": false
     },
     {
       "path": "app/Sources/VMNetworkSession.c",
@@ -755,12 +895,30 @@
       "identical_to_upstream_current": false
     },
     {
+      "path": "app/Sources/VMSettings.m",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "56d9146352dd9c12b26a621527d6a3fb81d10877c92fc6012b62d0a33400c6f5",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "cf2921331e9719e8cffa076c2bd27a319ec249528440cd6c65ee0843bc203911",
+      "identical_to_upstream_current": false
+    },
+    {
       "path": "app/Sources/VMSettingsViewController.h",
       "origin": "S5LBox MIT baseline",
       "local_sha256": "e633b4273b85f835af03113c1c35c981b057340b4d56402d800cd25a2b757880",
       "different_from_reference": false,
       "upstream_current_present": true,
       "upstream_current_sha256": "90d367507eb6ed28de7121c440f1bf3646d6b7c2f0f92cf057633c88df38714b",
+      "identical_to_upstream_current": false
+    },
+    {
+      "path": "app/Sources/VMSettingsViewController.m",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "86e24ecc7d0f301f99a3de33009561e59f0331285e20e933996b741ac34f838e",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "e3efbe829006d906f15f7890ada5cc60c6b250e45ac3d653236112fe46c25003",
       "identical_to_upstream_current": false
     },
     {
@@ -788,6 +946,15 @@
       "different_from_reference": false,
       "upstream_current_present": true,
       "upstream_current_sha256": "985d356618067d955bf137718493ad803ef42dcb8c81f0ec18a3245dbcdc48ee",
+      "identical_to_upstream_current": true
+    },
+    {
+      "path": "app/Sources/VMSnapshotListViewController.m",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "80908414863fac3defffd06897395ff66cf2750806a9ed601a129313296a676e",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "80908414863fac3defffd06897395ff66cf2750806a9ed601a129313296a676e",
       "identical_to_upstream_current": true
     },
     {
@@ -843,6 +1010,15 @@
       "upstream_current_present": true,
       "upstream_current_sha256": "f3c744816d015c500783a967a3833dae70d6199846ab504d37eed562d362947c",
       "identical_to_upstream_current": false
+    },
+    {
+      "path": "app/Sources/main.m",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "a7869a67b43e8806e03b62197372274a273b71a8de36147d9e8b481c5815b6e9",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "a7869a67b43e8806e03b62197372274a273b71a8de36147d9e8b481c5815b6e9",
+      "identical_to_upstream_current": true
     },
     {
       "path": "app/Tests/VMFirmwareFixtures.h",
@@ -1097,6 +1273,15 @@
       "identical_to_upstream_current": false
     },
     {
+      "path": "core/CMakeLists.txt",
+      "origin": "Local build adaptation of S5LBox MIT baseline",
+      "local_sha256": "1e06e6006604f05022b01cdc44391614cd8c4fc721336ab6c1f715260bbf72c7",
+      "different_from_reference": true,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "7ea353ebce6f0df8a28a56be8b7e02c654abd6f6c9f3f329c9149993c7a1f81f",
+      "identical_to_upstream_current": false
+    },
+    {
       "path": "core/include/a64_emit.h",
       "origin": "S5LBox MIT baseline",
       "local_sha256": "2c651974d570ce5a4e5cade17e1c91a6d0bbfc31fab213f9b042e4421883c8de",
@@ -1194,6 +1379,13 @@
       "upstream_current_present": true,
       "upstream_current_sha256": "9d1b7ef6995808b5e424bc40c9ec98685feff0d8115bd84adbbfa83b0bd84425",
       "identical_to_upstream_current": true
+    },
+    {
+      "path": "core/include/mbx_vgp.h",
+      "origin": "Original local IOSretroMob adaptation/test/tool",
+      "local_sha256": "9d0e30bf596390be9edb3bd30cb637c15fc929e06cfb8aa61ebf3df702ba08eb",
+      "different_from_reference": true,
+      "upstream_current_present": false
     },
     {
       "path": "core/include/md_bridge.h",
@@ -1572,6 +1764,13 @@
       "upstream_current_present": true,
       "upstream_current_sha256": "a7d0baa184d921c35f6d37ac815d2bf89dcae5ccc87c9adbbea52fadb7eb5d41",
       "identical_to_upstream_current": false
+    },
+    {
+      "path": "core/src/soc/mbx_vgp.c",
+      "origin": "Original local IOSretroMob adaptation/test/tool",
+      "local_sha256": "976487d352dab1e668801670db5677f89c8a371c3094daf5299c639f99aca9ee",
+      "different_from_reference": true,
+      "upstream_current_present": false
     },
     {
       "path": "core/src/soc/mtz2.c",
@@ -1970,6 +2169,13 @@
       "identical_to_upstream_current": false
     },
     {
+      "path": "core/tests/test_mbx_vgp.c",
+      "origin": "Original local IOSretroMob adaptation/test/tool",
+      "local_sha256": "59b9b9fc1e2a98816bda2e300f53b0f53ea7ac66cbfd29a6b3a5b489fcde30a4",
+      "different_from_reference": true,
+      "upstream_current_present": false
+    },
+    {
       "path": "core/tests/test_md_bridge.c",
       "origin": "S5LBox MIT baseline",
       "local_sha256": "80552dc89eafb134e8b2d184a86195b49b8af7e124877c8e32e33e5b4fb8a078",
@@ -2240,6 +2446,99 @@
       "identical_to_upstream_current": true
     },
     {
+      "path": "docs/upstream/README.md",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "966d425e087be61bb0dbf3ef67b20f47c94679d1ae5e837cf529328592a957be",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "34a541fa55d26799eac382b05d7684f420db5ec389d09cb65d2a84323f6c84ca",
+      "identical_to_upstream_current": false
+    },
+    {
+      "path": "tests/guest-apps/blend.c",
+      "origin": "Original local IOSretroMob adaptation/test/tool",
+      "local_sha256": "fae5720b4904b5a1f2d7e0dd60ba33f3ffb1ea253603aaa5eb4747b27ec083db",
+      "different_from_reference": true,
+      "upstream_current_present": false
+    },
+    {
+      "path": "tests/guest-apps/depth.c",
+      "origin": "Original local IOSretroMob adaptation/test/tool",
+      "local_sha256": "689055393f95000a7ad2e0e25e3a1b287494df08b2a3fa43d8304c04b36ad975",
+      "different_from_reference": true,
+      "upstream_current_present": false
+    },
+    {
+      "path": "tests/guest-apps/gles1.c",
+      "origin": "Original local IOSretroMob adaptation/test/tool",
+      "local_sha256": "88470b09fa0d7e3e542ea56151f9d507dec461b5d2ae2fd6331d0f88986973c7",
+      "different_from_reference": true,
+      "upstream_current_present": false
+    },
+    {
+      "path": "tests/guest-apps/layout.ld",
+      "origin": "Original local IOSretroMob adaptation/test/tool",
+      "local_sha256": "42b385ce7acca07a5b62f81a3fa6219ff9023c7b38659e045a28638a3af1fcb2",
+      "different_from_reference": true,
+      "upstream_current_present": false
+    },
+    {
+      "path": "tests/guest-apps/runtime.h",
+      "origin": "Original local IOSretroMob adaptation/test/tool",
+      "local_sha256": "bd0331729cf7c3785fcab513f224553fe397762833ad33bbdb597db596e870cd",
+      "different_from_reference": true,
+      "upstream_current_present": false
+    },
+    {
+      "path": "tests/guest-apps/start.S",
+      "origin": "Original local IOSretroMob adaptation/test/tool",
+      "local_sha256": "d1c4ea73430faadd75a0479cbb846861770c846b0c016b91dd6aa436f63ec9bd",
+      "different_from_reference": true,
+      "upstream_current_present": false
+    },
+    {
+      "path": "tests/guest-apps/test_builder.py",
+      "origin": "Original local IOSretroMob adaptation/test/tool",
+      "local_sha256": "2ca8f66b635ceca73f8193187dfb0f9a9dda82bbfbb703a2b2a022da3a4764f5",
+      "different_from_reference": true,
+      "upstream_current_present": false
+    },
+    {
+      "path": "tests/guest-apps/test_package.py",
+      "origin": "Original local IOSretroMob adaptation/test/tool",
+      "local_sha256": "7fe0e5efa3b86860d10fa4831200a9c296df53c03a5ca18cdd00930e36410089",
+      "different_from_reference": true,
+      "upstream_current_present": false
+    },
+    {
+      "path": "tests/guest-apps/test_ta_inspect.py",
+      "origin": "Original local IOSretroMob adaptation/test/tool",
+      "local_sha256": "62475043edd820bb377158b862d9f55c1d2dca682f4bbfa9b459e43a9a77a04b",
+      "different_from_reference": true,
+      "upstream_current_present": false
+    },
+    {
+      "path": "tests/guest-apps/texture.c",
+      "origin": "Original local IOSretroMob adaptation/test/tool",
+      "local_sha256": "f756f6e1f89314718e0d82ccfca2abb739460f53f0ac5e741055b86f23df2be2",
+      "different_from_reference": true,
+      "upstream_current_present": false
+    },
+    {
+      "path": "tests/guest-apps/uikit.c",
+      "origin": "Original local IOSretroMob adaptation/test/tool",
+      "local_sha256": "c2761bcd0776b5852cd88a9a4c0d084b92d0284c53e32b08730f68fa8e159e38",
+      "different_from_reference": true,
+      "upstream_current_present": false
+    },
+    {
+      "path": "tests/guest-apps/zprobe.c",
+      "origin": "Original local IOSretroMob adaptation/test/tool",
+      "local_sha256": "237330738daacbeb28429de410b310345ddbeae42d05b1115832c86b457e7181",
+      "different_from_reference": true,
+      "upstream_current_present": false
+    },
+    {
       "path": "tools/a64_static.c",
       "origin": "S5LBox MIT baseline",
       "local_sha256": "93e8d4c42ba1c7427238df76d992b7a7cb74189f8d7ec14c5a53c2de92757a94",
@@ -2384,6 +2683,69 @@
       "identical_to_upstream_current": false
     },
     {
+      "path": "tools/guest_apps/build.py",
+      "origin": "Original local IOSretroMob adaptation/test/tool",
+      "local_sha256": "3c1fe58d7396bab334ae6959494c3a3948c444ed7b68056946e8f1d2b27796fc",
+      "different_from_reference": true,
+      "upstream_current_present": false
+    },
+    {
+      "path": "tools/guest_apps/inspect_hfs.py",
+      "origin": "Original local IOSretroMob adaptation/test/tool",
+      "local_sha256": "7470ddcbafdc59bc454604d1e85fa7750e44a6b72d192fc79a26c5997982b3a6",
+      "different_from_reference": true,
+      "upstream_current_present": false
+    },
+    {
+      "path": "tools/guest_apps/package.py",
+      "origin": "Original local IOSretroMob adaptation/test/tool",
+      "local_sha256": "0ff65cc86d1219f4e8ec1b23d378cd643aa6d2bcebeb2a5c88421f0e3e57beab",
+      "different_from_reference": true,
+      "upstream_current_present": false
+    },
+    {
+      "path": "tools/guest_apps/reference_blend.py",
+      "origin": "Original local IOSretroMob adaptation/test/tool",
+      "local_sha256": "de4da665d63828705cf16a216d1ba5512bf535bf844935541f483696ad75fd72",
+      "different_from_reference": true,
+      "upstream_current_present": false
+    },
+    {
+      "path": "tools/guest_apps/reference_depth.py",
+      "origin": "Original local IOSretroMob adaptation/test/tool",
+      "local_sha256": "a4da49471128229d2aa24abb4df80602ef3b36e183dd2097e4a0f32b13892fdc",
+      "different_from_reference": true,
+      "upstream_current_present": false
+    },
+    {
+      "path": "tools/guest_apps/reference_texture.py",
+      "origin": "Original local IOSretroMob adaptation/test/tool",
+      "local_sha256": "e6728180c7ba5a3a7f03370ceb58c592e55031a51e8e001f8f9cd40464678e37",
+      "different_from_reference": true,
+      "upstream_current_present": false
+    },
+    {
+      "path": "tools/guest_apps/reference_triangle.py",
+      "origin": "Original local IOSretroMob adaptation/test/tool",
+      "local_sha256": "671afd71c5fbd3a22112b8c9612695726baad3f319b86d1e50aafff167d94b74",
+      "different_from_reference": true,
+      "upstream_current_present": false
+    },
+    {
+      "path": "tools/guest_apps/ta_inspect.py",
+      "origin": "Original local IOSretroMob adaptation/test/tool",
+      "local_sha256": "e4130b4865f2d13527564b67deaea86a2fe5013cbd1d7932f9e6c6742d2ff66b",
+      "different_from_reference": true,
+      "upstream_current_present": false
+    },
+    {
+      "path": "tools/guest_clcd_capture.h",
+      "origin": "Original local IOSretroMob adaptation/test/tool",
+      "local_sha256": "bd6f05976570c40772ff167192b8226bfe33a3ea33042274da03ee7494c30067",
+      "different_from_reference": true,
+      "upstream_current_present": false
+    },
+    {
       "path": "tools/guest_patch.c",
       "origin": "S5LBox MIT baseline",
       "local_sha256": "d1edc09b4b3ae13da8998397a9df29fd816fa5b571345c92cb85e4093031a507",
@@ -2400,6 +2762,13 @@
       "upstream_current_present": true,
       "upstream_current_sha256": "0a52ae3665b55d88e5a0848361fb29c826efb8be99e6962a87b88148ef8287cc",
       "identical_to_upstream_current": true
+    },
+    {
+      "path": "tools/guest_z_journal_capture.h",
+      "origin": "Original local IOSretroMob adaptation/test/tool",
+      "local_sha256": "ff164c63cf8a05fe95c920691b84bea2195f2192d1b368b8cbe336c2404834b8",
+      "different_from_reference": true,
+      "upstream_current_present": false
     },
     {
       "path": "tools/hfsx_extract.py",
@@ -2426,6 +2795,15 @@
       "different_from_reference": false,
       "upstream_current_present": true,
       "upstream_current_sha256": "4c9b74fa909a98554d481202690193a74b8a4d849cbe63c5bdcbf82ae96204f7",
+      "identical_to_upstream_current": true
+    },
+    {
+      "path": "tools/ios-device-benchmark-entitlements.plist",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "84b0e2567bcb0cab7c13c24336ec6c6e95c757a029ea8cc01a7751130ee6c7fc",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "84b0e2567bcb0cab7c13c24336ec6c6e95c757a029ea8cc01a7751130ee6c7fc",
       "identical_to_upstream_current": true
     },
     {
@@ -2733,190 +3111,6 @@
       "upstream_current_present": true,
       "upstream_current_sha256": "d10cb50e7345f39358ec9721c77ef2d0c965042e9d02ecd9fc300a6a87cbe883",
       "identical_to_upstream_current": true
-    },
-    {
-      "path": "docs/upstream/README.md",
-      "origin": "S5LBox MIT baseline",
-      "local_sha256": "966d425e087be61bb0dbf3ef67b20f47c94679d1ae5e837cf529328592a957be",
-      "different_from_reference": false,
-      "upstream_current_present": true,
-      "upstream_current_sha256": "34a541fa55d26799eac382b05d7684f420db5ec389d09cb65d2a84323f6c84ca",
-      "identical_to_upstream_current": false
-    },
-    {
-      "path": "core/include/mbx_vgp.h",
-      "origin": "Original local IOSretroMob adaptation/test/tool",
-      "local_sha256": "9d0e30bf596390be9edb3bd30cb637c15fc929e06cfb8aa61ebf3df702ba08eb",
-      "different_from_reference": true,
-      "upstream_current_present": false
-    },
-    {
-      "path": "core/src/soc/mbx_vgp.c",
-      "origin": "Original local IOSretroMob adaptation/test/tool",
-      "local_sha256": "976487d352dab1e668801670db5677f89c8a371c3094daf5299c639f99aca9ee",
-      "different_from_reference": true,
-      "upstream_current_present": false
-    },
-    {
-      "path": "core/tests/test_mbx_vgp.c",
-      "origin": "Original local IOSretroMob adaptation/test/tool",
-      "local_sha256": "59b9b9fc1e2a98816bda2e300f53b0f53ea7ac66cbfd29a6b3a5b489fcde30a4",
-      "different_from_reference": true,
-      "upstream_current_present": false
-    },
-    {
-      "path": "tools/guest_clcd_capture.h",
-      "origin": "Original local IOSretroMob adaptation/test/tool",
-      "local_sha256": "bd6f05976570c40772ff167192b8226bfe33a3ea33042274da03ee7494c30067",
-      "different_from_reference": true,
-      "upstream_current_present": false
-    },
-    {
-      "path": "tools/guest_z_journal_capture.h",
-      "origin": "Original local IOSretroMob adaptation/test/tool",
-      "local_sha256": "ff164c63cf8a05fe95c920691b84bea2195f2192d1b368b8cbe336c2404834b8",
-      "different_from_reference": true,
-      "upstream_current_present": false
-    },
-    {
-      "path": "tests/guest-apps/test_ta_inspect.py",
-      "origin": "Original local IOSretroMob adaptation/test/tool",
-      "local_sha256": "62475043edd820bb377158b862d9f55c1d2dca682f4bbfa9b459e43a9a77a04b",
-      "different_from_reference": true,
-      "upstream_current_present": false
-    },
-    {
-      "path": "tests/guest-apps/layout.ld",
-      "origin": "Original local IOSretroMob adaptation/test/tool",
-      "local_sha256": "42b385ce7acca07a5b62f81a3fa6219ff9023c7b38659e045a28638a3af1fcb2",
-      "different_from_reference": true,
-      "upstream_current_present": false
-    },
-    {
-      "path": "tests/guest-apps/test_package.py",
-      "origin": "Original local IOSretroMob adaptation/test/tool",
-      "local_sha256": "7fe0e5efa3b86860d10fa4831200a9c296df53c03a5ca18cdd00930e36410089",
-      "different_from_reference": true,
-      "upstream_current_present": false
-    },
-    {
-      "path": "tests/guest-apps/gles1.c",
-      "origin": "Original local IOSretroMob adaptation/test/tool",
-      "local_sha256": "88470b09fa0d7e3e542ea56151f9d507dec461b5d2ae2fd6331d0f88986973c7",
-      "different_from_reference": true,
-      "upstream_current_present": false
-    },
-    {
-      "path": "tests/guest-apps/texture.c",
-      "origin": "Original local IOSretroMob adaptation/test/tool",
-      "local_sha256": "f756f6e1f89314718e0d82ccfca2abb739460f53f0ac5e741055b86f23df2be2",
-      "different_from_reference": true,
-      "upstream_current_present": false
-    },
-    {
-      "path": "tests/guest-apps/depth.c",
-      "origin": "Original local IOSretroMob adaptation/test/tool",
-      "local_sha256": "689055393f95000a7ad2e0e25e3a1b287494df08b2a3fa43d8304c04b36ad975",
-      "different_from_reference": true,
-      "upstream_current_present": false
-    },
-    {
-      "path": "tests/guest-apps/start.S",
-      "origin": "Original local IOSretroMob adaptation/test/tool",
-      "local_sha256": "d1c4ea73430faadd75a0479cbb846861770c846b0c016b91dd6aa436f63ec9bd",
-      "different_from_reference": true,
-      "upstream_current_present": false
-    },
-    {
-      "path": "tests/guest-apps/uikit.c",
-      "origin": "Original local IOSretroMob adaptation/test/tool",
-      "local_sha256": "c2761bcd0776b5852cd88a9a4c0d084b92d0284c53e32b08730f68fa8e159e38",
-      "different_from_reference": true,
-      "upstream_current_present": false
-    },
-    {
-      "path": "tests/guest-apps/runtime.h",
-      "origin": "Original local IOSretroMob adaptation/test/tool",
-      "local_sha256": "bd0331729cf7c3785fcab513f224553fe397762833ad33bbdb597db596e870cd",
-      "different_from_reference": true,
-      "upstream_current_present": false
-    },
-    {
-      "path": "tests/guest-apps/zprobe.c",
-      "origin": "Original local IOSretroMob adaptation/test/tool",
-      "local_sha256": "237330738daacbeb28429de410b310345ddbeae42d05b1115832c86b457e7181",
-      "different_from_reference": true,
-      "upstream_current_present": false
-    },
-    {
-      "path": "tests/guest-apps/blend.c",
-      "origin": "Original local IOSretroMob adaptation/test/tool",
-      "local_sha256": "fae5720b4904b5a1f2d7e0dd60ba33f3ffb1ea253603aaa5eb4747b27ec083db",
-      "different_from_reference": true,
-      "upstream_current_present": false
-    },
-    {
-      "path": "tests/guest-apps/test_builder.py",
-      "origin": "Original local IOSretroMob adaptation/test/tool",
-      "local_sha256": "2ca8f66b635ceca73f8193187dfb0f9a9dda82bbfbb703a2b2a022da3a4764f5",
-      "different_from_reference": true,
-      "upstream_current_present": false
-    },
-    {
-      "path": "tools/guest_apps/package.py",
-      "origin": "Original local IOSretroMob adaptation/test/tool",
-      "local_sha256": "0ff65cc86d1219f4e8ec1b23d378cd643aa6d2bcebeb2a5c88421f0e3e57beab",
-      "different_from_reference": true,
-      "upstream_current_present": false
-    },
-    {
-      "path": "tools/guest_apps/build.py",
-      "origin": "Original local IOSretroMob adaptation/test/tool",
-      "local_sha256": "3c1fe58d7396bab334ae6959494c3a3948c444ed7b68056946e8f1d2b27796fc",
-      "different_from_reference": true,
-      "upstream_current_present": false
-    },
-    {
-      "path": "tools/guest_apps/inspect_hfs.py",
-      "origin": "Original local IOSretroMob adaptation/test/tool",
-      "local_sha256": "7470ddcbafdc59bc454604d1e85fa7750e44a6b72d192fc79a26c5997982b3a6",
-      "different_from_reference": true,
-      "upstream_current_present": false
-    },
-    {
-      "path": "tools/guest_apps/reference_depth.py",
-      "origin": "Original local IOSretroMob adaptation/test/tool",
-      "local_sha256": "a4da49471128229d2aa24abb4df80602ef3b36e183dd2097e4a0f32b13892fdc",
-      "different_from_reference": true,
-      "upstream_current_present": false
-    },
-    {
-      "path": "tools/guest_apps/reference_texture.py",
-      "origin": "Original local IOSretroMob adaptation/test/tool",
-      "local_sha256": "e6728180c7ba5a3a7f03370ceb58c592e55031a51e8e001f8f9cd40464678e37",
-      "different_from_reference": true,
-      "upstream_current_present": false
-    },
-    {
-      "path": "tools/guest_apps/reference_triangle.py",
-      "origin": "Original local IOSretroMob adaptation/test/tool",
-      "local_sha256": "671afd71c5fbd3a22112b8c9612695726baad3f319b86d1e50aafff167d94b74",
-      "different_from_reference": true,
-      "upstream_current_present": false
-    },
-    {
-      "path": "tools/guest_apps/reference_blend.py",
-      "origin": "Original local IOSretroMob adaptation/test/tool",
-      "local_sha256": "de4da665d63828705cf16a216d1ba5512bf535bf844935541f483696ad75fd72",
-      "different_from_reference": true,
-      "upstream_current_present": false
-    },
-    {
-      "path": "tools/guest_apps/ta_inspect.py",
-      "origin": "Original local IOSretroMob adaptation/test/tool",
-      "local_sha256": "e4130b4865f2d13527564b67deaea86a2fe5013cbd1d7932f9e6c6742d2ff66b",
-      "different_from_reference": true,
-      "upstream_current_present": false
     }
   ]
 }

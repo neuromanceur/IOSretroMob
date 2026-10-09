@@ -2,7 +2,7 @@
 # Builds and tests the platform-independent emulator core on any host
 # (Windows/Linux/macOS). The iOS app is built separately by Xcode; see app/.
 cmake_minimum_required(VERSION 3.16)
-project(ios3vm C)
+project(IOSretroMob C)
 
 set(CMAKE_C_STANDARD 11)
 set(CMAKE_C_STANDARD_REQUIRED ON)
@@ -34,3 +34,6 @@ option(S5LBOX_STATIC_A64_ENGINE
 
 enable_testing()
 add_subdirectory(core)
+
+# Public firmware-free preservation and compatibility tools.
+add_subdirectory(lab)
