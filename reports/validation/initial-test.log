@@ -1,0 +1,263 @@
+-- Configuring done (0.3s)
+-- Generating done (0.2s)
+-- Build files have been written to: <repository>/build
+[  1%] Built target test_vmframetelemetry
+[ 16%] Built target emucore
+[ 17%] Built target host_sha256
+[ 18%] Built target host_file_block
+[ 18%] Built target host_guest_patch
+[ 20%] Built target test_vmresumecheckpoint
+[ 20%] Built target test_vmguestinstall
+[ 22%] Built target test_vmguestpackagemanifest
+[ 23%] Built target test_vmdebarchive
+[ 25%] Built target test_vmjitprobe
+[ 26%] Built target test_vmbootoptions
+[ 28%] Built target test_ios3_hle
+[ 28%] Built target host_ios3_hle
+[ 30%] Built target test_vmtouchmap
+[ 30%] Built target test_vmtouchqueue
+[ 32%] Built target test_vmbuttonqueue
+[ 32%] Built target test_vminstances
+[ 34%] Built target test_vmoptions
+[ 34%] Built target test_vmoptions_mbx_experiment
+[ 37%] Built target fwimport
+[ 42%] Built target test_vmfirmwareimport
+[ 42%] Built target test_file_block
+[ 43%] Built target test_guest_patch
+[ 45%] Built target host_audio_capture
+[ 45%] Built target host_mt_drag
+[ 45%] Built target img3dump
+[ 46%] Built target runfw
+[ 46%] Built target machoinfo
+[ 47%] Built target unlzss
+[ 49%] Built target test_snapshot_store
+[ 49%] Built target test_snapshot_cow
+[ 51%] Built target insnbench
+[ 51%] Built target snapboot
+[ 52%] Built target iosretromob-replay
+[ 54%] Built target test_vfp
+[ 54%] Built target test_arm
+[ 54%] Built target test_mbx
+[ 55%] Built target test_soc
+[ 55%] Built target test_i2c
+[ 56%] Built target test_mbx_vgp
+[ 56%] Built target test_spi
+[ 57%] Built target test_wm8991
+[ 59%] Built target test_buttons
+[ 59%] Built target test_gpioic
+[ 61%] Built target test_ppp
+[ 61%] Built target test_uart4
+[ 62%] Built target test_net
+[ 63%] Built target nethost
+[ 63%] Built target test_pl080
+[ 64%] Built target test_mtz2
+[ 64%] Built target test_aes
+[ 65%] Built target test_img3
+[ 65%] Built target test_loader
+[ 66%] Built target test_devicetree
+[ 68%] Built target test_ksyms
+[ 68%] Built target test_lzss
+[ 68%] Built target test_nand
+[ 69%] Built target test_snapshot
+[ 69%] Built target test_vm_block
+[ 70%] Built target test_vm_source
+[ 70%] Built target test_md_raw_bridge
+[ 71%] Built target test_md_bridge
+[ 73%] Built target test_macho
+[ 73%] Built target test_vmguest
+[ 73%] Built target host_ios3_kernel_patch
+[ 73%] Built target host_rootfs_work
+[ 74%] Built target host_vm_firmware_hle
+[ 75%] Built target test_vmnetworksession
+[ 77%] Built target test_audio_capture
+[ 77%] Built target test_mt_drag
+[ 77%] Built target test_rootfs_work
+[ 78%] Built target test_ios3_kernel_patch
+[ 80%] Built target host_payload_tar
+[ 80%] Built target test_rootfs_provision
+[ 82%] Built target test_net_host
+[ 82%] Built target host_ios3_bringup_gate
+[ 85%] Built target test_vmguestrootfsplan
+[ 90%] Built target test_vmguestinstallbuild
+[ 91%] Built target test_vmfirmwarehle
+[ 96%] Built target test_vminstancepaths
+[ 96%] Built target test_bringup
+[ 97%] Built target test_payload_tar
+[ 97%] Built target bootkernel
+[100%] Built target test_vmfirmwareboot
+Test project <repository>/build
+      Start  1: arm_interp
+ 1/71 Test  #1: arm_interp ........................   Passed    0.31 sec
+      Start  2: vfp
+ 2/71 Test  #2: vfp ...............................   Passed    0.28 sec
+      Start  3: s5l8900_machine
+ 3/71 Test  #3: s5l8900_machine ...................   Passed    0.43 sec
+      Start  4: power_vr_mbx2d
+ 4/71 Test  #4: power_vr_mbx2d ....................   Passed    0.47 sec
+      Start  5: power_vr_mbx_vgp
+ 5/71 Test  #5: power_vr_mbx_vgp ..................   Passed    0.30 sec
+      Start  6: s5l8900_i2c_pmu
+ 6/71 Test  #6: s5l8900_i2c_pmu ...................   Passed    0.41 sec
+      Start  7: wm8991_codec_and_i2s
+ 7/71 Test  #7: wm8991_codec_and_i2s ..............   Passed    0.46 sec
+      Start  8: s5l8900_spi
+ 8/71 Test  #8: s5l8900_spi .......................   Passed    0.44 sec
+      Start  9: s5l8900_gpioic
+ 9/71 Test  #9: s5l8900_gpioic ....................   Passed    0.50 sec
+      Start 10: iphone1_2_buttons
+10/71 Test #10: iphone1_2_buttons .................   Passed    0.51 sec
+      Start 11: s5l8900_uart4_ppp_line
+11/71 Test #11: s5l8900_uart4_ppp_line ............   Passed    0.74 sec
+      Start 12: ppp_peer
+12/71 Test #12: ppp_peer ..........................   Passed    0.30 sec
+      Start 13: host_ipv4_nat
+13/71 Test #13: host_ipv4_nat .....................   Passed    0.27 sec
+      Start 14: host_egress
+14/71 Test #14: host_egress .......................   Passed    0.41 sec
+      Start 15: multitouch_z2
+15/71 Test #15: multitouch_z2 .....................   Passed    0.44 sec
+      Start 16: s5l8900_pl080_dmac
+16/71 Test #16: s5l8900_pl080_dmac ................   Passed    0.51 sec
+      Start 17: img3_parser
+17/71 Test #17: img3_parser .......................   Passed    0.30 sec
+      Start 18: aes_fips197
+18/71 Test #18: aes_fips197 .......................   Passed    0.27 sec
+      Start 19: firmware_loader
+19/71 Test #19: firmware_loader ...................   Passed    0.30 sec
+      Start 20: device_tree
+20/71 Test #20: device_tree .......................   Passed    0.29 sec
+      Start 21: lzss
+21/71 Test #21: lzss ..............................   Passed    0.28 sec
+      Start 22: ksyms
+22/71 Test #22: ksyms .............................   Passed    0.27 sec
+      Start 23: snapshot
+23/71 Test #23: snapshot ..........................   Passed    1.91 sec
+      Start 24: nand_device
+24/71 Test #24: nand_device .......................   Passed    0.31 sec
+      Start 25: vm_source
+25/71 Test #25: vm_source .........................   Passed    0.27 sec
+      Start 26: vm_block
+26/71 Test #26: vm_block ..........................   Passed    0.27 sec
+      Start 27: host_memory_disk_bridge
+27/71 Test #27: host_memory_disk_bridge ...........   Passed    0.27 sec
+      Start 28: host_raw_memory_disk_bridge
+28/71 Test #28: host_raw_memory_disk_bridge .......   Passed    0.29 sec
+      Start 29: macho_parser
+29/71 Test #29: macho_parser ......................   Passed    0.27 sec
+      Start 30: app_vmguest_bridge
+30/71 Test #30: app_vmguest_bridge ................   Passed    0.28 sec
+      Start 31: app_frame_telemetry
+31/71 Test #31: app_frame_telemetry ...............   Passed    0.27 sec
+      Start 32: app_firmware_boot
+32/71 Test #32: app_firmware_boot .................   Passed    0.34 sec
+      Start 33: app_network_session
+33/71 Test #33: app_network_session ...............   Passed    0.30 sec
+      Start 34: app_resume_checkpoint
+34/71 Test #34: app_resume_checkpoint .............   Passed    0.52 sec
+      Start 35: app_guest_install_transaction
+35/71 Test #35: app_guest_install_transaction .....   Passed    0.35 sec
+      Start 36: app_debian_archive
+36/71 Test #36: app_debian_archive ................   Passed    0.29 sec
+      Start 37: app_guest_package_manifest
+37/71 Test #37: app_guest_package_manifest ........   Passed    0.27 sec
+      Start 38: app_guest_rootfs_plan
+38/71 Test #38: app_guest_rootfs_plan .............   Passed    0.28 sec
+      Start 39: app_guest_install_builder
+39/71 Test #39: app_guest_install_builder .........   Passed    0.28 sec
+      Start 40: app_boot_options
+40/71 Test #40: app_boot_options ..................   Passed    0.28 sec
+      Start 41: app_jit_probe
+41/71 Test #41: app_jit_probe .....................   Passed    0.27 sec
+      Start 42: ios3_hle
+42/71 Test #42: ios3_hle ..........................   Passed    0.56 sec
+      Start 43: app_firmware_hle_adapter
+43/71 Test #43: app_firmware_hle_adapter ..........   Passed    0.27 sec
+      Start 44: app_instance_paths
+44/71 Test #44: app_instance_paths ................   Passed    0.31 sec
+      Start 45: app_touch_map
+45/71 Test #45: app_touch_map .....................   Passed    0.28 sec
+      Start 46: app_touch_queue
+46/71 Test #46: app_touch_queue ...................   Passed    0.27 sec
+      Start 47: app_button_queue
+47/71 Test #47: app_button_queue ..................   Passed    0.27 sec
+      Start 48: app_instance_list
+48/71 Test #48: app_instance_list .................   Passed    0.27 sec
+      Start 49: app_option_table
+49/71 Test #49: app_option_table ..................   Passed    0.31 sec
+      Start 50: app_option_table_mbx_experiment
+50/71 Test #50: app_option_table_mbx_experiment ...   Passed    0.27 sec
+      Start 51: app_firmware_import
+51/71 Test #51: app_firmware_import ...............   Passed    0.41 sec
+      Start 52: file_block_adapter
+52/71 Test #52: file_block_adapter ................   Passed    0.30 sec
+      Start 53: atomic_guest_patch
+53/71 Test #53: atomic_guest_patch ................   Passed    0.27 sec
+      Start 54: mt_drag_gesture
+54/71 Test #54: mt_drag_gesture ...................   Passed    0.27 sec
+      Start 55: guest_audio_capture
+55/71 Test #55: guest_audio_capture ...............   Passed    0.28 sec
+      Start 56: kernel_bringup
+56/71 Test #56: kernel_bringup ....................   Passed    0.33 sec
+      Start 57: exact_ios3_kernel_patch
+57/71 Test #57: exact_ios3_kernel_patch ...........   Passed    0.47 sec
+      Start 58: bounded_rootfs_work_image
+58/71 Test #58: bounded_rootfs_work_image .........   Passed    0.40 sec
+      Start 59: hfs_catalog_provisioning
+59/71 Test #59: hfs_catalog_provisioning ..........   Passed    0.42 sec
+      Start 60: jailbreak_payload_tar
+60/71 Test #60: jailbreak_payload_tar .............   Passed    0.30 sec
+      Start 61: snapshot_cow
+61/71 Test #61: snapshot_cow ......................   Passed    0.27 sec
+      Start 62: snapshot_store
+62/71 Test #62: snapshot_store ....................   Passed    0.27 sec
+      Start 63: external_md_cli_preflight
+63/71 Test #63: external_md_cli_preflight .........   Passed    0.35 sec
+      Start 64: boot_option_resolution
+64/71 Test #64: boot_option_resolution ............   Passed    0.27 sec
+      Start 65: app_info_plist
+65/71 Test #65: app_info_plist ....................   Passed    0.01 sec
+      Start 66: app_execution_policy
+66/71 Test #66: app_execution_policy ..............   Passed    0.01 sec
+      Start 67: app_stock_host_policy
+67/71 Test #67: app_stock_host_policy .............   Passed    0.04 sec
+      Start 68: app_option_mirror
+68/71 Test #68: app_option_mirror .................   Passed    0.01 sec
+      Start 69: iosretromob_public_replays
+69/71 Test #69: iosretromob_public_replays ........***Failed    2.62 sec
+E...
+======================================================================
+ERROR: test_all_fixtures_and_no_overwrite (__main__.PublicReplays.test_all_fixtures_and_no_overwrite)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<repository>/lab/test_lab.py", line 13, in test_all_fixtures_and_no_overwrite
+    out=Path(d)/f.stem;r=replay.run(f,out,BUILD)
+                         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "<repository>/lab/replay.py", line 44, in run
+    result=compare(s,ppm);result['ppm']='synthetic.ppm';result['classification']='synthetic semantic replay; no guest boot or accepted TA program'
+           ^^^^^^^^^^^^^^
+  File "<repository>/lab/replay.py", line 35, in compare
+    return module('reference_triangle').compare(words,ppm)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<repository>/tools/guest_apps/reference_triangle.py", line 40, in compare
+    nx=(x+.5-cx)/sx;ny=(y+.5-cy)/sy
+                       ~~~~~~~~~^^~
+ZeroDivisionError: float division by zero
+
+----------------------------------------------------------------------
+Ran 4 tests in 2.430s
+
+FAILED (errors=1)
+
+      Start 70: iosretromob_diagnostic_tools
+70/71 Test #70: iosretromob_diagnostic_tools ......   Passed    0.11 sec
+      Start 71: iosretromob_gallery
+71/71 Test #71: iosretromob_gallery ...............   Passed    1.84 sec
+
+99% tests passed, 1 tests failed out of 71
+
+Total Test time (real) =  27.84 sec
+
+The following tests FAILED:
+	 69 - iosretromob_public_replays (Failed)
+Errors while running CTest
+IOSretroMob: Command '['ctest', '--test-dir', '<repository>/build', '--output-on-failure']' returned non-zero exit status 8.

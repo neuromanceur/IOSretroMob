@@ -1,0 +1,44 @@
+{
+  "before": {
+    "df_h": "Filesystem      Size    Used   Avail Capacity iused ifree %iused  Mounted on\n/dev/disk3s5   228Gi   130Gi    73Gi    65%    1.9M  765M    0%   /System/Volumes/Data\n",
+    "df_k": "Filesystem   1024-blocks      Used Available Capacity iused     ifree %iused  Mounted on\n/dev/disk3s5   239362496 136061064  76529692    65% 1898637 765296920    0%   /System/Volumes/Data\n",
+    "du_work": "4253980\twork\n"
+  },
+  "after": {
+    "df_h": "Filesystem      Size    Used   Avail Capacity iused ifree %iused  Mounted on\n/dev/disk3s5   228Gi   129Gi    73Gi    64%    1.9M  768M    0%   /System/Volumes/Data\n",
+    "df_k": "Filesystem   1024-blocks      Used Available Capacity iused     ifree %iused  Mounted on\n/dev/disk3s5   239362496 135763076  76827676    64% 1904311 768276760    0%   /System/Volumes/Data\n",
+    "historical_work_du_sk": "4253980\twork\n"
+  },
+  "new_artifacts": {
+    "product": {
+      "files": 1847,
+      "logical_bytes": 43130302,
+      "allocated_block_sum_bytes": 48402432
+    },
+    "product_git": {
+      "files": 83,
+      "logical_bytes": 3370640,
+      "allocated_block_sum_bytes": 3612672
+    },
+    "clean_validation": {
+      "files": 1763,
+      "logical_bytes": 41859142,
+      "allocated_block_sum_bytes": 47054848
+    },
+    "upstream_audit_clone": {
+      "files": 23,
+      "logical_bytes": 4270947,
+      "allocated_block_sum_bytes": 4341760
+    },
+    "private_audit_evidence": {
+      "files": 5,
+      "logical_bytes": 3633996,
+      "allocated_block_sum_bytes": 3645440
+    }
+  },
+  "new_artifact_logical_bytes_estimate": 92894387,
+  "budget_bytes": 1073741824,
+  "budget_met": true,
+  "reserve_5_gib_met": true,
+  "allocation_note": "Allocated block sums are not exclusive APFS physical usage; before/after df may also change through unrelated host activity. Product .git is a subset of product, not added twice. Temporary scripts/logs add less than 2 MiB beyond this measurement."
+}

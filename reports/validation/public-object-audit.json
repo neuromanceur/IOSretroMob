@@ -1,0 +1,1947 @@
+{
+  "pass": true,
+  "tracked_files": 386,
+  "tracked_logical_bytes": 13571850,
+  "commits": 3,
+  "historical_tree_entries": 995,
+  "all_git_objects": 439,
+  "all_blobs_inspected": 399,
+  "all_object_logical_bytes": 16155664,
+  "positive_allowlist_paths": 386,
+  "issues": [],
+  "inventory": [
+    {
+      "path": ".gitattributes",
+      "bytes": 244,
+      "sha256": "372c94f81e4b492437cb1aeddf6c2b5636026258a4b5ad9762014fc18ab0a617"
+    },
+    {
+      "path": ".gitignore",
+      "bytes": 132,
+      "sha256": "e344d7db2f014c64a320eca508151643814f04c8ea2a0e8ad880ea93bbde7eec"
+    },
+    {
+      "path": "AGENTS.md",
+      "bytes": 2100,
+      "sha256": "cfb3da769a63811da431ef546cfb0e92cb8a89cd3be7a095c905c57c37286176"
+    },
+    {
+      "path": "ARCHITECTURE.md",
+      "bytes": 2526,
+      "sha256": "e27961da877765403ef5df8c2dde20675257ad76f53a31b1942fb46ac3de12ff"
+    },
+    {
+      "path": "BUILDING.md",
+      "bytes": 2076,
+      "sha256": "19ef3d7bba3630e58587b51125f587bc928d29f6aab6f475676abd796296dbec"
+    },
+    {
+      "path": "CMakeLists.txt",
+      "bytes": 1942,
+      "sha256": "92c3293c81b43c42e80a2ac8ca31223756d8bfbb307c42eccb908a76bba8ec36"
+    },
+    {
+      "path": "COMPATIBILITY.md",
+      "bytes": 2814,
+      "sha256": "0539d1a1984287e88126efc91cb593580966cd70e44bd9d6c13ccf5641963c4c"
+    },
+    {
+      "path": "FIRMWARE.md",
+      "bytes": 1715,
+      "sha256": "2d70b7887138ff14410dc9a686bd51e163fce1a1226ccf9323be260d3dac73b2"
+    },
+    {
+      "path": "LICENSE",
+      "bytes": 1069,
+      "sha256": "f66cf6e71571d392f9776ad0b1fff36857d16385be6af97b570b5566b82e9a54"
+    },
+    {
+      "path": "README.fr.md",
+      "bytes": 1696,
+      "sha256": "a9aaa1f7622928339dd2e4c2e2d93a87d82c73bcddca07343ed8122c6fe619f2"
+    },
+    {
+      "path": "README.md",
+      "bytes": 6825,
+      "sha256": "0250af5f513de8ddb1a79670206a3b88da2b411f0070b803beaea769d73691b4"
+    },
+    {
+      "path": "ROADMAP.md",
+      "bytes": 1599,
+      "sha256": "dd87eb94a58210e09405cba319bf404ff2aaf54b61e2bc76b76edabac2efcea9"
+    },
+    {
+      "path": "TESTING.md",
+      "bytes": 2966,
+      "sha256": "5b1266b616370e7f0d115bb96f0b0ac0fdce23f1dbf998e0a237c598f7ecd419"
+    },
+    {
+      "path": "THIRD_PARTY_NOTICES.md",
+      "bytes": 2235,
+      "sha256": "4f0459b7f70671dd9f7053851998f77d48425965b9784007ab451c945f83f59f"
+    },
+    {
+      "path": "UPSTREAM.md",
+      "bytes": 5196,
+      "sha256": "723ec5fe8e18d00081feb8b1881953d1383c56d5cfff7ef6deff9de9b6e6365c"
+    },
+    {
+      "path": "app/Info.plist",
+      "bytes": 3649,
+      "sha256": "01f05718fb168c6017cd5af9d213d6139402bf8aeb7ab0bdba29b1256359330e"
+    },
+    {
+      "path": "app/S5LBox.entitlements",
+      "bytes": 683,
+      "sha256": "fafdc3e47ce69e299364b51a3fc756bbe2f13dd3db7aa88dab3efa0e74439994"
+    },
+    {
+      "path": "app/Sources/AppDelegate.h",
+      "bytes": 233,
+      "sha256": "ae3b1079c4e3af95a8932cd2ac03753a1ea22141b0ab07b8895af4640951ca52"
+    },
+    {
+      "path": "app/Sources/AppDelegate.m",
+      "bytes": 9356,
+      "sha256": "af75ff4c1e357468078a4a441c98cdb090bf49e3eb978c35ca748e93c8634b27"
+    },
+    {
+      "path": "app/Sources/EmulatorViewController.h",
+      "bytes": 1293,
+      "sha256": "a9dbb47c3409b1ecd90235d20164c3d5a5033602667e79395fb3594fdfe53b7c"
+    },
+    {
+      "path": "app/Sources/EmulatorViewController.m",
+      "bytes": 61821,
+      "sha256": "47ef57a13bc08d6a9540ba3277bd2709e4e3110edc6736baa56bbf5e9e2e0008"
+    },
+    {
+      "path": "app/Sources/VMBootOptions.c",
+      "bytes": 23244,
+      "sha256": "9fa99a89b0a901715b56927296369ca8d7bf626b999c2da35d61c133d77b69f4"
+    },
+    {
+      "path": "app/Sources/VMBootOptions.h",
+      "bytes": 9459,
+      "sha256": "99684e9b4888f220c85c8bb4b0f5923ae0f592856e71407ba63a44a7b4e5d5be"
+    },
+    {
+      "path": "app/Sources/VMButtonBar.h",
+      "bytes": 1903,
+      "sha256": "2b8bfbf2c8a06cb2b1ff108a676204f74aea442adea45900ddf4a7e2400c25c5"
+    },
+    {
+      "path": "app/Sources/VMButtonBar.m",
+      "bytes": 5653,
+      "sha256": "269676109ee3a482339c74fa5cbe14985b94122351859bcbf7825f9b65d0cbdd"
+    },
+    {
+      "path": "app/Sources/VMButtonQueue.c",
+      "bytes": 6740,
+      "sha256": "44cd4c72b8bd61c33c37f928e1b5008718395001f8ffcab7a4175d834ffa4018"
+    },
+    {
+      "path": "app/Sources/VMButtonQueue.h",
+      "bytes": 9816,
+      "sha256": "8e151edccf3bc3ce5bf88659ac2f12326579e2b90168772274714f91e6cd1e7e"
+    },
+    {
+      "path": "app/Sources/VMConsoleViewController.h",
+      "bytes": 990,
+      "sha256": "6071c2c105e9eed5027992c1049bb7677448a723a4f27852ca99ee7a26982f92"
+    },
+    {
+      "path": "app/Sources/VMConsoleViewController.m",
+      "bytes": 4304,
+      "sha256": "815645107eecd15f881be7134036eee2e0fd5b1896fd6942bde94602319c0b77"
+    },
+    {
+      "path": "app/Sources/VMDebArchive.c",
+      "bytes": 11610,
+      "sha256": "789e07ba6b26f2a3974edde642fe65249deacb14d14922f4415ce70f83a42a7c"
+    },
+    {
+      "path": "app/Sources/VMDebArchive.h",
+      "bytes": 2886,
+      "sha256": "bce5e844f20474e0b4b697824df60b766b471d12102c1b7bf5d143c26d429133"
+    },
+    {
+      "path": "app/Sources/VMDeviceAutomation.h",
+      "bytes": 2419,
+      "sha256": "086071f8deba44677b428d4a683537243dc0721fea994b92336b196d8971b8ca"
+    },
+    {
+      "path": "app/Sources/VMDeviceAutomation.m",
+      "bytes": 48505,
+      "sha256": "6388e4f64b8db7134ecc0ae678d4b4d47282702f2c08fe3289020a950a358723"
+    },
+    {
+      "path": "app/Sources/VMEngine.h",
+      "bytes": 13639,
+      "sha256": "6a0536b725a1c6c09fce4a19b2d16e0e32b328ef2de5a8ed6a1f18b40f2efff9"
+    },
+    {
+      "path": "app/Sources/VMEngine.m",
+      "bytes": 93133,
+      "sha256": "a335027f81a84174b09ac6cab68e88973e24cf4cf88d2068cb2350d908ba912b"
+    },
+    {
+      "path": "app/Sources/VMFirmwareBoot.c",
+      "bytes": 65335,
+      "sha256": "1e4fdb45d0e0086bafa5510b22b1d3ab73f5f2b24de62bdae2e948f16efa6571"
+    },
+    {
+      "path": "app/Sources/VMFirmwareBoot.h",
+      "bytes": 18120,
+      "sha256": "edbb9c63653814b5164b1085f2db7373f9519887b504f9c81dee1cce96e54770"
+    },
+    {
+      "path": "app/Sources/VMFirmwareDMG.c",
+      "bytes": 25690,
+      "sha256": "067fe60a415e79aa82ed3bfc33ed163aab803914d81462f3f0ee2df1800fcffd"
+    },
+    {
+      "path": "app/Sources/VMFirmwareDigest.c",
+      "bytes": 13120,
+      "sha256": "ad36cf5a07132a4208d3dfa157600faf49f25edf5c1f826d3b337bc013113032"
+    },
+    {
+      "path": "app/Sources/VMFirmwareFormats.h",
+      "bytes": 22170,
+      "sha256": "40296b1bef295cf6d9f15d589c331111f8f556bf821d1209a0001e8489bc0357"
+    },
+    {
+      "path": "app/Sources/VMFirmwareHLE.c",
+      "bytes": 8293,
+      "sha256": "02ba46212ec592415a967680d1ee001c415b6de8b1eaf16a3aef3d6aea2d156d"
+    },
+    {
+      "path": "app/Sources/VMFirmwareHLE.h",
+      "bytes": 791,
+      "sha256": "06d6b1aeecd596cf43fe311ed887b883f8631c70142d6396a892f18a3ae1f24f"
+    },
+    {
+      "path": "app/Sources/VMFirmwareImport.c",
+      "bytes": 58230,
+      "sha256": "f1fd2fd30620dd73cef4a34a683278cc12a2e05eee2516d829f4f93221a60960"
+    },
+    {
+      "path": "app/Sources/VMFirmwareImport.h",
+      "bytes": 15977,
+      "sha256": "e46bf71a95fcb386561fadf4486976e1f4cd089a58615fb89929048e6bc2d195"
+    },
+    {
+      "path": "app/Sources/VMFirmwareImportViewController.h",
+      "bytes": 1299,
+      "sha256": "2751255668b0d60552dc6adaa6d61fe3723373cce9b618870cab891c3cd9366c"
+    },
+    {
+      "path": "app/Sources/VMFirmwareImportViewController.m",
+      "bytes": 44827,
+      "sha256": "b14e652d4cf8f17c89de05fbd0af3249906277f278e74a2b80fb00b964feb5cb"
+    },
+    {
+      "path": "app/Sources/VMFirmwareImporter.h",
+      "bytes": 5285,
+      "sha256": "0f1e6a9e167ebe0947f4059eeb7f2f5478e3ca4ffbc32b8b4c3f5172419a43ab"
+    },
+    {
+      "path": "app/Sources/VMFirmwareImporter.m",
+      "bytes": 24814,
+      "sha256": "cddd5d7ef93de756460d0e7f63173261ffe616c852217b4fdc23ecc9d063bf87"
+    },
+    {
+      "path": "app/Sources/VMFirmwareInflate.c",
+      "bytes": 32741,
+      "sha256": "3527487dbadd9c3d994f58b5b779b619ba8b9e868e0715264ad2959a0b11f436"
+    },
+    {
+      "path": "app/Sources/VMFirmwarePlist.c",
+      "bytes": 33364,
+      "sha256": "8c0d1becc7eb40cd638aec709e4ce9d2c15ebb8fe036526fa390ad41157d2e58"
+    },
+    {
+      "path": "app/Sources/VMFirmwareZip.c",
+      "bytes": 26279,
+      "sha256": "e587921c0b5f7f1a6eba7538d6afd39cf9174ebbdfdfafea14316e72ee3471ea"
+    },
+    {
+      "path": "app/Sources/VMFrameTelemetry.c",
+      "bytes": 19900,
+      "sha256": "199e1a4a8a08bd46a66749b75cf978fb1c38dc24b0e39980ffea51b8ebebc8f5"
+    },
+    {
+      "path": "app/Sources/VMFrameTelemetry.h",
+      "bytes": 12868,
+      "sha256": "1da465afe3b74959479b89cd1652da31d548f331901bb5047bc45fa0b3cd8c46"
+    },
+    {
+      "path": "app/Sources/VMFramebufferView.h",
+      "bytes": 2446,
+      "sha256": "a9d78429407f84e67cf8cbc59ddc6211412bcaa71b06cb9bca02275ae7fa0c69"
+    },
+    {
+      "path": "app/Sources/VMFramebufferView.m",
+      "bytes": 8942,
+      "sha256": "a55782f7772113499855d7d25b56fd1eaaf34c1e7e3bb84a9de548397ca56c7b"
+    },
+    {
+      "path": "app/Sources/VMGuest.c",
+      "bytes": 33436,
+      "sha256": "6e4e0bf4463ceda50360d88845f37f9262b68a439281a8a832de4d2532e3a808"
+    },
+    {
+      "path": "app/Sources/VMGuest.h",
+      "bytes": 4080,
+      "sha256": "de34cf65d91bbc4e96672001f89a4b8a0cad1ebc1b22efb296a496f91c5102c1"
+    },
+    {
+      "path": "app/Sources/VMGuestInstall.c",
+      "bytes": 51450,
+      "sha256": "f33614a7fff40103c4282b1be2e79d5d4b2824dbb205672c040c7de4c48e2e99"
+    },
+    {
+      "path": "app/Sources/VMGuestInstall.h",
+      "bytes": 10657,
+      "sha256": "d445ed5d0e2be53c3847966373707754fff4b2a8547a2393b7362dc10d2f88a5"
+    },
+    {
+      "path": "app/Sources/VMGuestInstallBuild.c",
+      "bytes": 25973,
+      "sha256": "63c766d939eb3c85528b4d439ea6b0426d745f6f3a615acec431c49cdd002c5e"
+    },
+    {
+      "path": "app/Sources/VMGuestInstallBuild.h",
+      "bytes": 4161,
+      "sha256": "1cf442f0bc6f1692f96df8e495b9b583bd12025cc2fa4a23d1d9fc6a5ac74a74"
+    },
+    {
+      "path": "app/Sources/VMGuestInstallViewController.h",
+      "bytes": 768,
+      "sha256": "fa3e521a6f6945e929f99ae928008e0e8f8ce59e2c0774c13d4ed2845754ae56"
+    },
+    {
+      "path": "app/Sources/VMGuestInstallViewController.m",
+      "bytes": 16373,
+      "sha256": "1b56593b084dbd5d906f370a21bc506ae3a70befd9bfbc53be51e3e434f7e46a"
+    },
+    {
+      "path": "app/Sources/VMGuestPackageDownloader.h",
+      "bytes": 944,
+      "sha256": "35a26f04f083d89a389886b9b6f2e67c8315d27029cd4f14217b338a1d6c3164"
+    },
+    {
+      "path": "app/Sources/VMGuestPackageDownloader.m",
+      "bytes": 15343,
+      "sha256": "810f46b96f6dbd2bb2c8fea59bbae2060186471ef8daa174885051039f8ed921"
+    },
+    {
+      "path": "app/Sources/VMGuestPackageFile.c",
+      "bytes": 3825,
+      "sha256": "5e4622a73511b0eb83df45060d5c51f8c9368c8de2cc6cff09f2e8a7a65d6c46"
+    },
+    {
+      "path": "app/Sources/VMGuestPackageFile.h",
+      "bytes": 1309,
+      "sha256": "00a9b9a2c7a92ed2f4b0554bd3a2e2dd5b33eea3a9bed6c9cf65f8b74a22aac6"
+    },
+    {
+      "path": "app/Sources/VMGuestPackageManifest.c",
+      "bytes": 14405,
+      "sha256": "c4daf3da125c69c342de93f695c1dcf732b016e049abc89f9317ccb94e159e3b"
+    },
+    {
+      "path": "app/Sources/VMGuestPackageManifest.h",
+      "bytes": 2570,
+      "sha256": "cb39a0653cfc90d1bc636739bf35b968408a65c7a5321217bea4fe73fcd1bb38"
+    },
+    {
+      "path": "app/Sources/VMGuestRootfsPlan.c",
+      "bytes": 34315,
+      "sha256": "953eeb9df668453f2cbd60f52367c6620bf4d89f3af7da6e6fba99757785de6b"
+    },
+    {
+      "path": "app/Sources/VMGuestRootfsPlan.h",
+      "bytes": 3580,
+      "sha256": "f217ed19e3f13b21a5c57a860657aca6212784ad25ba0ec2981913fdbad0e1a1"
+    },
+    {
+      "path": "app/Sources/VMInstanceListViewController.h",
+      "bytes": 1282,
+      "sha256": "819632c62f8e5fc1b3529a9b17d7a93d467775149fb2988ca9378330ea5ae047"
+    },
+    {
+      "path": "app/Sources/VMInstanceListViewController.m",
+      "bytes": 20240,
+      "sha256": "9d3de268e2eef29e552c2a016b76dbecf501657941347a997ce41985a3631e88"
+    },
+    {
+      "path": "app/Sources/VMInstancePaths.c",
+      "bytes": 7857,
+      "sha256": "d66c5a244d5d425551e11913f40a89a0877b67105a5ed1a560792c0a06b25f86"
+    },
+    {
+      "path": "app/Sources/VMInstancePaths.h",
+      "bytes": 7324,
+      "sha256": "f77f36138feaac55e4e0f74076a5a27c6508623d3eebf7824207963425e34687"
+    },
+    {
+      "path": "app/Sources/VMInstanceStore.h",
+      "bytes": 5956,
+      "sha256": "8cde7c5a0eb6ef8157cde2167fbc211bb63646f7c09cee1d5905924f04afbf9e"
+    },
+    {
+      "path": "app/Sources/VMInstanceStore.m",
+      "bytes": 25705,
+      "sha256": "7b07f1dc281dd9a83f2f25f0807eff97f868704783a9adf17a4ae782d67e247d"
+    },
+    {
+      "path": "app/Sources/VMInstances.c",
+      "bytes": 13260,
+      "sha256": "ba712f574f2bec7803134cd99a15b0653ee016f5260e93abf3d3b122b6baa530"
+    },
+    {
+      "path": "app/Sources/VMInstances.h",
+      "bytes": 10006,
+      "sha256": "85fa1581c91db8da4abb6c245b6673abd0601d2ed8d89eb1a0497e28ef477a04"
+    },
+    {
+      "path": "app/Sources/VMJitProbe.c",
+      "bytes": 12589,
+      "sha256": "524d5b852864e10f67176bb2759418bde03338fb7b58b2396c632301e1de8dff"
+    },
+    {
+      "path": "app/Sources/VMJitProbe.h",
+      "bytes": 4839,
+      "sha256": "c663a633b2957659fe3b8e2e0424ad0317964a9c89b8611604d6226f0d3f5f32"
+    },
+    {
+      "path": "app/Sources/VMManualViewController.h",
+      "bytes": 1007,
+      "sha256": "bedd104dd8183bafa00574864a4c75e328d0e1a3b095f2212fb409537a6201f0"
+    },
+    {
+      "path": "app/Sources/VMManualViewController.m",
+      "bytes": 12634,
+      "sha256": "6329a13bfc96dc18ed087845df4a4befcc7cd8c1ea316e1837a86a1a5d9b0407"
+    },
+    {
+      "path": "app/Sources/VMNetworkSession.c",
+      "bytes": 10254,
+      "sha256": "6636ec7247ca4cdc19b2f146902f585549797cb80484bb786f7224a1c6d9fb83"
+    },
+    {
+      "path": "app/Sources/VMNetworkSession.h",
+      "bytes": 2574,
+      "sha256": "3abf5c2eee19814590ee3b4189eda587618b4901f8979c44b6be396991bb3624"
+    },
+    {
+      "path": "app/Sources/VMOptions.c",
+      "bytes": 12587,
+      "sha256": "d2a24cd47af6a63a51b3b9e22043cdb0eab42b255d01e8a7f8963dbd5a51403c"
+    },
+    {
+      "path": "app/Sources/VMOptions.h",
+      "bytes": 6371,
+      "sha256": "5dcb8a2d845ea708607adefac741101d17c371a63cd375147ace13dddc526c4d"
+    },
+    {
+      "path": "app/Sources/VMResumeCheckpoint.c",
+      "bytes": 7885,
+      "sha256": "0d3c5f725d7d7b31836a2dded59b1c8c454b1d91992092282eade9ed6d1a2938"
+    },
+    {
+      "path": "app/Sources/VMResumeCheckpoint.h",
+      "bytes": 1560,
+      "sha256": "0185e5485b2a9745029a6f2a7a37a9cc301fe6197c0a2dbb07385834f210c097"
+    },
+    {
+      "path": "app/Sources/VMSettings.h",
+      "bytes": 8874,
+      "sha256": "35f82daeeed445d547f2bda3dce4128a35bedb5eeaafb1bc5238acf554ff3a4e"
+    },
+    {
+      "path": "app/Sources/VMSettings.m",
+      "bytes": 18576,
+      "sha256": "56d9146352dd9c12b26a621527d6a3fb81d10877c92fc6012b62d0a33400c6f5"
+    },
+    {
+      "path": "app/Sources/VMSettingsViewController.h",
+      "bytes": 2005,
+      "sha256": "e633b4273b85f835af03113c1c35c981b057340b4d56402d800cd25a2b757880"
+    },
+    {
+      "path": "app/Sources/VMSettingsViewController.m",
+      "bytes": 53879,
+      "sha256": "86e24ecc7d0f301f99a3de33009561e59f0331285e20e933996b741ac34f838e"
+    },
+    {
+      "path": "app/Sources/VMSnapshotCow.c",
+      "bytes": 17467,
+      "sha256": "587b98579bdf0c6f52c2173dbaaabfdc262d64a4cacba300cbde458187677d41"
+    },
+    {
+      "path": "app/Sources/VMSnapshotCow.h",
+      "bytes": 5873,
+      "sha256": "b65c9ed47c58e0b35463352aa7a173cf7aab064bb8bf3e6265aab83a559a279f"
+    },
+    {
+      "path": "app/Sources/VMSnapshotListViewController.h",
+      "bytes": 3586,
+      "sha256": "985d356618067d955bf137718493ad803ef42dcb8c81f0ec18a3245dbcdc48ee"
+    },
+    {
+      "path": "app/Sources/VMSnapshotListViewController.m",
+      "bytes": 18631,
+      "sha256": "80908414863fac3defffd06897395ff66cf2750806a9ed601a129313296a676e"
+    },
+    {
+      "path": "app/Sources/VMSnapshotStore.c",
+      "bytes": 14120,
+      "sha256": "d4e1a5f47c76a7c54fa6ad9d023455cb1c6e200569154fb8eb9fc4a3b095fa2d"
+    },
+    {
+      "path": "app/Sources/VMSnapshotStore.h",
+      "bytes": 7808,
+      "sha256": "63b0a15c71bfb17c87bdf52df3ce71497babec8d285dbd2714950a07d6eb7d97"
+    },
+    {
+      "path": "app/Sources/VMTouchMap.c",
+      "bytes": 3419,
+      "sha256": "760a28cbf7ceb01ed245848fbc75c11e849d18880f5bcf1fb5bb2f024fd4a68e"
+    },
+    {
+      "path": "app/Sources/VMTouchMap.h",
+      "bytes": 4760,
+      "sha256": "b48d34c99de1d1fd0894fcaa22d4c294f1e86fd470de226d9092a0487c5d9e89"
+    },
+    {
+      "path": "app/Sources/VMTouchQueue.c",
+      "bytes": 4992,
+      "sha256": "dc24f6b9e377340736501a9aa488fc0a7acd5d83d72b69476879fefd509ec514"
+    },
+    {
+      "path": "app/Sources/VMTouchQueue.h",
+      "bytes": 6873,
+      "sha256": "7d895571bf39868c30d61ba79bf2478925e3f90189a51457b7ef4b94312e340d"
+    },
+    {
+      "path": "app/Sources/main.m",
+      "bytes": 328,
+      "sha256": "a7869a67b43e8806e03b62197372274a273b71a8de36147d9e8b481c5815b6e9"
+    },
+    {
+      "path": "app/Tests/VMFirmwareFixtures.h",
+      "bytes": 18905,
+      "sha256": "75c89c575f58a4c09583e0bf871c4254853bac07e5d420ac68818aa2ecccc3a1"
+    },
+    {
+      "path": "app/Tests/VMFirmwareTest.h",
+      "bytes": 2523,
+      "sha256": "43dbd3f0a821cd1ab343119a69712855be089de617c60c0db46ea287f38b8965"
+    },
+    {
+      "path": "app/Tests/test_vmbootoptions.c",
+      "bytes": 32347,
+      "sha256": "5c0fe95ffd291f0bc466c4f1e916ef932d698f42f9a72abf3166a1cef01c607d"
+    },
+    {
+      "path": "app/Tests/test_vmbuttonqueue.c",
+      "bytes": 20435,
+      "sha256": "bade6ee17a1b063a99ce78f0ac439d5d3f135f1b61479cb0b30ac0b658f61e71"
+    },
+    {
+      "path": "app/Tests/test_vmdebarchive.c",
+      "bytes": 19815,
+      "sha256": "ec4c63371eb0df336f0a3c67ca2407aeec54e7dad771009d1646b751a2c5e6f8"
+    },
+    {
+      "path": "app/Tests/test_vmfirmwareboot.c",
+      "bytes": 42380,
+      "sha256": "13d288fb160b4bc7ec0ecbf9942caa05b65d630e51d84f36ea6ad6a2496b0ea9"
+    },
+    {
+      "path": "app/Tests/test_vmfirmwareimport.c",
+      "bytes": 1867,
+      "sha256": "703a67b239fad0f1c9630bdca6d51e94c0a3a73c413e6496c24be10022b992e6"
+    },
+    {
+      "path": "app/Tests/test_vmframetelemetry.c",
+      "bytes": 24632,
+      "sha256": "ed85178b779691093da984e103416f1961aab76b597b00539f4a025c87e85db9"
+    },
+    {
+      "path": "app/Tests/test_vmfw_digest.c",
+      "bytes": 29923,
+      "sha256": "7502c47b4e8f22f5dc8ddfc2a441a2c49e190d7d0be4cdf14ad016f1546ef27c"
+    },
+    {
+      "path": "app/Tests/test_vmfw_dmg.c",
+      "bytes": 36060,
+      "sha256": "4269d481462fdbb421648cdb18372f8343366c799a892a97b78aa6bc5da075be"
+    },
+    {
+      "path": "app/Tests/test_vmfw_import.c",
+      "bytes": 50835,
+      "sha256": "ded40ff121e17207688035ade6df60e7de335087ee63130914e44b0a782cfba8"
+    },
+    {
+      "path": "app/Tests/test_vmfw_inflate.c",
+      "bytes": 103959,
+      "sha256": "40ef3a0b2935599b036f137167cffa36a0beec565e855033bc783eeb40122bd8"
+    },
+    {
+      "path": "app/Tests/test_vmfw_plist.c",
+      "bytes": 64503,
+      "sha256": "637480697a4043f3fab90bcfd674b7a040127448e49b1477d4b4574d3dce5e3e"
+    },
+    {
+      "path": "app/Tests/test_vmfw_zip.c",
+      "bytes": 25171,
+      "sha256": "93b115cf03f630b2a3f6391eed6334c7bece4e552723edd6c47c3c1fb55e54fa"
+    },
+    {
+      "path": "app/Tests/test_vmguest.c",
+      "bytes": 12405,
+      "sha256": "c6ec7d722bc3054b639a88acc10aa75669da232a2adcb80d8585444bc65001f2"
+    },
+    {
+      "path": "app/Tests/test_vmguestinstall.c",
+      "bytes": 39126,
+      "sha256": "0556513fcf502df9640205cfc63da07825616e8d8ab052a932641596193ad52e"
+    },
+    {
+      "path": "app/Tests/test_vmguestinstallbuild.c",
+      "bytes": 42487,
+      "sha256": "07f1fc8c10dd8f5f57f5cada5c5934281b0c6954ba4b987b6b6b42bc941813b4"
+    },
+    {
+      "path": "app/Tests/test_vmguestpackagemanifest.c",
+      "bytes": 8189,
+      "sha256": "4bec4558affec2a3a19b81195a6a667c7879aed50da9b6f7a523b66538d314c6"
+    },
+    {
+      "path": "app/Tests/test_vmguestrootfsplan.c",
+      "bytes": 28087,
+      "sha256": "9d366bd0813783b8e8f2e5c192396caa0f9734db4911bc34c3c28f3ea5f6b625"
+    },
+    {
+      "path": "app/Tests/test_vminstancepaths.c",
+      "bytes": 19411,
+      "sha256": "cedfba305608acd815f1af8cb089dc476810306b4c603e0747f070f0a11bc986"
+    },
+    {
+      "path": "app/Tests/test_vminstances.c",
+      "bytes": 19544,
+      "sha256": "e88da3091e917364af2557eec430e57f07e444176bb5d42dfc903692592f8a1b"
+    },
+    {
+      "path": "app/Tests/test_vmjitprobe.c",
+      "bytes": 8055,
+      "sha256": "d702046e1c00d25bdaf9516a61815359a1c82bc8af9b9e428ace1e94a591615f"
+    },
+    {
+      "path": "app/Tests/test_vmnetworksession.c",
+      "bytes": 4627,
+      "sha256": "c75f447b7e70d5ecf308619b671e6f46d98349a871c58be6794e069312f8283c"
+    },
+    {
+      "path": "app/Tests/test_vmoptions.c",
+      "bytes": 17559,
+      "sha256": "8504607f0019bb076072899c7fcfd788e355039d9c98cfae31f662affe48f0dd"
+    },
+    {
+      "path": "app/Tests/test_vmresumecheckpoint.c",
+      "bytes": 7566,
+      "sha256": "fb4ceddce0216775f84f5ddcff359477ceffac5cbba8f84cfe541908901f19ce"
+    },
+    {
+      "path": "app/Tests/test_vmtouchmap.c",
+      "bytes": 15979,
+      "sha256": "fa97f3220869df1676f335e0c16323386a55a954b1d43bb0c72d695a676161c1"
+    },
+    {
+      "path": "app/Tests/test_vmtouchqueue.c",
+      "bytes": 17628,
+      "sha256": "da41bdbe8989ff6b32b67b282f43a0ba434b781f7c305d679a6234e5eaa689fc"
+    },
+    {
+      "path": "app/project.yml",
+      "bytes": 9535,
+      "sha256": "dac8f31d21329ce767ea5ab227e536a907a1b6ea948d2fa9daaa39224fdba558"
+    },
+    {
+      "path": "core/CMakeLists.txt",
+      "bytes": 62524,
+      "sha256": "1e06e6006604f05022b01cdc44391614cd8c4fc721336ab6c1f715260bbf72c7"
+    },
+    {
+      "path": "core/include/a64_emit.h",
+      "bytes": 15788,
+      "sha256": "2c651974d570ce5a4e5cade17e1c91a6d0bbfc31fab213f9b042e4421883c8de"
+    },
+    {
+      "path": "core/include/aes.h",
+      "bytes": 1969,
+      "sha256": "1c84b8582bb3e0c8e64fd769f8cb7cf2babf2e847cd9cd8ebcfdf6ae3f1a0272"
+    },
+    {
+      "path": "core/include/arm.h",
+      "bytes": 32106,
+      "sha256": "4ff01dc4656756557f7409571136039a6b581f69a9198e07b32acd93db265c00"
+    },
+    {
+      "path": "core/include/bringup.h",
+      "bytes": 22553,
+      "sha256": "f095e38ca49b05c42cce79e99df849cd0288405807a42f4cc10ee481fe385a11"
+    },
+    {
+      "path": "core/include/devicetree.h",
+      "bytes": 2819,
+      "sha256": "4c6d690e97cec7d3ebfd5eab983e9c68ec8c0147f56106b43cd0153de46079bd"
+    },
+    {
+      "path": "core/include/img3.h",
+      "bytes": 4203,
+      "sha256": "036fd85cfe9700f4211e689ab3f29d4bceb958b3f19057e7a497bc7ce79da324"
+    },
+    {
+      "path": "core/include/jit.h",
+      "bytes": 10442,
+      "sha256": "eec5562add64f12e50ce2dcef6be164cee966e4d9b915aa7f5b809dc2d6716a2"
+    },
+    {
+      "path": "core/include/ksyms.h",
+      "bytes": 5226,
+      "sha256": "e4df8477638d98481c924b76c504472c1d7028798707c423e91fd13fd019d798"
+    },
+    {
+      "path": "core/include/loader.h",
+      "bytes": 2899,
+      "sha256": "2faa8ce1331d7caea764f7ef5ea7a24803972935a86adcdba8fcd46396e242f4"
+    },
+    {
+      "path": "core/include/lzss.h",
+      "bytes": 1922,
+      "sha256": "c4ed44f367978b011de475acb567a33f98e309df371867d4aa94c85c539bdc02"
+    },
+    {
+      "path": "core/include/macho.h",
+      "bytes": 2992,
+      "sha256": "9d1b7ef6995808b5e424bc40c9ec98685feff0d8115bd84adbbfa83b0bd84425"
+    },
+    {
+      "path": "core/include/mbx_vgp.h",
+      "bytes": 2017,
+      "sha256": "9d0e30bf596390be9edb3bd30cb637c15fc929e06cfb8aa61ebf3df702ba08eb"
+    },
+    {
+      "path": "core/include/md_bridge.h",
+      "bytes": 5796,
+      "sha256": "6bee5105e254130f9c0794bf4cbe9eb8b98fbacbe4f40e1d0564ddd34dda4f78"
+    },
+    {
+      "path": "core/include/md_raw_bridge.h",
+      "bytes": 8672,
+      "sha256": "db4986526683f0c68219db8659f0b55c5f579d54397b7ae4a729b936adfae197"
+    },
+    {
+      "path": "core/include/md_snapshot.h",
+      "bytes": 1494,
+      "sha256": "728875daa2893e9e3cd78bafec7a27095b8cab9ef8f641992295e1502f8d07e9"
+    },
+    {
+      "path": "core/include/nand.h",
+      "bytes": 3248,
+      "sha256": "76c4905e1826774cb065c3cb4bb2dc66639f80a9593d29a7c8b62262b12d4252"
+    },
+    {
+      "path": "core/include/net.h",
+      "bytes": 18446,
+      "sha256": "616f7febfd670cbd495fd390e69505e1ba9e025342b885210b28028e4c719a68"
+    },
+    {
+      "path": "core/include/ppp.h",
+      "bytes": 16226,
+      "sha256": "54c908fe60a054cd920c584cb120ac4481c283b21c07b16e1217eaf2aa00f901"
+    },
+    {
+      "path": "core/include/snapshot.h",
+      "bytes": 14984,
+      "sha256": "8b1942a5e33723bc14cb1069472462daa07a2273ddc69a0474bc00b49f417db9"
+    },
+    {
+      "path": "core/include/soc.h",
+      "bytes": 240472,
+      "sha256": "a44f8c42f9ce54539bb3001167b321d2664acf0627cf109c83f9f1200579b082"
+    },
+    {
+      "path": "core/include/storage.h",
+      "bytes": 2972,
+      "sha256": "eda97ee8fa994c414e912d44273a23f7e72c5bbdbf313f3d8799ec7d4f76b31b"
+    },
+    {
+      "path": "core/include/vfp.h",
+      "bytes": 5836,
+      "sha256": "b71dc6d5843693fa74f2ccfb17cf3c98bd89ad0acc373e2d69c86d4727810f39"
+    },
+    {
+      "path": "core/include/vm_block.h",
+      "bytes": 6779,
+      "sha256": "2119e1df37b96fa35244e46bd62982e6d26fd047bcb0b612dee449b64b4e4e89"
+    },
+    {
+      "path": "core/include/vm_source.h",
+      "bytes": 2900,
+      "sha256": "bc3b353ceeb9cc8b594634c74f09014b6bcf2bcc4418e4bbe1cc4eadaa882de7"
+    },
+    {
+      "path": "core/src/arm/a64_static_engine.c",
+      "bytes": 67620,
+      "sha256": "4e3b17cbc1209356239d2b85859673d9cef1ab270faa8160898becbd68474feb"
+    },
+    {
+      "path": "core/src/arm/a64_static_engine.h",
+      "bytes": 4090,
+      "sha256": "5445dc901305116ad2da333e0e50a114026dd9e1c65a3c9c2b4867e9712c2fc7"
+    },
+    {
+      "path": "core/src/arm/arm_interp.c",
+      "bytes": 159464,
+      "sha256": "4a01e089d236754988243bce6fcec1d522307d0d854bbc377b34271c80b40e18"
+    },
+    {
+      "path": "core/src/arm/vfp.c",
+      "bytes": 60663,
+      "sha256": "c47a7a107ba8d423b6ff81b9c40a841e6522ee035ffe0e18e8f704763b270229"
+    },
+    {
+      "path": "core/src/boot/bringup.c",
+      "bytes": 56960,
+      "sha256": "ee23e37cad2e2756278d9ff5c4369ef239e45e384f2a5d05f6789baa7e037b4e"
+    },
+    {
+      "path": "core/src/firmware/aes.c",
+      "bytes": 7684,
+      "sha256": "63381c0a9c74f11b9d5e1ce1db7ec3a33349e3c01a3c135ee29345ae0d71bd53"
+    },
+    {
+      "path": "core/src/firmware/devicetree.c",
+      "bytes": 5950,
+      "sha256": "132044d5871a90c0d495520694a213fa2674b2bf79917e08e196d7d8a88bf904"
+    },
+    {
+      "path": "core/src/firmware/img3.c",
+      "bytes": 6839,
+      "sha256": "fadd8a14a3e11aca6127c6aa2a4a6ad072ee9555a213b5b6b530d3e4652703fa"
+    },
+    {
+      "path": "core/src/firmware/ksyms.c",
+      "bytes": 25212,
+      "sha256": "dbc233632f0dbe87337cca21970f8bdb3ab969c24d2c29ea2de40ca4e0724ce6"
+    },
+    {
+      "path": "core/src/firmware/loader.c",
+      "bytes": 4753,
+      "sha256": "078dc84f370fbfc9fe8f7f5679054f1f1eae01d3c4e5bd81c0b9d83db7bd48c0"
+    },
+    {
+      "path": "core/src/firmware/lzss.c",
+      "bytes": 3325,
+      "sha256": "99eb7be3ca7288e55e2e97284e20a1963abe99195dbb4a746828c98224a1b3e3"
+    },
+    {
+      "path": "core/src/firmware/macho.c",
+      "bytes": 5563,
+      "sha256": "6185a3a453f4cc76a1f84adf80fabeae65c6cf898391b8c01011b45d989e0ef4"
+    },
+    {
+      "path": "core/src/jit/a64_emit.c",
+      "bytes": 28695,
+      "sha256": "937a39de1d9aa1947bb1dc5ea22212491e6b69fdc2d4d90f534a29bfccb3b3c9"
+    },
+    {
+      "path": "core/src/jit/jit_mem.c",
+      "bytes": 13108,
+      "sha256": "5bfafba2cb2258af55e0bfb3740d8a647414fc1578d6766e25c2e61bf604ebcd"
+    },
+    {
+      "path": "core/src/jit/jit_translate.c",
+      "bytes": 67470,
+      "sha256": "5592a05b5638c758d3c0c345c661d998a3e48cfb7fa1e4fa345bebd4e372ac96"
+    },
+    {
+      "path": "core/src/md_bridge.c",
+      "bytes": 12692,
+      "sha256": "35e1b2b04c42b8a76b8ddd07a271549dc4a63f1460fb2d02228719272065f26d"
+    },
+    {
+      "path": "core/src/md_raw_bridge.c",
+      "bytes": 53245,
+      "sha256": "69cfd2816b0c0393bea9fb2c608d6cb99bbbf41f7fadd9ff5434d8cfb722109b"
+    },
+    {
+      "path": "core/src/mmu.c",
+      "bytes": 24567,
+      "sha256": "0e8b7ce93f128048f5a6567c8062906866cd7fba495f6b51e053760420062681"
+    },
+    {
+      "path": "core/src/net/net.c",
+      "bytes": 25849,
+      "sha256": "57ccd1d31cb6ff851dd28c40965dcbcaf26bebc2f3636088b8193aa5f179a72f"
+    },
+    {
+      "path": "core/src/net/net_priv.h",
+      "bytes": 3413,
+      "sha256": "0aaaf32ef0d6687ebe35fc04fd84f278061e6010590e46069d2d10ceb89248ac"
+    },
+    {
+      "path": "core/src/net/ppp.c",
+      "bytes": 41794,
+      "sha256": "a67cddf856d99ab9a8e299840684ac893a35725c81ee44877e7e6f035e3feeac"
+    },
+    {
+      "path": "core/src/net/tcp.c",
+      "bytes": 24619,
+      "sha256": "650a0b500402a88bcd17dd61a3897a5ef6ac115f622bc2c798256c6655ae66ce"
+    },
+    {
+      "path": "core/src/snapshot.c",
+      "bytes": 73319,
+      "sha256": "9a16ea080f999c93939fec1a1b6de61b5867b7fe7c1725380df8271c28fcda1e"
+    },
+    {
+      "path": "core/src/soc/buttons.c",
+      "bytes": 9822,
+      "sha256": "28deabc3cd194d4459ae7a131689fd9341d19de89763d211c88638c114159999"
+    },
+    {
+      "path": "core/src/soc/clcd.c",
+      "bytes": 27104,
+      "sha256": "7b2f57f1ec9537260a6f3cc2d166c6950b01d9ab88fd31dcbc14f56c56084954"
+    },
+    {
+      "path": "core/src/soc/gpioic.c",
+      "bytes": 24993,
+      "sha256": "42d1c80a4111d2697fa02f4c07fa8eab4ceee7b824581f7de144086231809ca3"
+    },
+    {
+      "path": "core/src/soc/i2c.c",
+      "bytes": 6420,
+      "sha256": "6f76964a3187ba4059e0e29c045aa78d8191dbb1eac7874f525eac0a7d4299a7"
+    },
+    {
+      "path": "core/src/soc/i2s.c",
+      "bytes": 3801,
+      "sha256": "3f05921994f2c650e16ff6821ca9e5e9768d2f5abd17908f3bef0a9eaf845389"
+    },
+    {
+      "path": "core/src/soc/machine.c",
+      "bytes": 101767,
+      "sha256": "f4a2f645a494c268c9e85c4a068b263c4b0329d73b50e197fc1c212d1db370e3"
+    },
+    {
+      "path": "core/src/soc/mbx.c",
+      "bytes": 237364,
+      "sha256": "c086256e9acdc3e7785b3d7a219bc6e48d4d4fac1258ff2d4f5e390843d75974"
+    },
+    {
+      "path": "core/src/soc/mbx_vgp.c",
+      "bytes": 18566,
+      "sha256": "976487d352dab1e668801670db5677f89c8a371c3094daf5299c639f99aca9ee"
+    },
+    {
+      "path": "core/src/soc/mtz2.c",
+      "bytes": 78100,
+      "sha256": "e685c59c6a9d6927aa0f41fad780facab94d01ffe5aa826f1c08ce849edea37d"
+    },
+    {
+      "path": "core/src/soc/nand.c",
+      "bytes": 4287,
+      "sha256": "56e776a8193dc00db883437855fd657eaa0aa667b0ebfe143928b1640fff44ec"
+    },
+    {
+      "path": "core/src/soc/nor.c",
+      "bytes": 5171,
+      "sha256": "0fd0d8c6dd730f72084c5943c6e19ed2eead62e7a7161b6893625b8cbefa1b42"
+    },
+    {
+      "path": "core/src/soc/pcf50635.c",
+      "bytes": 8125,
+      "sha256": "fe3b6e7a0bc9236790d4c638d37fc699d101bb662f69137c5d838d62daa3f72b"
+    },
+    {
+      "path": "core/src/soc/pl080.c",
+      "bytes": 16914,
+      "sha256": "8ac3c8d2493554958bd1ea4e85fd05f56e7903aed067f68995dcbf969b957c9f"
+    },
+    {
+      "path": "core/src/soc/power.c",
+      "bytes": 3374,
+      "sha256": "3d1057d4ad7f02a91c2759bead483ff64fb720fb4c8ae832da2504696d45b10e"
+    },
+    {
+      "path": "core/src/soc/spi.c",
+      "bytes": 19386,
+      "sha256": "d23dede2a1b9214b830dcbb66ecd3b13b3e367de78a029c7b928d953cec2a2ee"
+    },
+    {
+      "path": "core/src/soc/storage.c",
+      "bytes": 10754,
+      "sha256": "9831391e766c8804429f3153ae12b8524c63924817a8f8389e02cb0112279296"
+    },
+    {
+      "path": "core/src/soc/timer.c",
+      "bytes": 4520,
+      "sha256": "919faff82ba79ba6049ec9cbffb814753800e1f5677ee5eb0010acacf6a6fec2"
+    },
+    {
+      "path": "core/src/soc/tvout.c",
+      "bytes": 5726,
+      "sha256": "e83bb3917af21e4da8a2d754f3075d9640e1a7235de18cf66929e3f020d3a2ac"
+    },
+    {
+      "path": "core/src/soc/uart.c",
+      "bytes": 9004,
+      "sha256": "c62e89bc07d51e20a893fbe87974f32c55c27b77de1c11b52720acbfba1a5454"
+    },
+    {
+      "path": "core/src/soc/usbotg.c",
+      "bytes": 6096,
+      "sha256": "6b28cef400d8a67748bf9b6251c6c6b3646c63fea8cc38a91a9beb873363763d"
+    },
+    {
+      "path": "core/src/soc/vic.c",
+      "bytes": 3931,
+      "sha256": "33c31babd6c0ba1ee43f1387f1ea1597f6d0f735f4e60351683e904a33dd60c2"
+    },
+    {
+      "path": "core/src/soc/wm8991.c",
+      "bytes": 10205,
+      "sha256": "5732c17dbd935f03f96c69ee261b6d1ff7369bed23aa445ee0dd117a48a8f95f"
+    },
+    {
+      "path": "core/src/vm_block.c",
+      "bytes": 9278,
+      "sha256": "20af606fba001cac6f6c8a3c21dd0aca08b71b16f583796c6f44df4e88c49208"
+    },
+    {
+      "path": "core/src/vm_source.c",
+      "bytes": 4135,
+      "sha256": "de2cf8cb07cfc8ae2a9d57472cd9755499f8fd21e238ddcdf7bfb19e14479440"
+    },
+    {
+      "path": "core/tests/check_app_execution_policy.cmake",
+      "bytes": 3204,
+      "sha256": "406cb6f71eb7985c0391a16620b1f79e651baa6c1cdf043db5b3dc859678a130"
+    },
+    {
+      "path": "core/tests/check_app_stock_policy.cmake",
+      "bytes": 2488,
+      "sha256": "9fe44a60464bb06b568d323aec652a5865ffcfbbf0a1a5b9b72930f71198142b"
+    },
+    {
+      "path": "core/tests/check_bootkernel_external_md.cmake",
+      "bytes": 2568,
+      "sha256": "cf71fbc6fde4aa907470d3550d36115ad9b571fa9d1adfba433508879c16e7f1"
+    },
+    {
+      "path": "core/tests/check_bootkernel_options.cmake",
+      "bytes": 30798,
+      "sha256": "c97caacb4df30a7a34d0ec20c0e992f53f33682765ca2138a07303bfda2d8192"
+    },
+    {
+      "path": "core/tests/check_info_plist.cmake",
+      "bytes": 3134,
+      "sha256": "0813e6ee665f2574d3165a49c0a3c39ba48ff6f8eca734581da46ab404ee1800"
+    },
+    {
+      "path": "core/tests/check_option_mirror.cmake",
+      "bytes": 6197,
+      "sha256": "38c929e191b1d74e3e34dc857b77ee8c667df6962b8a4e87c57d8dd14b37ad9c"
+    },
+    {
+      "path": "core/tests/test_a64_emit.c",
+      "bytes": 24991,
+      "sha256": "956f7e157ed53c4a5610528249195e244ac105172005d90d84325a6f8769f0e8"
+    },
+    {
+      "path": "core/tests/test_aes.c",
+      "bytes": 4999,
+      "sha256": "e9795f6081fc0e31644e14e88fd1a40f76c09f557c3003b4ac144abb9397898f"
+    },
+    {
+      "path": "core/tests/test_arm.c",
+      "bytes": 277511,
+      "sha256": "0d4aaa59946b1e6f7e6daf66a1baa726f748c1b7b7886fa448d1ecdb03df88e6"
+    },
+    {
+      "path": "core/tests/test_audio_capture.c",
+      "bytes": 35471,
+      "sha256": "1b27ef2694159f6ea2aa20e0ffaa56731062aa0bcf2a872e12937036618b739a"
+    },
+    {
+      "path": "core/tests/test_bringup.c",
+      "bytes": 47450,
+      "sha256": "6258c3a94e24ae0f2625056b106d4b80d4cfa7a19e3498dea4326181901c8c61"
+    },
+    {
+      "path": "core/tests/test_buttons.c",
+      "bytes": 57890,
+      "sha256": "4a4f31841018bec973a0dc079454721c7ccac8a8e2a3ecaf6bf45306a924001f"
+    },
+    {
+      "path": "core/tests/test_devicetree.c",
+      "bytes": 15563,
+      "sha256": "b66e54926d2dcfb1ab63f5d90287c5185761932ee9e4de665f0e38ce04070efc"
+    },
+    {
+      "path": "core/tests/test_file_block.c",
+      "bytes": 32392,
+      "sha256": "1f74246b915e68244ecd31ca962ae8a050a4f57bd06cfb0c864037034dfb1876"
+    },
+    {
+      "path": "core/tests/test_gpioic.c",
+      "bytes": 37508,
+      "sha256": "c4ec0a0f36ef78b2f58b9f5164a67b1719d9b0830b168be58e01c3479742c7d9"
+    },
+    {
+      "path": "core/tests/test_guest_patch.c",
+      "bytes": 20432,
+      "sha256": "efdde462162fbe4cb585fe9921527861a575f49cdbc4e2c4f7f0289ab45a76d2"
+    },
+    {
+      "path": "core/tests/test_i2c.c",
+      "bytes": 26766,
+      "sha256": "afe3ca2322f41cf5d10ab010bd788a8664d6899cd7a3c7cc74bfe93d0f03862b"
+    },
+    {
+      "path": "core/tests/test_img3.c",
+      "bytes": 15301,
+      "sha256": "93781580c83b7f1b741106e401413f6fb3fd9145cf2ece2782e7988d717adf3f"
+    },
+    {
+      "path": "core/tests/test_ios3_hle.c",
+      "bytes": 96067,
+      "sha256": "5ba365559c62f6b01a98dc406b3b17503190e8eaea306b70abc0009e293ea99e"
+    },
+    {
+      "path": "core/tests/test_ios3_kernel_patch.c",
+      "bytes": 44905,
+      "sha256": "913a3daedd988b92e678852143f743aa0548e2423683c688c9720f71cccaf8db"
+    },
+    {
+      "path": "core/tests/test_jit.c",
+      "bytes": 61498,
+      "sha256": "3da335c7f6f6c22fff2844d499bdc9dd3085a0c8899831dfbf36df5c6a9083c1"
+    },
+    {
+      "path": "core/tests/test_jit_exec.c",
+      "bytes": 22318,
+      "sha256": "8a85438c9020681a2c58af63f833b78ac267171bd54d44080d9ae78aba3b3919"
+    },
+    {
+      "path": "core/tests/test_jit_mem.c",
+      "bytes": 18317,
+      "sha256": "715e4e9179f6531659c90ff8ee21e033263e9a801698704d01b2f74f48ac8f88"
+    },
+    {
+      "path": "core/tests/test_ksyms.c",
+      "bytes": 20589,
+      "sha256": "69ae37bb657733c8c2a33df9bfabbe5443adc741aa29b9a6862aebc049c7ace9"
+    },
+    {
+      "path": "core/tests/test_loader.c",
+      "bytes": 19174,
+      "sha256": "4e01c460d4768afd618288a3727b836e6af6bd26129af01c5feb17a823e23075"
+    },
+    {
+      "path": "core/tests/test_lzss.c",
+      "bytes": 4665,
+      "sha256": "bfa2298e537dbec27ff0f4c31c0da06d17bb51c3950c7af12a9da1d337def2c1"
+    },
+    {
+      "path": "core/tests/test_macho.c",
+      "bytes": 5174,
+      "sha256": "b9887117624a34cbeeefc00fff53eebfdfb1945ba1c81db6632310f97988c3c8"
+    },
+    {
+      "path": "core/tests/test_mbx.c",
+      "bytes": 295757,
+      "sha256": "99ac8953d17d39ef17a3c7174b0586d15201b61eebe78adc99d420265a30386a"
+    },
+    {
+      "path": "core/tests/test_mbx_vgp.c",
+      "bytes": 21419,
+      "sha256": "59b9b9fc1e2a98816bda2e300f53b0f53ea7ac66cbfd29a6b3a5b489fcde30a4"
+    },
+    {
+      "path": "core/tests/test_md_bridge.c",
+      "bytes": 52976,
+      "sha256": "80552dc89eafb134e8b2d184a86195b49b8af7e124877c8e32e33e5b4fb8a078"
+    },
+    {
+      "path": "core/tests/test_md_raw_bridge.c",
+      "bytes": 81839,
+      "sha256": "740a3dc272c25f3daf47da31c57134fe2fe4d8f623c5826ab25208dafcb12c58"
+    },
+    {
+      "path": "core/tests/test_mt_drag.c",
+      "bytes": 24680,
+      "sha256": "c0eb389b71f946b34dccf360adddeee423d5bffc6b86f3e30c82bf01f4f8ec4e"
+    },
+    {
+      "path": "core/tests/test_mtz2.c",
+      "bytes": 96699,
+      "sha256": "eab656b4acba9d15f3848ef4f36a5f61ccd444bd64569ce17053b9871703aa25"
+    },
+    {
+      "path": "core/tests/test_nand.c",
+      "bytes": 15436,
+      "sha256": "ea2c1c2a329b3c2e756ad66d92468db490b3f07d32482df266da077dadeadda4"
+    },
+    {
+      "path": "core/tests/test_net.c",
+      "bytes": 66872,
+      "sha256": "94771979bf7c2d9eb5b9a84ab9f49596ed64038a6deed0ecb8dde86f013dd330"
+    },
+    {
+      "path": "core/tests/test_net_host.c",
+      "bytes": 15097,
+      "sha256": "e746439da897c71979af6b92a73ac836434e04da3a469e6f4a3863d2477b52dd"
+    },
+    {
+      "path": "core/tests/test_payload_tar.c",
+      "bytes": 14212,
+      "sha256": "9f0a9583210e8be17587acdf75f259ae279424bb85a225e865adcd2b09ba0c58"
+    },
+    {
+      "path": "core/tests/test_pl080.c",
+      "bytes": 47825,
+      "sha256": "00e1c7cb04f8c6b31d31b903056ebe8b5dfc21812eb43dffb4defbad4d7a3df9"
+    },
+    {
+      "path": "core/tests/test_ppp.c",
+      "bytes": 70102,
+      "sha256": "ce6b469fd1f1b0a50d7f31706ceeae83b15a21fd04f8ddebaefeb45974286f20"
+    },
+    {
+      "path": "core/tests/test_rootfs_provision.c",
+      "bytes": 216904,
+      "sha256": "bc55649219c9f59e27306fd03a85fcd21d899497fe99d0c486d7dd39d3b6808e"
+    },
+    {
+      "path": "core/tests/test_rootfs_work.c",
+      "bytes": 76206,
+      "sha256": "d18eee651026f4a0570f636c47bf1331eb44fd9a0d4e94a32b780ae3786bb077"
+    },
+    {
+      "path": "core/tests/test_snapshot.c",
+      "bytes": 53052,
+      "sha256": "3c90e6ef98b8b27e2f3db9be2e58cf7d623d4d665a96dc3fd2eb7a3aa60b5de3"
+    },
+    {
+      "path": "core/tests/test_snapshot_cow.c",
+      "bytes": 13571,
+      "sha256": "d1e3db3af4398b9675139de9fbc5cdc88448cb554fea81759df32868661f9bdc"
+    },
+    {
+      "path": "core/tests/test_snapshot_store.c",
+      "bytes": 9308,
+      "sha256": "72915780bb9b6509b75d4c5e9a230f364f158a5c8d52e5c787d295cc8e011a86"
+    },
+    {
+      "path": "core/tests/test_soc.c",
+      "bytes": 286645,
+      "sha256": "be10e8007c854b2c17d5362a62c152b00df18e4842a982be078f9deeba0ae467"
+    },
+    {
+      "path": "core/tests/test_spi.c",
+      "bytes": 62520,
+      "sha256": "181725ce806494473dedb63f7bd076d33e1418a1beb6be8963af955012f66690"
+    },
+    {
+      "path": "core/tests/test_uart4.c",
+      "bytes": 67870,
+      "sha256": "f61dca74da0ddc3505f66b5c649b10e7864fbee131e09d8e4b99a9e08549cc3d"
+    },
+    {
+      "path": "core/tests/test_vfp.c",
+      "bytes": 81495,
+      "sha256": "61feb78f65c8c6c08dffc9d534621e5bef3cc1046955b86bd535851f79d9f11b"
+    },
+    {
+      "path": "core/tests/test_vm_block.c",
+      "bytes": 36641,
+      "sha256": "9736ec7cf46c4c66ea0e502692953b738cdadfd20b964d5f95330661ac1e943e"
+    },
+    {
+      "path": "core/tests/test_vm_source.c",
+      "bytes": 15414,
+      "sha256": "9985ae414e4066e596f08f1e0324982db883ec56ecb28ccd2873c9e19db1b29e"
+    },
+    {
+      "path": "core/tests/test_vmfirmwarehle.c",
+      "bytes": 2401,
+      "sha256": "4bbce019a5f3c68064f68c8a312d6769a9607688762bdd103190696c3f279d09"
+    },
+    {
+      "path": "core/tests/test_wm8991.c",
+      "bytes": 32965,
+      "sha256": "ffd5aa64445efe0515a9ec745b4221fcc6ece484f13db34cb30b7f3ca70d5e55"
+    },
+    {
+      "path": "demos/README.md",
+      "bytes": 3010,
+      "sha256": "16b95c1b920651e73e83ef98bbe8da87917a02a6c1cee4cec9aad0bef6f2aebc"
+    },
+    {
+      "path": "demos/gallery/linear-filter-inputs.json",
+      "bytes": 1853,
+      "sha256": "28f315b6c9b26dc51d57fb4520b981950021766db22df8597a4481954f4e0ae3"
+    },
+    {
+      "path": "demos/gallery/linear-filter.png",
+      "bytes": 51465,
+      "sha256": "0e37baf6dfa171494313c55c222dd55fc3a33cc304fa43d3f88f0f32bc786607"
+    },
+    {
+      "path": "demos/gallery/linear-filter.ppm",
+      "bytes": 441615,
+      "sha256": "61dd0fb6b078d02db9a7ed543fbfea9e0ec2e194dbaf36e14a5e2f7a4f80cc39"
+    },
+    {
+      "path": "demos/gallery/manifest.json",
+      "bytes": 8989,
+      "sha256": "7dd6e53034f048df3018bc214012b6dbfa6f0b3f7013e43f93b4bbe7de8a1724"
+    },
+    {
+      "path": "demos/gallery/textured-square-inputs.json",
+      "bytes": 1815,
+      "sha256": "06e2dc77bbe878c6a726af16175ec4d905f4916f5b891d870a27214f93b62cf6"
+    },
+    {
+      "path": "demos/gallery/textured-square.png",
+      "bytes": 3555,
+      "sha256": "c67ce8919f52b09cd02166dfdcfab1105b08e9e5daddf4aa06c9503758fef892"
+    },
+    {
+      "path": "demos/gallery/textured-square.ppm",
+      "bytes": 441615,
+      "sha256": "c05f1157be62be77ce8d39d073b64975a04f25572307779e6ab86845a9c5602b"
+    },
+    {
+      "path": "demos/gallery/textured-triangle-inputs.json",
+      "bytes": 1110,
+      "sha256": "288d6e0cd5d338202bd01e2e745e4137a9a1b59aa6cf1360c5e1a8d8b423d9a8"
+    },
+    {
+      "path": "demos/gallery/textured-triangle.png",
+      "bytes": 2916,
+      "sha256": "3c38fc051745121e73d08a96c213f7416e6bb7928a3129c02e55f2c40fc1b9b2"
+    },
+    {
+      "path": "demos/gallery/textured-triangle.ppm",
+      "bytes": 441615,
+      "sha256": "26d33bbd26b1984f910ec221abb4c5f224d5e76bfb0a6098bc965dfb44ca0361"
+    },
+    {
+      "path": "demos/gallery/triangle-rotation.png",
+      "bytes": 93249,
+      "sha256": "467bde5874a973c80a16345cdb17c8da85f2347f668220c2c8a958c98c72749e"
+    },
+    {
+      "path": "demos/gallery/triangle-rotation.ppm",
+      "bytes": 441615,
+      "sha256": "baf263d1811830722784e23ce17f935b861006d90526e3da9e10cd9f337e9d25"
+    },
+    {
+      "path": "demos/gallery/triangle.png",
+      "bytes": 92073,
+      "sha256": "7532ffc3cda94a5290d1993c9151b1f5ed679461bf32e282c93f0b20f3587f33"
+    },
+    {
+      "path": "demos/gallery/triangle.ppm",
+      "bytes": 441615,
+      "sha256": "4731c975a6ba5bed62ec73e094bb495d894b2a87a5f13e7923aa177af43c8f02"
+    },
+    {
+      "path": "demos/gallery/uikit.png",
+      "bytes": 9396,
+      "sha256": "9cc71eb7367664f1a96bf41d0e00ab0ca15969f4d4bb14402491e55072e27a88"
+    },
+    {
+      "path": "docs/ARCHITECTURE.md",
+      "bytes": 46185,
+      "sha256": "b24b6449f28fc2368f6fabcf7dad071413a89ffb3d6d2085d4a841bc41875e76"
+    },
+    {
+      "path": "docs/BOOT_CHAIN.md",
+      "bytes": 11169,
+      "sha256": "084bde126d5a0e72710fbd4373e55b7ccb83ff27b2b6142fbd96f11de51a172f"
+    },
+    {
+      "path": "docs/activation.md",
+      "bytes": 26283,
+      "sha256": "235e5ab37ec7b4f87db10ea069d72ba6141f3cf5d8c9f0fdaa980457ea5e6cd0"
+    },
+    {
+      "path": "docs/audio.md",
+      "bytes": 16390,
+      "sha256": "1888e76e7a4c354c052d8f8598cc1ae7cef331599e02635846a49ee16c8c5d17"
+    },
+    {
+      "path": "docs/dynarec.md",
+      "bytes": 106844,
+      "sha256": "689c9afdce548527f8b2041fd881c331d091f704412cef34f3b1a59adb81891b"
+    },
+    {
+      "path": "docs/multitouch.md",
+      "bytes": 48034,
+      "sha256": "3cb5c3b0fa41d44a1def35f726b75f3efcb6b7f95a31a1a2cc89887af9d81ad3"
+    },
+    {
+      "path": "docs/networking.md",
+      "bytes": 60027,
+      "sha256": "c70a32457e84e62c641ac0a8cdaec2d03af1086d2b729fa7aed09d37eec5d852"
+    },
+    {
+      "path": "docs/upstream/README.md",
+      "bytes": 33373,
+      "sha256": "966d425e087be61bb0dbf3ef67b20f47c94679d1ae5e837cf529328592a957be"
+    },
+    {
+      "path": "iosretromob",
+      "bytes": 2946,
+      "sha256": "0da3276a36d94590fc10abc25b891089c8d87e3b89f8b93d2888e1fcfb1f39d5"
+    },
+    {
+      "path": "lab/CMakeLists.txt",
+      "bytes": 863,
+      "sha256": "362e70c88da4c444861879f309bd1ad07cbd11d97538db950ab9fbc426a2c168"
+    },
+    {
+      "path": "lab/__init__.py",
+      "bytes": 56,
+      "sha256": "16bee76eaacd612d826ec2770884e87f68df7eaae24f0198acfec51507c5cbda"
+    },
+    {
+      "path": "lab/fixtures/square-linear.json",
+      "bytes": 1646,
+      "sha256": "e88d7e6f10af487e063cd72875a063522209eef8c6d90f04845bc5b73eccb41e"
+    },
+    {
+      "path": "lab/fixtures/square-nearest.json",
+      "bytes": 1646,
+      "sha256": "f2ed78ce52c745a442f3fe9ad3593de1fd3dd2e12d6c7a4d8d54ba58d4770f41"
+    },
+    {
+      "path": "lab/fixtures/ta-input.json",
+      "bytes": 631,
+      "sha256": "6d56c8a9e46e96058135538357882584e492ae56a56fe2f01175a131f6b7ccda"
+    },
+    {
+      "path": "lab/fixtures/textured-triangle.json",
+      "bytes": 1049,
+      "sha256": "a5a916b83f82fbb7e01d29547524e07f13f0941d83978ae8295387d9b2178c9f"
+    },
+    {
+      "path": "lab/fixtures/triangle-90.json",
+      "bytes": 1047,
+      "sha256": "6b4d8fc10374825d4422ddca07b9fbccf7c95ae00e36969023fcf88c488c93b0"
+    },
+    {
+      "path": "lab/fixtures/triangle.json",
+      "bytes": 1046,
+      "sha256": "8488202a46a259edfa91527261dd1393b9ac520bd883107de81812036127483e"
+    },
+    {
+      "path": "lab/gallery.py",
+      "bytes": 3474,
+      "sha256": "3e9319338e110a02b1b4253a0491d05d01b24435414ee733dba172c7fa573317"
+    },
+    {
+      "path": "lab/replay.c",
+      "bytes": 2894,
+      "sha256": "a0841c9e74b21786efef8fdde10b3ad0d2fc814b7afce3c268d8cd79bd1f9f45"
+    },
+    {
+      "path": "lab/replay.py",
+      "bytes": 3367,
+      "sha256": "c8aa1f4de81e080da70e631e9c6e845043c089e7392963450a8271ef61990f4f"
+    },
+    {
+      "path": "lab/test_lab.py",
+      "bytes": 2031,
+      "sha256": "f0d6e47f3e45732cf46f295c926fd00d7982960e29327798406169597acea4d7"
+    },
+    {
+      "path": "reports/PUBLIC_FILE_ALLOWLIST.json",
+      "bytes": 13013,
+      "sha256": "2e8ec2552453b133cb52ed997fb9643a9047eb684428bf7e34eb8897b73e61d3"
+    },
+    {
+      "path": "reports/PUBLIC_REPOSITORY_AUDIT.md",
+      "bytes": 10334,
+      "sha256": "411998ca53af1d393c8c1d30ed060ed4fba49089495b6ebd6e3d8b4eaa47da26"
+    },
+    {
+      "path": "reports/SOURCE_LINEAGE.json",
+      "bytes": 140131,
+      "sha256": "8716fc1088114de4b5bb0b2516f0dc486191fcdd77e922190f6ae70442603f4d"
+    },
+    {
+      "path": "reports/validation/build.log",
+      "bytes": 25123,
+      "sha256": "673795fe1ae0ce65942ecb646b45192221d7bcc6558605f585c25119bb776d06"
+    },
+    {
+      "path": "reports/validation/clean-build-test.log",
+      "bytes": 33443,
+      "sha256": "2cc37d9948eaa0cf12a12a4442828ac4e6a07f32c705cfe0fafdfb549d1f6562"
+    },
+    {
+      "path": "reports/validation/clean-ctest-detail.log",
+      "bytes": 67645,
+      "sha256": "6b39e387271068009105e4d916b86ca9e211fa04731f2a997baf4d0662073dec"
+    },
+    {
+      "path": "reports/validation/cli-checks.json",
+      "bytes": 10543,
+      "sha256": "6bd05770398aaa80de59ba429e115135cb9a28a2f742068f2c3c4644837f0510"
+    },
+    {
+      "path": "reports/validation/configure.log",
+      "bytes": 635,
+      "sha256": "c09ccd34946f9ba4b59c8b3792225082c0646ab62b68c487fbecf10eb0bc0d05"
+    },
+    {
+      "path": "reports/validation/historical-integrity.json",
+      "bytes": 362,
+      "sha256": "b9ff226dbb598cb3bc2def91f01375d41dce3a30de4823525c1bc347e5980073"
+    },
+    {
+      "path": "reports/validation/initial-test.log",
+      "bytes": 12152,
+      "sha256": "a82a924cbaaca239663c5bbb56734b4b8a321411f8d514b3fe51fa6d9083a4d6"
+    },
+    {
+      "path": "reports/validation/lab-retest.log",
+      "bytes": 425,
+      "sha256": "8b9ec80b68e7fd0ac49898410ae600fc2bc34aedfa0b69f5bceab25dcc7e5459"
+    },
+    {
+      "path": "reports/validation/llvm-diagnostics.log",
+      "bytes": 600,
+      "sha256": "f6d7de096c127b010810136e8a2c3bbd44bf8c65a5e8ef9eb1019abadd4218f8"
+    },
+    {
+      "path": "reports/validation/public-object-audit.json",
+      "bytes": 42,
+      "sha256": "133a18167b3e1bdf70074d165d1efe3d25ae4be865e07a4e2b8e327d306a1d55"
+    },
+    {
+      "path": "reports/validation/storage.json",
+      "bytes": 1962,
+      "sha256": "3b92f255f151f87fe9cb338f6452985a1b1756a442c916687e57a52287aef982"
+    },
+    {
+      "path": "tests/guest-apps/blend.c",
+      "bytes": 5890,
+      "sha256": "fae5720b4904b5a1f2d7e0dd60ba33f3ffb1ea253603aaa5eb4747b27ec083db"
+    },
+    {
+      "path": "tests/guest-apps/depth.c",
+      "bytes": 6660,
+      "sha256": "689055393f95000a7ad2e0e25e3a1b287494df08b2a3fa43d8304c04b36ad975"
+    },
+    {
+      "path": "tests/guest-apps/gles1.c",
+      "bytes": 5244,
+      "sha256": "88470b09fa0d7e3e542ea56151f9d507dec461b5d2ae2fd6331d0f88986973c7"
+    },
+    {
+      "path": "tests/guest-apps/layout.ld",
+      "bytes": 223,
+      "sha256": "42b385ce7acca07a5b62f81a3fa6219ff9023c7b38659e045a28638a3af1fcb2"
+    },
+    {
+      "path": "tests/guest-apps/runtime.h",
+      "bytes": 3367,
+      "sha256": "bd0331729cf7c3785fcab513f224553fe397762833ad33bbdb597db596e870cd"
+    },
+    {
+      "path": "tests/guest-apps/start.S",
+      "bytes": 314,
+      "sha256": "d1c4ea73430faadd75a0479cbb846861770c846b0c016b91dd6aa436f63ec9bd"
+    },
+    {
+      "path": "tests/guest-apps/test_builder.py",
+      "bytes": 3969,
+      "sha256": "3a275d5f8ec64774260faa05e287ccb7781d5764dd605631887888db74df59e4"
+    },
+    {
+      "path": "tests/guest-apps/test_package.py",
+      "bytes": 1716,
+      "sha256": "7fe0e5efa3b86860d10fa4831200a9c296df53c03a5ca18cdd00930e36410089"
+    },
+    {
+      "path": "tests/guest-apps/test_ta_inspect.py",
+      "bytes": 1401,
+      "sha256": "62475043edd820bb377158b862d9f55c1d2dca682f4bbfa9b459e43a9a77a04b"
+    },
+    {
+      "path": "tests/guest-apps/texture.c",
+      "bytes": 7050,
+      "sha256": "f756f6e1f89314718e0d82ccfca2abb739460f53f0ac5e741055b86f23df2be2"
+    },
+    {
+      "path": "tests/guest-apps/uikit.c",
+      "bytes": 1441,
+      "sha256": "c2761bcd0776b5852cd88a9a4c0d084b92d0284c53e32b08730f68fa8e159e38"
+    },
+    {
+      "path": "tests/guest-apps/zprobe.c",
+      "bytes": 7579,
+      "sha256": "237330738daacbeb28429de410b310345ddbeae42d05b1115832c86b457e7181"
+    },
+    {
+      "path": "tools/a64_static.c",
+      "bytes": 136243,
+      "sha256": "93e8d4c42ba1c7427238df76d992b7a7cb74189f8d7ec14c5a53c2de92757a94"
+    },
+    {
+      "path": "tools/a64_static.h",
+      "bytes": 22429,
+      "sha256": "30e6132e17c85ac15d9c6b315ba18e7551a2f4c11552f44f41727b788e93b87f"
+    },
+    {
+      "path": "tools/audio_capture.c",
+      "bytes": 12939,
+      "sha256": "74fcf4fefd2d7598b9b5123ec6f07ae3628c78fa26c98e89b765eb58e23705a4"
+    },
+    {
+      "path": "tools/audio_capture.h",
+      "bytes": 13788,
+      "sha256": "31bd8874b4d96a895ca5cc92786f3907d0b3812420e96c61d06d837dc6690f6a"
+    },
+    {
+      "path": "tools/audit_public.py",
+      "bytes": 5889,
+      "sha256": "fddb9179ee34a1eb1e558c590ab18890655caff79ee6c56872654f01442f555b"
+    },
+    {
+      "path": "tools/bootkernel.c",
+      "bytes": 1788887,
+      "sha256": "d00f9cae842a6c5160b36f54e3d14d2fe69e0bfa96736bec7b0b5bfc56399c76"
+    },
+    {
+      "path": "tools/dscmap.py",
+      "bytes": 4458,
+      "sha256": "31752288d9b7b3984dfcdb9ec361bdf6d2b444ec8082528acd6f911967c39a3c"
+    },
+    {
+      "path": "tools/dscsym.py",
+      "bytes": 4224,
+      "sha256": "e8aaa5fdab1bfea82d15baf8ca91ad0adce3f8d969dc8df40c9971aea59bd3fc"
+    },
+    {
+      "path": "tools/dscxref.py",
+      "bytes": 4458,
+      "sha256": "52baffe486be45a3f72f1d516f21fa0e34cd7f428927aebce0548e9eb45663f9"
+    },
+    {
+      "path": "tools/dt_inplace.h",
+      "bytes": 8571,
+      "sha256": "18e37a3475475a619230de604f407e6b6110df23d306900577f3f5310e20b802"
+    },
+    {
+      "path": "tools/dtwalk.py",
+      "bytes": 2321,
+      "sha256": "964f0ac2733daed3368df6209d546ee309223db640135c3de4e2449f5bed8f53"
+    },
+    {
+      "path": "tools/file_block.c",
+      "bytes": 36252,
+      "sha256": "b9f30e8aeb419ad9f182ac4cc5b41d31444fb1573e215c9816d41ef82fd063a7"
+    },
+    {
+      "path": "tools/file_block.h",
+      "bytes": 6223,
+      "sha256": "b25320bbc8d4c3daef3df2230b9681c2e62944e9f383e7c0d2103e576dbe9adc"
+    },
+    {
+      "path": "tools/findcalls.py",
+      "bytes": 2966,
+      "sha256": "f1671316761d80e5b57c192556920bf4d2e38f2eeb00807be3e930ee079cae40"
+    },
+    {
+      "path": "tools/findstr.py",
+      "bytes": 1917,
+      "sha256": "daeec0f04700d351f177159eb91693457846d4d3b19a8045067a6baed86b84d8"
+    },
+    {
+      "path": "tools/fwimport.c",
+      "bytes": 10512,
+      "sha256": "1bdc998bc859726b9ef8e85d27a508bf13142eb90c7c59935f0d959470d56eb5"
+    },
+    {
+      "path": "tools/gen_a64_static.py",
+      "bytes": 206857,
+      "sha256": "665353bf2bb7b45a41a76258dce37b918b35b10154b7a6adaa28ea18d72ceaa4"
+    },
+    {
+      "path": "tools/guest_apps/build.py",
+      "bytes": 6748,
+      "sha256": "1b71e56e1efa82e5e6c85de868ef0db3f0708cb4e3d53f578cfda0c3b8314bd3"
+    },
+    {
+      "path": "tools/guest_apps/inspect_hfs.py",
+      "bytes": 2738,
+      "sha256": "7470ddcbafdc59bc454604d1e85fa7750e44a6b72d192fc79a26c5997982b3a6"
+    },
+    {
+      "path": "tools/guest_apps/package.py",
+      "bytes": 2677,
+      "sha256": "0ff65cc86d1219f4e8ec1b23d378cd643aa6d2bcebeb2a5c88421f0e3e57beab"
+    },
+    {
+      "path": "tools/guest_apps/reference_blend.py",
+      "bytes": 2902,
+      "sha256": "de4da665d63828705cf16a216d1ba5512bf535bf844935541f483696ad75fd72"
+    },
+    {
+      "path": "tools/guest_apps/reference_depth.py",
+      "bytes": 4159,
+      "sha256": "a4da49471128229d2aa24abb4df80602ef3b36e183dd2097e4a0f32b13892fdc"
+    },
+    {
+      "path": "tools/guest_apps/reference_texture.py",
+      "bytes": 4558,
+      "sha256": "e6728180c7ba5a3a7f03370ceb58c592e55031a51e8e001f8f9cd40464678e37"
+    },
+    {
+      "path": "tools/guest_apps/reference_triangle.py",
+      "bytes": 3542,
+      "sha256": "671afd71c5fbd3a22112b8c9612695726baad3f319b86d1e50aafff167d94b74"
+    },
+    {
+      "path": "tools/guest_apps/ta_inspect.py",
+      "bytes": 2991,
+      "sha256": "e4130b4865f2d13527564b67deaea86a2fe5013cbd1d7932f9e6c6742d2ff66b"
+    },
+    {
+      "path": "tools/guest_clcd_capture.h",
+      "bytes": 3560,
+      "sha256": "bd6f05976570c40772ff167192b8226bfe33a3ea33042274da03ee7494c30067"
+    },
+    {
+      "path": "tools/guest_patch.c",
+      "bytes": 13096,
+      "sha256": "d1edc09b4b3ae13da8998397a9df29fd816fa5b571345c92cb85e4093031a507"
+    },
+    {
+      "path": "tools/guest_patch.h",
+      "bytes": 3460,
+      "sha256": "0a52ae3665b55d88e5a0848361fb29c826efb8be99e6962a87b88148ef8287cc"
+    },
+    {
+      "path": "tools/guest_z_journal_capture.h",
+      "bytes": 1875,
+      "sha256": "ff164c63cf8a05fe95c920691b84bea2195f2192d1b368b8cbe336c2404834b8"
+    },
+    {
+      "path": "tools/hfsx_extract.py",
+      "bytes": 6348,
+      "sha256": "0243315465d442aa7a9b96bb1e0132bee26c03011af42069b9ec3302cb805a3c"
+    },
+    {
+      "path": "tools/img3dump.c",
+      "bytes": 9582,
+      "sha256": "ba57a973628160321c9b7abfdde833ad4140e68dee7ad8959d793120df935764"
+    },
+    {
+      "path": "tools/insnbench.c",
+      "bytes": 49297,
+      "sha256": "4c9b74fa909a98554d481202690193a74b8a4d849cbe63c5bdcbf82ae96204f7"
+    },
+    {
+      "path": "tools/ios-device-benchmark-entitlements.plist",
+      "bytes": 362,
+      "sha256": "84b0e2567bcb0cab7c13c24336ec6c6e95c757a029ea8cc01a7751130ee6c7fc"
+    },
+    {
+      "path": "tools/ios3_bringup_gate.c",
+      "bytes": 2548,
+      "sha256": "6ab3b969d8dabe9225f7d35343c483bfe00c00b38af51ab444a870f5f3dba706"
+    },
+    {
+      "path": "tools/ios3_bringup_gate.h",
+      "bytes": 2235,
+      "sha256": "0429e2e63efc4b961864e8e1f33da46156b73db802e16cb7b07107928f86278f"
+    },
+    {
+      "path": "tools/ios3_hle.c",
+      "bytes": 108371,
+      "sha256": "9cfe792a2221f1cd8be9fe10af74ee1fcb7d3881e93d2c9ea3fbdcf4d70c105e"
+    },
+    {
+      "path": "tools/ios3_hle.h",
+      "bytes": 12200,
+      "sha256": "0b7325cef58b652dd0acf44107d9d7f93723213b7c96cd2466fa140b5d44a390"
+    },
+    {
+      "path": "tools/ios3_kernel_patch.c",
+      "bytes": 29534,
+      "sha256": "3aad0ddbb882c161b2aa40faf428e317d49238069b162be51e34cd589cb68aa1"
+    },
+    {
+      "path": "tools/ios3_kernel_patch.h",
+      "bytes": 7066,
+      "sha256": "78f4dceb126cd7c715838b90e80466c5348e130549e895e166374a6398a1a09f"
+    },
+    {
+      "path": "tools/ipsw_explore.py",
+      "bytes": 4305,
+      "sha256": "6970777839bb63b2fec38135ecfb641c67c56576262dfb8a821f267cb0bc3a44"
+    },
+    {
+      "path": "tools/jitbench.c",
+      "bytes": 617947,
+      "sha256": "4fb72019a4df200d0c8cb921e843ab77ba1f3aeae61bfe377159009b37b2b8de"
+    },
+    {
+      "path": "tools/kcensus.py",
+      "bytes": 3754,
+      "sha256": "2abef4f339075a5ef1b75cbac5203db64f19762b9cd493f0c9109ecf16c7668e"
+    },
+    {
+      "path": "tools/kdisasm.py",
+      "bytes": 2602,
+      "sha256": "a8aec84d60bf1284c7c66fb7ad243a8c2029a547422c5bd02022efd94931319a"
+    },
+    {
+      "path": "tools/macho64syms.py",
+      "bytes": 8192,
+      "sha256": "5018c2826f5a19e7c6664c0b8545a51f68791414b110bd3ade495d3aee00563b"
+    },
+    {
+      "path": "tools/machoinfo.c",
+      "bytes": 4715,
+      "sha256": "e937cabc9de4a6f96e321bc6aa07b5bf97bc532fbbd87b0c7cb2dd05540b5b18"
+    },
+    {
+      "path": "tools/machosyms.py",
+      "bytes": 7195,
+      "sha256": "4c8202577d9fac4c048022d705df07777eec6fb87ea78a3e50467f30dfadd795"
+    },
+    {
+      "path": "tools/mt_drag.c",
+      "bytes": 5866,
+      "sha256": "180cb9dd3378a176ddd48a3c1f317bfcc5c7953af041db579ceb1646200febbe"
+    },
+    {
+      "path": "tools/mt_drag.h",
+      "bytes": 8449,
+      "sha256": "f19956f7a6c134874648294b4cff7ec9f2983b43c305b7c061c22af83c9a499b"
+    },
+    {
+      "path": "tools/net_host.c",
+      "bytes": 20095,
+      "sha256": "89fb674bf5bbaa400e7b37efd17e408ced6b777fc19625539c3e5915ed1efbce"
+    },
+    {
+      "path": "tools/net_host.h",
+      "bytes": 2728,
+      "sha256": "09bc36f9538ce24724bb23aa5631794e48d9102ceb183d73fb2ab3f8175e8a4a"
+    },
+    {
+      "path": "tools/objcsel.py",
+      "bytes": 2769,
+      "sha256": "8a69c55fe941cda86abf9154f03b6a8483f376feb3cf8accae8c1da43a58e62f"
+    },
+    {
+      "path": "tools/payload_tar.c",
+      "bytes": 16978,
+      "sha256": "d5bb07403b1a825a76351d0df97d28d522766c3ce879f78586889663fa7f4734"
+    },
+    {
+      "path": "tools/payload_tar.h",
+      "bytes": 4823,
+      "sha256": "0d1b162183b4fade1225115256d3c6ef976c7141a4e4526f683335236e43fbc4"
+    },
+    {
+      "path": "tools/ppm2png.py",
+      "bytes": 2673,
+      "sha256": "a79a791009b476e492d13aa0eebc7a18b043794b6ca16c4ef0d1e0422df1501a"
+    },
+    {
+      "path": "tools/rootfs_work.c",
+      "bytes": 301457,
+      "sha256": "d3a8369f00b1058f7cdabfd36e6aa7acefa6d8c127dda0584f2dc3cc8d06d885"
+    },
+    {
+      "path": "tools/rootfs_work.h",
+      "bytes": 31124,
+      "sha256": "13efb5878a6a155316e5a3ecc870eede5c698441a0dd5eb89e1f6a578095b3f4"
+    },
+    {
+      "path": "tools/run23-cold-replay.ps1",
+      "bytes": 33960,
+      "sha256": "62b6dc016ade10ddf57ef7c634e39fe3c349a3fc63c0e53baa2c213a24435a4e"
+    },
+    {
+      "path": "tools/runfw.c",
+      "bytes": 6685,
+      "sha256": "85977a767fc1c4197a9b5d37a6c63ee2ef2adb4f981f068bed9f1d8c876fe221"
+    },
+    {
+      "path": "tools/sha256.c",
+      "bytes": 7847,
+      "sha256": "414087b43a2d64bb3f8209dcc878d5920e0c37a4df46b2624b164f215da652f7"
+    },
+    {
+      "path": "tools/sha256.h",
+      "bytes": 1517,
+      "sha256": "f5637c25de2946623d03f59445edbad308f65b195ff225325c1c04defdc1cb80"
+    },
+    {
+      "path": "tools/snapboot.c",
+      "bytes": 35201,
+      "sha256": "80f3ac0157a4fe0b80a0c512a159d3c2dcee371a31a6b4d55082eade60e6788a"
+    },
+    {
+      "path": "tools/udif.py",
+      "bytes": 5919,
+      "sha256": "9e54102b563c1da9968efb8f65d11c8bfc651040258d3bf96e66b57024ebde01"
+    },
+    {
+      "path": "tools/udis.py",
+      "bytes": 1679,
+      "sha256": "3718101df2ad98578b66f4d02e7d48e7b3fce2bc0d7cd0e076572dd73fb40b00"
+    },
+    {
+      "path": "tools/unlzss.c",
+      "bytes": 2733,
+      "sha256": "fee667e0c613a1eefdeae33aa4b0ef5982908401aadee4091ef1372c5f03e27a"
+    },
+    {
+      "path": "tools/vfdecrypt.py",
+      "bytes": 3301,
+      "sha256": "b20ed8fa313adeba1a425f447f402db6616a404103f2ae4fddbda4092283c58f"
+    },
+    {
+      "path": "tools/vtscan.py",
+      "bytes": 1900,
+      "sha256": "ee09bb8a2326cfc49328f00b5fd8455e63b02ce3db4c30c0d0d1d49fc5429a70"
+    },
+    {
+      "path": "tools/whatinsn.py",
+      "bytes": 1759,
+      "sha256": "d10cb50e7345f39358ec9721c77ef2d0c965042e9d02ecd9fc300a6a87cbe883"
+    }
+  ],
+  "scope": "All tracked files and every current Git object, including unreachable objects. Public NIST AES test vectors, register constants and SHA identity/digest values are not secret keys. Image rights/provenance reviewed separately.",
+  "source_validation_commit": "b5892491d8e5b32e28256e58bf379bf31f5f95e4",
+  "snapshot_note": "Measured immediately before the final evidence commit; its own output file is not self-hashed. Repeat auditor after commit for final all-object verification."
+}

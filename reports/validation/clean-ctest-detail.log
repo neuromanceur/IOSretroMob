@@ -1,0 +1,1555 @@
+Start testing: Oct 09 23:55 CEST
+----------------------------------------------------------
+1/71 Testing: arm_interp
+1/71 Test: arm_interp
+Command: "<clean-checkout>/build/core/test_arm"
+Directory: <clean-checkout>/build/core
+"arm_interp" start time: Oct 09 23:55 CEST
+Output:
+----------------------------------------------------------
+vfp: refusing 0xeeb00b00 at pc 0x00000000: VMOV (immediate); VFPv3 only
+vfp: refusing 0xee400b10 at pc 0x00000000: Advanced SIMD scalar transfer (no NEON on VFP11)
+vfp: refusing 0xeeb00b00 at pc 0x00000000: VMOV (immediate); VFPv3 only
+S5LBox ARMv6 interpreter tests
+
+1067 passed, 0 failed
+<end of output>
+Test time =   0.18 sec
+----------------------------------------------------------
+Test Passed.
+"arm_interp" end time: Oct 09 23:55 CEST
+"arm_interp" time elapsed: 00:00:00
+----------------------------------------------------------
+
+2/71 Testing: vfp
+2/71 Test: vfp
+Command: "<clean-checkout>/build/core/test_vfp"
+Directory: <clean-checkout>/build/core
+"vfp" start time: Oct 09 23:55 CEST
+Output:
+----------------------------------------------------------
+vfp: refusing 0xecd10a20 at pc 0x00000000: register list runs past s31
+vfp: refusing 0xec91fb04 at pc 0x00000000: register list runs past d15
+vfp: refusing 0xec910a00 at pc 0x00000000: VLDM/VSTM with an empty register list
+vfp: refusing 0xeee00a10 at pc 0x00000000: FPSID is read-only
+vfp: refusing 0xee284a0c at pc 0x00000000: flush-to-zero cannot be decided: the exact result straddles the smallest normal, and the architecture tests it before rounding while the host reports it after
+vfp: refusing 0xee284a0c at pc 0x00000000: FPSCR.Stride is invalid when vector length is one
+vfp: refusing 0xee284a0c at pc 0x00000000: FPSCR.Stride uses a reserved encoding
+vfp: refusing 0xee284a0c at pc 0x00000000: FPSCR.Len/Stride would reuse a short-vector register
+vfp: refusing 0xee284b0c at pc 0x00000000: FPSCR.Len/Stride would reuse a short-vector register
+vfp: refusing 0xeeb50a41 at pc 0x00000000: VCMP #0.0 with a non-zero Vm field
+vfp: refusing 0xee700b00 at pc 0x00000000: d16-d31 do not exist on VFPv2
+vfp: refusing 0xee300b80 at pc 0x00000000: d16-d31 do not exist on VFPv2
+vfp: refusing 0xee300b20 at pc 0x00000000: d16-d31 do not exist on VFPv2
+vfp: refusing 0xedd10b00 at pc 0x00000000: d16-d31 do not exist on VFPv2
+vfp: refusing 0xeeb00b00 at pc 0x00000000: VMOV (immediate); VFPv3 only
+vfp: refusing 0xeeb20ac0 at pc 0x00000000: VCVTB/VCVTT half-precision; VFPv3 only
+vfp: refusing 0xeeba0ac0 at pc 0x00000000: VCVT fixed-point; VFPv3 only
+vfp: refusing 0xeea00a00 at pc 0x00000000: VFPv4 fused multiply-accumulate; the VFP11 has no FMA
+vfp: refusing 0xee900a00 at pc 0x00000000: VFPv4 fused multiply-accumulate; the VFP11 has no FMA
+vfp: refusing 0xee400b10 at pc 0x00000000: Advanced SIMD scalar transfer (no NEON on VFP11)
+vfp: refusing 0xee000b30 at pc 0x00000000: not a VFPv2 32-bit double-register word transfer
+vfp: refusing 0xee000b90 at pc 0x00000000: d16-d31 do not exist on VFPv2
+vfp: refusing 0xeee84b10 at pc 0x00000000: Advanced SIMD scalar transfer (no NEON on VFP11)
+vfp: refusing 0xeef14b10 at pc 0x00000000: Advanced SIMD scalar transfer (no NEON on VFP11)
+vfp: refusing 0xee200a10 at pc 0x00000000: UNDEFINED VFPv2 32-bit core-register transfer
+vfp: refusing 0xee000b11 at pc 0x00000000: not a VFPv2 32-bit double-register word transfer
+vfp: refusing 0xee27fb10 at pc 0x00000000: PC as VMOV core register is UNPREDICTABLE
+vfp: refusing 0xee37fb10 at pc 0x00000000: PC as VMOV core register is UNPREDICTABLE
+vfp: refusing 0xeef10a30 at pc 0x00000000: reserved bits set in VMRS/VMSR
+vfp: refusing 0xeef0fa10 at pc 0x00000000: Rt=PC is defined only for VMRS APSR_nzcv, FPSCR
+vfp: refusing 0xeef8fa10 at pc 0x00000000: Rt=PC is defined only for VMRS APSR_nzcv, FPSCR
+vfp: refusing 0xeef70a10 at pc 0x00000000: VMRS of a VFP system register this unit does not implement (MVFR0/MVFR1/FPINST/FPINST2)
+vfp: refusing 0xeef90a10 at pc 0x00000000: VMRS of a VFP system register this unit does not implement (MVFR0/MVFR1/FPINST/FPINST2)
+vfp: refusing 0xee301a20 at pc 0x00000000: FPSCR enables a trapped FP exception
+VFPv2 (VFP11) tests
+
+607 passed, 0 failed
+<end of output>
+Test time =   0.15 sec
+----------------------------------------------------------
+Test Passed.
+"vfp" end time: Oct 09 23:55 CEST
+"vfp" time elapsed: 00:00:00
+----------------------------------------------------------
+
+3/71 Testing: s5l8900_machine
+3/71 Test: s5l8900_machine
+Command: "<clean-checkout>/build/core/test_soc"
+Directory: <clean-checkout>/build/core
+"s5l8900_machine" start time: Oct 09 23:55 CEST
+Output:
+----------------------------------------------------------
+S5LBox S5L8900 machine tests
+  [guest said] HI
+  STATIC-A64-SOC-ORACLE SKIP: no signed AArch64 handlers
+  STATIC-A64-STORE-ORACLE SKIP: no signed AArch64 handlers
+  STATIC-A64-STM-ORACLE SKIP: no signed AArch64 handlers
+  STATIC-A64-LDM-ORACLE SKIP: no signed AArch64 handlers
+  STATIC-A64-BRANCH-SOC-ORACLE SKIP: no signed AArch64 handlers
+  STATIC-A64-THUMB-COND-SOC-ORACLE SKIP: no signed AArch64 handlers
+  STATIC-A64-INDIRECT-SOC-ORACLE SKIP: no signed AArch64 handlers
+  STATIC-A64-CHAIN-BOUND-ORACLE SKIP: no signed AArch64 handlers
+  STATIC-A64-GRAPH-BOUND-ORACLE SKIP: no signed AArch64 handlers
+  STATIC-A64-PRE-STEP-BOUNDARY SKIP: no signed AArch64 handlers
+  STATIC-A64-VFP-REGISTER-ORACLE SKIP: no signed AArch64 handlers
+  STATIC-A64-VFP-ARITH-ORACLE SKIP: no signed AArch64 handlers
+  STATIC-A64-VFP-READ-ORACLE SKIP: no signed AArch64 handlers
+  STATIC-A64-VFP-WRITE-ORACLE SKIP: no signed AArch64 handlers
+  STATIC-A64-VSTM-ORACLE SKIP: no signed AArch64 handlers
+  STATIC-A64-THUMB-ORACLE SKIP: no signed AArch64 handlers
+  STATIC-A64-THUMB-READ-ORACLE SKIP: no signed AArch64 handlers
+  [-R 512] DRAM 08000000..28000000, NOR@28000040 reads 03030303 (RAM held a5a5a5a5)
+  [map] DRAM 0x08000000, edram 0x18000000, vrom 0x20000000, sram 0x22000000, arm-io 0x38000000, NOR (ours) 0x28000000
+  [otg] GHWCFG1=00000000 GHWCFG2=228de550 -> in=5 out=5 max_ep=5 num_eps=12 (unmodelled was 1/1/1/4)
+  [CLCD] 1 frames in one guest frame period, VIC line 13
+  [timer IRQ -> handler -> return] uart="T", resumed at pc=00000100
+
+5941 passed, 0 failed
+<end of output>
+Test time =   0.27 sec
+----------------------------------------------------------
+Test Passed.
+"s5l8900_machine" end time: Oct 09 23:55 CEST
+"s5l8900_machine" time elapsed: 00:00:00
+----------------------------------------------------------
+
+4/71 Testing: power_vr_mbx2d
+4/71 Test: power_vr_mbx2d
+Command: "<clean-checkout>/build/core/test_mbx"
+Directory: <clean-checkout>/build/core
+"power_vr_mbx2d" start time: Oct 09 23:55 CEST
+Output:
+----------------------------------------------------------
+PowerVR MBX2D tests
+
+1803 passed, 0 failed
+<end of output>
+Test time =   0.29 sec
+----------------------------------------------------------
+Test Passed.
+"power_vr_mbx2d" end time: Oct 09 23:55 CEST
+"power_vr_mbx2d" time elapsed: 00:00:00
+----------------------------------------------------------
+
+5/71 Testing: power_vr_mbx_vgp
+5/71 Test: power_vr_mbx_vgp
+Command: "<clean-checkout>/build/core/test_mbx_vgp"
+Directory: <clean-checkout>/build/core
+"power_vr_mbx_vgp" start time: Oct 09 23:55 CEST
+Output:
+----------------------------------------------------------
+MBX VGP: 107 checks passed, 0 failed
+<end of output>
+Test time =   0.15 sec
+----------------------------------------------------------
+Test Passed.
+"power_vr_mbx_vgp" end time: Oct 09 23:55 CEST
+"power_vr_mbx_vgp" time elapsed: 00:00:00
+----------------------------------------------------------
+
+6/71 Testing: s5l8900_i2c_pmu
+6/71 Test: s5l8900_i2c_pmu
+Command: "<clean-checkout>/build/core/test_i2c"
+Directory: <clean-checkout>/build/core
+"s5l8900_i2c_pmu" start time: Oct 09 23:55 CEST
+Output:
+----------------------------------------------------------
+S5LBox S5L8900 I2C / PCF50635 tests
+  333 passed, 0 failed
+<end of output>
+Test time =   0.25 sec
+----------------------------------------------------------
+Test Passed.
+"s5l8900_i2c_pmu" end time: Oct 09 23:55 CEST
+"s5l8900_i2c_pmu" time elapsed: 00:00:00
+----------------------------------------------------------
+
+7/71 Testing: wm8991_codec_and_i2s
+7/71 Test: wm8991_codec_and_i2s
+Command: "<clean-checkout>/build/core/test_wm8991"
+Directory: <clean-checkout>/build/core
+"wm8991_codec_and_i2s" start time: Oct 09 23:55 CEST
+Output:
+----------------------------------------------------------
+S5LBox WM8991 codec / I2S window tests
+  496 passed, 0 failed
+<end of output>
+Test time =   0.27 sec
+----------------------------------------------------------
+Test Passed.
+"wm8991_codec_and_i2s" end time: Oct 09 23:55 CEST
+"wm8991_codec_and_i2s" time elapsed: 00:00:00
+----------------------------------------------------------
+
+8/71 Testing: s5l8900_spi
+8/71 Test: s5l8900_spi
+Command: "<clean-checkout>/build/core/test_spi"
+Directory: <clean-checkout>/build/core
+"s5l8900_spi" start time: Oct 09 23:55 CEST
+Output:
+----------------------------------------------------------
+S5LBox S5L8900 SPI controller tests
+  198 passed, 0 failed
+<end of output>
+Test time =   0.25 sec
+----------------------------------------------------------
+Test Passed.
+"s5l8900_spi" end time: Oct 09 23:55 CEST
+"s5l8900_spi" time elapsed: 00:00:00
+----------------------------------------------------------
+
+9/71 Testing: s5l8900_gpioic
+9/71 Test: s5l8900_gpioic
+Command: "<clean-checkout>/build/core/test_gpioic"
+Directory: <clean-checkout>/build/core
+"s5l8900_gpioic" start time: Oct 09 23:55 CEST
+Output:
+----------------------------------------------------------
+S5LBox S5L8900 GPIO interrupt controller tests
+  845 passed, 0 failed
+<end of output>
+Test time =   0.32 sec
+----------------------------------------------------------
+Test Passed.
+"s5l8900_gpioic" end time: Oct 09 23:55 CEST
+"s5l8900_gpioic" time elapsed: 00:00:00
+----------------------------------------------------------
+
+10/71 Testing: iphone1_2_buttons
+10/71 Test: iphone1_2_buttons
+Command: "<clean-checkout>/build/core/test_buttons"
+Directory: <clean-checkout>/build/core
+"iphone1_2_buttons" start time: Oct 09 23:55 CEST
+Output:
+----------------------------------------------------------
+S5LBox iPhone1,2 physical button tests
+  436 passed, 0 failed
+<end of output>
+Test time =   0.34 sec
+----------------------------------------------------------
+Test Passed.
+"iphone1_2_buttons" end time: Oct 09 23:55 CEST
+"iphone1_2_buttons" time elapsed: 00:00:00
+----------------------------------------------------------
+
+11/71 Testing: s5l8900_uart4_ppp_line
+11/71 Test: s5l8900_uart4_ppp_line
+Command: "<clean-checkout>/build/core/test_uart4"
+Directory: <clean-checkout>/build/core
+"s5l8900_uart4_ppp_line" start time: Oct 09 23:55 CEST
+Output:
+----------------------------------------------------------
+S5LBox uart4 (guest PPP line) tests
+  233 passed, 0 failed
+<end of output>
+Test time =   0.43 sec
+----------------------------------------------------------
+Test Passed.
+"s5l8900_uart4_ppp_line" end time: Oct 09 23:55 CEST
+"s5l8900_uart4_ppp_line" time elapsed: 00:00:00
+----------------------------------------------------------
+
+12/71 Testing: ppp_peer
+12/71 Test: ppp_peer
+Command: "<clean-checkout>/build/core/test_ppp"
+Directory: <clean-checkout>/build/core
+"ppp_peer" start time: Oct 09 23:55 CEST
+Output:
+----------------------------------------------------------
+S5LBox PPP peer tests (RFC 1661 / 1662 / 1332)
+  note: <clean-checkout>/core/../work/run80-ppp-tty/uart4-ppp.bin not present; replaying the transcription only
+  305 passed, 0 failed
+<end of output>
+Test time =   0.30 sec
+----------------------------------------------------------
+Test Passed.
+"ppp_peer" end time: Oct 09 23:55 CEST
+"ppp_peer" time elapsed: 00:00:00
+----------------------------------------------------------
+
+13/71 Testing: host_ipv4_nat
+13/71 Test: host_ipv4_nat
+Command: "<clean-checkout>/build/core/test_net"
+Directory: <clean-checkout>/build/core
+"host_ipv4_nat" start time: Oct 09 23:55 CEST
+Output:
+----------------------------------------------------------
+S5LBox host IPv4 / NAT / resolver tests
+  .. test_checksum_is_rfc1071_and_not_our_opinion_of_it
+  .. test_pseudo_header_covers_the_addresses
+  .. test_ipv4_refuses_exactly_what_it_says_it_refuses
+  .. test_trailing_octets_past_total_length_are_ignored
+  .. test_icmp_echo_comes_back_from_the_address_it_was_aimed_at
+  .. test_an_echo_past_the_gateway_is_never_fabricated
+  .. test_dns_answers_an_a_query_from_the_host_resolver
+  .. test_dns_waits_for_an_async_host_resolver
+  .. test_pending_dns_is_bounded_and_times_out
+  .. test_dns_says_the_right_no
+  .. test_dns_refuses_names_it_should_not_hand_to_getaddrinfo
+  .. test_udp_goes_out_through_a_socket_and_comes_back
+  .. test_udp_flows_expire_when_idle
+  .. test_udp_with_a_zero_checksum_is_accepted_and_a_wrong_one_is_not
+  .. test_the_handshake_waits_for_the_host_connect
+  .. test_a_refused_connect_resets_rather_than_hanging
+  .. test_data_crosses_in_both_directions
+  .. test_the_guests_window_bounds_what_we_send
+  .. test_a_small_mss_from_the_guest_is_honoured
+  .. test_out_of_order_is_reacked_and_never_reassembled
+  .. test_backpressure_shrinks_the_window_and_never_drops
+  .. test_a_reset_from_the_guest_frees_the_flow
+  .. test_a_segment_for_no_connection_is_reset_both_ways
+  .. test_the_host_closing_first_ends_the_connection_cleanly
+  .. test_the_guest_closing_first_half_closes_the_socket
+  .. test_a_lost_segment_is_retransmitted_and_then_given_up_on
+  .. test_a_zero_window_is_probed_and_not_left_to_stall
+  .. test_the_flow_table_fills_and_says_so
+  .. test_the_output_queue_backs_up_rather_than_overwriting
+  .. test_a_stack_with_no_egress_still_answers_for_itself
+  .. test_reset_releases_every_socket
+  .. test_time_only_moves_forward
+  .. test_the_null_arguments_do_not_crash
+  .. test_output_peek_and_short_buffers
+  211 passed, 0 failed
+<end of output>
+Test time =   0.15 sec
+----------------------------------------------------------
+Test Passed.
+"host_ipv4_nat" end time: Oct 09 23:55 CEST
+"host_ipv4_nat" time elapsed: 00:00:00
+----------------------------------------------------------
+
+14/71 Testing: host_egress
+14/71 Test: host_egress
+Command: "<clean-checkout>/build/core/test_net_host"
+Directory: <clean-checkout>/build/core
+"host_egress" start time: Oct 09 23:55 CEST
+Output:
+----------------------------------------------------------
+S5LBox host egress (real sockets, loopback only)
+  76 passed, 0 failed
+<end of output>
+Test time =   0.23 sec
+----------------------------------------------------------
+Test Passed.
+"host_egress" end time: Oct 09 23:55 CEST
+"host_egress" time elapsed: 00:00:00
+----------------------------------------------------------
+
+15/71 Testing: multitouch_z2
+15/71 Test: multitouch_z2
+Command: "<clean-checkout>/build/core/test_mtz2"
+Directory: <clean-checkout>/build/core
+"multitouch_z2" start time: Oct 09 23:55 CEST
+Output:
+----------------------------------------------------------
+S5LBox AppleMultitouchZ2SPI device tests
+  305 passed, 0 failed
+<end of output>
+Test time =   0.30 sec
+----------------------------------------------------------
+Test Passed.
+"multitouch_z2" end time: Oct 09 23:55 CEST
+"multitouch_z2" time elapsed: 00:00:00
+----------------------------------------------------------
+
+16/71 Testing: s5l8900_pl080_dmac
+16/71 Test: s5l8900_pl080_dmac
+Command: "<clean-checkout>/build/core/test_pl080"
+Directory: <clean-checkout>/build/core
+"s5l8900_pl080_dmac" start time: Oct 09 23:55 CEST
+Output:
+----------------------------------------------------------
+S5LBox PL080 DMA controller tests
+  202 passed, 0 failed
+<end of output>
+Test time =   0.38 sec
+----------------------------------------------------------
+Test Passed.
+"s5l8900_pl080_dmac" end time: Oct 09 23:55 CEST
+"s5l8900_pl080_dmac" time elapsed: 00:00:00
+----------------------------------------------------------
+
+17/71 Testing: img3_parser
+17/71 Test: img3_parser
+Command: "<clean-checkout>/build/core/test_img3"
+Directory: <clean-checkout>/build/core
+"img3_parser" start time: Oct 09 23:55 CEST
+Output:
+----------------------------------------------------------
+S5LBox IMG3 parser tests
+
+70 passed, 0 failed
+<end of output>
+Test time =   0.20 sec
+----------------------------------------------------------
+Test Passed.
+"img3_parser" end time: Oct 09 23:55 CEST
+"img3_parser" time elapsed: 00:00:00
+----------------------------------------------------------
+
+18/71 Testing: aes_fips197
+18/71 Test: aes_fips197
+Command: "<clean-checkout>/build/core/test_aes"
+Directory: <clean-checkout>/build/core
+"aes_fips197" start time: Oct 09 23:55 CEST
+Output:
+----------------------------------------------------------
+S5LBox AES tests (FIPS-197 known-answer vectors)
+
+18 passed, 0 failed
+<end of output>
+Test time =   0.14 sec
+----------------------------------------------------------
+Test Passed.
+"aes_fips197" end time: Oct 09 23:55 CEST
+"aes_fips197" time elapsed: 00:00:00
+----------------------------------------------------------
+
+19/71 Testing: firmware_loader
+19/71 Test: firmware_loader
+Command: "<clean-checkout>/build/core/test_loader"
+Directory: <clean-checkout>/build/core
+"firmware_loader" start time: Oct 09 23:55 CEST
+Output:
+----------------------------------------------------------
+S5LBox firmware loader tests
+  [plain IMG3 -> guest said] iBoot
+  [encrypted IMG3 -> decrypted -> guest said] iBoot
+  [found 'ibot' in NOR @0x2000 -> booted -> guest said] iBoot
+  [non-zero RAM base 0x08000000 -> guest said] iBoot
+  [payload written to NOR survived a relaunch] 0xa5a5a5a5
+
+53 passed, 0 failed
+<end of output>
+Test time =   0.18 sec
+----------------------------------------------------------
+Test Passed.
+"firmware_loader" end time: Oct 09 23:55 CEST
+"firmware_loader" time elapsed: 00:00:00
+----------------------------------------------------------
+
+20/71 Testing: device_tree
+20/71 Test: device_tree
+Command: "<clean-checkout>/build/core/test_devicetree"
+Directory: <clean-checkout>/build/core
+"device_tree" start time: Oct 09 23:55 CEST
+Output:
+----------------------------------------------------------
+S5LBox device tree tests
+  [device tree] /arm-io/uart0 reg = 0x3cc00000
+  dt: /vram           reg                    {0x00000000,0x00000000} -> {0x0885c000,0x00096000}
+  [device tree] /vram reg = {0x0885c000, 0x00096000}
+  dt: /vram           reg                    {0x0885c000,0x00096000} -> {0x0885c000,0x00096000}
+  dt: /vram:reg missing or not 8 bytes (4)
+  dt: /pram:reg missing or not 8 bytes (16)
+  dt: /nvram:reg missing or not 8 bytes (0)
+  dt: node /vram0 NOT FOUND
+
+43 passed, 0 failed
+<end of output>
+Test time =   0.14 sec
+----------------------------------------------------------
+Test Passed.
+"device_tree" end time: Oct 09 23:55 CEST
+"device_tree" time elapsed: 00:00:00
+----------------------------------------------------------
+
+21/71 Testing: lzss
+21/71 Test: lzss
+Command: "<clean-checkout>/build/core/test_lzss"
+Directory: <clean-checkout>/build/core
+"lzss" start time: Oct 09 23:55 CEST
+Output:
+----------------------------------------------------------
+S5LBox LZSS tests
+
+14 passed, 0 failed
+<end of output>
+Test time =   0.15 sec
+----------------------------------------------------------
+Test Passed.
+"lzss" end time: Oct 09 23:55 CEST
+"lzss" time elapsed: 00:00:00
+----------------------------------------------------------
+
+22/71 Testing: ksyms
+22/71 Test: ksyms
+Command: "<clean-checkout>/build/core/test_ksyms"
+Directory: <clean-checkout>/build/core
+"ksyms" start time: Oct 09 23:55 CEST
+Output:
+----------------------------------------------------------
+S5LBox symbol/kext resolver tests
+  (skipped: no firmware/kernel.macho — this test needs the extracted IPSW)
+79 passed, 0 failed
+<end of output>
+Test time =   0.14 sec
+----------------------------------------------------------
+Test Passed.
+"ksyms" end time: Oct 09 23:55 CEST
+"ksyms" time elapsed: 00:00:00
+----------------------------------------------------------
+
+23/71 Testing: snapshot
+23/71 Test: snapshot
+Command: "<clean-checkout>/build/core/test_snapshot"
+Directory: <clean-checkout>/build/core
+"snapshot" start time: Oct 09 23:55 CEST
+Output:
+----------------------------------------------------------
+S5LBox snapshot tests
+  [divergence] 1000 instructions, 71 bytes of console, 71 interrupts serviced — identical
+
+483 passed, 0 failed
+<end of output>
+Test time =   1.79 sec
+----------------------------------------------------------
+Test Passed.
+"snapshot" end time: Oct 09 23:55 CEST
+"snapshot" time elapsed: 00:00:01
+----------------------------------------------------------
+
+24/71 Testing: nand_device
+24/71 Test: nand_device
+Command: "<clean-checkout>/build/core/test_nand"
+Directory: <clean-checkout>/build/core
+"nand_device" start time: Oct 09 23:55 CEST
+Output:
+----------------------------------------------------------
+S5LBox NAND device tests
+
+68 passed, 0 failed
+<end of output>
+Test time =   0.20 sec
+----------------------------------------------------------
+Test Passed.
+"nand_device" end time: Oct 09 23:55 CEST
+"nand_device" time elapsed: 00:00:00
+----------------------------------------------------------
+
+25/71 Testing: vm_source
+25/71 Test: vm_source
+Command: "<clean-checkout>/build/core/test_vm_source"
+Directory: <clean-checkout>/build/core
+"vm_source" start time: Oct 09 23:55 CEST
+Output:
+----------------------------------------------------------
+vm_source: 180 passed, 0 failed
+<end of output>
+Test time =   0.14 sec
+----------------------------------------------------------
+Test Passed.
+"vm_source" end time: Oct 09 23:55 CEST
+"vm_source" time elapsed: 00:00:00
+----------------------------------------------------------
+
+26/71 Testing: vm_block
+26/71 Test: vm_block
+Command: "<clean-checkout>/build/core/test_vm_block"
+Directory: <clean-checkout>/build/core
+"vm_block" start time: Oct 09 23:55 CEST
+Output:
+----------------------------------------------------------
+vm_block: 148 passed, 0 failed
+<end of output>
+Test time =   0.14 sec
+----------------------------------------------------------
+Test Passed.
+"vm_block" end time: Oct 09 23:55 CEST
+"vm_block" time elapsed: 00:00:00
+----------------------------------------------------------
+
+27/71 Testing: host_memory_disk_bridge
+27/71 Test: host_memory_disk_bridge
+Command: "<clean-checkout>/build/core/test_md_bridge"
+Directory: <clean-checkout>/build/core
+"host_memory_disk_bridge" start time: Oct 09 23:55 CEST
+Output:
+----------------------------------------------------------
+S5LBox md bridge tests
+
+184 passed, 0 failed
+<end of output>
+Test time =   0.14 sec
+----------------------------------------------------------
+Test Passed.
+"host_memory_disk_bridge" end time: Oct 09 23:55 CEST
+"host_memory_disk_bridge" time elapsed: 00:00:00
+----------------------------------------------------------
+
+28/71 Testing: host_raw_memory_disk_bridge
+28/71 Test: host_raw_memory_disk_bridge
+Command: "<clean-checkout>/build/core/test_md_raw_bridge"
+Directory: <clean-checkout>/build/core
+"host_raw_memory_disk_bridge" start time: Oct 09 23:55 CEST
+Output:
+----------------------------------------------------------
+S5LBox raw md bridge tests
+
+206 passed, 0 failed
+<end of output>
+Test time =   0.15 sec
+----------------------------------------------------------
+Test Passed.
+"host_raw_memory_disk_bridge" end time: Oct 09 23:55 CEST
+"host_raw_memory_disk_bridge" time elapsed: 00:00:00
+----------------------------------------------------------
+
+29/71 Testing: macho_parser
+29/71 Test: macho_parser
+Command: "<clean-checkout>/build/core/test_macho"
+Directory: <clean-checkout>/build/core
+"macho_parser" start time: Oct 09 23:55 CEST
+Output:
+----------------------------------------------------------
+macho: 28 passed, 0 failed
+<end of output>
+Test time =   0.14 sec
+----------------------------------------------------------
+Test Passed.
+"macho_parser" end time: Oct 09 23:55 CEST
+"macho_parser" time elapsed: 00:00:00
+----------------------------------------------------------
+
+30/71 Testing: app_vmguest_bridge
+30/71 Test: app_vmguest_bridge
+Command: "<clean-checkout>/build/core/test_vmguest"
+Directory: <clean-checkout>/build/core
+"app_vmguest_bridge" start time: Oct 09 23:55 CEST
+Output:
+----------------------------------------------------------
+vmguest: 62 checks, 0 failed
+<end of output>
+Test time =   0.28 sec
+----------------------------------------------------------
+Test Passed.
+"app_vmguest_bridge" end time: Oct 09 23:55 CEST
+"app_vmguest_bridge" time elapsed: 00:00:00
+----------------------------------------------------------
+
+31/71 Testing: app_frame_telemetry
+31/71 Test: app_frame_telemetry
+Command: "<clean-checkout>/build/core/test_vmframetelemetry"
+Directory: <clean-checkout>/build/core
+"app_frame_telemetry" start time: Oct 09 23:55 CEST
+Output:
+----------------------------------------------------------
+vm frame telemetry: 29 checks, 0 failed
+<end of output>
+Test time =   0.27 sec
+----------------------------------------------------------
+Test Passed.
+"app_frame_telemetry" end time: Oct 09 23:55 CEST
+"app_frame_telemetry" time elapsed: 00:00:00
+----------------------------------------------------------
+
+32/71 Testing: app_firmware_boot
+32/71 Test: app_firmware_boot
+Command: "<clean-checkout>/build/core/test_vmfirmwareboot"
+Directory: <clean-checkout>/build/core
+"app_firmware_boot" start time: Oct 09 23:55 CEST
+Output:
+----------------------------------------------------------
+== vm firmware boot ==
+SKIP: app saved-state restore needs S5LBOX_APP_RESTORE_FIXTURE
+SKIP: powered-off app checkpoint needs S5LBOX_APP_POWEROFF_FIXTURE
+SKIP: the app-to-guest seam needs the kernelcache and device tree in <clean-checkout>/core/../firmware
+  (existing work image refused: Could not prepare the root filesystem (destination-exists at destination-path): destination already exists)
+  (junk rootfs refused: Could not prepare the root filesystem (hfs-invalid at source-validate): signature 0x5a5a/version 23130 is not HFS+/4 or HFSX/5)
+== vm firmware boot: 53 checks, 0 failure(s) ==
+<end of output>
+Test time =   0.33 sec
+----------------------------------------------------------
+Test Passed.
+"app_firmware_boot" end time: Oct 09 23:55 CEST
+"app_firmware_boot" time elapsed: 00:00:00
+----------------------------------------------------------
+
+33/71 Testing: app_network_session
+33/71 Test: app_network_session
+Command: "<clean-checkout>/build/core/test_vmnetworksession"
+Directory: <clean-checkout>/build/core
+"app_network_session" start time: Oct 09 23:55 CEST
+Output:
+----------------------------------------------------------
+[network] uart4 PPP peer armed without NAT
+[network] guest opened uart4; PPP negotiation started
+[network] uart4 PPP peer armed with IPv4 NAT
+S5LBox iOS PPP/NAT attachment tests
+  13 passed, 0 failed
+<end of output>
+Test time =   0.16 sec
+----------------------------------------------------------
+Test Passed.
+"app_network_session" end time: Oct 09 23:55 CEST
+"app_network_session" time elapsed: 00:00:00
+----------------------------------------------------------
+
+34/71 Testing: app_resume_checkpoint
+34/71 Test: app_resume_checkpoint
+Command: "<clean-checkout>/build/core/test_vmresumecheckpoint"
+Directory: <clean-checkout>/build/core
+"app_resume_checkpoint" start time: Oct 09 23:55 CEST
+Output:
+----------------------------------------------------------
+== automatic resume checkpoint: 25 checks, 0 failure(s) ==
+<end of output>
+Test time =   0.39 sec
+----------------------------------------------------------
+Test Passed.
+"app_resume_checkpoint" end time: Oct 09 23:55 CEST
+"app_resume_checkpoint" time elapsed: 00:00:00
+----------------------------------------------------------
+
+35/71 Testing: app_guest_install_transaction
+35/71 Test: app_guest_install_transaction
+Command: "<clean-checkout>/build/core/test_vmguestinstall"
+Directory: <clean-checkout>/build/core
+"app_guest_install_transaction" start time: Oct 09 23:55 CEST
+Output:
+----------------------------------------------------------
+== guest install transaction ==
+== guest install transaction: 255 checks, 0 failure(s) ==
+<end of output>
+Test time =   0.23 sec
+----------------------------------------------------------
+Test Passed.
+"app_guest_install_transaction" end time: Oct 09 23:55 CEST
+"app_guest_install_transaction" time elapsed: 00:00:00
+----------------------------------------------------------
+
+36/71 Testing: app_debian_archive
+36/71 Test: app_debian_archive
+Command: "<clean-checkout>/build/core/test_vmdebarchive"
+Directory: <clean-checkout>/build/core
+"app_debian_archive" start time: Oct 09 23:55 CEST
+Output:
+----------------------------------------------------------
+== Debian archive ==
+SKIP: S5LBOX_DEB_FIXTURE does not name a local package
+== Debian archive: 49 checks, 0 failure(s) ==
+<end of output>
+Test time =   0.15 sec
+----------------------------------------------------------
+Test Passed.
+"app_debian_archive" end time: Oct 09 23:55 CEST
+"app_debian_archive" time elapsed: 00:00:00
+----------------------------------------------------------
+
+37/71 Testing: app_guest_package_manifest
+37/71 Test: app_guest_package_manifest
+Command: "<clean-checkout>/build/core/test_vmguestpackagemanifest"
+Directory: <clean-checkout>/build/core
+"app_guest_package_manifest" start time: Oct 09 23:55 CEST
+Output:
+----------------------------------------------------------
+== guest package manifest ==
+manifest-sha256 0561b548d0efd44a2b1878687246766dba40b23e5544076ed34a7e582a195f1e
+== guest package manifest: 56 checks, 0 failure(s) ==
+<end of output>
+Test time =   0.14 sec
+----------------------------------------------------------
+Test Passed.
+"app_guest_package_manifest" end time: Oct 09 23:55 CEST
+"app_guest_package_manifest" time elapsed: 00:00:00
+----------------------------------------------------------
+
+38/71 Testing: app_guest_rootfs_plan
+38/71 Test: app_guest_rootfs_plan
+Command: "<clean-checkout>/build/core/test_vmguestrootfsplan"
+Directory: <clean-checkout>/build/core
+"app_guest_rootfs_plan" start time: Oct 09 23:55 CEST
+Output:
+----------------------------------------------------------
+== guest rootfs plan ==
+synthetic-plan-sha256 06c2b4f26b1f7249694d14b241f70f2fdf96b0d44e4a58878cba33234b7ca0b9
+real-package-plan SKIP (S5LBOX_GUEST_PACKAGE_DIR unset)
+== guest rootfs plan: 46 checks, 0 failure(s) ==
+<end of output>
+Test time =   0.15 sec
+----------------------------------------------------------
+Test Passed.
+"app_guest_rootfs_plan" end time: Oct 09 23:55 CEST
+"app_guest_rootfs_plan" time elapsed: 00:00:00
+----------------------------------------------------------
+
+39/71 Testing: app_guest_install_builder
+39/71 Test: app_guest_install_builder
+Command: "<clean-checkout>/build/core/test_vmguestinstallbuild"
+Directory: <clean-checkout>/build/core
+"app_guest_install_builder" start time: Oct 09 23:55 CEST
+Output:
+----------------------------------------------------------
+== guest install builder ==
+real-storage-upgrade SKIP (existing machine path unset)
+real-cydia-privilege-repair SKIP (existing machine path unset)
+real-install-build SKIP (integration paths unset)
+== guest install builder: 53 checks, 0 failure(s) ==
+<end of output>
+Test time =   0.15 sec
+----------------------------------------------------------
+Test Passed.
+"app_guest_install_builder" end time: Oct 09 23:55 CEST
+"app_guest_install_builder" time elapsed: 00:00:00
+----------------------------------------------------------
+
+40/71 Testing: app_boot_options
+40/71 Test: app_boot_options
+Command: "<clean-checkout>/build/core/test_vmbootoptions"
+Directory: <clean-checkout>/build/core
+"app_boot_options" start time: Oct 09 23:55 CEST
+Output:
+----------------------------------------------------------
+== vm boot options ==
+  (everything flipped: 4 switches are not applied as set: vram, rtc-patch, jb-codesign, jb-payload. Fixed when the work image was made: ca-software-render, activate, ppp.)
+== vm boot options: 343 checks, 0 failure(s) ==
+<end of output>
+Test time =   0.28 sec
+----------------------------------------------------------
+Test Passed.
+"app_boot_options" end time: Oct 09 23:55 CEST
+"app_boot_options" time elapsed: 00:00:00
+----------------------------------------------------------
+
+41/71 Testing: app_jit_probe
+41/71 Test: app_jit_probe
+Command: "<clean-checkout>/build/core/test_vmjitprobe"
+Directory: <clean-checkout>/build/core
+"app_jit_probe" start time: Oct 09 23:55 CEST
+Output:
+----------------------------------------------------------
+S5LBox JIT executability probe tests
+  [info] probe supported on this host: yes
+  [info] RWX mmap         -> REFUSED: the mapping was denied
+  [info] MAP_JIT          -> OK: wrote and executed its own code
+  [info] mprotect RW->RX  -> OK: wrote and executed its own code
+== vm jit probe: 40 checks, 0 failure(s) ==
+<end of output>
+Test time =   0.27 sec
+----------------------------------------------------------
+Test Passed.
+"app_jit_probe" end time: Oct 09 23:55 CEST
+"app_jit_probe" time elapsed: 00:00:00
+----------------------------------------------------------
+
+42/71 Testing: ios3_hle
+42/71 Test: ios3_hle
+Command: "<clean-checkout>/build/core/test_ios3_hle"
+Directory: <clean-checkout>/build/core
+"ios3_hle" start time: Oct 09 23:55 CEST
+Output:
+----------------------------------------------------------
+hle-trace   root.chunk row=0 offset=256 count=64 writes=1/2 bytes=1024/1280 failure=3@00105400+4
+hle-trace   root.decline=scanline detail=0
+hle-trace   root.row[0] xy/count=0/0/320 mask=0308 uv=(0.5,0.5) readable=1 ctx=00101000 render=00102000 state=00103000 units=1 flags=12 mode=2 sentinel=ffffffff sampler=3122b8bc/3122b8bc out=00106000 aux=00000000 pitch=1280 bpp=4 bounds=0,0+320,1
+hle-trace   root.texture readable=1 base=00105000 pitch=1280 max=013fffff/0000ffff
+hle-trace ogl_poly_scan        at=0 r0=00107000 r1=00000000 r2=00000000 r3=00000000 lr=c0dec0de sp+0=00000140 sp+4=000001e0 sp+8=3122d180 sp+12=00101000
+hle-trace   poly.count=4 flags=030b
+hle-trace   poly.v[0] xyzw=(0,0,0,1) rgba=(0,0,0,0) uv0=(0,0) uv1=(0,0) uv2=(0,0)
+hle-trace   poly.v[1] xyzw=(320,0,0,1) rgba=(0,0,0,0) uv0=(320,0) uv1=(0,0) uv2=(0,0)
+hle-trace   poly.v[2] xyzw=(320,1,0,1) rgba=(0,0,0,0) uv0=(320,1) uv1=(0,0) uv2=(0,0)
+hle-trace   poly.v[3] xyzw=(0,1,0,1) rgba=(0,0,0,0) uv0=(0,1) uv1=(0,0) uv2=(0,0)
+hle-trace   root.chunk row=0 offset=0 count=256 writes=0/2 bytes=0/1280 failure=0@00000000+0
+hle-trace   root.decline=scanline detail=0
+hle-trace   root.row[0] xy/count=0/0/320 mask=0308 uv=(0.00156250002,0.5) readable=1 ctx=00101000 render=00102000 state=00103000 units=1 flags=12 mode=2 sentinel=ffffffff sampler=3122b8bc/3122b8bc out=00106000 aux=00000000 pitch=1280 bpp=4 bounds=0,0+320,1
+hle-trace   root.texture readable=1 base=00106000 pitch=1280 max=013fffff/0000ffff
+hle-trace ogl_poly_scan        at=0 r0=00107000 r1=00000000 r2=00000000 r3=00000000 lr=c0dec0de sp+0=00000140 sp+4=000001e0 sp+8=3122d180 sp+12=00101000
+hle-trace   poly.count=4 flags=030b
+hle-trace   poly.v[0] xyzw=(0,0,0,1) rgba=(0,0,0,0) uv0=(0,0) uv1=(0,0) uv2=(0,0)
+hle-trace   poly.v[1] xyzw=(320,0,0,1) rgba=(0,0,0,0) uv0=(1,0) uv1=(0,0) uv2=(0,0)
+hle-trace   poly.v[2] xyzw=(320,1,0,1) rgba=(0,0,0,0) uv0=(1,1) uv1=(0,0) uv2=(0,0)
+hle-trace   poly.v[3] xyzw=(0,1,0,1) rgba=(0,0,0,0) uv0=(0,1) uv1=(0,0) uv2=(0,0)
+hle-trace   root.chunk row=0 offset=0 count=256 writes=0/2 bytes=0/1280 failure=0@00000000+0
+hle-trace   root.decline=scanline detail=0
+hle-trace   root.row[0] xy/count=0/0/320 mask=0308 uv=(0.00156250002,0.5) readable=1 ctx=00101000 render=00102000 state=00103000 units=1 flags=12 mode=1 sentinel=ffffffff sampler=3122bad8/3122bad8 out=00106000 aux=00000000 pitch=1280 bpp=4 bounds=0,0+320,1
+hle-trace   root.texture readable=1 base=00105000 pitch=8 max=0001ffff/0000ffff
+hle-trace ogl_poly_scan        at=0 r0=00107000 r1=00000000 r2=00000000 r3=00000000 lr=c0dec0de sp+0=00000140 sp+4=000001e0 sp+8=3122d180 sp+12=00101000
+hle-trace   poly.count=4 flags=030b
+hle-trace   poly.v[0] xyzw=(0,0,0,1) rgba=(0,0,0,0) uv0=(0,0) uv1=(0,0) uv2=(0,0)
+hle-trace   poly.v[1] xyzw=(320,0,0,1) rgba=(0,0,0,0) uv0=(1,0) uv1=(0,0) uv2=(0,0)
+hle-trace   poly.v[2] xyzw=(320,1,0,1) rgba=(0,0,0,0) uv0=(1,1) uv1=(0,0) uv2=(0,0)
+hle-trace   poly.v[3] xyzw=(0,1,0,1) rgba=(0,0,0,0) uv0=(0,1) uv1=(0,0) uv2=(0,0)
+hle-trace   root.chunk row=0 offset=0 count=256 writes=0/2 bytes=0/1280 failure=0@00000000+0
+hle-trace   root.decline=scanline detail=0
+hle-trace   root.row[0] xy/count=0/0/320 mask=0308 uv=(0.00156250002,0.5) readable=1 ctx=00101000 render=00102000 state=00103000 units=1 flags=12 mode=1 sentinel=ffffffff sampler=3122bad8/3122bad8 out=00106000 aux=00000000 pitch=1280 bpp=4 bounds=0,0+320,1
+hle-trace   root.texture readable=1 base=00106000 pitch=4 max=0000ffff/0000ffff
+hle-trace ogl_poly_scan        at=0 r0=00107000 r1=00000000 r2=00000000 r3=00000000 lr=c0dec0de sp+0=00000140 sp+4=000001e0 sp+8=3122d180 sp+12=00101000
+hle-trace   poly.count=4 flags=030b
+hle-trace   poly.v[0] xyzw=(0,0,0,1) rgba=(0,0,0,0) uv0=(0,0) uv1=(0,0) uv2=(0,0)
+hle-trace   poly.v[1] xyzw=(320,0,0,1) rgba=(0,0,0,0) uv0=(1,0) uv1=(0,0) uv2=(0,0)
+hle-trace   poly.v[2] xyzw=(320,1,0,1) rgba=(0,0,0,0) uv0=(1,1) uv1=(0,0) uv2=(0,0)
+hle-trace   poly.v[3] xyzw=(0,1,0,1) rgba=(0,0,0,0) uv0=(0,1) uv1=(0,0) uv2=(0,0)
+hle-trace   root.chunk row=0 offset=0 count=320 writes=0/1 bytes=0/1280 failure=0@00000000+0
+hle-trace   root.decline=scanline detail=0
+hle-trace   root.row[0] xy/count=0/0/320 mask=0308 uv=(0.5,0.5) readable=1 ctx=00101000 render=00102000 state=00103000 units=1 flags=12 mode=3 sentinel=ffffffff sampler=3122b8bc/3122b8bc out=00106000 aux=00000000 pitch=1280 bpp=4 bounds=0,0+320,1
+hle-trace   root.texture readable=1 base=00105000 pitch=1280 max=013fffff/0000ffff
+hle-trace ogl_poly_scan        at=0 r0=00107000 r1=00000000 r2=00000000 r3=00000000 lr=c0dec0de sp+0=00000140 sp+4=000001e0 sp+8=3122d180 sp+12=00101000
+hle-trace   poly.count=4 flags=030b
+hle-trace   poly.v[0] xyzw=(0,0,0,1) rgba=(0,0,0,0) uv0=(0,0) uv1=(0,0) uv2=(0,0)
+hle-trace   poly.v[1] xyzw=(320,0,0,1) rgba=(0,0,0,0) uv0=(320,0) uv1=(0,0) uv2=(0,0)
+hle-trace   poly.v[2] xyzw=(320,1,0,1) rgba=(0,0,0,0) uv0=(320,1) uv1=(0,0) uv2=(0,0)
+hle-trace   poly.v[3] xyzw=(0,1,0,1) rgba=(0,0,0,0) uv0=(0,1) uv1=(0,0) uv2=(0,0)
+hle-trace   root.decline=abi detail=4294967295
+hle-trace ogl_poly_scan        at=0 r0=00107000 r1=00000000 r2=00000004 r3=00000000 lr=c0dec0de sp+0=00000004 sp+4=000001e0 sp+8=3122d180 sp+12=00101000
+hle-trace   poly.count=4 flags=030b
+hle-trace   poly.v[0] xyzw=(1,0,0,1) rgba=(0,0,0,0) uv0=(0,0) uv1=(0,0) uv2=(0,0)
+hle-trace   poly.v[1] xyzw=(4,0,0,1) rgba=(0,0,0,0) uv0=(3,0) uv1=(0,0) uv2=(0,0)
+hle-trace   poly.v[2] xyzw=(4,2,0,1) rgba=(0,0,0,0) uv0=(3,2) uv1=(0,0) uv2=(0,0)
+hle-trace   poly.v[3] xyzw=(1,2,0,1) rgba=(0,0,0,0) uv0=(0,2) uv1=(0,0) uv2=(0,0)
+hle-trace   root.decline=geometry detail=4294967295
+hle-trace ogl_poly_scan        at=0 r0=00107000 r1=00000000 r2=00000000 r3=00000000 lr=c0dec0de sp+0=00000140 sp+4=000001e0 sp+8=3122d180 sp+12=00101000
+hle-trace   poly.count=4 flags=000b
+hle-trace   poly.v[0] xyzw=(1,0.25,0,1) rgba=(0,0,0,0) uv0=(0,0) uv1=(0,0) uv2=(0,0)
+hle-trace   poly.v[1] xyzw=(4,0.25,0,1) rgba=(0,0,0,0) uv0=(3,0) uv1=(0,0) uv2=(0,0)
+hle-trace   poly.v[2] xyzw=(4,2.25,0,1) rgba=(0,0,0,0) uv0=(3,2) uv1=(0,0) uv2=(0,0)
+hle-trace   poly.v[3] xyzw=(1,2.25,0,1) rgba=(0,0,0,0) uv0=(0,2) uv1=(0,0) uv2=(0,0)
+hle-trace   root.decline=abi detail=4294967295
+hle-trace ogl_poly_scan        at=0 r0=00107000 r1=00000000 r2=00000000 r3=00000000 lr=c0dec0de sp+0=00000140 sp+4=000001e0 sp+8=3122d184 sp+12=00101000
+hle-trace   poly.count=4 flags=030b
+hle-trace   poly.v[0] xyzw=(1,0,0,1) rgba=(0,0,0,0) uv0=(0,0) uv1=(0,0) uv2=(0,0)
+hle-trace   poly.v[1] xyzw=(4,0,0,1) rgba=(0,0,0,0) uv0=(3,0) uv1=(0,0) uv2=(0,0)
+hle-trace   poly.v[2] xyzw=(4,2,0,1) rgba=(0,0,0,0) uv0=(3,2) uv1=(0,0) uv2=(0,0)
+hle-trace   poly.v[3] xyzw=(1,2,0,1) rgba=(0,0,0,0) uv0=(0,2) uv1=(0,0) uv2=(0,0)
+hle-trace   root.decline=abi detail=4294967295
+hle-trace ogl_poly_scan        at=0 r0=00107000 r1=00000001 r2=00000000 r3=00000000 lr=c0dec0de sp+0=00000140 sp+4=000001e0 sp+8=3122d180 sp+12=00101000
+hle-trace   poly.count=4 flags=030b
+hle-trace   poly.v[0] xyzw=(1,0,0,1) rgba=(0,0,0,0) uv0=(0,0) uv1=(0,0) uv2=(0,0)
+hle-trace   poly.v[1] xyzw=(4,0,0,1) rgba=(0,0,0,0) uv0=(3,0) uv1=(0,0) uv2=(0,0)
+hle-trace   poly.v[2] xyzw=(4,2,0,1) rgba=(0,0,0,0) uv0=(3,2) uv1=(0,0) uv2=(0,0)
+hle-trace   poly.v[3] xyzw=(1,2,0,1) rgba=(0,0,0,0) uv0=(0,2) uv1=(0,0) uv2=(0,0)
+hle-trace   root.decline=vertex detail=0
+hle-trace ogl_poly_scan        at=0 r0=00107000 r1=00000000 r2=00000000 r3=00000000 lr=c0dec0de sp+0=00000140 sp+4=000001e0 sp+8=3122d180 sp+12=00101000
+hle-trace   poly.count=4 flags=030b
+hle-trace   poly.v[0] xyzw=(1.25,0,0,1) rgba=(0,0,0,0) uv0=(0,0) uv1=(0,0) uv2=(0,0)
+hle-trace   poly.v[1] xyzw=(4,0,0,1) rgba=(0,0,0,0) uv0=(3,0) uv1=(0,0) uv2=(0,0)
+hle-trace   poly.v[2] xyzw=(4,2,0,1) rgba=(0,0,0,0) uv0=(3,2) uv1=(0,0) uv2=(0,0)
+hle-trace   poly.v[3] xyzw=(1,2,0,1) rgba=(0,0,0,0) uv0=(0,2) uv1=(0,0) uv2=(0,0)
+hle-trace   root.decline=texture-map detail=4294967295
+hle-trace ogl_poly_scan        at=0 r0=00107000 r1=00000000 r2=00000000 r3=00000000 lr=c0dec0de sp+0=00000140 sp+4=000001e0 sp+8=3122d180 sp+12=00101000
+hle-trace   poly.count=4 flags=030b
+hle-trace   poly.v[0] xyzw=(1,0,0,1) rgba=(0,0,0,0) uv0=(0,0) uv1=(0,0) uv2=(0,0)
+hle-trace   poly.v[1] xyzw=(4,0,0,1) rgba=(0,0,0,0) uv0=(2,0) uv1=(0,0) uv2=(0,0)
+hle-trace   poly.v[2] xyzw=(4,2,0,1) rgba=(0,0,0,0) uv0=(3,2) uv1=(0,0) uv2=(0,0)
+hle-trace   poly.v[3] xyzw=(1,2,0,1) rgba=(0,0,0,0) uv0=(0,2) uv1=(0,0) uv2=(0,0)
+hle-trace   root.decline=abi detail=4294967295
+hle-trace ogl_poly_scan        at=0 r0=00107000 r1=00000000 r2=00000000 r3=00000000 lr=c0dec0de sp+0=00000140 sp+4=000001e0 sp+8=3122d180 sp+12=00101000
+hle-trace   poly.count=4 flags=030f
+hle-trace   poly.v[0] xyzw=(1,0,0,1) rgba=(0,0,0,0) uv0=(0,0) uv1=(0,0) uv2=(0,0)
+hle-trace   poly.v[1] xyzw=(4,0,0,1) rgba=(0,0,0,0) uv0=(3,0) uv1=(0,0) uv2=(0,0)
+hle-trace   poly.v[2] xyzw=(4,2,0,1) rgba=(0,0,0,0) uv0=(3,2) uv1=(0,0) uv2=(0,0)
+hle-trace   poly.v[3] xyzw=(1,2,0,1) rgba=(0,0,0,0) uv0=(0,2) uv1=(0,0) uv2=(0,0)
+hle-trace   root.chunk row=1 offset=0 count=3 writes=0/1 bytes=0/12 failure=3@00105010+4
+hle-trace   root.decline=scanline detail=1
+hle-trace   root.row[1] xy/count=1/1/3 mask=0308 uv=(0.5,1.5) readable=1 ctx=00101000 render=00102000 state=00103000 units=1 flags=00 mode=0 sentinel=ffffffff sampler=3122b8bc/3122b8bc out=00106000 aux=00000000 pitch=16 bpp=4 bounds=0,0+4,2
+hle-trace   root.texture readable=1 base=00105000 pitch=16 max=0003ffff/0001ffff
+hle-trace ogl_poly_scan        at=0 r0=00107000 r1=00000000 r2=00000000 r3=00000000 lr=c0dec0de sp+0=00000140 sp+4=000001e0 sp+8=3122d180 sp+12=00101000
+hle-trace   poly.count=4 flags=030b
+hle-trace   poly.v[0] xyzw=(1,0,0,1) rgba=(0,0,0,0) uv0=(0,0) uv1=(0,0) uv2=(0,0)
+hle-trace   poly.v[1] xyzw=(4,0,0,1) rgba=(0,0,0,0) uv0=(3,0) uv1=(0,0) uv2=(0,0)
+hle-trace   poly.v[2] xyzw=(4,2,0,1) rgba=(0,0,0,0) uv0=(3,2) uv1=(0,0) uv2=(0,0)
+hle-trace   poly.v[3] xyzw=(1,2,0,1) rgba=(0,0,0,0) uv0=(0,2) uv1=(0,0) uv2=(0,0)
+hle-trace   root.decline=publish detail=2
+hle-trace ogl_poly_scan        at=0 r0=00107000 r1=00000000 r2=00000000 r3=00000000 lr=c0dec0de sp+0=00000140 sp+4=000001e0 sp+8=3122d180 sp+12=00101000
+hle-trace   poly.count=4 flags=030b
+hle-trace   poly.v[0] xyzw=(1,0,0,1) rgba=(0,0,0,0) uv0=(0,0) uv1=(0,0) uv2=(0,0)
+hle-trace   poly.v[1] xyzw=(4,0,0,1) rgba=(0,0,0,0) uv0=(3,0) uv1=(0,0) uv2=(0,0)
+hle-trace   poly.v[2] xyzw=(4,2,0,1) rgba=(0,0,0,0) uv0=(3,2) uv1=(0,0) uv2=(0,0)
+hle-trace   poly.v[3] xyzw=(1,2,0,1) rgba=(0,0,0,0) uv0=(0,2) uv1=(0,0) uv2=(0,0)
+hle-trace   root.chunk row=0 offset=0 count=3 writes=0/1 bytes=0/12 failure=0@00000000+0
+hle-trace   root.decline=scanline detail=0
+hle-trace   root.row[0] xy/count=1/0/3 mask=0308 uv=(0.5,0.5) readable=1 ctx=00101000 render=00102000 state=00103000 units=1 flags=00 mode=0 sentinel=ffffffff sampler=3122b8bc/3122b8bc out=00106000 aux=00000000 pitch=16 bpp=4 bounds=0,0+4,2
+hle-trace   root.texture readable=1 base=00106004 pitch=16 max=0003ffff/0001ffff
+hle-trace ogl_poly_scan        at=0 r0=00107000 r1=00000000 r2=00000000 r3=00000000 lr=c0dec0de sp+0=00000140 sp+4=000001e0 sp+8=3122d180 sp+12=00101000
+hle-trace   poly.count=4 flags=030b
+hle-trace   poly.v[0] xyzw=(1,0,0,1) rgba=(0,0,0,0) uv0=(0,0) uv1=(0,0) uv2=(0,0)
+hle-trace   poly.v[1] xyzw=(4,0,0,1) rgba=(0,0,0,0) uv0=(3,0) uv1=(0,0) uv2=(0,0)
+hle-trace   poly.v[2] xyzw=(4,2,0,1) rgba=(0,0,0,0) uv0=(3,2) uv1=(0,0) uv2=(0,0)
+hle-trace   poly.v[3] xyzw=(1,2,0,1) rgba=(0,0,0,0) uv0=(0,2) uv1=(0,0) uv2=(0,0)
+hle-trace   root.decline=publish detail=2
+hle-trace ogl_poly_scan        at=0 r0=00107000 r1=00000000 r2=00000000 r3=00000000 lr=c0dec0de sp+0=00000140 sp+4=000001e0 sp+8=3122d180 sp+12=00101000
+hle-trace   poly.count=4 flags=030b
+hle-trace   poly.v[0] xyzw=(1,0,0,1) rgba=(0,0,0,0) uv0=(0,0) uv1=(0,0) uv2=(0,0)
+hle-trace   poly.v[1] xyzw=(4,0,0,1) rgba=(0,0,0,0) uv0=(3,0) uv1=(0,0) uv2=(0,0)
+hle-trace   poly.v[2] xyzw=(4,2,0,1) rgba=(0,0,0,0) uv0=(3,2) uv1=(0,0) uv2=(0,0)
+hle-trace   poly.v[3] xyzw=(1,2,0,1) rgba=(0,0,0,0) uv0=(0,2) uv1=(0,0) uv2=(0,0)
+S5LBox iPhone OS 3 userspace HLE tests
+== ios3 hle: 27605 checks, 0 failure(s) ==
+<end of output>
+Test time =   0.27 sec
+----------------------------------------------------------
+Test Passed.
+"ios3_hle" end time: Oct 09 23:55 CEST
+"ios3_hle" time elapsed: 00:00:00
+----------------------------------------------------------
+
+43/71 Testing: app_firmware_hle_adapter
+43/71 Test: app_firmware_hle_adapter
+Command: "<clean-checkout>/build/core/test_vmfirmwarehle"
+Directory: <clean-checkout>/build/core
+"app_firmware_hle_adapter" start time: Oct 09 23:55 CEST
+Output:
+----------------------------------------------------------
+S5LBox app firmware HLE adapter tests
+== app firmware HLE: 15 checks, 0 failure(s) ==
+<end of output>
+Test time =   0.15 sec
+----------------------------------------------------------
+Test Passed.
+"app_firmware_hle_adapter" end time: Oct 09 23:55 CEST
+"app_firmware_hle_adapter" time elapsed: 00:00:00
+----------------------------------------------------------
+
+44/71 Testing: app_instance_paths
+44/71 Test: app_instance_paths
+Command: "<clean-checkout>/build/core/test_vminstancepaths"
+Directory: <clean-checkout>/build/core
+"app_instance_paths" start time: Oct 09 23:55 CEST
+Output:
+----------------------------------------------------------
+== vm instance paths ==
+  (adopted: This machine adopted the root filesystem that was shared by every machine before now. Other machines will be given their own.)
+== vm instance paths: 83 checks, 0 failure(s) ==
+<end of output>
+Test time =   0.33 sec
+----------------------------------------------------------
+Test Passed.
+"app_instance_paths" end time: Oct 09 23:55 CEST
+"app_instance_paths" time elapsed: 00:00:00
+----------------------------------------------------------
+
+45/71 Testing: app_touch_map
+45/71 Test: app_touch_map
+Command: "<clean-checkout>/build/core/test_vmtouchmap"
+Directory: <clean-checkout>/build/core
+"app_touch_map" start time: Oct 09 23:55 CEST
+Output:
+----------------------------------------------------------
+vmtouchmap: 402 checks, 0 failed
+<end of output>
+Test time =   0.30 sec
+----------------------------------------------------------
+Test Passed.
+"app_touch_map" end time: Oct 09 23:55 CEST
+"app_touch_map" time elapsed: 00:00:00
+----------------------------------------------------------
+
+46/71 Testing: app_touch_queue
+46/71 Test: app_touch_queue
+Command: "<clean-checkout>/build/core/test_vmtouchqueue"
+Directory: <clean-checkout>/build/core
+"app_touch_queue" start time: Oct 09 23:55 CEST
+Output:
+----------------------------------------------------------
+test_vmtouchqueue: 140 checks, 0 failed
+<end of output>
+Test time =   0.27 sec
+----------------------------------------------------------
+Test Passed.
+"app_touch_queue" end time: Oct 09 23:55 CEST
+"app_touch_queue" time elapsed: 00:00:00
+----------------------------------------------------------
+
+47/71 Testing: app_button_queue
+47/71 Test: app_button_queue
+Command: "<clean-checkout>/build/core/test_vmbuttonqueue"
+Directory: <clean-checkout>/build/core
+"app_button_queue" start time: Oct 09 23:55 CEST
+Output:
+----------------------------------------------------------
+S5LBox app button queue tests
+  139 passed, 0 failed
+<end of output>
+Test time =   0.14 sec
+----------------------------------------------------------
+Test Passed.
+"app_button_queue" end time: Oct 09 23:55 CEST
+"app_button_queue" time elapsed: 00:00:00
+----------------------------------------------------------
+
+48/71 Testing: app_instance_list
+48/71 Test: app_instance_list
+Command: "<clean-checkout>/build/core/test_vminstances"
+Directory: <clean-checkout>/build/core
+"app_instance_list" start time: Oct 09 23:55 CEST
+Output:
+----------------------------------------------------------
+vminstances: 224 checks, 0 failed
+<end of output>
+Test time =   0.28 sec
+----------------------------------------------------------
+Test Passed.
+"app_instance_list" end time: Oct 09 23:55 CEST
+"app_instance_list" time elapsed: 00:00:00
+----------------------------------------------------------
+
+49/71 Testing: app_option_table
+49/71 Test: app_option_table
+Command: "<clean-checkout>/build/core/test_vmoptions"
+Directory: <clean-checkout>/build/core
+"app_option_table" start time: Oct 09 23:55 CEST
+Output:
+----------------------------------------------------------
+vmoptions: 486 checks, 0 failed
+<end of output>
+Test time =   0.27 sec
+----------------------------------------------------------
+Test Passed.
+"app_option_table" end time: Oct 09 23:55 CEST
+"app_option_table" time elapsed: 00:00:00
+----------------------------------------------------------
+
+50/71 Testing: app_option_table_mbx_experiment
+50/71 Test: app_option_table_mbx_experiment
+Command: "<clean-checkout>/build/core/test_vmoptions_mbx_experiment"
+Directory: <clean-checkout>/build/core
+"app_option_table_mbx_experiment" start time: Oct 09 23:55 CEST
+Output:
+----------------------------------------------------------
+vmoptions: 485 checks, 0 failed
+<end of output>
+Test time =   0.27 sec
+----------------------------------------------------------
+Test Passed.
+"app_option_table_mbx_experiment" end time: Oct 09 23:55 CEST
+"app_option_table_mbx_experiment" time elapsed: 00:00:00
+----------------------------------------------------------
+
+51/71 Testing: app_firmware_import
+51/71 Test: app_firmware_import
+Command: "<clean-checkout>/build/core/test_vmfirmwareimport"
+Directory: <clean-checkout>/build/core
+"app_firmware_import" start time: Oct 09 23:55 CEST
+Output:
+----------------------------------------------------------
+  inflate    245 checks, 0 failed
+  digest     126 checks, 0 failed
+  plist      418 checks, 0 failed
+  zip         95 checks, 0 failed
+  dmg         69 checks, 0 failed
+  import     173 checks, 0 failed
+firmware import: 1126 checks, 0 failures
+<end of output>
+Test time =   0.41 sec
+----------------------------------------------------------
+Test Passed.
+"app_firmware_import" end time: Oct 09 23:55 CEST
+"app_firmware_import" time elapsed: 00:00:00
+----------------------------------------------------------
+
+52/71 Testing: file_block_adapter
+52/71 Test: file_block_adapter
+Command: "<clean-checkout>/build/core/test_file_block"
+Directory: <clean-checkout>/build/core
+"file_block_adapter" start time: Oct 09 23:55 CEST
+Output:
+----------------------------------------------------------
+file_block: 230 passed, 0 failed
+<end of output>
+Test time =   0.17 sec
+----------------------------------------------------------
+Test Passed.
+"file_block_adapter" end time: Oct 09 23:55 CEST
+"file_block_adapter" time elapsed: 00:00:00
+----------------------------------------------------------
+
+53/71 Testing: atomic_guest_patch
+53/71 Test: atomic_guest_patch
+Command: "<clean-checkout>/build/core/test_guest_patch"
+Directory: <clean-checkout>/build/core
+"atomic_guest_patch" start time: Oct 09 23:55 CEST
+Output:
+----------------------------------------------------------
+guest_patch: 136 passed, 0 failed
+<end of output>
+Test time =   0.15 sec
+----------------------------------------------------------
+Test Passed.
+"atomic_guest_patch" end time: Oct 09 23:55 CEST
+"atomic_guest_patch" time elapsed: 00:00:00
+----------------------------------------------------------
+
+54/71 Testing: mt_drag_gesture
+54/71 Test: mt_drag_gesture
+Command: "<clean-checkout>/build/core/test_mt_drag"
+Directory: <clean-checkout>/build/core
+"mt_drag_gesture" start time: Oct 09 23:55 CEST
+Output:
+----------------------------------------------------------
+S5LBox multi-touch drag gesture tests
+  1896 passed, 0 failed
+<end of output>
+Test time =   0.15 sec
+----------------------------------------------------------
+Test Passed.
+"mt_drag_gesture" end time: Oct 09 23:55 CEST
+"mt_drag_gesture" time elapsed: 00:00:00
+----------------------------------------------------------
+
+55/71 Testing: guest_audio_capture
+55/71 Test: guest_audio_capture
+Command: "<clean-checkout>/build/core/test_audio_capture"
+Directory: <clean-checkout>/build/core
+"guest_audio_capture" start time: Oct 09 23:55 CEST
+Output:
+----------------------------------------------------------
+S5LBox guest audio capture tests
+  SKIP  <clean-checkout>/core/../firmware/devicetree.bin absent
+  199 passed, 0 failed
+<end of output>
+Test time =   0.28 sec
+----------------------------------------------------------
+Test Passed.
+"guest_audio_capture" end time: Oct 09 23:55 CEST
+"guest_audio_capture" time elapsed: 00:00:00
+----------------------------------------------------------
+
+56/71 Testing: kernel_bringup
+56/71 Test: kernel_bringup
+Command: "<clean-checkout>/build/core/test_bringup"
+Directory: <clean-checkout>/build/core
+"kernel_bringup" start time: Oct 09 23:55 CEST
+Output:
+----------------------------------------------------------
+== bringup ==
+SKIP: no firmware in <clean-checkout>/core/../firmware -- the firmware-backed cases need Apple's kernelcache and device tree, which cannot be committed. The refusal cases below still run.
+refusals
+== bringup: 45 checks, 0 failure(s) ==
+<end of output>
+Test time =   0.31 sec
+----------------------------------------------------------
+Test Passed.
+"kernel_bringup" end time: Oct 09 23:55 CEST
+"kernel_bringup" time elapsed: 00:00:00
+----------------------------------------------------------
+
+57/71 Testing: exact_ios3_kernel_patch
+57/71 Test: exact_ios3_kernel_patch
+Command: "<clean-checkout>/build/core/test_ios3_kernel_patch"
+Directory: <clean-checkout>/build/core
+"exact_ios3_kernel_patch" start time: Oct 09 23:55 CEST
+Output:
+----------------------------------------------------------
+ios3_kernel_patch: private exact-positive fixture not supplied; public negative/KAT suite only
+ios3_kernel_patch: 1394 passed, 0 failed
+<end of output>
+Test time =   0.33 sec
+----------------------------------------------------------
+Test Passed.
+"exact_ios3_kernel_patch" end time: Oct 09 23:55 CEST
+"exact_ios3_kernel_patch" time elapsed: 00:00:00
+----------------------------------------------------------
+
+58/71 Testing: bounded_rootfs_work_image
+58/71 Test: bounded_rootfs_work_image
+Command: "<clean-checkout>/build/core/test_rootfs_work"
+Directory: <clean-checkout>/build/core
+"bounded_rootfs_work_image" start time: Oct 09 23:55 CEST
+Output:
+----------------------------------------------------------
+rootfs work-image provisioner tests
+
+rootfs-work: 366 passed, 0 failed
+<end of output>
+Test time =   0.29 sec
+----------------------------------------------------------
+Test Passed.
+"bounded_rootfs_work_image" end time: Oct 09 23:55 CEST
+"bounded_rootfs_work_image" time elapsed: 00:00:00
+----------------------------------------------------------
+
+59/71 Testing: hfs_catalog_provisioning
+59/71 Test: hfs_catalog_provisioning
+Command: "<clean-checkout>/build/core/test_rootfs_provision"
+Directory: <clean-checkout>/build/core
+"hfs_catalog_provisioning" start time: Oct 09 23:55 CEST
+Output:
+----------------------------------------------------------
+HFS+ catalog provisioning tests
+  scale: 678 entries, 665 leaf splits, 58 index splits, 190 blocks
+  scale: 669 leaves, 731 nodes used of 1600, cap 4096
+861 passed, 0 failed
+<end of output>
+Test time =   0.28 sec
+----------------------------------------------------------
+Test Passed.
+"hfs_catalog_provisioning" end time: Oct 09 23:55 CEST
+"hfs_catalog_provisioning" time elapsed: 00:00:00
+----------------------------------------------------------
+
+60/71 Testing: jailbreak_payload_tar
+60/71 Test: jailbreak_payload_tar
+Command: "<clean-checkout>/build/core/test_payload_tar"
+Directory: <clean-checkout>/build/core
+"jailbreak_payload_tar" start time: Oct 09 23:55 CEST
+Output:
+----------------------------------------------------------
+S5LBox payload tar reader tests
+== payload tar: 42 checks, 0 failure(s) ==
+<end of output>
+Test time =   0.29 sec
+----------------------------------------------------------
+Test Passed.
+"jailbreak_payload_tar" end time: Oct 09 23:55 CEST
+"jailbreak_payload_tar" time elapsed: 00:00:00
+----------------------------------------------------------
+
+61/71 Testing: snapshot_cow
+61/71 Test: snapshot_cow
+Command: "<clean-checkout>/build/core/test_snapshot_cow"
+Directory: <clean-checkout>/build/core
+"snapshot_cow" start time: Oct 09 23:55 CEST
+Output:
+----------------------------------------------------------
+== snapshot cow ==
+== snapshot cow: 29 checks, 0 failure(s) ==
+<end of output>
+Test time =   0.14 sec
+----------------------------------------------------------
+Test Passed.
+"snapshot_cow" end time: Oct 09 23:55 CEST
+"snapshot_cow" time elapsed: 00:00:00
+----------------------------------------------------------
+
+62/71 Testing: snapshot_store
+62/71 Test: snapshot_store
+Command: "<clean-checkout>/build/core/test_snapshot_store"
+Directory: <clean-checkout>/build/core
+"snapshot_store" start time: Oct 09 23:55 CEST
+Output:
+----------------------------------------------------------
+== snapshot store ==
+== snapshot store: 134 checks, 0 failure(s) ==
+<end of output>
+Test time =   0.14 sec
+----------------------------------------------------------
+Test Passed.
+"snapshot_store" end time: Oct 09 23:55 CEST
+"snapshot_store" time elapsed: 00:00:00
+----------------------------------------------------------
+
+63/71 Testing: external_md_cli_preflight
+63/71 Test: external_md_cli_preflight
+Command: "/opt/homebrew/bin/cmake" "-DBOOTKERNEL=<clean-checkout>/build/core/bootkernel" "-P" "<clean-checkout>/core/tests/check_bootkernel_external_md.cmake"
+Directory: <clean-checkout>/build/core
+"external_md_cli_preflight" start time: Oct 09 23:55 CEST
+Output:
+----------------------------------------------------------
+<end of output>
+Test time =   0.22 sec
+----------------------------------------------------------
+Test Passed.
+"external_md_cli_preflight" end time: Oct 09 23:55 CEST
+"external_md_cli_preflight" time elapsed: 00:00:00
+----------------------------------------------------------
+
+64/71 Testing: boot_option_resolution
+64/71 Test: boot_option_resolution
+Command: "/opt/homebrew/bin/cmake" "-DBOOTKERNEL=<clean-checkout>/build/core/bootkernel" "-P" "<clean-checkout>/core/tests/check_bootkernel_options.cmake"
+Directory: <clean-checkout>/build/core
+"boot_option_resolution" start time: Oct 09 23:55 CEST
+Output:
+----------------------------------------------------------
+<end of output>
+Test time =   0.26 sec
+----------------------------------------------------------
+Test Passed.
+"boot_option_resolution" end time: Oct 09 23:55 CEST
+"boot_option_resolution" time elapsed: 00:00:00
+----------------------------------------------------------
+
+65/71 Testing: app_info_plist
+65/71 Test: app_info_plist
+Command: "/opt/homebrew/bin/cmake" "-DPLIST=<clean-checkout>/core/../app/Info.plist" "-P" "<clean-checkout>/core/tests/check_info_plist.cmake"
+Directory: <clean-checkout>/build/core
+"app_info_plist" start time: Oct 09 23:55 CEST
+Output:
+----------------------------------------------------------
+-- Info.plist: comments well formed, required keys present
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"app_info_plist" end time: Oct 09 23:55 CEST
+"app_info_plist" time elapsed: 00:00:00
+----------------------------------------------------------
+
+66/71 Testing: app_execution_policy
+66/71 Test: app_execution_policy
+Command: "/opt/homebrew/bin/cmake" "-DAPP_PROJECT=<clean-checkout>/core/../app/project.yml" "-P" "<clean-checkout>/core/tests/check_app_execution_policy.cmake"
+Directory: <clean-checkout>/build/core
+"app_execution_policy" start time: Oct 09 23:55 CEST
+Output:
+----------------------------------------------------------
+-- iOS policy: compact live-byte engine plus direct writes selected; WFI paced; active wall clock and rejected graph disabled
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"app_execution_policy" end time: Oct 09 23:55 CEST
+"app_execution_policy" time elapsed: 00:00:00
+----------------------------------------------------------
+
+67/71 Testing: app_stock_host_policy
+67/71 Test: app_stock_host_policy
+Command: "/opt/homebrew/bin/cmake" "-DAPP_DIR=<clean-checkout>/core/../app" "-P" "<clean-checkout>/core/tests/check_app_stock_policy.cmake"
+Directory: <clean-checkout>/build/core
+"app_stock_host_policy" start time: Oct 09 23:55 CEST
+Output:
+----------------------------------------------------------
+-- stock-host policy: empty entitlements, no private host dependency
+<end of output>
+Test time =   0.03 sec
+----------------------------------------------------------
+Test Passed.
+"app_stock_host_policy" end time: Oct 09 23:55 CEST
+"app_stock_host_policy" time elapsed: 00:00:00
+----------------------------------------------------------
+
+68/71 Testing: app_option_mirror
+68/71 Test: app_option_mirror
+Command: "/opt/homebrew/bin/cmake" "-DBOOTKERNEL=<clean-checkout>/build/core/bootkernel" "-DVMOPTIONS=<clean-checkout>/build/core/test_vmoptions" "-P" "<clean-checkout>/core/tests/check_option_mirror.cmake"
+Directory: <clean-checkout>/build/core
+"app_option_mirror" start time: Oct 09 23:55 CEST
+Output:
+----------------------------------------------------------
+-- option mirror: 28 bootkernel toggles = 16 mirrored + 12 deliberately omitted
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"app_option_mirror" end time: Oct 09 23:55 CEST
+"app_option_mirror" time elapsed: 00:00:00
+----------------------------------------------------------
+
+69/71 Testing: iosretromob_public_replays
+69/71 Test: iosretromob_public_replays
+Command: "/opt/homebrew/Frameworks/Python.framework/Versions/3.11/bin/python3.11" "<clean-checkout>/lab/test_lab.py" "<clean-checkout>/build"
+Directory: <clean-checkout>/build/lab
+"iosretromob_public_replays" start time: Oct 09 23:55 CEST
+Output:
+----------------------------------------------------------
+....
+----------------------------------------------------------------------
+Ran 4 tests in 2.668s
+
+OK
+<end of output>
+Test time =   2.75 sec
+----------------------------------------------------------
+Test Passed.
+"iosretromob_public_replays" end time: Oct 09 23:55 CEST
+"iosretromob_public_replays" time elapsed: 00:00:02
+----------------------------------------------------------
+
+70/71 Testing: iosretromob_diagnostic_tools
+70/71 Test: iosretromob_diagnostic_tools
+Command: "/opt/homebrew/Frameworks/Python.framework/Versions/3.11/bin/python3.11" "-m" "unittest" "discover" "-s" "<clean-checkout>/tests/guest-apps" "-p" "test_*.py"
+Directory: <clean-checkout>/build/lab
+"iosretromob_diagnostic_tools" start time: Oct 09 23:55 CEST
+Output:
+----------------------------------------------------------
+s......
+----------------------------------------------------------------------
+Ran 6 tests in 0.007s
+
+OK (skipped=1)
+<end of output>
+Test time =   0.06 sec
+----------------------------------------------------------
+Test Passed.
+"iosretromob_diagnostic_tools" end time: Oct 09 23:55 CEST
+"iosretromob_diagnostic_tools" time elapsed: 00:00:00
+----------------------------------------------------------
+
+71/71 Testing: iosretromob_gallery
+71/71 Test: iosretromob_gallery
+Command: "/opt/homebrew/Frameworks/Python.framework/Versions/3.11/bin/python3.11" "<clean-checkout>/iosretromob" "verify-gallery"
+Directory: <clean-checkout>/build/lab
+"iosretromob_gallery" start time: Oct 09 23:55 CEST
+Output:
+----------------------------------------------------------
+{
+  "captures_verified": 6,
+  "results": [
+    {
+      "capture": "uikit",
+      "sha256_and_pixels": "PASS",
+      "classification": "authentic historical guest CLCD scanout"
+    },
+    {
+      "capture": "triangle",
+      "sha256_and_pixels": "PASS",
+      "classification": "authentic historical guest CLCD scanout"
+    },
+    {
+      "capture": "triangle-rotation",
+      "sha256_and_pixels": "PASS",
+      "classification": "authentic historical guest CLCD scanout"
+    },
+    {
+      "capture": "textured-triangle",
+      "sha256_and_pixels": "PASS",
+      "classification": "authentic historical guest CLCD scanout",
+      "independent_reference": {
+        "ppm": "demos/gallery/textured-triangle.ppm",
+        "ppm_sha256": "26d33bbd26b1984f910ec221abb4c5f224d5e76bfb0a6098bc965dfb44ca0361",
+        "width": 320,
+        "height": 460,
+        "covered_pixels": 33488,
+        "texels_observed": 40,
+        "excluded_boundary_ties": 0,
+        "mismatched_pixels_tolerance_1": 0,
+        "max_channel_error": 0,
+        "filter": "nearest",
+        "scope": "Own affine w=1 geometry; intended RGBA8 8x8 upload; normalized clamp-to-edge; whole scanout compared, analytic inversion independent of C rasterizer."
+      }
+    },
+    {
+      "capture": "textured-square",
+      "sha256_and_pixels": "PASS",
+      "classification": "authentic historical guest CLCD scanout",
+      "independent_reference": {
+        "ppm": "demos/gallery/textured-square.ppm",
+        "ppm_sha256": "c05f1157be62be77ce8d39d073b64975a04f25572307779e6ab86845a9c5602b",
+        "width": 320,
+        "height": 460,
+        "covered_pixels": 52992,
+        "texels_observed": 64,
+        "excluded_boundary_ties": 0,
+        "mismatched_pixels_tolerance_1": 0,
+        "max_channel_error": 0,
+        "filter": "nearest",
+        "scope": "Own affine w=1 geometry; intended RGBA8 8x8 upload; normalized clamp-to-edge; whole scanout compared, analytic inversion independent of C rasterizer."
+      }
+    },
+    {
+      "capture": "linear-filter",
+      "sha256_and_pixels": "PASS",
+      "classification": "authentic historical guest CLCD scanout",
+      "independent_reference": {
+        "ppm": "demos/gallery/linear-filter.ppm",
+        "ppm_sha256": "61dd0fb6b078d02db9a7ed543fbfea9e0ec2e194dbaf36e14a5e2f7a4f80cc39",
+        "width": 320,
+        "height": 460,
+        "covered_pixels": 52992,
+        "texels_observed": 64,
+        "excluded_boundary_ties": 0,
+        "mismatched_pixels_tolerance_1": 0,
+        "max_channel_error": 0,
+        "filter": "linear",
+        "scope": "Own affine w=1 geometry; intended RGBA8 8x8 upload; normalized clamp-to-edge; whole scanout compared, analytic inversion independent of C rasterizer."
+      }
+    }
+  ],
+  "scope": "Exact historical artifacts; three texture scanouts independently rechecked. No guest boot performed."
+}
+<end of output>
+Test time =   1.84 sec
+----------------------------------------------------------
+Test Passed.
+"iosretromob_gallery" end time: Oct 09 23:55 CEST
+"iosretromob_gallery" time elapsed: 00:00:01
+----------------------------------------------------------
+
+End testing: Oct 09 23:55 CEST

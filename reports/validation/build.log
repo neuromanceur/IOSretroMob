@@ -1,0 +1,378 @@
+[  0%] Building C object core/CMakeFiles/test_vmframetelemetry.dir/__/app/Tests/test_vmframetelemetry.c.o
+[  1%] Building C object core/CMakeFiles/emucore.dir/src/arm/arm_interp.c.o
+[  2%] Building C object core/CMakeFiles/test_vmframetelemetry.dir/__/app/Sources/VMFrameTelemetry.c.o
+[  2%] Building C object core/CMakeFiles/emucore.dir/src/arm/vfp.c.o
+[  2%] Linking C executable test_vmframetelemetry
+[  2%] Built target test_vmframetelemetry
+[  3%] Building C object core/CMakeFiles/host_sha256.dir/__/tools/sha256.c.o
+[  3%] Linking C static library libhost_sha256.a
+[  3%] Building C object core/CMakeFiles/emucore.dir/src/arm/a64_static_engine.c.o
+[  3%] Built target host_sha256
+[  4%] Building C object core/CMakeFiles/emucore.dir/src/mmu.c.o
+[  4%] Building C object core/CMakeFiles/emucore.dir/src/snapshot.c.o
+[  4%] Building C object core/CMakeFiles/emucore.dir/src/vm_source.c.o
+[  4%] Building C object core/CMakeFiles/host_file_block.dir/__/tools/file_block.c.o
+[  5%] Linking C static library libhost_file_block.a
+[  5%] Built target host_file_block
+[  6%] Building C object core/CMakeFiles/emucore.dir/src/vm_block.c.o
+[  6%] Building C object core/CMakeFiles/host_guest_patch.dir/__/tools/guest_patch.c.o
+[  6%] Linking C static library libhost_guest_patch.a
+[  6%] Building C object core/CMakeFiles/emucore.dir/src/md_bridge.c.o
+[  6%] Built target host_guest_patch
+[  6%] Building C object core/CMakeFiles/emucore.dir/src/md_raw_bridge.c.o
+[  7%] Building C object core/CMakeFiles/emucore.dir/src/soc/uart.c.o
+[  7%] Building C object core/CMakeFiles/emucore.dir/src/soc/vic.c.o
+[  8%] Building C object core/CMakeFiles/test_vmguestinstall.dir/__/app/Tests/test_vmguestinstall.c.o
+[  8%] Building C object core/CMakeFiles/emucore.dir/src/soc/timer.c.o
+[  9%] Building C object core/CMakeFiles/emucore.dir/src/soc/mbx.c.o
+[  9%] Building C object core/CMakeFiles/test_vmguestinstall.dir/__/app/Sources/VMGuestInstall.c.o
+[  9%] Linking C executable test_vmguestinstall
+[  9%] Built target test_vmguestinstall
+[  9%] Building C object core/CMakeFiles/emucore.dir/src/soc/mbx_vgp.c.o
+[ 10%] Building C object core/CMakeFiles/test_vmdebarchive.dir/__/app/Tests/test_vmdebarchive.c.o
+[ 10%] Building C object core/CMakeFiles/test_vmdebarchive.dir/__/app/Sources/VMDebArchive.c.o
+[ 10%] Building C object core/CMakeFiles/test_vmdebarchive.dir/__/app/Sources/VMFirmwareInflate.c.o
+[ 10%] Building C object core/CMakeFiles/emucore.dir/__/tools/sha256.c.o
+[ 11%] Building C object core/CMakeFiles/emucore.dir/src/soc/power.c.o
+[ 11%] Building C object core/CMakeFiles/emucore.dir/src/soc/clcd.c.o
+[ 12%] Building C object core/CMakeFiles/test_vmdebarchive.dir/__/app/Sources/VMFirmwareZip.c.o
+[ 12%] Building C object core/CMakeFiles/emucore.dir/src/soc/tvout.c.o
+[ 12%] Linking C executable test_vmdebarchive
+[ 13%] Building C object core/CMakeFiles/emucore.dir/src/soc/i2c.c.o
+[ 13%] Built target test_vmdebarchive
+[ 13%] Building C object core/CMakeFiles/emucore.dir/src/soc/wm8991.c.o
+[ 13%] Building C object core/CMakeFiles/emucore.dir/src/soc/pcf50635.c.o
+[ 14%] Building C object core/CMakeFiles/emucore.dir/src/soc/i2s.c.o
+[ 14%] Building C object core/CMakeFiles/test_vmguestpackagemanifest.dir/__/app/Tests/test_vmguestpackagemanifest.c.o
+[ 14%] Building C object core/CMakeFiles/emucore.dir/src/soc/spi.c.o
+[ 14%] Building C object core/CMakeFiles/test_vmguestpackagemanifest.dir/__/app/Sources/VMGuestPackageFile.c.o
+[ 14%] Building C object core/CMakeFiles/emucore.dir/src/soc/gpioic.c.o
+[ 15%] Building C object core/CMakeFiles/test_vmguestpackagemanifest.dir/__/app/Sources/VMGuestPackageManifest.c.o
+[ 16%] Building C object core/CMakeFiles/emucore.dir/src/soc/buttons.c.o
+[ 16%] Building C object core/CMakeFiles/test_vmguestpackagemanifest.dir/__/tools/sha256.c.o
+[ 16%] Building C object core/CMakeFiles/emucore.dir/src/soc/mtz2.c.o
+[ 16%] Linking C executable test_vmguestpackagemanifest
+[ 16%] Built target test_vmguestpackagemanifest
+[ 16%] Building C object core/CMakeFiles/emucore.dir/src/soc/pl080.c.o
+[ 17%] Building C object core/CMakeFiles/emucore.dir/src/soc/usbotg.c.o
+[ 18%] Building C object core/CMakeFiles/test_vmbootoptions.dir/__/app/Tests/test_vmbootoptions.c.o
+[ 18%] Building C object core/CMakeFiles/emucore.dir/src/soc/nor.c.o
+[ 19%] Building C object core/CMakeFiles/emucore.dir/src/soc/nand.c.o
+[ 19%] Building C object core/CMakeFiles/emucore.dir/src/soc/storage.c.o
+[ 19%] Building C object core/CMakeFiles/test_vmbootoptions.dir/__/app/Sources/VMBootOptions.c.o
+[ 19%] Building C object core/CMakeFiles/test_vmbootoptions.dir/__/app/Sources/VMOptions.c.o
+[ 19%] Building C object core/CMakeFiles/emucore.dir/src/soc/machine.c.o
+[ 20%] Linking C executable test_vmbootoptions
+[ 20%] Built target test_vmbootoptions
+[ 20%] Building C object core/CMakeFiles/test_vmjitprobe.dir/__/app/Tests/test_vmjitprobe.c.o
+[ 21%] Building C object core/CMakeFiles/emucore.dir/src/firmware/img3.c.o
+[ 22%] Building C object core/CMakeFiles/test_vmjitprobe.dir/__/app/Sources/VMJitProbe.c.o
+[ 22%] Building C object core/CMakeFiles/emucore.dir/src/firmware/aes.c.o
+[ 22%] Linking C executable test_vmjitprobe
+[ 22%] Built target test_vmjitprobe
+[ 22%] Building C object core/CMakeFiles/emucore.dir/src/firmware/loader.c.o
+[ 23%] Building C object core/CMakeFiles/emucore.dir/src/firmware/devicetree.c.o
+[ 23%] Building C object core/CMakeFiles/host_ios3_hle.dir/__/tools/ios3_hle.c.o
+[ 23%] Building C object core/CMakeFiles/emucore.dir/src/firmware/lzss.c.o
+[ 23%] Building C object core/CMakeFiles/emucore.dir/src/firmware/macho.c.o
+[ 24%] Building C object core/CMakeFiles/emucore.dir/src/firmware/ksyms.c.o
+[ 24%] Building C object core/CMakeFiles/emucore.dir/src/boot/bringup.c.o
+[ 25%] Linking C static library libhost_ios3_hle.a
+[ 25%] Built target host_ios3_hle
+[ 25%] Building C object core/CMakeFiles/emucore.dir/src/net/ppp.c.o
+[ 26%] Building C object core/CMakeFiles/emucore.dir/src/net/net.c.o
+[ 26%] Building C object core/CMakeFiles/emucore.dir/src/net/tcp.c.o
+[ 26%] Building C object core/CMakeFiles/test_ios3_hle.dir/tests/test_ios3_hle.c.o
+[ 26%] Linking C static library libemucore.a
+[ 26%] Built target emucore
+[ 26%] Building C object core/CMakeFiles/test_vmtouchmap.dir/__/app/Tests/test_vmtouchmap.c.o
+[ 27%] Building C object core/CMakeFiles/test_vmtouchmap.dir/__/app/Sources/VMTouchMap.c.o
+[ 27%] Linking C executable test_vmtouchmap
+[ 27%] Built target test_vmtouchmap
+[ 28%] Building C object core/CMakeFiles/test_ios3_hle.dir/__/tools/ios3_hle.c.o
+[ 28%] Building C object core/CMakeFiles/test_vmtouchqueue.dir/__/app/Tests/test_vmtouchqueue.c.o
+[ 28%] Linking C executable test_ios3_hle
+[ 28%] Built target test_ios3_hle
+[ 29%] Building C object core/CMakeFiles/test_vmtouchqueue.dir/__/app/Sources/VMTouchQueue.c.o
+[ 29%] Building C object core/CMakeFiles/test_vmbuttonqueue.dir/__/app/Tests/test_vmbuttonqueue.c.o
+[ 29%] Linking C executable test_vmtouchqueue
+[ 29%] Built target test_vmtouchqueue
+[ 29%] Building C object core/CMakeFiles/test_vmbuttonqueue.dir/__/app/Sources/VMButtonQueue.c.o
+[ 30%] Building C object core/CMakeFiles/test_vmbuttonqueue.dir/src/soc/buttons.c.o
+[ 30%] Building C object core/CMakeFiles/test_vmbuttonqueue.dir/src/soc/gpioic.c.o
+[ 30%] Building C object core/CMakeFiles/test_vminstances.dir/__/app/Tests/test_vminstances.c.o
+[ 30%] Linking C executable test_vmbuttonqueue
+[ 30%] Building C object core/CMakeFiles/test_vminstances.dir/__/app/Sources/VMInstances.c.o
+[ 30%] Built target test_vmbuttonqueue
+[ 31%] Building C object core/CMakeFiles/test_vminstances.dir/__/app/Sources/VMOptions.c.o
+[ 31%] Linking C executable test_vminstances
+[ 31%] Building C object core/CMakeFiles/test_vmoptions.dir/__/app/Tests/test_vmoptions.c.o
+[ 31%] Built target test_vminstances
+[ 32%] Building C object core/CMakeFiles/test_vmoptions.dir/__/app/Sources/VMOptions.c.o
+[ 32%] Building C object core/CMakeFiles/test_vmoptions_mbx_experiment.dir/__/app/Tests/test_vmoptions.c.o
+[ 32%] Linking C executable test_vmoptions
+[ 32%] Built target test_vmoptions
+[ 34%] Building C object core/CMakeFiles/test_vmoptions_mbx_experiment.dir/__/app/Sources/VMOptions.c.o
+[ 34%] Building C object core/CMakeFiles/fwimport.dir/__/tools/fwimport.c.o
+[ 34%] Linking C executable test_vmoptions_mbx_experiment
+[ 34%] Building C object core/CMakeFiles/fwimport.dir/__/app/Sources/VMFirmwareInflate.c.o
+[ 34%] Built target test_vmoptions_mbx_experiment
+[ 34%] Building C object core/CMakeFiles/fwimport.dir/__/app/Sources/VMFirmwareDigest.c.o
+[ 34%] Building C object core/CMakeFiles/test_vmfirmwareimport.dir/__/app/Tests/test_vmfirmwareimport.c.o
+[ 35%] Building C object core/CMakeFiles/fwimport.dir/__/app/Sources/VMFirmwarePlist.c.o
+[ 36%] Building C object core/CMakeFiles/test_vmfirmwareimport.dir/__/app/Tests/test_vmfw_inflate.c.o
+[ 36%] Building C object core/CMakeFiles/fwimport.dir/__/app/Sources/VMFirmwareZip.c.o
+[ 36%] Building C object core/CMakeFiles/test_vmfirmwareimport.dir/__/app/Tests/test_vmfw_digest.c.o
+[ 36%] Building C object core/CMakeFiles/fwimport.dir/__/app/Sources/VMFirmwareDMG.c.o
+[ 37%] Building C object core/CMakeFiles/fwimport.dir/__/app/Sources/VMFirmwareImport.c.o
+[ 38%] Building C object core/CMakeFiles/test_vmfirmwareimport.dir/__/app/Tests/test_vmfw_plist.c.o
+[ 38%] Linking C executable fwimport
+[ 38%] Built target fwimport
+[ 38%] Building C object core/CMakeFiles/test_vmfirmwareimport.dir/__/app/Tests/test_vmfw_zip.c.o
+[ 38%] Building C object core/CMakeFiles/test_vmfirmwareimport.dir/__/app/Tests/test_vmfw_dmg.c.o
+[ 38%] Building C object core/CMakeFiles/test_file_block.dir/tests/test_file_block.c.o
+[ 39%] Building C object core/CMakeFiles/test_vmfirmwareimport.dir/__/app/Tests/test_vmfw_import.c.o
+[ 39%] Linking C executable test_file_block
+[ 39%] Built target test_file_block
+[ 39%] Building C object core/CMakeFiles/test_guest_patch.dir/tests/test_guest_patch.c.o
+[ 39%] Building C object core/CMakeFiles/test_vmfirmwareimport.dir/__/app/Sources/VMFirmwareInflate.c.o
+[ 40%] Linking C executable test_guest_patch
+[ 40%] Built target test_guest_patch
+[ 41%] Building C object core/CMakeFiles/host_mt_drag.dir/__/tools/mt_drag.c.o
+[ 41%] Building C object core/CMakeFiles/test_vmfirmwareimport.dir/__/app/Sources/VMFirmwareDigest.c.o
+[ 41%] Linking C static library libhost_mt_drag.a
+[ 42%] Building C object core/CMakeFiles/test_vmfirmwareimport.dir/__/app/Sources/VMFirmwarePlist.c.o
+[ 42%] Built target host_mt_drag
+[ 42%] Building C object core/CMakeFiles/test_vmfirmwareimport.dir/__/app/Sources/VMFirmwareZip.c.o
+[ 42%] Building C object core/CMakeFiles/test_vmfirmwareimport.dir/__/app/Sources/VMFirmwareDMG.c.o
+[ 42%] Building C object core/CMakeFiles/host_audio_capture.dir/__/tools/audio_capture.c.o
+[ 43%] Linking C static library libhost_audio_capture.a
+[ 44%] Building C object core/CMakeFiles/test_vmfirmwareimport.dir/__/app/Sources/VMFirmwareImport.c.o
+[ 44%] Built target host_audio_capture
+[ 44%] Building C object core/CMakeFiles/img3dump.dir/__/tools/img3dump.c.o
+[ 44%] Linking C executable test_vmfirmwareimport
+[ 44%] Linking C executable img3dump
+[ 44%] Built target test_vmfirmwareimport
+[ 44%] Built target img3dump
+[ 45%] Building C object core/CMakeFiles/runfw.dir/__/tools/runfw.c.o
+[ 45%] Building C object core/CMakeFiles/unlzss.dir/__/tools/unlzss.c.o
+[ 45%] Linking C executable runfw
+[ 46%] Linking C executable unlzss
+[ 46%] Built target runfw
+[ 46%] Built target unlzss
+[ 46%] Building C object core/CMakeFiles/machoinfo.dir/__/tools/machoinfo.c.o
+[ 46%] Building C object core/CMakeFiles/test_snapshot_cow.dir/tests/test_snapshot_cow.c.o
+[ 46%] Linking C executable machoinfo
+[ 47%] Building C object core/CMakeFiles/test_snapshot_cow.dir/__/app/Sources/VMSnapshotCow.c.o
+[ 47%] Built target machoinfo
+[ 47%] Building C object core/CMakeFiles/test_snapshot_store.dir/tests/test_snapshot_store.c.o
+[ 47%] Linking C executable test_snapshot_cow
+[ 48%] Building C object core/CMakeFiles/test_snapshot_store.dir/__/app/Sources/VMSnapshotStore.c.o
+[ 48%] Built target test_snapshot_cow
+[ 48%] Building C object core/CMakeFiles/snapboot.dir/__/tools/snapboot.c.o
+[ 48%] Linking C executable test_snapshot_store
+[ 48%] Built target test_snapshot_store
+[ 49%] Building C object core/CMakeFiles/insnbench.dir/__/tools/insnbench.c.o
+[ 50%] Linking C executable snapboot
+[ 50%] Built target snapboot
+[ 50%] Linking C executable insnbench
+[ 50%] Building C object lab/CMakeFiles/iosretromob-replay.dir/replay.c.o
+[ 50%] Built target insnbench
+[ 51%] Building C object core/CMakeFiles/test_arm.dir/tests/test_arm.c.o
+[ 52%] Linking C executable iosretromob-replay
+[ 52%] Built target iosretromob-replay
+[ 52%] Building C object core/CMakeFiles/test_vfp.dir/tests/test_vfp.c.o
+[ 53%] Linking C executable test_vfp
+[ 53%] Built target test_vfp
+[ 53%] Building C object core/CMakeFiles/test_soc.dir/tests/test_soc.c.o
+[ 54%] Linking C executable test_soc
+[ 54%] Linking C executable test_arm
+[ 54%] Built target test_soc
+[ 54%] Building C object core/CMakeFiles/test_mbx.dir/tests/test_mbx.c.o
+[ 54%] Built target test_arm
+[ 55%] Building C object core/CMakeFiles/test_mbx_vgp.dir/tests/test_mbx_vgp.c.o
+[ 55%] Linking C executable test_mbx_vgp
+[ 55%] Built target test_mbx_vgp
+[ 55%] Building C object core/CMakeFiles/test_i2c.dir/tests/test_i2c.c.o
+[ 55%] Linking C executable test_i2c
+[ 55%] Built target test_i2c
+[ 55%] Building C object core/CMakeFiles/test_wm8991.dir/tests/test_wm8991.c.o
+[ 56%] Linking C executable test_wm8991
+[ 56%] Built target test_wm8991
+[ 56%] Building C object core/CMakeFiles/test_spi.dir/tests/test_spi.c.o
+[ 56%] Linking C executable test_spi
+[ 56%] Built target test_spi
+[ 57%] Building C object core/CMakeFiles/test_gpioic.dir/tests/test_gpioic.c.o
+[ 57%] Linking C executable test_gpioic
+[ 57%] Built target test_gpioic
+[ 58%] Building C object core/CMakeFiles/test_buttons.dir/tests/test_buttons.c.o
+[ 58%] Linking C executable test_mbx
+[ 58%] Built target test_mbx
+[ 59%] Building C object core/CMakeFiles/test_uart4.dir/tests/test_uart4.c.o
+[ 59%] Linking C executable test_buttons
+[ 59%] Built target test_buttons
+[ 60%] Building C object core/CMakeFiles/test_ppp.dir/tests/test_ppp.c.o
+[ 60%] Linking C executable test_uart4
+[ 60%] Built target test_uart4
+[ 61%] Building C object core/CMakeFiles/nethost.dir/__/tools/net_host.c.o
+[ 61%] Linking C static library libnethost.a
+[ 61%] Built target nethost
+[ 62%] Building C object core/CMakeFiles/test_net.dir/tests/test_net.c.o
+[ 62%] Linking C executable test_ppp
+[ 62%] Built target test_ppp
+[ 62%] Building C object core/CMakeFiles/test_net_host.dir/tests/test_net_host.c.o
+[ 63%] Linking C executable test_net_host
+[ 63%] Built target test_net_host
+[ 63%] Building C object core/CMakeFiles/test_mtz2.dir/tests/test_mtz2.c.o
+[ 63%] Linking C executable test_net
+[ 63%] Built target test_net
+[ 63%] Building C object core/CMakeFiles/test_pl080.dir/tests/test_pl080.c.o
+[ 63%] Linking C executable test_pl080
+[ 63%] Built target test_pl080
+[ 64%] Building C object core/CMakeFiles/test_img3.dir/tests/test_img3.c.o
+[ 65%] Linking C executable test_mtz2
+[ 65%] Built target test_mtz2
+[ 65%] Building C object core/CMakeFiles/test_aes.dir/tests/test_aes.c.o
+[ 65%] Linking C executable test_img3
+[ 65%] Built target test_img3
+[ 65%] Linking C executable test_aes
+[ 65%] Building C object core/CMakeFiles/test_loader.dir/tests/test_loader.c.o
+[ 65%] Built target test_aes
+[ 65%] Building C object core/CMakeFiles/test_devicetree.dir/tests/test_devicetree.c.o
+[ 65%] Linking C executable test_loader
+[ 66%] Linking C executable test_devicetree
+[ 66%] Built target test_loader
+[ 67%] Building C object core/CMakeFiles/test_lzss.dir/tests/test_lzss.c.o
+[ 67%] Built target test_devicetree
+[ 67%] Building C object core/CMakeFiles/test_ksyms.dir/tests/test_ksyms.c.o
+[ 67%] Linking C executable test_lzss
+[ 67%] Built target test_lzss
+[ 68%] Building C object core/CMakeFiles/test_snapshot.dir/tests/test_snapshot.c.o
+[ 69%] Linking C executable test_ksyms
+[ 69%] Built target test_ksyms
+[ 69%] Building C object core/CMakeFiles/test_nand.dir/tests/test_nand.c.o
+[ 69%] Linking C executable test_nand
+[ 69%] Built target test_nand
+[ 70%] Building C object core/CMakeFiles/test_vm_source.dir/tests/test_vm_source.c.o
+[ 70%] Linking C executable test_snapshot
+[ 70%] Linking C executable test_vm_source
+[ 70%] Built target test_snapshot
+[ 70%] Building C object core/CMakeFiles/test_vm_block.dir/tests/test_vm_block.c.o
+[ 70%] Built target test_vm_source
+[ 70%] Building C object core/CMakeFiles/test_md_bridge.dir/tests/test_md_bridge.c.o
+[ 70%] Linking C executable test_vm_block
+[ 70%] Built target test_vm_block
+[ 70%] Building C object core/CMakeFiles/test_md_raw_bridge.dir/tests/test_md_raw_bridge.c.o
+[ 71%] Linking C executable test_md_bridge
+[ 71%] Built target test_md_bridge
+[ 71%] Building C object core/CMakeFiles/test_macho.dir/tests/test_macho.c.o
+[ 72%] Linking C executable test_macho
+[ 72%] Built target test_macho
+[ 72%] Building C object core/CMakeFiles/test_vmguest.dir/__/app/Tests/test_vmguest.c.o
+[ 73%] Building C object core/CMakeFiles/test_vmguest.dir/__/app/Sources/VMFrameTelemetry.c.o
+[ 73%] Building C object core/CMakeFiles/test_vmguest.dir/__/app/Sources/VMGuest.c.o
+[ 73%] Linking C executable test_md_raw_bridge
+[ 73%] Linking C executable test_vmguest
+[ 73%] Built target test_md_raw_bridge
+[ 73%] Building C object core/CMakeFiles/host_rootfs_work.dir/__/tools/rootfs_work.c.o
+[ 73%] Built target test_vmguest
+[ 73%] Building C object core/CMakeFiles/host_ios3_kernel_patch.dir/__/tools/ios3_kernel_patch.c.o
+[ 73%] Linking C static library libhost_ios3_kernel_patch.a
+[ 73%] Built target host_ios3_kernel_patch
+[ 73%] Building C object core/CMakeFiles/test_vmnetworksession.dir/__/app/Tests/test_vmnetworksession.c.o
+[ 74%] Building C object core/CMakeFiles/test_vmnetworksession.dir/__/app/Sources/VMNetworkSession.c.o
+[ 74%] Linking C executable test_vmnetworksession
+[ 74%] Built target test_vmnetworksession
+[ 74%] Building C object core/CMakeFiles/test_vmresumecheckpoint.dir/__/app/Tests/test_vmresumecheckpoint.c.o
+[ 75%] Building C object core/CMakeFiles/test_vmresumecheckpoint.dir/__/app/Sources/VMResumeCheckpoint.c.o
+[ 75%] Linking C static library libhost_rootfs_work.a
+[ 75%] Linking C executable test_vmresumecheckpoint
+[ 75%] Built target host_rootfs_work
+[ 75%] Built target test_vmresumecheckpoint
+[ 75%] Building C object core/CMakeFiles/host_vm_firmware_hle.dir/__/app/Sources/VMFirmwareHLE.c.o
+[ 76%] Building C object core/CMakeFiles/test_mt_drag.dir/tests/test_mt_drag.c.o
+[ 77%] Linking C static library libhost_vm_firmware_hle.a
+[ 77%] Built target host_vm_firmware_hle
+[ 77%] Linking C executable test_mt_drag
+[ 77%] Building C object core/CMakeFiles/test_audio_capture.dir/tests/test_audio_capture.c.o
+[ 77%] Built target test_mt_drag
+[ 78%] Building C object core/CMakeFiles/test_ios3_kernel_patch.dir/tests/test_ios3_kernel_patch.c.o
+[ 79%] Linking C executable test_audio_capture
+[ 79%] Built target test_audio_capture
+[ 79%] Linking C executable test_ios3_kernel_patch
+[ 79%] Building C object core/CMakeFiles/test_rootfs_work.dir/tests/test_rootfs_work.c.o
+[ 79%] Built target test_ios3_kernel_patch
+[ 79%] Building C object core/CMakeFiles/test_rootfs_provision.dir/tests/test_rootfs_provision.c.o
+[ 79%] Linking C executable test_rootfs_work
+[ 79%] Built target test_rootfs_work
+[ 79%] Building C object core/CMakeFiles/host_payload_tar.dir/__/tools/payload_tar.c.o
+[ 80%] Linking C static library libhost_payload_tar.a
+[ 80%] Built target host_payload_tar
+[ 81%] Building C object core/CMakeFiles/host_ios3_bringup_gate.dir/__/tools/ios3_bringup_gate.c.o
+[ 81%] Linking C static library libhost_ios3_bringup_gate.a
+[ 81%] Built target host_ios3_bringup_gate
+[ 82%] Building C object core/CMakeFiles/test_vmguestrootfsplan.dir/__/app/Tests/test_vmguestrootfsplan.c.o
+[ 82%] Building C object core/CMakeFiles/test_vmguestrootfsplan.dir/__/app/Sources/VMGuestRootfsPlan.c.o
+[ 82%] Building C object core/CMakeFiles/test_vmguestrootfsplan.dir/__/app/Sources/VMGuestPackageManifest.c.o
+[ 83%] Building C object core/CMakeFiles/test_vmguestrootfsplan.dir/__/app/Sources/VMDebArchive.c.o
+[ 84%] Linking C executable test_rootfs_provision
+[ 84%] Built target test_rootfs_provision
+[ 84%] Building C object core/CMakeFiles/test_vmguestrootfsplan.dir/__/app/Sources/VMFirmwareInflate.c.o
+[ 84%] Building C object core/CMakeFiles/test_vmguestrootfsplan.dir/__/app/Sources/VMFirmwareZip.c.o
+[ 85%] Building C object core/CMakeFiles/test_vmguestrootfsplan.dir/__/tools/payload_tar.c.o
+[ 85%] Building C object core/CMakeFiles/test_vmguestrootfsplan.dir/__/tools/sha256.c.o
+[ 86%] Building C object core/CMakeFiles/test_vmguestinstallbuild.dir/__/app/Tests/test_vmguestinstallbuild.c.o
+[ 86%] Linking C executable test_vmguestrootfsplan
+[ 86%] Built target test_vmguestrootfsplan
+[ 86%] Building C object core/CMakeFiles/test_vmguestinstallbuild.dir/__/app/Sources/VMGuestInstallBuild.c.o
+[ 87%] Building C object core/CMakeFiles/test_vmfirmwarehle.dir/tests/test_vmfirmwarehle.c.o
+[ 87%] Building C object core/CMakeFiles/test_vmguestinstallbuild.dir/__/app/Sources/VMGuestInstall.c.o
+[ 87%] Linking C executable test_vmfirmwarehle
+[ 87%] Built target test_vmfirmwarehle
+[ 88%] Building C object core/CMakeFiles/test_vminstancepaths.dir/__/app/Tests/test_vminstancepaths.c.o
+[ 89%] Building C object core/CMakeFiles/test_vmguestinstallbuild.dir/__/app/Sources/VMGuestRootfsPlan.c.o
+[ 89%] Building C object core/CMakeFiles/test_vminstancepaths.dir/__/app/Sources/VMFrameTelemetry.c.o
+[ 89%] Building C object core/CMakeFiles/test_vmguestinstallbuild.dir/__/app/Sources/VMGuestPackageManifest.c.o
+[ 89%] Building C object core/CMakeFiles/test_vminstancepaths.dir/__/app/Sources/VMInstancePaths.c.o
+[ 89%] Building C object core/CMakeFiles/test_vmguestinstallbuild.dir/__/app/Sources/VMDebArchive.c.o
+[ 90%] Building C object core/CMakeFiles/test_vminstancepaths.dir/__/app/Sources/VMInstances.c.o
+[ 91%] Building C object core/CMakeFiles/test_vmguestinstallbuild.dir/__/app/Sources/VMFirmwareInflate.c.o
+[ 91%] Building C object core/CMakeFiles/test_vminstancepaths.dir/__/app/Sources/VMFirmwareBoot.c.o
+[ 91%] Building C object core/CMakeFiles/test_vminstancepaths.dir/__/app/Sources/VMGuestInstall.c.o
+[ 91%] Building C object core/CMakeFiles/test_vmguestinstallbuild.dir/__/app/Sources/VMFirmwareZip.c.o
+[ 92%] Building C object core/CMakeFiles/test_vmguestinstallbuild.dir/__/app/Sources/VMSnapshotStore.c.o
+[ 93%] Building C object core/CMakeFiles/test_vminstancepaths.dir/__/app/Sources/VMNetworkSession.c.o
+[ 93%] Building C object core/CMakeFiles/test_vminstancepaths.dir/__/app/Sources/VMResumeCheckpoint.c.o
+[ 93%] Building C object core/CMakeFiles/test_vmguestinstallbuild.dir/__/tools/payload_tar.c.o
+[ 93%] Building C object core/CMakeFiles/test_vminstancepaths.dir/__/app/Sources/VMSnapshotCow.c.o
+[ 93%] Building C object core/CMakeFiles/test_vmguestinstallbuild.dir/__/tools/sha256.c.o
+[ 94%] Building C object core/CMakeFiles/test_vminstancepaths.dir/__/app/Sources/VMBootOptions.c.o
+[ 95%] Linking C executable test_vmguestinstallbuild
+[ 95%] Built target test_vmguestinstallbuild
+[ 95%] Building C object core/CMakeFiles/test_vminstancepaths.dir/__/app/Sources/VMOptions.c.o
+[ 95%] Building C object core/CMakeFiles/test_bringup.dir/tests/test_bringup.c.o
+[ 96%] Linking C executable test_vminstancepaths
+ld: warning: ignoring duplicate libraries: 'libemucore.a'
+[ 96%] Built target test_vminstancepaths
+[ 96%] Building C object core/CMakeFiles/test_payload_tar.dir/tests/test_payload_tar.c.o
+[ 96%] Linking C executable test_bringup
+[ 97%] Linking C executable test_payload_tar
+ld: warning: ignoring duplicate libraries: 'libemucore.a'
+[ 97%] Built target test_bringup
+[ 97%] Built target test_payload_tar
+[ 97%] Building C object core/CMakeFiles/test_vmfirmwareboot.dir/__/app/Tests/test_vmfirmwareboot.c.o
+[ 97%] Building C object core/CMakeFiles/bootkernel.dir/__/tools/bootkernel.c.o
+[ 98%] Building C object core/CMakeFiles/test_vmfirmwareboot.dir/__/app/Sources/VMFrameTelemetry.c.o
+[ 98%] Building C object core/CMakeFiles/test_vmfirmwareboot.dir/__/app/Sources/VMFirmwareBoot.c.o
+[ 98%] Building C object core/CMakeFiles/test_vmfirmwareboot.dir/__/app/Sources/VMGuestInstall.c.o
+[ 99%] Building C object core/CMakeFiles/test_vmfirmwareboot.dir/__/app/Sources/VMNetworkSession.c.o
+[ 99%] Building C object core/CMakeFiles/test_vmfirmwareboot.dir/__/app/Sources/VMResumeCheckpoint.c.o
+[ 99%] Building C object core/CMakeFiles/test_vmfirmwareboot.dir/__/app/Sources/VMSnapshotCow.c.o
+[100%] Building C object core/CMakeFiles/test_vmfirmwareboot.dir/__/app/Sources/VMBootOptions.c.o
+[100%] Building C object core/CMakeFiles/test_vmfirmwareboot.dir/__/app/Sources/VMOptions.c.o
+[100%] Linking C executable test_vmfirmwareboot
+ld: warning: ignoring duplicate libraries: 'libemucore.a'
+[100%] Built target test_vmfirmwareboot
+[100%] Linking C executable bootkernel
+ld: warning: ignoring duplicate libraries: 'libemucore.a', 'libhost_guest_patch.a', 'libhost_ios3_hle.a'
+[100%] Built target bootkernel

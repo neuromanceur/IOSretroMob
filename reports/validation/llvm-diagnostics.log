@@ -1,0 +1,13 @@
+test_guest_binaries (test_builder.MachOEnvelope) ... ok
+test_r9_abi_regression (test_builder.MachOEnvelope) ... ok
+test_bad_executable_path_refused (test_package.Packaging) ... ok
+test_metadata_and_no_overwrite (test_package.Packaging) ... ok
+test_symlink_refused_before_publication (test_package.Packaging) ... ok
+test_inputs_and_uniforms (test_ta_inspect.Checks) ... ok
+test_invalid_inputs_refused (test_ta_inspect.Checks) ... ok
+test_truncation_and_ambiguity_refused (test_ta_inspect.Checks) ... ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 1.696s
+
+OK

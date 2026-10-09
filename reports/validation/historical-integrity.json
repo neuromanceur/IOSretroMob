@@ -1,0 +1,10 @@
+{
+  "pass": true,
+  "historical_files_checked": 15263,
+  "current_files": 15263,
+  "changed_added_removed": 0,
+  "differences": [],
+  "git_directory_included": true,
+  "sources_firmware_reports_builds_and_work_included": true,
+  "method": "Complete path inventory, SHA-256 of every regular file, size/mode and symlink target comparison; no historical writes."
+}

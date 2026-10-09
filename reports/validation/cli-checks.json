@@ -1,0 +1,287 @@
+{
+  "pass": true,
+  "clean_source_commit": "b5892491d8e5b32e28256e58bf379bf31f5f95e4",
+  "records": [
+    {
+      "command": "./iosretromob doctor",
+      "result": {
+        "project": "IOSretroMob",
+        "host": "Darwin arm64",
+        "python": "3.9.6",
+        "dependencies": {
+          "cmake": true,
+          "ctest": true,
+          "clang": true
+        },
+        "free_bytes": 78678876160,
+        "reserve_5_gib_met": true,
+        "public_tests_require_apple_firmware": false,
+        "guest_execution": "requires your own authorized firmware; separate from public lab",
+        "optional_diagnostic_llvm_env": "IOSRETROMOB_LLVM_BIN"
+      }
+    },
+    {
+      "command": "./iosretromob inspect lab/fixtures/ta-input.json",
+      "result": {
+        "scope": "Input layout only; no VGP execution or framebuffer validation",
+        "records": [
+          {
+            "word_count": 45,
+            "stream_sha256": "f005267c3c285af7b07cc54e66c5ebab234f98c1a0fec09926468147a7576de4",
+            "vertex_control_index": 18,
+            "uniform0_index": 0,
+            "uniform0_16_floats": [
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              -1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "vertex_inputs": [
+              {
+                "xyz": [
+                  -0.699999988079071,
+                  -0.6000000238418579,
+                  0.0
+                ],
+                "rgba": [
+                  1.0,
+                  0.0,
+                  0.0,
+                  1.0
+                ]
+              },
+              {
+                "xyz": [
+                  0.699999988079071,
+                  -0.6000000238418579,
+                  0.0
+                ],
+                "rgba": [
+                  0.0,
+                  1.0,
+                  0.0,
+                  1.0
+                ]
+              },
+              {
+                "xyz": [
+                  0.0,
+                  0.699999988079071,
+                  0.0
+                ],
+                "rgba": [
+                  0.0,
+                  0.0,
+                  1.0,
+                  1.0
+                ]
+              }
+            ],
+            "scope": "Extracted measured input fields only. Shader program semantics, framebuffer flags, execution and pixel output are NOT validated."
+          }
+        ]
+      }
+    },
+    {
+      "command": "./iosretromob replay lab/fixtures/triangle.json --output .local/triangle",
+      "result": {
+        "ppm": "synthetic.ppm",
+        "sha256": "0d9ecb787897493a8313369a32115040bd0e313637561e23e8ccebf965c1ed61",
+        "width": 320,
+        "height": 460,
+        "triangle_pixels_checked": 33488,
+        "excluded_edge_ties": 0,
+        "mismatched_pixels_tolerance_1": 0,
+        "max_channel_error": 0,
+        "reference_scope": "Measured opaque affine triangle, pixel centres; analytic weights independent of C edge rasterizer, one-unit channel tolerance, boundary ties excluded.",
+        "classification": "synthetic semantic replay; no guest boot or accepted TA program",
+        "raster": {
+          "synthetic": true,
+          "width": 320,
+          "height": 460,
+          "pixel_writes_including_clear": 180688
+        }
+      }
+    },
+    {
+      "command": "./iosretromob replay lab/fixtures/triangle-90.json --output .local/triangle-90",
+      "result": {
+        "ppm": "synthetic.ppm",
+        "sha256": "8cabf787f0b813eb7b87740555c350cb83872a981e019310b40ce3b36588b738",
+        "width": 320,
+        "height": 460,
+        "triangle_pixels_checked": 33488,
+        "excluded_edge_ties": 0,
+        "mismatched_pixels_tolerance_1": 0,
+        "max_channel_error": 0,
+        "reference_scope": "Measured opaque affine triangle, pixel centres; analytic weights independent of C edge rasterizer, one-unit channel tolerance, boundary ties excluded.",
+        "classification": "synthetic semantic replay; no guest boot or accepted TA program",
+        "raster": {
+          "synthetic": true,
+          "width": 320,
+          "height": 460,
+          "pixel_writes_including_clear": 180688
+        }
+      }
+    },
+    {
+      "command": "./iosretromob replay lab/fixtures/textured-triangle.json --output .local/textured-triangle",
+      "result": {
+        "ppm": "synthetic.ppm",
+        "ppm_sha256": "1d3639a01731c21b5268639239561fbed0fd7fcc2ffa29694b414afc2eaf366c",
+        "width": 320,
+        "height": 460,
+        "covered_pixels": 26496,
+        "texels_observed": 36,
+        "excluded_boundary_ties": 384,
+        "mismatched_pixels_tolerance_1": 0,
+        "max_channel_error": 0,
+        "filter": "nearest",
+        "scope": "Own affine w=1 geometry; intended RGBA8 8x8 upload; normalized clamp-to-edge; whole scanout compared, analytic inversion independent of C rasterizer.",
+        "classification": "synthetic semantic replay; no guest boot or accepted TA program",
+        "raster": {
+          "synthetic": true,
+          "width": 320,
+          "height": 460,
+          "pixel_writes_including_clear": 173696
+        }
+      }
+    },
+    {
+      "command": "./iosretromob replay lab/fixtures/square-nearest.json --output .local/square-nearest",
+      "result": {
+        "ppm": "synthetic.ppm",
+        "ppm_sha256": "28deadea9933911e62bf640789543196cdd732de589dffc4f5093c17ff1d288f",
+        "width": 320,
+        "height": 460,
+        "covered_pixels": 52992,
+        "texels_observed": 64,
+        "excluded_boundary_ties": 768,
+        "mismatched_pixels_tolerance_1": 0,
+        "max_channel_error": 0,
+        "filter": "nearest",
+        "scope": "Own affine w=1 geometry; intended RGBA8 8x8 upload; normalized clamp-to-edge; whole scanout compared, analytic inversion independent of C rasterizer.",
+        "classification": "synthetic semantic replay; no guest boot or accepted TA program",
+        "raster": {
+          "synthetic": true,
+          "width": 320,
+          "height": 460,
+          "pixel_writes_including_clear": 200192
+        }
+      }
+    },
+    {
+      "command": "./iosretromob replay lab/fixtures/square-linear.json --output .local/square-linear",
+      "result": {
+        "ppm": "synthetic.ppm",
+        "ppm_sha256": "a1f71314964e69788cc96700de89bf6bde08ef2f6b81bfda8d562944cd48c108",
+        "width": 320,
+        "height": 460,
+        "covered_pixels": 52992,
+        "texels_observed": 64,
+        "excluded_boundary_ties": 0,
+        "mismatched_pixels_tolerance_1": 0,
+        "max_channel_error": 1,
+        "filter": "linear",
+        "scope": "Own affine w=1 geometry; intended RGBA8 8x8 upload; normalized clamp-to-edge; whole scanout compared, analytic inversion independent of C rasterizer.",
+        "classification": "synthetic semantic replay; no guest boot or accepted TA program",
+        "raster": {
+          "synthetic": true,
+          "width": 320,
+          "height": 460,
+          "pixel_writes_including_clear": 200192
+        }
+      }
+    },
+    {
+      "command": "./iosretromob verify-gallery",
+      "result": {
+        "captures_verified": 6,
+        "results": [
+          {
+            "capture": "uikit",
+            "sha256_and_pixels": "PASS",
+            "classification": "authentic historical guest CLCD scanout"
+          },
+          {
+            "capture": "triangle",
+            "sha256_and_pixels": "PASS",
+            "classification": "authentic historical guest CLCD scanout"
+          },
+          {
+            "capture": "triangle-rotation",
+            "sha256_and_pixels": "PASS",
+            "classification": "authentic historical guest CLCD scanout"
+          },
+          {
+            "capture": "textured-triangle",
+            "sha256_and_pixels": "PASS",
+            "classification": "authentic historical guest CLCD scanout",
+            "independent_reference": {
+              "ppm": "demos/gallery/textured-triangle.ppm",
+              "ppm_sha256": "26d33bbd26b1984f910ec221abb4c5f224d5e76bfb0a6098bc965dfb44ca0361",
+              "width": 320,
+              "height": 460,
+              "covered_pixels": 33488,
+              "texels_observed": 40,
+              "excluded_boundary_ties": 0,
+              "mismatched_pixels_tolerance_1": 0,
+              "max_channel_error": 0,
+              "filter": "nearest",
+              "scope": "Own affine w=1 geometry; intended RGBA8 8x8 upload; normalized clamp-to-edge; whole scanout compared, analytic inversion independent of C rasterizer."
+            }
+          },
+          {
+            "capture": "textured-square",
+            "sha256_and_pixels": "PASS",
+            "classification": "authentic historical guest CLCD scanout",
+            "independent_reference": {
+              "ppm": "demos/gallery/textured-square.ppm",
+              "ppm_sha256": "c05f1157be62be77ce8d39d073b64975a04f25572307779e6ab86845a9c5602b",
+              "width": 320,
+              "height": 460,
+              "covered_pixels": 52992,
+              "texels_observed": 64,
+              "excluded_boundary_ties": 0,
+              "mismatched_pixels_tolerance_1": 0,
+              "max_channel_error": 0,
+              "filter": "nearest",
+              "scope": "Own affine w=1 geometry; intended RGBA8 8x8 upload; normalized clamp-to-edge; whole scanout compared, analytic inversion independent of C rasterizer."
+            }
+          },
+          {
+            "capture": "linear-filter",
+            "sha256_and_pixels": "PASS",
+            "classification": "authentic historical guest CLCD scanout",
+            "independent_reference": {
+              "ppm": "demos/gallery/linear-filter.ppm",
+              "ppm_sha256": "61dd0fb6b078d02db9a7ed543fbfea9e0ec2e194dbaf36e14a5e2f7a4f80cc39",
+              "width": 320,
+              "height": 460,
+              "covered_pixels": 52992,
+              "texels_observed": 64,
+              "excluded_boundary_ties": 0,
+              "mismatched_pixels_tolerance_1": 0,
+              "max_channel_error": 0,
+              "filter": "linear",
+              "scope": "Own affine w=1 geometry; intended RGBA8 8x8 upload; normalized clamp-to-edge; whole scanout compared, analytic inversion independent of C rasterizer."
+            }
+          }
+        ],
+        "scope": "Exact historical artifacts; three texture scanouts independently rechecked. No guest boot performed."
+      }
+    }
+  ]
+}

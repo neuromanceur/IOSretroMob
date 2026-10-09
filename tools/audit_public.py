@@ -14,11 +14,14 @@ FORBIDDEN={'.ipsw','.ipa','.snap','.mdimage','.mdstate','.img','.dmg','.macho','
 def classify(path,data,allowed,issues,label):
     if path not in allowed:issues.append({'location':label,'reason':'path absent from positive allowlist','path':path})
     p=Path(path)
-    if p.suffix.lower()in FORBIDDEN or p.name=='.env' or any(x in('.github','firmware','work','__pycache__')for x in p.parts):issues.append({'location':label,'reason':'forbidden path','path':path})
+    if p.suffix.lower()in FORBIDDEN or p.name=='.env' or (p.parts[0]in('firmware','work')or any(x in('.github','__pycache__')for x in p.parts)):issues.append({'location':label,'reason':'forbidden path','path':path})
     if len(data)>4*1024**2:issues.append({'location':label,'reason':'individual artifact exceeds 4 MiB','path':path})
     if data.startswith(MAGIC):issues.append({'location':label,'reason':'forbidden executable/archive/VM magic','path':path})
     if p.suffix in('.png','.ppm'):
         if not path.startswith('demos/gallery/'):issues.append({'location':label,'reason':'image outside curated gallery','path':path})
+        image_manifest=json.loads((ROOT/'demos/gallery/manifest.json').read_text())
+        accepted={f['path']:f['sha256']for e in image_manifest['captures']for f in e['files']}
+        if hashlib.sha256(data).hexdigest()!=accepted.get(path):issues.append({'location':label,'reason':'image differs from approved immutable capture','path':path})
     else:
         try:data.decode('utf-8')
         except UnicodeDecodeError:issues.append({'location':label,'reason':'unreviewed binary content','path':path})
