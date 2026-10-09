@@ -51,6 +51,8 @@
  * Copyright (c) 2026 j0shua-SYSON. MIT licensed.
  */
 #include "soc.h"
+#include "mbx_vgp.h"
+#include "../../../tools/sha256.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -146,10 +148,11 @@
 #define MBX_3D_TARGET_STRIDE   0x500u
 #define MBX_3D_ADDRESS_MASK    0x0003ffffu
 
-/* A FIFO has no readable backing store, but a checkpoint can stop between any
- * two of its writes. Preserve the accepted words in the TA object database,
- * which is the GART allocation the hardware would populate and which guest
- * RAM snapshots already carry. Only the cursor needs private device state.
+/* A checkpoint can stop between any two FIFO writes. The legacy quad path
+ * stages words in the TA object database, a guest GART allocation. The VGP
+ * path additionally retains the consumed words in private serialized state:
+ * the driver can repurpose that database after TA completion. The shared
+ * staging cursor still uses the otherwise inaccessible revision backing slot.
  * CORE_ID/REVISION reads bypass reg[] and return S5L_MBX_REVISION_ID, so its
  * otherwise unreachable backing slot can hold that cursor just as STATUS's
  * unreachable slot holds the pending 2D batch marker above. */
@@ -157,7 +160,7 @@
 #define MBX_TA_CAPTURE_MAGIC_M     0xfff00000u
 #define MBX_TA_CAPTURE_FAILED      0x54500000u
 #define MBX_TA_CAPTURE_COUNT_M     0x0000ffffu
-#define MBX_TA_CAPTURE_MAX_WORDS   16384u
+#define MBX_TA_CAPTURE_MAX_WORDS   S5L_MBX_TA_FIFO_WORDS
 
 /* Later _mbx3DCtxQuadCopyPerspective records and live object streams recover
  * the padlock, `Searching...`, and battery status sprites, plus clipped
@@ -474,6 +477,9 @@ bool s5l_mbx_stage_ta_write(s5l_mbx_t *m, const arm_bus_t *bus,
 
     if (off == S5L_MBX_TA_START && val == 1u) {
         *mbx_ta_capture_slot(m) = MBX_TA_CAPTURE_MAGIC;
+        memset(m->ta_fifo, 0, sizeof m->ta_fifo);
+        m->ta_fifo_words = 0;
+        m->ta_fifo_complete = false;
         return true;
     }
     if (off != S5L_MBX_3D_DATA_FIFO ||
@@ -495,6 +501,7 @@ bool s5l_mbx_stage_ta_write(s5l_mbx_t *m, const arm_bus_t *bus,
         !mbx_gart_write(m, bus, object + count * 4u,
                         bytes, sizeof bytes, &why)) {
         *mbx_ta_capture_slot(m) = MBX_TA_CAPTURE_FAILED;
+        m->ta_fifo_complete = false;
         if (mbx_trace_state == 1) {
             fprintf(stderr, "MBX3D TA capture failed at word %u: %s\n",
                     count, why ? why : "invalid object-database span");
@@ -503,6 +510,14 @@ bool s5l_mbx_stage_ta_write(s5l_mbx_t *m, const arm_bus_t *bus,
         return false;
     }
     *mbx_ta_capture_slot(m) = MBX_TA_CAPTURE_MAGIC | (count + 1u);
+    /* Retain what the FIFO actually consumed, before the guest repurposes the
+     * object database. A restored old partial stream lacks its earlier words
+     * and remains ineligible until TA_START begins a fresh capture. */
+    if (m->ta_fifo_words == count && !m->ta_fifo_complete) {
+        m->ta_fifo[count] = val;
+        m->ta_fifo_words++;
+        m->ta_fifo_complete = val == S5L_MBX_3D_SUBMIT;
+    }
     return true;
 }
 
@@ -4472,6 +4487,77 @@ static bool mbx_ta_apply_draw(
     return true;
 }
 
+static bool mbx_execute_vgp_stream(
+        s5l_mbx_t *m, const arm_bus_t *bus,
+        const uint32_t *words, uint32_t count, uint32_t target,
+        uint32_t width, uint32_t height,
+        uint32_t left, uint32_t top, uint32_t right, uint32_t bottom,
+        const char **why, uint32_t *pixels_blended) {
+    /* These measured envelopes have no external depth allocation. A matching
+     * shader is insufficient if the caller requests Z load/store in registers.
+     * Refuse before target reads/writes until that memory encoding is known. */
+    if (m->reg[0x610u / 4u] != 0x00030000u || m->reg[0x674u / 4u] != 0) {
+        if (why) *why = "VGP external depth load/store is unsupported";
+        return false;
+    }
+    mbx_vgp_scene scene;
+    if (!mbx_vgp_decode(words, count, &scene, why)) return false;
+    uint8_t texture[256],raw_texture[256];
+    if(scene.texture_source) {
+        /* Texture uploads are a measured independent Morton surface, not a
+         * linear CA sprite. Stage all texels before any framebuffer access. */
+        if(scene.texture_source < target+width*height*4u &&
+           target < scene.texture_source+256u) {
+            if(why)*why="VGP texture aliases render target";
+            return false;
+        }
+        uint32_t texture_pa,texture_span;
+        if(!mbx_gart_span(m,bus,scene.texture_source,&texture_pa,&texture_span,why) || texture_span<256)return false;
+        for(uint32_t offset=0;offset<width*height*4u;) {
+            uint32_t pa,span;
+            if(!mbx_gart_span(m,bus,target+offset,&pa,&span,why))return false;
+            if(span>width*height*4u-offset)span=width*height*4u-offset;
+            if((uint64_t)texture_pa+256>pa && (uint64_t)pa+span>texture_pa) {
+                if(why)*why="VGP texture physically aliases render target";
+                return false;
+            }
+            offset+=span;
+        }
+        if(!mbx_gart_read(m,bus,scene.texture_source,raw_texture,256,why))return false;
+        for(uint32_t y=0;y<8;y++)for(uint32_t x=0;x<8;x++) {
+            uint32_t index=0;
+            for(uint32_t bit=0;bit<3;bit++)index|=((y>>bit)&1u)<<(2*bit)|((x>>bit)&1u)<<(2*bit+1);
+            const uint8_t *pixel=raw_texture+4*index;uint8_t *out=texture+4*(y*8+x);
+            if(pixel[3]!=255){if(why)*why="VGP texture alpha is unsupported";return false;}
+            out[0]=pixel[2];out[1]=pixel[1];out[2]=pixel[0];out[3]=pixel[3];
+        }
+        scene.texture_rgba=texture;scene.texture_bytes=256;
+    }
+    uint32_t bytes = width * height * 4u;
+    uint8_t *staged = malloc(bytes);
+    if (!staged) {
+        if (why) *why = "VGP staged target allocation failed";
+        return false;
+    }
+    uint32_t pixels = 0;
+    bool ok = mbx_gart_read(m, bus, target, staged, bytes, why) &&
+        mbx_vgp_raster(&scene, staged, width, height,
+                       left, top, right, bottom, &pixels, why);
+    /* Validate the complete publication span before the first target write.
+     * The GART is synchronous and unchanged during this operation. Partial
+     * scenes, invalid shaders and late missing pages therefore commit nothing.
+     * Retained input is serialized separately in snapshot v33; the reader
+     * accepts v32 but requires a fresh submission for this VGP path. */
+    if (ok) ok = mbx_gart_validate(m, bus, target, bytes, why);
+    if (ok) ok = mbx_gart_write(m, bus, target, staged, bytes, why);
+    free(staged);
+    if (!ok) return false;
+    if (pixels_blended) *pixels_blended = pixels;
+    if (mbx_trace_state == 1)
+        fprintf(stderr, "MBX3D VGP accepted: %u words, %u pixel writes\n", count, pixels);
+    return true;
+}
+
 static bool mbx_execute_ta_stream(s5l_mbx_t *m, const arm_bus_t *bus,
                                   const char **why,
                                   uint32_t *pixels_blended) {
@@ -4516,6 +4602,18 @@ static bool mbx_execute_ta_stream(s5l_mbx_t *m, const arm_bus_t *bus,
         return false;
     }
 
+    if (m->ta_fifo_complete && m->ta_fifo_words == count) {
+        for (uint32_t i = 1; i + 1 < count; i++) {
+            if (m->ta_fifo[i] == 0x78020000u &&
+                (m->ta_fifo[i + 1] == 0xf0020004u || m->ta_fifo[i + 1] == 0xf0020044u)) {
+                return mbx_execute_vgp_stream(m, bus, m->ta_fifo, count, target,
+                    target_width, target_height,
+                    clip_left, clip_top, clip_right, clip_bottom,
+                    why, pixels_blended);
+            }
+        }
+    }
+
     uint32_t byte_count = count * 4u;
     uint8_t *raw = malloc(byte_count);
     uint32_t *words = malloc(byte_count);
@@ -4537,6 +4635,22 @@ static bool mbx_execute_ta_stream(s5l_mbx_t *m, const arm_bus_t *bus,
         free(draws);
         if (ok && why) *why = "TA stream framing is unknown or incomplete";
         return false;
+    }
+
+    /* Distinct VGP-input grammar. An invalid VGP stream never falls back to
+     * the pretransformed-quad decoder or gains completion by skipping state. */
+    for (uint32_t i = 1; i + 1 < count; i++) {
+        if (words[i] != 0x78020000u || (words[i + 1] != 0xf0020004u && words[i + 1] != 0xf0020044u)) continue;
+        if (mbx_fifo_trace_enabled()) {
+            for (uint32_t j = 0; j < count; j++)
+                fprintf(stderr, "MBX3D VGP staged[%u] = 0x%08x\n", j, words[j]);
+        }
+        ok = mbx_execute_vgp_stream(m, bus, words, count, target,
+            target_width, target_height,
+            clip_left, clip_top, clip_right, clip_bottom, why, pixels_blended);
+        free(words);
+        free(draws);
+        return ok;
     }
 
     uint32_t cursor = 1u;
@@ -4826,10 +4940,54 @@ static void mbx_capture_3d_accept(
     if (witness->record_valid_words) witness->record_hash = hash;
 }
 
+/* Opt-in, bounded observation of the measured 320x460 Z allocation. This
+ * reads GART memory only; it neither selects a format nor changes completion.
+ * The logical extent is deliberately smaller than its page-rounded mapping. */
+static void mbx_observe_external_z(s5l_mbx_t *m, const arm_bus_t *bus,
+                                   const char *phase) {
+    const char *enabled = getenv("S5LBOX_MBX_Z_OBSERVE");
+    static unsigned observations;
+    if (!enabled || strcmp(enabled, "1") || !bus ||
+        !m->reg[0x674u / 4u] || observations >= 128u) return;
+    observations++;
+    uint32_t base = m->reg[0x674u / 4u];
+    if (m->reg[0x660u / 4u] != 320u ||
+        m->reg[0x654u / 4u] != 0x013f0000u ||
+        m->reg[0x658u / 4u] != 0x01cb0000u) {
+        fprintf(stderr, "MBXZ_OBSERVE phase=%s skipped=unmeasured-extent base=%08x\n", phase, base);
+        return;
+    }
+    const uint32_t bytes = 320u * 460u * 4u;
+    const char *why = NULL;
+    if (!mbx_gart_validate(m, bus, base, bytes, &why)) {
+        fprintf(stderr, "MBXZ_OBSERVE phase=%s skipped=invalid-gart base=%08x\n", phase, base);
+        return;
+    }
+    ios3_sha256_context_t hash; uint8_t block[4096], digest[32];
+    uint32_t nonzero = 0;
+    if (!ios3_sha256_init(&hash)) return;
+    for (uint32_t offset = 0; offset < bytes;) {
+        uint32_t count = bytes - offset;
+        if (count > sizeof block) count = sizeof block;
+        if (!mbx_gart_read(m, bus, base + offset, block, count, &why) ||
+            !ios3_sha256_update(&hash, block, count)) return;
+        for (uint32_t i = 0; i < count; i++) nonzero += block[i] != 0;
+        offset += count;
+    }
+    if (!ios3_sha256_final(&hash, digest)) return;
+    fprintf(stderr, "MBXZ_OBSERVE phase=%s base=%08x bytes=%u nonzero=%u reg610=%08x reg6d0=%08x reg6dc=%08x status=%08x sha256=",
+            phase, base, bytes, nonzero, m->reg[0x610u / 4u],
+            m->reg[0x6d0u / 4u], m->reg[0x6dcu / 4u], m->status);
+    for (unsigned i = 0; i < sizeof digest; i++) fprintf(stderr, "%02x", digest[i]);
+    fputc('\n', stderr);
+}
+
 bool s5l_mbx_process_3d(s5l_mbx_t *m, const arm_bus_t *bus,
                         uint32_t written_off, uint32_t value,
                         s5l_mbx_telemetry_t *telemetry) {
     if (!m || written_off != S5L_MBX_STARTRENDER || value != 1u) return false;
+
+    mbx_observe_external_z(m, bus, "before");
 
     mbx_counter_add(&mbx_3d_candidates, 1u);
     if (telemetry) mbx_counter_add(&telemetry->candidates_3d, 1u);
@@ -4858,6 +5016,7 @@ bool s5l_mbx_process_3d(s5l_mbx_t *m, const arm_bus_t *bus,
         kind = S5L_MBX_3D_ACCEPT_TA_STREAM;
         accepted = mbx_execute_ta_stream(m, bus, &ta_why, &pixels);
     }
+    mbx_observe_external_z(m, bus, "after");
     if (!accepted) {
         mbx_counter_add(&mbx_3d_rejected, 1u);
         if (telemetry) {
@@ -5174,6 +5333,15 @@ void s5l_mbx_write(s5l_mbx_t *m, uint32_t off, uint32_t val) {
                 m->reg[S5L_MBX_RGNBASE / 4u],
                 m->reg[S5L_MBX_OBJBASE / 4u],
                 m->reg[S5L_MBX_FBSTART / 4u]);
+        /* Diagnostic witness of the actual render transaction. These words
+         * remain opaque until a controlled guest experiment establishes their
+         * meaning; tracing never relaxes the render-state validator. */
+        fprintf(stderr, "MBX3D render registers");
+        for (uint32_t register_off = 0x600u; register_off <= 0x678u;
+             register_off += 4u)
+            fprintf(stderr, " %03x=%08x", register_off,
+                    m->reg[register_off / 4u]);
+        fprintf(stderr, "\n");
         fflush(stderr);
     }
 }

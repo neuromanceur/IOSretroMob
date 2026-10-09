@@ -36,7 +36,7 @@
  * ===========================================================================
  *   header  (40 bytes, little-endian)
  *       0  char     magic[16]        "S5LBox SNAPSHOT"
- *      16  uint32   version          SNAPSHOT_VERSION, exact match required
+ *      16  uint32   version          current v33 or explicitly supported v32
  *      20  uint32   header_len       40
  *      24  uint64   payload_len
  *      32  uint64   flags            0
@@ -120,7 +120,7 @@ SNAP_SIZE_GUARD(s5l_uart_t,        8280,  "snap_uart");
 SNAP_SIZE_GUARD(s5l_vic_t,         16,    "snap_vic");
 SNAP_SIZE_GUARD(s5l_timer_t,       40,    "snap_timer");
 SNAP_SIZE_GUARD(s5l_power_t,       24,    "snap_power");
-SNAP_SIZE_GUARD(s5l_mbx_t,         8208,  "snap_mbx");
+SNAP_SIZE_GUARD(s5l_mbx_t,         73752, "snap_mbx");
 SNAP_SIZE_GUARD(s5l_clcd_window_t, 24,    "snap_clcd");
 SNAP_SIZE_GUARD(s5l_clcd_t,        3368,  "snap_clcd");
 SNAP_SIZE_GUARD(s5l_tvout_t,       12304, "snap_tvout");
@@ -198,10 +198,10 @@ SNAP_SIZE_GUARD(s5l_stub_t,        56,    "snap_stubs");
  * 125704 adds eight per-framebuffer target aggregates (8 x 40), likewise
  * host-only, so a short witness ring cannot hide which completed surface later
  * became the active CLCD scanout.
- * SNAPSHOT_VERSION and the bytes on disk therefore do not move. The size below
- * must be read from the compiler's emitted `.space`, not inferred from source
- * padding. */
-SNAP_SIZE_GUARD(s5l8900_t,         125704, "snap_mach");
+ * Those host-only fields did not change the file. 191248 additionally includes
+ * the private TA FIFO introduced in v33, which IS serialized device state.
+ * The guard includes host ABI padding; the format remains field-by-field. */
+SNAP_SIZE_GUARD(s5l8900_t,         191248, "snap_mach");
 #endif
 
 /* ---------------------------------------------------------------- the IO --- */
@@ -233,6 +233,7 @@ typedef struct {
     uint64_t  pos;          /* bytes produced/consumed so far (all modes)   */
     uint64_t  hash;         /* legacy payload hash over bytes passed through */
     snapshot_status_t err;
+    uint32_t format_version; /* zero in count/save means current version */
 } sn_io_t;
 
 static bool sn_reading(const sn_io_t *io) {
@@ -555,6 +556,22 @@ static void snap_mbx(sn_io_t *io, s5l_mbx_t *m) {
      * restore silently reads the next section's bytes.
      */
     FBYTES(m->edram, S5L_MBX_EDRAM_SIZE);
+    if (!io->format_version || io->format_version >= 33u) {
+        FA32(m->ta_fifo, S5L_MBX_TA_FIFO_WORDS);
+        F32(m->ta_fifo_words);
+        FB(m->ta_fifo_complete);
+        if (sn_reading(io) && io->err == SNAP_OK &&
+            (m->ta_fifo_words > S5L_MBX_TA_FIFO_WORDS ||
+             (m->ta_fifo_complete && (!m->ta_fifo_words ||
+              m->ta_fifo[m->ta_fifo_words - 1u] != S5L_MBX_3D_SUBMIT))))
+            io->err = SNAP_ERR_CORRUPT;
+    } else if (sn_reading(io) && io->err == SNAP_OK) {
+        /* Exact v32 layout; no retained input existed in that format. Do not
+         * recover a program from a guest-modified object database or guess it. */
+        memset(m->ta_fifo, 0, sizeof m->ta_fifo);
+        m->ta_fifo_words = 0;
+        m->ta_fifo_complete = false;
+    }
 }
 
 /*
@@ -1284,12 +1301,13 @@ static void snap_header(sn_io_t *io, uint64_t *payload_len) {
     if (sn_reading(io) && io->err == SNAP_OK) {
         if (memcmp(magic, SNAPSHOT_MAGIC, SNAPSHOT_MAGIC_LEN) != 0)
             io->err = SNAP_ERR_MAGIC;
-        else if (version != SNAPSHOT_VERSION)
+        else if (version != SNAPSHOT_VERSION && version != 32u)
             io->err = SNAP_ERR_VERSION;
         else if (hlen != SNAP_HEADER_LEN)
             io->err = SNAP_ERR_CORRUPT;
         else if (flags != 0)
             io->err = SNAP_ERR_CORRUPT;
+        if (io->err == SNAP_OK) io->format_version = version;
     }
 }
 

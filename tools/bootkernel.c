@@ -52,6 +52,8 @@ static rootfs_work_entry_t *g_jb_entries = NULL;
 #include "sha256.h"
 #include "snapshot.h"
 #include "soc.h"
+#include "guest_clcd_capture.h"
+#include "guest_z_journal_capture.h"
 #if defined(S5LBOX_STATIC_A64_ENGINE)
 #include "a64_static.h"
 #include "vfp.h"
@@ -37797,7 +37799,10 @@ external_md_work_ready:
         fflush(stdout);
 #undef RUN_API_SLOW_CALLS
     } else {
+        guest_clcd_capture_init(n);
         for (; n < steps; n++) {
+        if(guest_clcd_capture.enabled && n>=guest_clcd_capture.next)
+            guest_clcd_capture_sample(&mach,n);
         G.hot_now = n;
         last_pc = mach.cpu.r[15];
         last_cpsr = mach.cpu.cpsr;
@@ -38440,6 +38445,7 @@ external_md_work_ready:
     mach.uart0.tx[mach.uart0.tx_len] = '\0';
     printf("stopped after %" PRIu64 " instructions: %s\n",
            mach.cpu.cycles, status_name(st));
+    guest_z_journal_capture(&mach);
     frame_meter_report(&frame_meter);
     sequence_profile_report(&sequence_profile);
     /*

@@ -980,6 +980,7 @@ void     s5l_power_write(s5l_power_t *p, uint32_t off, uint32_t val);
  * The public MBX1 register map calls the same aperture offset 3DDATA. */
 #define S5L_MBX_3D_DATA_FIFO 0x00800000u
 #define S5L_MBX_3D_SUBMIT    0xf0000000u
+#define S5L_MBX_TA_FIFO_WORDS 16384u
 
 typedef struct {
     uint32_t reg[S5L_MBX_SIZE / 4u];
@@ -991,6 +992,12 @@ typedef struct {
      * s5l_mbx_reset(), which zeroes the contents rather than dropping them.
      */
     uint8_t *edram;
+    /* Hardware-private retained TA input: the driver reuses the object
+     * database after TA_COMPLETE. This buffer is machine state, not telemetry,
+     * and is serialized in v33 snapshots, including partial submissions. */
+    uint32_t ta_fifo[S5L_MBX_TA_FIFO_WORDS];
+    uint32_t ta_fifo_words;
+    bool ta_fifo_complete;
 } s5l_mbx_t;
 
 #define S5L_MBX_3D_REJECTION_HISTORY 4u

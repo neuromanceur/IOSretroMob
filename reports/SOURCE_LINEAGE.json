@@ -1,0 +1,2922 @@
+{
+  "metadata": {
+    "date_utc": "2026-10-09T21:35:34.447827+00:00",
+    "branch": "codex/unity-compatibility",
+    "head": "6f203ba550b49afadee008c7eb55373a838eed33",
+    "local_commits_since_reference": [],
+    "reference": "6f203ba550b49afadee008c7eb55373a838eed33",
+    "upstream_current": "35bd00220d5bb0d1239bd04e0e4a7ac1eb1f784f",
+    "upstream_head": "refs/heads/main",
+    "import_commit": "28368367d024ad7029069601c9675718a69830e1",
+    "local_tracked_changes": [
+      "core/include/snapshot.h",
+      "core/include/soc.h",
+      "core/src/snapshot.c",
+      "core/src/soc/mbx.c",
+      "core/tests/test_snapshot.c",
+      "tools/bootkernel.c",
+      "tools/fwimport.c",
+      "tools/hfsx_extract.py",
+      "core/CMakeLists.txt"
+    ],
+    "local_untracked_sources_imported": [
+      "core/include/mbx_vgp.h",
+      "core/src/soc/mbx_vgp.c",
+      "core/tests/test_mbx_vgp.c",
+      "tools/guest_clcd_capture.h",
+      "tools/guest_z_journal_capture.h",
+      "tests/guest-apps/test_ta_inspect.py",
+      "tests/guest-apps/layout.ld",
+      "tests/guest-apps/test_package.py",
+      "tests/guest-apps/gles1.c",
+      "tests/guest-apps/texture.c",
+      "tests/guest-apps/depth.c",
+      "tests/guest-apps/start.S",
+      "tests/guest-apps/uikit.c",
+      "tests/guest-apps/runtime.h",
+      "tests/guest-apps/zprobe.c",
+      "tests/guest-apps/blend.c",
+      "tests/guest-apps/test_builder.py",
+      "tools/guest_apps/package.py",
+      "tools/guest_apps/build.py",
+      "tools/guest_apps/inspect_hfs.py",
+      "tools/guest_apps/reference_depth.py",
+      "tools/guest_apps/reference_texture.py",
+      "tools/guest_apps/reference_triangle.py",
+      "tools/guest_apps/reference_blend.py",
+      "tools/guest_apps/ta_inspect.py"
+    ],
+    "upstream_changed_paths_since_reference": [
+      "app/Sources/EmulatorViewController.h",
+      "app/Sources/VMBootOptions.c",
+      "app/Sources/VMButtonQueue.c",
+      "app/Sources/VMButtonQueue.h",
+      "app/Sources/VMEngine.h",
+      "app/Sources/VMFirmwareBoot.c",
+      "app/Sources/VMFirmwareBoot.h",
+      "app/Sources/VMFirmwareFormats.h",
+      "app/Sources/VMFirmwareHLE.c",
+      "app/Sources/VMFirmwareZip.c",
+      "app/Sources/VMFrameTelemetry.c",
+      "app/Sources/VMFrameTelemetry.h",
+      "app/Sources/VMGuest.c",
+      "app/Sources/VMGuestInstall.c",
+      "app/Sources/VMGuestInstall.h",
+      "app/Sources/VMGuestInstallBuild.c",
+      "app/Sources/VMGuestInstallBuild.h",
+      "app/Sources/VMGuestInstallViewController.h",
+      "app/Sources/VMGuestPackageManifest.c",
+      "app/Sources/VMGuestPackageManifest.h",
+      "app/Sources/VMGuestRootfsPlan.c",
+      "app/Sources/VMGuestRootfsPlan.h",
+      "app/Sources/VMNetworkSession.c",
+      "app/Sources/VMNetworkSession.h",
+      "app/Sources/VMOptions.c",
+      "app/Sources/VMOptions.h",
+      "app/Sources/VMResumeCheckpoint.c",
+      "app/Sources/VMResumeCheckpoint.h",
+      "app/Sources/VMSettings.h",
+      "app/Sources/VMSettingsViewController.h",
+      "app/Sources/VMTouchQueue.c",
+      "app/Sources/VMTouchQueue.h",
+      "app/Tests/test_vmbootoptions.c",
+      "app/Tests/test_vmbuttonqueue.c",
+      "app/Tests/test_vmfirmwareboot.c",
+      "app/Tests/test_vmframetelemetry.c",
+      "app/Tests/test_vmguestinstall.c",
+      "app/Tests/test_vmguestinstallbuild.c",
+      "app/Tests/test_vmguestpackagemanifest.c",
+      "app/Tests/test_vmguestrootfsplan.c",
+      "app/Tests/test_vmnetworksession.c",
+      "app/Tests/test_vmoptions.c",
+      "app/Tests/test_vmresumecheckpoint.c",
+      "app/Tests/test_vmtouchqueue.c",
+      "app/project.yml",
+      "core/include/arm.h",
+      "core/include/bringup.h",
+      "core/include/md_bridge.h",
+      "core/include/md_raw_bridge.h",
+      "core/include/net.h",
+      "core/include/ppp.h",
+      "core/include/snapshot.h",
+      "core/include/soc.h",
+      "core/src/arm/a64_static_engine.c",
+      "core/src/arm/a64_static_engine.h",
+      "core/src/arm/arm_interp.c",
+      "core/src/boot/bringup.c",
+      "core/src/md_bridge.c",
+      "core/src/md_raw_bridge.c",
+      "core/src/mmu.c",
+      "core/src/net/net.c",
+      "core/src/net/ppp.c",
+      "core/src/net/tcp.c",
+      "core/src/snapshot.c",
+      "core/src/soc/gpioic.c",
+      "core/src/soc/machine.c",
+      "core/src/soc/mbx.c",
+      "core/src/soc/mtz2.c",
+      "core/src/soc/pcf50635.c",
+      "core/src/soc/pl080.c",
+      "core/src/soc/timer.c",
+      "core/src/soc/uart.c",
+      "core/src/soc/usbotg.c",
+      "core/tests/check_app_execution_policy.cmake",
+      "core/tests/check_app_stock_policy.cmake",
+      "core/tests/test_arm.c",
+      "core/tests/test_bringup.c",
+      "core/tests/test_buttons.c",
+      "core/tests/test_i2c.c",
+      "core/tests/test_ios3_kernel_patch.c",
+      "core/tests/test_mbx.c",
+      "core/tests/test_md_bridge.c",
+      "core/tests/test_md_raw_bridge.c",
+      "core/tests/test_mtz2.c",
+      "core/tests/test_net.c",
+      "core/tests/test_pl080.c",
+      "core/tests/test_ppp.c",
+      "core/tests/test_rootfs_provision.c",
+      "core/tests/test_rootfs_work.c",
+      "core/tests/test_snapshot.c",
+      "core/tests/test_soc.c",
+      "core/tests/test_uart4.c",
+      "docs/ARCHITECTURE.md",
+      "docs/multitouch.md",
+      "tools/a64_static.c",
+      "tools/a64_static.h",
+      "tools/bootkernel.c",
+      "tools/gen_a64_static.py",
+      "tools/ios3_bringup_gate.c",
+      "tools/ios3_kernel_patch.c",
+      "tools/ios3_kernel_patch.h",
+      "tools/jitbench.c",
+      "tools/rootfs_work.c",
+      "tools/rootfs_work.h",
+      "tools/runfw.c"
+    ],
+    "additional_upstream_sources_selected": [
+      "core/CMakeLists.txt",
+      "tools/ios-device-benchmark-entitlements.plist",
+      "app/Sources/AppDelegate.m",
+      "app/Sources/EmulatorViewController.m",
+      "app/Sources/VMButtonBar.m",
+      "app/Sources/VMConsoleViewController.m",
+      "app/Sources/VMDeviceAutomation.m",
+      "app/Sources/VMEngine.m",
+      "app/Sources/VMFirmwareImportViewController.m",
+      "app/Sources/VMFirmwareImporter.m",
+      "app/Sources/VMFramebufferView.m",
+      "app/Sources/VMGuestInstallViewController.m",
+      "app/Sources/VMGuestPackageDownloader.m",
+      "app/Sources/VMInstanceListViewController.m",
+      "app/Sources/VMInstanceStore.m",
+      "app/Sources/VMManualViewController.m",
+      "app/Sources/VMSettings.m",
+      "app/Sources/VMSettingsViewController.m",
+      "app/Sources/VMSnapshotListViewController.m",
+      "app/Sources/main.m"
+    ],
+    "portability_adaptation": "Diagnostic LLVM directory selected by IOSRETROMOB_LLVM_BIN or PATH, never a personal path."
+  },
+  "files": [
+    {
+      "path": ".gitattributes",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "372c94f81e4b492437cb1aeddf6c2b5636026258a4b5ad9762014fc18ab0a617",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "372c94f81e4b492437cb1aeddf6c2b5636026258a4b5ad9762014fc18ab0a617",
+      "identical_to_upstream_current": true
+    },
+    {
+      "path": "CMakeLists.txt",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "10f106c7759ce059b8aadbf89051ed097e115ef32a6e34cb226c58c8d08dbdc1",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "10f106c7759ce059b8aadbf89051ed097e115ef32a6e34cb226c58c8d08dbdc1",
+      "identical_to_upstream_current": true
+    },
+    {
+      "path": "LICENSE",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "f66cf6e71571d392f9776ad0b1fff36857d16385be6af97b570b5566b82e9a54",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "f66cf6e71571d392f9776ad0b1fff36857d16385be6af97b570b5566b82e9a54",
+      "identical_to_upstream_current": true
+    },
+    {
+      "path": "app/Info.plist",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "01f05718fb168c6017cd5af9d213d6139402bf8aeb7ab0bdba29b1256359330e",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "01f05718fb168c6017cd5af9d213d6139402bf8aeb7ab0bdba29b1256359330e",
+      "identical_to_upstream_current": true
+    },
+    {
+      "path": "app/S5LBox.entitlements",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "fafdc3e47ce69e299364b51a3fc756bbe2f13dd3db7aa88dab3efa0e74439994",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "fafdc3e47ce69e299364b51a3fc756bbe2f13dd3db7aa88dab3efa0e74439994",
+      "identical_to_upstream_current": true
+    },
+    {
+      "path": "app/Sources/AppDelegate.h",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "ae3b1079c4e3af95a8932cd2ac03753a1ea22141b0ab07b8895af4640951ca52",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "ae3b1079c4e3af95a8932cd2ac03753a1ea22141b0ab07b8895af4640951ca52",
+      "identical_to_upstream_current": true
+    },
+    {
+      "path": "app/Sources/EmulatorViewController.h",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "a9dbb47c3409b1ecd90235d20164c3d5a5033602667e79395fb3594fdfe53b7c",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "86310ccb6b314e9e6275c1e7b382d05503bc4fe350f45dcdc30e445636e3afea",
+      "identical_to_upstream_current": false
+    },
+    {
+      "path": "app/Sources/VMBootOptions.c",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "9fa99a89b0a901715b56927296369ca8d7bf626b999c2da35d61c133d77b69f4",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "03e50ddced528a67c01811e386829e72478167d57e025a15296a17e4cb512465",
+      "identical_to_upstream_current": false
+    },
+    {
+      "path": "app/Sources/VMBootOptions.h",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "99684e9b4888f220c85c8bb4b0f5923ae0f592856e71407ba63a44a7b4e5d5be",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "99684e9b4888f220c85c8bb4b0f5923ae0f592856e71407ba63a44a7b4e5d5be",
+      "identical_to_upstream_current": true
+    },
+    {
+      "path": "app/Sources/VMButtonBar.h",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "2b8bfbf2c8a06cb2b1ff108a676204f74aea442adea45900ddf4a7e2400c25c5",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "2b8bfbf2c8a06cb2b1ff108a676204f74aea442adea45900ddf4a7e2400c25c5",
+      "identical_to_upstream_current": true
+    },
+    {
+      "path": "app/Sources/VMButtonQueue.c",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "44cd4c72b8bd61c33c37f928e1b5008718395001f8ffcab7a4175d834ffa4018",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "836c9e0fa0aacbed0433fd5fb7c13e1c1b46bf87a466e6eaf2c3fb3046f23d98",
+      "identical_to_upstream_current": false
+    },
+    {
+      "path": "app/Sources/VMButtonQueue.h",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "8e151edccf3bc3ce5bf88659ac2f12326579e2b90168772274714f91e6cd1e7e",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "4d40f0f73d1c7e70a7ef61db6f9870772b25022ca2961a2bd3496d43cd4c466b",
+      "identical_to_upstream_current": false
+    },
+    {
+      "path": "app/Sources/VMConsoleViewController.h",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "6071c2c105e9eed5027992c1049bb7677448a723a4f27852ca99ee7a26982f92",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "6071c2c105e9eed5027992c1049bb7677448a723a4f27852ca99ee7a26982f92",
+      "identical_to_upstream_current": true
+    },
+    {
+      "path": "app/Sources/VMDebArchive.c",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "789e07ba6b26f2a3974edde642fe65249deacb14d14922f4415ce70f83a42a7c",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "789e07ba6b26f2a3974edde642fe65249deacb14d14922f4415ce70f83a42a7c",
+      "identical_to_upstream_current": true
+    },
+    {
+      "path": "app/Sources/VMDebArchive.h",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "bce5e844f20474e0b4b697824df60b766b471d12102c1b7bf5d143c26d429133",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "bce5e844f20474e0b4b697824df60b766b471d12102c1b7bf5d143c26d429133",
+      "identical_to_upstream_current": true
+    },
+    {
+      "path": "app/Sources/VMDeviceAutomation.h",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "086071f8deba44677b428d4a683537243dc0721fea994b92336b196d8971b8ca",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "086071f8deba44677b428d4a683537243dc0721fea994b92336b196d8971b8ca",
+      "identical_to_upstream_current": true
+    },
+    {
+      "path": "app/Sources/VMEngine.h",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "6a0536b725a1c6c09fce4a19b2d16e0e32b328ef2de5a8ed6a1f18b40f2efff9",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "ac5a80e838aa9e74d71b0eaaeacbeb287c9ae50a04cbc21b024428deb0429f3c",
+      "identical_to_upstream_current": false
+    },
+    {
+      "path": "app/Sources/VMFirmwareBoot.c",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "1e4fdb45d0e0086bafa5510b22b1d3ab73f5f2b24de62bdae2e948f16efa6571",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "68c64af5ce506af50707a365dcf1106590bc698c283f1bca02b43e4d6aab3788",
+      "identical_to_upstream_current": false
+    },
+    {
+      "path": "app/Sources/VMFirmwareBoot.h",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "edbb9c63653814b5164b1085f2db7373f9519887b504f9c81dee1cce96e54770",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "269f40880cde87795e6f8ec40cbd574e1d57ba834d82bf53130846623652af1f",
+      "identical_to_upstream_current": false
+    },
+    {
+      "path": "app/Sources/VMFirmwareDMG.c",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "067fe60a415e79aa82ed3bfc33ed163aab803914d81462f3f0ee2df1800fcffd",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "067fe60a415e79aa82ed3bfc33ed163aab803914d81462f3f0ee2df1800fcffd",
+      "identical_to_upstream_current": true
+    },
+    {
+      "path": "app/Sources/VMFirmwareDigest.c",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "ad36cf5a07132a4208d3dfa157600faf49f25edf5c1f826d3b337bc013113032",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "ad36cf5a07132a4208d3dfa157600faf49f25edf5c1f826d3b337bc013113032",
+      "identical_to_upstream_current": true
+    },
+    {
+      "path": "app/Sources/VMFirmwareFormats.h",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "40296b1bef295cf6d9f15d589c331111f8f556bf821d1209a0001e8489bc0357",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "cde46a61a1f0fc97d53715a494cc4ade2d6e488a8cd9cc0d8a6533ca1fbfeb26",
+      "identical_to_upstream_current": false
+    },
+    {
+      "path": "app/Sources/VMFirmwareHLE.c",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "02ba46212ec592415a967680d1ee001c415b6de8b1eaf16a3aef3d6aea2d156d",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "97ba2ed96c1b4a055748fc07932b477c76cba1297ffbd7cfb7b4f8454adcdad9",
+      "identical_to_upstream_current": false
+    },
+    {
+      "path": "app/Sources/VMFirmwareHLE.h",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "06d6b1aeecd596cf43fe311ed887b883f8631c70142d6396a892f18a3ae1f24f",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "06d6b1aeecd596cf43fe311ed887b883f8631c70142d6396a892f18a3ae1f24f",
+      "identical_to_upstream_current": true
+    },
+    {
+      "path": "app/Sources/VMFirmwareImport.c",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "f1fd2fd30620dd73cef4a34a683278cc12a2e05eee2516d829f4f93221a60960",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "f1fd2fd30620dd73cef4a34a683278cc12a2e05eee2516d829f4f93221a60960",
+      "identical_to_upstream_current": true
+    },
+    {
+      "path": "app/Sources/VMFirmwareImport.h",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "e46bf71a95fcb386561fadf4486976e1f4cd089a58615fb89929048e6bc2d195",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "e46bf71a95fcb386561fadf4486976e1f4cd089a58615fb89929048e6bc2d195",
+      "identical_to_upstream_current": true
+    },
+    {
+      "path": "app/Sources/VMFirmwareImportViewController.h",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "2751255668b0d60552dc6adaa6d61fe3723373cce9b618870cab891c3cd9366c",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "2751255668b0d60552dc6adaa6d61fe3723373cce9b618870cab891c3cd9366c",
+      "identical_to_upstream_current": true
+    },
+    {
+      "path": "app/Sources/VMFirmwareImporter.h",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "0f1e6a9e167ebe0947f4059eeb7f2f5478e3ca4ffbc32b8b4c3f5172419a43ab",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "0f1e6a9e167ebe0947f4059eeb7f2f5478e3ca4ffbc32b8b4c3f5172419a43ab",
+      "identical_to_upstream_current": true
+    },
+    {
+      "path": "app/Sources/VMFirmwareInflate.c",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "3527487dbadd9c3d994f58b5b779b619ba8b9e868e0715264ad2959a0b11f436",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "3527487dbadd9c3d994f58b5b779b619ba8b9e868e0715264ad2959a0b11f436",
+      "identical_to_upstream_current": true
+    },
+    {
+      "path": "app/Sources/VMFirmwarePlist.c",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "8c0d1becc7eb40cd638aec709e4ce9d2c15ebb8fe036526fa390ad41157d2e58",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "8c0d1becc7eb40cd638aec709e4ce9d2c15ebb8fe036526fa390ad41157d2e58",
+      "identical_to_upstream_current": true
+    },
+    {
+      "path": "app/Sources/VMFirmwareZip.c",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "e587921c0b5f7f1a6eba7538d6afd39cf9174ebbdfdfafea14316e72ee3471ea",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "a73cff1c9b48c7f5e05a5dbd2c0d8881d6a2d43c6d9bb591d036818ccff45b69",
+      "identical_to_upstream_current": false
+    },
+    {
+      "path": "app/Sources/VMFrameTelemetry.c",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "199e1a4a8a08bd46a66749b75cf978fb1c38dc24b0e39980ffea51b8ebebc8f5",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "8604f685e1454f5595cde9c576375fa15c517049bc556451ac54dda1a7cd9dec",
+      "identical_to_upstream_current": false
+    },
+    {
+      "path": "app/Sources/VMFrameTelemetry.h",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "1da465afe3b74959479b89cd1652da31d548f331901bb5047bc45fa0b3cd8c46",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "5bdd2a227edc75bdd70e530e888755d02a319e99bba7cf9449e81586e7853cb9",
+      "identical_to_upstream_current": false
+    },
+    {
+      "path": "app/Sources/VMFramebufferView.h",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "a9d78429407f84e67cf8cbc59ddc6211412bcaa71b06cb9bca02275ae7fa0c69",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "a9d78429407f84e67cf8cbc59ddc6211412bcaa71b06cb9bca02275ae7fa0c69",
+      "identical_to_upstream_current": true
+    },
+    {
+      "path": "app/Sources/VMGuest.c",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "6e4e0bf4463ceda50360d88845f37f9262b68a439281a8a832de4d2532e3a808",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "063d32ab08323753d8e779282542136de784593e0bc15e05958b8cbfe650e4a4",
+      "identical_to_upstream_current": false
+    },
+    {
+      "path": "app/Sources/VMGuest.h",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "de34cf65d91bbc4e96672001f89a4b8a0cad1ebc1b22efb296a496f91c5102c1",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "de34cf65d91bbc4e96672001f89a4b8a0cad1ebc1b22efb296a496f91c5102c1",
+      "identical_to_upstream_current": true
+    },
+    {
+      "path": "app/Sources/VMGuestInstall.c",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "f33614a7fff40103c4282b1be2e79d5d4b2824dbb205672c040c7de4c48e2e99",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "c571d9a41dfd0853c58b1aec13204cc49266c421b48288b246d526d9189d0de1",
+      "identical_to_upstream_current": false
+    },
+    {
+      "path": "app/Sources/VMGuestInstall.h",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "d445ed5d0e2be53c3847966373707754fff4b2a8547a2393b7362dc10d2f88a5",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "9d293d574e93c798834aac16b84029e4829b1f5d07c6af568872a73097df483b",
+      "identical_to_upstream_current": false
+    },
+    {
+      "path": "app/Sources/VMGuestInstallBuild.c",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "63c766d939eb3c85528b4d439ea6b0426d745f6f3a615acec431c49cdd002c5e",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "1b79834f2f07641bea3804f8c7e4a17e832694dadccd1df59f340982eb768b66",
+      "identical_to_upstream_current": false
+    },
+    {
+      "path": "app/Sources/VMGuestInstallBuild.h",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "1cf442f0bc6f1692f96df8e495b9b583bd12025cc2fa4a23d1d9fc6a5ac74a74",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "25e3bd189b577763fad1cbeb50d97f696f19ae4320271145b1fa3d68976f9dd9",
+      "identical_to_upstream_current": false
+    },
+    {
+      "path": "app/Sources/VMGuestInstallViewController.h",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "fa3e521a6f6945e929f99ae928008e0e8f8ce59e2c0774c13d4ed2845754ae56",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "5ba5abe27c9be78bfb7aef4051195b3db75d4271b884effab48a24fa9e03d0d6",
+      "identical_to_upstream_current": false
+    },
+    {
+      "path": "app/Sources/VMGuestPackageDownloader.h",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "35a26f04f083d89a389886b9b6f2e67c8315d27029cd4f14217b338a1d6c3164",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "35a26f04f083d89a389886b9b6f2e67c8315d27029cd4f14217b338a1d6c3164",
+      "identical_to_upstream_current": true
+    },
+    {
+      "path": "app/Sources/VMGuestPackageFile.c",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "5e4622a73511b0eb83df45060d5c51f8c9368c8de2cc6cff09f2e8a7a65d6c46",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "5e4622a73511b0eb83df45060d5c51f8c9368c8de2cc6cff09f2e8a7a65d6c46",
+      "identical_to_upstream_current": true
+    },
+    {
+      "path": "app/Sources/VMGuestPackageFile.h",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "00a9b9a2c7a92ed2f4b0554bd3a2e2dd5b33eea3a9bed6c9cf65f8b74a22aac6",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "00a9b9a2c7a92ed2f4b0554bd3a2e2dd5b33eea3a9bed6c9cf65f8b74a22aac6",
+      "identical_to_upstream_current": true
+    },
+    {
+      "path": "app/Sources/VMGuestPackageManifest.c",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "c4daf3da125c69c342de93f695c1dcf732b016e049abc89f9317ccb94e159e3b",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "0579b6fd3de36fd5e6072a5eccb7ca8cea99f3bce7bc04b21a8128bafd7342a6",
+      "identical_to_upstream_current": false
+    },
+    {
+      "path": "app/Sources/VMGuestPackageManifest.h",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "cb39a0653cfc90d1bc636739bf35b968408a65c7a5321217bea4fe73fcd1bb38",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "9a679cf0b1b2a67404ce9477a307f0e5983a18f9927eaead4e41c04853232050",
+      "identical_to_upstream_current": false
+    },
+    {
+      "path": "app/Sources/VMGuestRootfsPlan.c",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "953eeb9df668453f2cbd60f52367c6620bf4d89f3af7da6e6fba99757785de6b",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "9d068eca730a293d8b0e1665884fa3c91ba2d0c8a66ebc4ef17e96d319fee581",
+      "identical_to_upstream_current": false
+    },
+    {
+      "path": "app/Sources/VMGuestRootfsPlan.h",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "f217ed19e3f13b21a5c57a860657aca6212784ad25ba0ec2981913fdbad0e1a1",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "44d836e48f1fff1897883147849aee3b16c080938926b470d62b427d68df5375",
+      "identical_to_upstream_current": false
+    },
+    {
+      "path": "app/Sources/VMInstanceListViewController.h",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "819632c62f8e5fc1b3529a9b17d7a93d467775149fb2988ca9378330ea5ae047",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "819632c62f8e5fc1b3529a9b17d7a93d467775149fb2988ca9378330ea5ae047",
+      "identical_to_upstream_current": true
+    },
+    {
+      "path": "app/Sources/VMInstancePaths.c",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "d66c5a244d5d425551e11913f40a89a0877b67105a5ed1a560792c0a06b25f86",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "d66c5a244d5d425551e11913f40a89a0877b67105a5ed1a560792c0a06b25f86",
+      "identical_to_upstream_current": true
+    },
+    {
+      "path": "app/Sources/VMInstancePaths.h",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "f77f36138feaac55e4e0f74076a5a27c6508623d3eebf7824207963425e34687",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "f77f36138feaac55e4e0f74076a5a27c6508623d3eebf7824207963425e34687",
+      "identical_to_upstream_current": true
+    },
+    {
+      "path": "app/Sources/VMInstanceStore.h",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "8cde7c5a0eb6ef8157cde2167fbc211bb63646f7c09cee1d5905924f04afbf9e",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "8cde7c5a0eb6ef8157cde2167fbc211bb63646f7c09cee1d5905924f04afbf9e",
+      "identical_to_upstream_current": true
+    },
+    {
+      "path": "app/Sources/VMInstances.c",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "ba712f574f2bec7803134cd99a15b0653ee016f5260e93abf3d3b122b6baa530",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "ba712f574f2bec7803134cd99a15b0653ee016f5260e93abf3d3b122b6baa530",
+      "identical_to_upstream_current": true
+    },
+    {
+      "path": "app/Sources/VMInstances.h",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "85fa1581c91db8da4abb6c245b6673abd0601d2ed8d89eb1a0497e28ef477a04",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "85fa1581c91db8da4abb6c245b6673abd0601d2ed8d89eb1a0497e28ef477a04",
+      "identical_to_upstream_current": true
+    },
+    {
+      "path": "app/Sources/VMJitProbe.c",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "524d5b852864e10f67176bb2759418bde03338fb7b58b2396c632301e1de8dff",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "524d5b852864e10f67176bb2759418bde03338fb7b58b2396c632301e1de8dff",
+      "identical_to_upstream_current": true
+    },
+    {
+      "path": "app/Sources/VMJitProbe.h",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "c663a633b2957659fe3b8e2e0424ad0317964a9c89b8611604d6226f0d3f5f32",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "c663a633b2957659fe3b8e2e0424ad0317964a9c89b8611604d6226f0d3f5f32",
+      "identical_to_upstream_current": true
+    },
+    {
+      "path": "app/Sources/VMManualViewController.h",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "bedd104dd8183bafa00574864a4c75e328d0e1a3b095f2212fb409537a6201f0",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "bedd104dd8183bafa00574864a4c75e328d0e1a3b095f2212fb409537a6201f0",
+      "identical_to_upstream_current": true
+    },
+    {
+      "path": "app/Sources/VMNetworkSession.c",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "6636ec7247ca4cdc19b2f146902f585549797cb80484bb786f7224a1c6d9fb83",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "7690cd2c37abe29a8a9e01d2e7929ff30f7778397a35895402721304ce2b2ee1",
+      "identical_to_upstream_current": false
+    },
+    {
+      "path": "app/Sources/VMNetworkSession.h",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "3abf5c2eee19814590ee3b4189eda587618b4901f8979c44b6be396991bb3624",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "fe56b77fc737f5dedf99945810058ea29da84aa30890bc61f143815ff3b2660d",
+      "identical_to_upstream_current": false
+    },
+    {
+      "path": "app/Sources/VMOptions.c",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "d2a24cd47af6a63a51b3b9e22043cdb0eab42b255d01e8a7f8963dbd5a51403c",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "8f74a0a99cd0cfd07900b4a8f8847cbcaef1ebb8ba679d2440a18c9b257afeec",
+      "identical_to_upstream_current": false
+    },
+    {
+      "path": "app/Sources/VMOptions.h",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "5dcb8a2d845ea708607adefac741101d17c371a63cd375147ace13dddc526c4d",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "b787b0099238b81461492d7b4306ca1b0f0edc5cbd6c32d3c775a08ad0efe236",
+      "identical_to_upstream_current": false
+    },
+    {
+      "path": "app/Sources/VMResumeCheckpoint.c",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "0d3c5f725d7d7b31836a2dded59b1c8c454b1d91992092282eade9ed6d1a2938",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "207d9099e128cc681603da4bc5132b2c6aa131c8704b921d32c4137440a1eaed",
+      "identical_to_upstream_current": false
+    },
+    {
+      "path": "app/Sources/VMResumeCheckpoint.h",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "0185e5485b2a9745029a6f2a7a37a9cc301fe6197c0a2dbb07385834f210c097",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "9ae36df10b0c2e04b67a3508a2f1c3e3f5a7bd098dffd426207c853f6712200f",
+      "identical_to_upstream_current": false
+    },
+    {
+      "path": "app/Sources/VMSettings.h",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "35f82daeeed445d547f2bda3dce4128a35bedb5eeaafb1bc5238acf554ff3a4e",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "2a680b6e8cbec718e824a2e176365edf82dade2ea3def49e73409c73d599c0e4",
+      "identical_to_upstream_current": false
+    },
+    {
+      "path": "app/Sources/VMSettingsViewController.h",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "e633b4273b85f835af03113c1c35c981b057340b4d56402d800cd25a2b757880",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "90d367507eb6ed28de7121c440f1bf3646d6b7c2f0f92cf057633c88df38714b",
+      "identical_to_upstream_current": false
+    },
+    {
+      "path": "app/Sources/VMSnapshotCow.c",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "587b98579bdf0c6f52c2173dbaaabfdc262d64a4cacba300cbde458187677d41",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "587b98579bdf0c6f52c2173dbaaabfdc262d64a4cacba300cbde458187677d41",
+      "identical_to_upstream_current": true
+    },
+    {
+      "path": "app/Sources/VMSnapshotCow.h",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "b65c9ed47c58e0b35463352aa7a173cf7aab064bb8bf3e6265aab83a559a279f",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "b65c9ed47c58e0b35463352aa7a173cf7aab064bb8bf3e6265aab83a559a279f",
+      "identical_to_upstream_current": true
+    },
+    {
+      "path": "app/Sources/VMSnapshotListViewController.h",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "985d356618067d955bf137718493ad803ef42dcb8c81f0ec18a3245dbcdc48ee",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "985d356618067d955bf137718493ad803ef42dcb8c81f0ec18a3245dbcdc48ee",
+      "identical_to_upstream_current": true
+    },
+    {
+      "path": "app/Sources/VMSnapshotStore.c",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "d4e1a5f47c76a7c54fa6ad9d023455cb1c6e200569154fb8eb9fc4a3b095fa2d",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "d4e1a5f47c76a7c54fa6ad9d023455cb1c6e200569154fb8eb9fc4a3b095fa2d",
+      "identical_to_upstream_current": true
+    },
+    {
+      "path": "app/Sources/VMSnapshotStore.h",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "63b0a15c71bfb17c87bdf52df3ce71497babec8d285dbd2714950a07d6eb7d97",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "63b0a15c71bfb17c87bdf52df3ce71497babec8d285dbd2714950a07d6eb7d97",
+      "identical_to_upstream_current": true
+    },
+    {
+      "path": "app/Sources/VMTouchMap.c",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "760a28cbf7ceb01ed245848fbc75c11e849d18880f5bcf1fb5bb2f024fd4a68e",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "760a28cbf7ceb01ed245848fbc75c11e849d18880f5bcf1fb5bb2f024fd4a68e",
+      "identical_to_upstream_current": true
+    },
+    {
+      "path": "app/Sources/VMTouchMap.h",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "b48d34c99de1d1fd0894fcaa22d4c294f1e86fd470de226d9092a0487c5d9e89",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "b48d34c99de1d1fd0894fcaa22d4c294f1e86fd470de226d9092a0487c5d9e89",
+      "identical_to_upstream_current": true
+    },
+    {
+      "path": "app/Sources/VMTouchQueue.c",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "dc24f6b9e377340736501a9aa488fc0a7acd5d83d72b69476879fefd509ec514",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "d99c79a2ffa7ca09e8b5eeb0c281e2d5efc847d16a866e64c50c5456a5b68c03",
+      "identical_to_upstream_current": false
+    },
+    {
+      "path": "app/Sources/VMTouchQueue.h",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "7d895571bf39868c30d61ba79bf2478925e3f90189a51457b7ef4b94312e340d",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "f3c744816d015c500783a967a3833dae70d6199846ab504d37eed562d362947c",
+      "identical_to_upstream_current": false
+    },
+    {
+      "path": "app/Tests/VMFirmwareFixtures.h",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "75c89c575f58a4c09583e0bf871c4254853bac07e5d420ac68818aa2ecccc3a1",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "75c89c575f58a4c09583e0bf871c4254853bac07e5d420ac68818aa2ecccc3a1",
+      "identical_to_upstream_current": true
+    },
+    {
+      "path": "app/Tests/VMFirmwareTest.h",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "43dbd3f0a821cd1ab343119a69712855be089de617c60c0db46ea287f38b8965",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "43dbd3f0a821cd1ab343119a69712855be089de617c60c0db46ea287f38b8965",
+      "identical_to_upstream_current": true
+    },
+    {
+      "path": "app/Tests/test_vmbootoptions.c",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "5c0fe95ffd291f0bc466c4f1e916ef932d698f42f9a72abf3166a1cef01c607d",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "f1eb2ad56100808af065ea76fede861d2a72b87c72dd0283c3d1f4d8b661e6f4",
+      "identical_to_upstream_current": false
+    },
+    {
+      "path": "app/Tests/test_vmbuttonqueue.c",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "bade6ee17a1b063a99ce78f0ac439d5d3f135f1b61479cb0b30ac0b658f61e71",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "7b4b2fd1158453eadd56fc04bb8a281b2f2c00ac2fbe2ce7c31b22c51cb92359",
+      "identical_to_upstream_current": false
+    },
+    {
+      "path": "app/Tests/test_vmdebarchive.c",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "ec4c63371eb0df336f0a3c67ca2407aeec54e7dad771009d1646b751a2c5e6f8",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "ec4c63371eb0df336f0a3c67ca2407aeec54e7dad771009d1646b751a2c5e6f8",
+      "identical_to_upstream_current": true
+    },
+    {
+      "path": "app/Tests/test_vmfirmwareboot.c",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "13d288fb160b4bc7ec0ecbf9942caa05b65d630e51d84f36ea6ad6a2496b0ea9",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "dbe0f9909751efaceb0b9f095ed0df580bdc0f525764656c923346d5ca6bc8da",
+      "identical_to_upstream_current": false
+    },
+    {
+      "path": "app/Tests/test_vmfirmwareimport.c",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "703a67b239fad0f1c9630bdca6d51e94c0a3a73c413e6496c24be10022b992e6",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "703a67b239fad0f1c9630bdca6d51e94c0a3a73c413e6496c24be10022b992e6",
+      "identical_to_upstream_current": true
+    },
+    {
+      "path": "app/Tests/test_vmframetelemetry.c",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "ed85178b779691093da984e103416f1961aab76b597b00539f4a025c87e85db9",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "382341af3f237f0b12e7e3024e22762e0eb3fe0104f24219b9d96cf5ededbcf2",
+      "identical_to_upstream_current": false
+    },
+    {
+      "path": "app/Tests/test_vmfw_digest.c",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "7502c47b4e8f22f5dc8ddfc2a441a2c49e190d7d0be4cdf14ad016f1546ef27c",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "7502c47b4e8f22f5dc8ddfc2a441a2c49e190d7d0be4cdf14ad016f1546ef27c",
+      "identical_to_upstream_current": true
+    },
+    {
+      "path": "app/Tests/test_vmfw_dmg.c",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "4269d481462fdbb421648cdb18372f8343366c799a892a97b78aa6bc5da075be",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "4269d481462fdbb421648cdb18372f8343366c799a892a97b78aa6bc5da075be",
+      "identical_to_upstream_current": true
+    },
+    {
+      "path": "app/Tests/test_vmfw_import.c",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "ded40ff121e17207688035ade6df60e7de335087ee63130914e44b0a782cfba8",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "ded40ff121e17207688035ade6df60e7de335087ee63130914e44b0a782cfba8",
+      "identical_to_upstream_current": true
+    },
+    {
+      "path": "app/Tests/test_vmfw_inflate.c",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "40ef3a0b2935599b036f137167cffa36a0beec565e855033bc783eeb40122bd8",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "40ef3a0b2935599b036f137167cffa36a0beec565e855033bc783eeb40122bd8",
+      "identical_to_upstream_current": true
+    },
+    {
+      "path": "app/Tests/test_vmfw_plist.c",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "637480697a4043f3fab90bcfd674b7a040127448e49b1477d4b4574d3dce5e3e",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "637480697a4043f3fab90bcfd674b7a040127448e49b1477d4b4574d3dce5e3e",
+      "identical_to_upstream_current": true
+    },
+    {
+      "path": "app/Tests/test_vmfw_zip.c",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "93b115cf03f630b2a3f6391eed6334c7bece4e552723edd6c47c3c1fb55e54fa",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "93b115cf03f630b2a3f6391eed6334c7bece4e552723edd6c47c3c1fb55e54fa",
+      "identical_to_upstream_current": true
+    },
+    {
+      "path": "app/Tests/test_vmguest.c",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "c6ec7d722bc3054b639a88acc10aa75669da232a2adcb80d8585444bc65001f2",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "c6ec7d722bc3054b639a88acc10aa75669da232a2adcb80d8585444bc65001f2",
+      "identical_to_upstream_current": true
+    },
+    {
+      "path": "app/Tests/test_vmguestinstall.c",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "0556513fcf502df9640205cfc63da07825616e8d8ab052a932641596193ad52e",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "259583c2ccaf06faab3751364396a00407bf7d086f529f6ee8e7fa9657d1b600",
+      "identical_to_upstream_current": false
+    },
+    {
+      "path": "app/Tests/test_vmguestinstallbuild.c",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "07f1fc8c10dd8f5f57f5cada5c5934281b0c6954ba4b987b6b6b42bc941813b4",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "84f62e38c486c10d3a3b60293243475e044fc9d40adb81d4504790e172f8d9e4",
+      "identical_to_upstream_current": false
+    },
+    {
+      "path": "app/Tests/test_vmguestpackagemanifest.c",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "4bec4558affec2a3a19b81195a6a667c7879aed50da9b6f7a523b66538d314c6",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "75814fa737a30620c2519717f4c68f7815ee6c806c9d08bf8f3a4c18c8d96bf7",
+      "identical_to_upstream_current": false
+    },
+    {
+      "path": "app/Tests/test_vmguestrootfsplan.c",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "9d366bd0813783b8e8f2e5c192396caa0f9734db4911bc34c3c28f3ea5f6b625",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "b80567be99a1e49926a4ce898830dc951c7ce2782da88f108dc03bbfaf50706c",
+      "identical_to_upstream_current": false
+    },
+    {
+      "path": "app/Tests/test_vminstancepaths.c",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "cedfba305608acd815f1af8cb089dc476810306b4c603e0747f070f0a11bc986",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "cedfba305608acd815f1af8cb089dc476810306b4c603e0747f070f0a11bc986",
+      "identical_to_upstream_current": true
+    },
+    {
+      "path": "app/Tests/test_vminstances.c",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "e88da3091e917364af2557eec430e57f07e444176bb5d42dfc903692592f8a1b",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "e88da3091e917364af2557eec430e57f07e444176bb5d42dfc903692592f8a1b",
+      "identical_to_upstream_current": true
+    },
+    {
+      "path": "app/Tests/test_vmjitprobe.c",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "d702046e1c00d25bdaf9516a61815359a1c82bc8af9b9e428ace1e94a591615f",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "d702046e1c00d25bdaf9516a61815359a1c82bc8af9b9e428ace1e94a591615f",
+      "identical_to_upstream_current": true
+    },
+    {
+      "path": "app/Tests/test_vmnetworksession.c",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "c75f447b7e70d5ecf308619b671e6f46d98349a871c58be6794e069312f8283c",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "06b7a390f66dfd096d170bf3fe34ea45469ccf359810dd80b23989d753648447",
+      "identical_to_upstream_current": false
+    },
+    {
+      "path": "app/Tests/test_vmoptions.c",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "8504607f0019bb076072899c7fcfd788e355039d9c98cfae31f662affe48f0dd",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "88318de2d3d5a5d2c5c716bbd428ffea29e4eda0433c1ed7d7e767858779c9cb",
+      "identical_to_upstream_current": false
+    },
+    {
+      "path": "app/Tests/test_vmresumecheckpoint.c",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "fb4ceddce0216775f84f5ddcff359477ceffac5cbba8f84cfe541908901f19ce",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "1c4461dab3746f063f11e623cc82347862f80571fd892cb1d0cc705713d9e522",
+      "identical_to_upstream_current": false
+    },
+    {
+      "path": "app/Tests/test_vmtouchmap.c",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "fa97f3220869df1676f335e0c16323386a55a954b1d43bb0c72d695a676161c1",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "fa97f3220869df1676f335e0c16323386a55a954b1d43bb0c72d695a676161c1",
+      "identical_to_upstream_current": true
+    },
+    {
+      "path": "app/Tests/test_vmtouchqueue.c",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "da41bdbe8989ff6b32b67b282f43a0ba434b781f7c305d679a6234e5eaa689fc",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "d721dfd79ff350e06faa73e84eba90d75ed55f35cf8d130274fce4e5383acfad",
+      "identical_to_upstream_current": false
+    },
+    {
+      "path": "app/project.yml",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "dac8f31d21329ce767ea5ab227e536a907a1b6ea948d2fa9daaa39224fdba558",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "92c9ce319828f6892b7cac4a6869599a7993ddd720040254d97d9f37fc807fa2",
+      "identical_to_upstream_current": false
+    },
+    {
+      "path": "core/include/a64_emit.h",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "2c651974d570ce5a4e5cade17e1c91a6d0bbfc31fab213f9b042e4421883c8de",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "2c651974d570ce5a4e5cade17e1c91a6d0bbfc31fab213f9b042e4421883c8de",
+      "identical_to_upstream_current": true
+    },
+    {
+      "path": "core/include/aes.h",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "1c84b8582bb3e0c8e64fd769f8cb7cf2babf2e847cd9cd8ebcfdf6ae3f1a0272",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "1c84b8582bb3e0c8e64fd769f8cb7cf2babf2e847cd9cd8ebcfdf6ae3f1a0272",
+      "identical_to_upstream_current": true
+    },
+    {
+      "path": "core/include/arm.h",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "4ff01dc4656756557f7409571136039a6b581f69a9198e07b32acd93db265c00",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "4887222960a4a3fe8990d364d818e2cc721d47c50a3c119e9239fca6e87a5cbc",
+      "identical_to_upstream_current": false
+    },
+    {
+      "path": "core/include/bringup.h",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "f095e38ca49b05c42cce79e99df849cd0288405807a42f4cc10ee481fe385a11",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "899a4b917e031e99b7d6954e3745534aef5687ab4a3b047fc441643b64dbc73c",
+      "identical_to_upstream_current": false
+    },
+    {
+      "path": "core/include/devicetree.h",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "4c6d690e97cec7d3ebfd5eab983e9c68ec8c0147f56106b43cd0153de46079bd",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "4c6d690e97cec7d3ebfd5eab983e9c68ec8c0147f56106b43cd0153de46079bd",
+      "identical_to_upstream_current": true
+    },
+    {
+      "path": "core/include/img3.h",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "036fd85cfe9700f4211e689ab3f29d4bceb958b3f19057e7a497bc7ce79da324",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "036fd85cfe9700f4211e689ab3f29d4bceb958b3f19057e7a497bc7ce79da324",
+      "identical_to_upstream_current": true
+    },
+    {
+      "path": "core/include/jit.h",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "eec5562add64f12e50ce2dcef6be164cee966e4d9b915aa7f5b809dc2d6716a2",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "eec5562add64f12e50ce2dcef6be164cee966e4d9b915aa7f5b809dc2d6716a2",
+      "identical_to_upstream_current": true
+    },
+    {
+      "path": "core/include/ksyms.h",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "e4df8477638d98481c924b76c504472c1d7028798707c423e91fd13fd019d798",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "e4df8477638d98481c924b76c504472c1d7028798707c423e91fd13fd019d798",
+      "identical_to_upstream_current": true
+    },
+    {
+      "path": "core/include/loader.h",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "2faa8ce1331d7caea764f7ef5ea7a24803972935a86adcdba8fcd46396e242f4",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "2faa8ce1331d7caea764f7ef5ea7a24803972935a86adcdba8fcd46396e242f4",
+      "identical_to_upstream_current": true
+    },
+    {
+      "path": "core/include/lzss.h",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "c4ed44f367978b011de475acb567a33f98e309df371867d4aa94c85c539bdc02",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "c4ed44f367978b011de475acb567a33f98e309df371867d4aa94c85c539bdc02",
+      "identical_to_upstream_current": true
+    },
+    {
+      "path": "core/include/macho.h",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "9d1b7ef6995808b5e424bc40c9ec98685feff0d8115bd84adbbfa83b0bd84425",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "9d1b7ef6995808b5e424bc40c9ec98685feff0d8115bd84adbbfa83b0bd84425",
+      "identical_to_upstream_current": true
+    },
+    {
+      "path": "core/include/md_bridge.h",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "6bee5105e254130f9c0794bf4cbe9eb8b98fbacbe4f40e1d0564ddd34dda4f78",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "536ee676f69b2a279ddd643505a7abe371e2f4c379ddf9de87a082336cceefb2",
+      "identical_to_upstream_current": false
+    },
+    {
+      "path": "core/include/md_raw_bridge.h",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "db4986526683f0c68219db8659f0b55c5f579d54397b7ae4a729b936adfae197",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "6d72a1252c5370d93582376a2e2a7ce8b02327c432f247f14633074d6927fc04",
+      "identical_to_upstream_current": false
+    },
+    {
+      "path": "core/include/md_snapshot.h",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "728875daa2893e9e3cd78bafec7a27095b8cab9ef8f641992295e1502f8d07e9",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "728875daa2893e9e3cd78bafec7a27095b8cab9ef8f641992295e1502f8d07e9",
+      "identical_to_upstream_current": true
+    },
+    {
+      "path": "core/include/nand.h",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "76c4905e1826774cb065c3cb4bb2dc66639f80a9593d29a7c8b62262b12d4252",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "76c4905e1826774cb065c3cb4bb2dc66639f80a9593d29a7c8b62262b12d4252",
+      "identical_to_upstream_current": true
+    },
+    {
+      "path": "core/include/net.h",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "616f7febfd670cbd495fd390e69505e1ba9e025342b885210b28028e4c719a68",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "0ea79e1401a12e5c2989aa0691b4048856979007644010d7caeb0204dacdf19f",
+      "identical_to_upstream_current": false
+    },
+    {
+      "path": "core/include/ppp.h",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "54c908fe60a054cd920c584cb120ac4481c283b21c07b16e1217eaf2aa00f901",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "ee25c943a7556cf444a1d8b7877dd086c847c717324a8bd79a2094c197be0c14",
+      "identical_to_upstream_current": false
+    },
+    {
+      "path": "core/include/snapshot.h",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "8b1942a5e33723bc14cb1069472462daa07a2273ddc69a0474bc00b49f417db9",
+      "different_from_reference": true,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "352cc4f78748c358881dc2d85264d8d101c989cae835b318683acc6c5d84bb07",
+      "identical_to_upstream_current": false
+    },
+    {
+      "path": "core/include/soc.h",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "a44f8c42f9ce54539bb3001167b321d2664acf0627cf109c83f9f1200579b082",
+      "different_from_reference": true,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "d636968490789641d4e5d1f25f0a81ce7eb8eb3119dfbcc5921fd34f0246805b",
+      "identical_to_upstream_current": false
+    },
+    {
+      "path": "core/include/storage.h",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "eda97ee8fa994c414e912d44273a23f7e72c5bbdbf313f3d8799ec7d4f76b31b",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "eda97ee8fa994c414e912d44273a23f7e72c5bbdbf313f3d8799ec7d4f76b31b",
+      "identical_to_upstream_current": true
+    },
+    {
+      "path": "core/include/vfp.h",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "b71dc6d5843693fa74f2ccfb17cf3c98bd89ad0acc373e2d69c86d4727810f39",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "b71dc6d5843693fa74f2ccfb17cf3c98bd89ad0acc373e2d69c86d4727810f39",
+      "identical_to_upstream_current": true
+    },
+    {
+      "path": "core/include/vm_block.h",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "2119e1df37b96fa35244e46bd62982e6d26fd047bcb0b612dee449b64b4e4e89",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "2119e1df37b96fa35244e46bd62982e6d26fd047bcb0b612dee449b64b4e4e89",
+      "identical_to_upstream_current": true
+    },
+    {
+      "path": "core/include/vm_source.h",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "bc3b353ceeb9cc8b594634c74f09014b6bcf2bcc4418e4bbe1cc4eadaa882de7",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "bc3b353ceeb9cc8b594634c74f09014b6bcf2bcc4418e4bbe1cc4eadaa882de7",
+      "identical_to_upstream_current": true
+    },
+    {
+      "path": "core/src/arm/a64_static_engine.c",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "4e3b17cbc1209356239d2b85859673d9cef1ab270faa8160898becbd68474feb",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "e222637ccf628fa9d4531b5f928e5c33c7b5278986685e9bb9e7284866124d78",
+      "identical_to_upstream_current": false
+    },
+    {
+      "path": "core/src/arm/a64_static_engine.h",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "5445dc901305116ad2da333e0e50a114026dd9e1c65a3c9c2b4867e9712c2fc7",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "479a77e940495a47e6163fefe432aed5db71a3d0df8c9d7d3fb0aeffe8376d41",
+      "identical_to_upstream_current": false
+    },
+    {
+      "path": "core/src/arm/arm_interp.c",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "4a01e089d236754988243bce6fcec1d522307d0d854bbc377b34271c80b40e18",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "c70afc88b84553754e2424caa0b7c22b861caf134c85f3657ecc2cefb8f18f78",
+      "identical_to_upstream_current": false
+    },
+    {
+      "path": "core/src/arm/vfp.c",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "c47a7a107ba8d423b6ff81b9c40a841e6522ee035ffe0e18e8f704763b270229",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "c47a7a107ba8d423b6ff81b9c40a841e6522ee035ffe0e18e8f704763b270229",
+      "identical_to_upstream_current": true
+    },
+    {
+      "path": "core/src/boot/bringup.c",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "ee23e37cad2e2756278d9ff5c4369ef239e45e384f2a5d05f6789baa7e037b4e",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "9c3fdf5bdcb9a0b7529344b9d310008c257a71841c5917c0dff9fb342c7cf172",
+      "identical_to_upstream_current": false
+    },
+    {
+      "path": "core/src/firmware/aes.c",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "63381c0a9c74f11b9d5e1ce1db7ec3a33349e3c01a3c135ee29345ae0d71bd53",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "63381c0a9c74f11b9d5e1ce1db7ec3a33349e3c01a3c135ee29345ae0d71bd53",
+      "identical_to_upstream_current": true
+    },
+    {
+      "path": "core/src/firmware/devicetree.c",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "132044d5871a90c0d495520694a213fa2674b2bf79917e08e196d7d8a88bf904",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "132044d5871a90c0d495520694a213fa2674b2bf79917e08e196d7d8a88bf904",
+      "identical_to_upstream_current": true
+    },
+    {
+      "path": "core/src/firmware/img3.c",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "fadd8a14a3e11aca6127c6aa2a4a6ad072ee9555a213b5b6b530d3e4652703fa",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "fadd8a14a3e11aca6127c6aa2a4a6ad072ee9555a213b5b6b530d3e4652703fa",
+      "identical_to_upstream_current": true
+    },
+    {
+      "path": "core/src/firmware/ksyms.c",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "dbc233632f0dbe87337cca21970f8bdb3ab969c24d2c29ea2de40ca4e0724ce6",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "dbc233632f0dbe87337cca21970f8bdb3ab969c24d2c29ea2de40ca4e0724ce6",
+      "identical_to_upstream_current": true
+    },
+    {
+      "path": "core/src/firmware/loader.c",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "078dc84f370fbfc9fe8f7f5679054f1f1eae01d3c4e5bd81c0b9d83db7bd48c0",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "078dc84f370fbfc9fe8f7f5679054f1f1eae01d3c4e5bd81c0b9d83db7bd48c0",
+      "identical_to_upstream_current": true
+    },
+    {
+      "path": "core/src/firmware/lzss.c",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "99eb7be3ca7288e55e2e97284e20a1963abe99195dbb4a746828c98224a1b3e3",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "99eb7be3ca7288e55e2e97284e20a1963abe99195dbb4a746828c98224a1b3e3",
+      "identical_to_upstream_current": true
+    },
+    {
+      "path": "core/src/firmware/macho.c",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "6185a3a453f4cc76a1f84adf80fabeae65c6cf898391b8c01011b45d989e0ef4",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "6185a3a453f4cc76a1f84adf80fabeae65c6cf898391b8c01011b45d989e0ef4",
+      "identical_to_upstream_current": true
+    },
+    {
+      "path": "core/src/jit/a64_emit.c",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "937a39de1d9aa1947bb1dc5ea22212491e6b69fdc2d4d90f534a29bfccb3b3c9",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "937a39de1d9aa1947bb1dc5ea22212491e6b69fdc2d4d90f534a29bfccb3b3c9",
+      "identical_to_upstream_current": true
+    },
+    {
+      "path": "core/src/jit/jit_mem.c",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "5bfafba2cb2258af55e0bfb3740d8a647414fc1578d6766e25c2e61bf604ebcd",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "5bfafba2cb2258af55e0bfb3740d8a647414fc1578d6766e25c2e61bf604ebcd",
+      "identical_to_upstream_current": true
+    },
+    {
+      "path": "core/src/jit/jit_translate.c",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "5592a05b5638c758d3c0c345c661d998a3e48cfb7fa1e4fa345bebd4e372ac96",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "5592a05b5638c758d3c0c345c661d998a3e48cfb7fa1e4fa345bebd4e372ac96",
+      "identical_to_upstream_current": true
+    },
+    {
+      "path": "core/src/md_bridge.c",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "35e1b2b04c42b8a76b8ddd07a271549dc4a63f1460fb2d02228719272065f26d",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "ae068838e4be6198d4706f254638fb6a9495f925238a1e75096ec7b9b0c860d2",
+      "identical_to_upstream_current": false
+    },
+    {
+      "path": "core/src/md_raw_bridge.c",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "69cfd2816b0c0393bea9fb2c608d6cb99bbbf41f7fadd9ff5434d8cfb722109b",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "f4e4eeb9c05421283bee95a19a2e91ce59d5d87fa358b2d9e3d137c44bfb03c9",
+      "identical_to_upstream_current": false
+    },
+    {
+      "path": "core/src/mmu.c",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "0e8b7ce93f128048f5a6567c8062906866cd7fba495f6b51e053760420062681",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "919de6c1667622c91b31a1c23b9935059fc0786e5050d618bf3271ffec9d1350",
+      "identical_to_upstream_current": false
+    },
+    {
+      "path": "core/src/net/net.c",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "57ccd1d31cb6ff851dd28c40965dcbcaf26bebc2f3636088b8193aa5f179a72f",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "f96bf0a2f9fcc6fcd557b795f55c9177861d2c87905a7a5a84c9a7d953186a56",
+      "identical_to_upstream_current": false
+    },
+    {
+      "path": "core/src/net/net_priv.h",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "0aaaf32ef0d6687ebe35fc04fd84f278061e6010590e46069d2d10ceb89248ac",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "0aaaf32ef0d6687ebe35fc04fd84f278061e6010590e46069d2d10ceb89248ac",
+      "identical_to_upstream_current": true
+    },
+    {
+      "path": "core/src/net/ppp.c",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "a67cddf856d99ab9a8e299840684ac893a35725c81ee44877e7e6f035e3feeac",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "6f868e978981acbbdba2b9811e1c25f63812c97ea7ed7aeaef511e049a23596c",
+      "identical_to_upstream_current": false
+    },
+    {
+      "path": "core/src/net/tcp.c",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "650a0b500402a88bcd17dd61a3897a5ef6ac115f622bc2c798256c6655ae66ce",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "5212bc1bde5f7c45c06da2b4e22f08cd28da0385f1aa5567a12bba02d8fa1d6b",
+      "identical_to_upstream_current": false
+    },
+    {
+      "path": "core/src/snapshot.c",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "9a16ea080f999c93939fec1a1b6de61b5867b7fe7c1725380df8271c28fcda1e",
+      "different_from_reference": true,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "6ee7ef6cb90ab87cda05307f2d330d406c51d62157484e7ce29a73d435128017",
+      "identical_to_upstream_current": false
+    },
+    {
+      "path": "core/src/soc/buttons.c",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "28deabc3cd194d4459ae7a131689fd9341d19de89763d211c88638c114159999",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "28deabc3cd194d4459ae7a131689fd9341d19de89763d211c88638c114159999",
+      "identical_to_upstream_current": true
+    },
+    {
+      "path": "core/src/soc/clcd.c",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "7b2f57f1ec9537260a6f3cc2d166c6950b01d9ab88fd31dcbc14f56c56084954",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "7b2f57f1ec9537260a6f3cc2d166c6950b01d9ab88fd31dcbc14f56c56084954",
+      "identical_to_upstream_current": true
+    },
+    {
+      "path": "core/src/soc/gpioic.c",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "42d1c80a4111d2697fa02f4c07fa8eab4ceee7b824581f7de144086231809ca3",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "18dc485eceb781b8aa5b3b74322db4696b268184eec93b218662a6f8c5e53ab6",
+      "identical_to_upstream_current": false
+    },
+    {
+      "path": "core/src/soc/i2c.c",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "6f76964a3187ba4059e0e29c045aa78d8191dbb1eac7874f525eac0a7d4299a7",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "6f76964a3187ba4059e0e29c045aa78d8191dbb1eac7874f525eac0a7d4299a7",
+      "identical_to_upstream_current": true
+    },
+    {
+      "path": "core/src/soc/i2s.c",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "3f05921994f2c650e16ff6821ca9e5e9768d2f5abd17908f3bef0a9eaf845389",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "3f05921994f2c650e16ff6821ca9e5e9768d2f5abd17908f3bef0a9eaf845389",
+      "identical_to_upstream_current": true
+    },
+    {
+      "path": "core/src/soc/machine.c",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "f4a2f645a494c268c9e85c4a068b263c4b0329d73b50e197fc1c212d1db370e3",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "c017b1647f51a4277393accece5fa124a9b7e38c3bb27ad03b0e07901b015141",
+      "identical_to_upstream_current": false
+    },
+    {
+      "path": "core/src/soc/mbx.c",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "c086256e9acdc3e7785b3d7a219bc6e48d4d4fac1258ff2d4f5e390843d75974",
+      "different_from_reference": true,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "a7d0baa184d921c35f6d37ac815d2bf89dcae5ccc87c9adbbea52fadb7eb5d41",
+      "identical_to_upstream_current": false
+    },
+    {
+      "path": "core/src/soc/mtz2.c",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "e685c59c6a9d6927aa0f41fad780facab94d01ffe5aa826f1c08ce849edea37d",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "abc5ebc6117f529a6815ef6bf6f3815c664eab6d7091538b0bf67f96d5e051b7",
+      "identical_to_upstream_current": false
+    },
+    {
+      "path": "core/src/soc/nand.c",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "56e776a8193dc00db883437855fd657eaa0aa667b0ebfe143928b1640fff44ec",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "56e776a8193dc00db883437855fd657eaa0aa667b0ebfe143928b1640fff44ec",
+      "identical_to_upstream_current": true
+    },
+    {
+      "path": "core/src/soc/nor.c",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "0fd0d8c6dd730f72084c5943c6e19ed2eead62e7a7161b6893625b8cbefa1b42",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "0fd0d8c6dd730f72084c5943c6e19ed2eead62e7a7161b6893625b8cbefa1b42",
+      "identical_to_upstream_current": true
+    },
+    {
+      "path": "core/src/soc/pcf50635.c",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "fe3b6e7a0bc9236790d4c638d37fc699d101bb662f69137c5d838d62daa3f72b",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "d9cc613fd0fc587ddc371ac9388b3f885d5c7102d421bb04c0fb3950841ec7ea",
+      "identical_to_upstream_current": false
+    },
+    {
+      "path": "core/src/soc/pl080.c",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "8ac3c8d2493554958bd1ea4e85fd05f56e7903aed067f68995dcbf969b957c9f",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "01b7e75a5aa356ea924bc74874adb2340104ccbc64d5dc6e8a7139d1ea2acb04",
+      "identical_to_upstream_current": false
+    },
+    {
+      "path": "core/src/soc/power.c",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "3d1057d4ad7f02a91c2759bead483ff64fb720fb4c8ae832da2504696d45b10e",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "3d1057d4ad7f02a91c2759bead483ff64fb720fb4c8ae832da2504696d45b10e",
+      "identical_to_upstream_current": true
+    },
+    {
+      "path": "core/src/soc/spi.c",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "d23dede2a1b9214b830dcbb66ecd3b13b3e367de78a029c7b928d953cec2a2ee",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "d23dede2a1b9214b830dcbb66ecd3b13b3e367de78a029c7b928d953cec2a2ee",
+      "identical_to_upstream_current": true
+    },
+    {
+      "path": "core/src/soc/storage.c",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "9831391e766c8804429f3153ae12b8524c63924817a8f8389e02cb0112279296",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "9831391e766c8804429f3153ae12b8524c63924817a8f8389e02cb0112279296",
+      "identical_to_upstream_current": true
+    },
+    {
+      "path": "core/src/soc/timer.c",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "919faff82ba79ba6049ec9cbffb814753800e1f5677ee5eb0010acacf6a6fec2",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "c6fe599c65c7533f2ce3aa542f67e97242f1ad3afb2f075a29ecda74b94fbb20",
+      "identical_to_upstream_current": false
+    },
+    {
+      "path": "core/src/soc/tvout.c",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "e83bb3917af21e4da8a2d754f3075d9640e1a7235de18cf66929e3f020d3a2ac",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "e83bb3917af21e4da8a2d754f3075d9640e1a7235de18cf66929e3f020d3a2ac",
+      "identical_to_upstream_current": true
+    },
+    {
+      "path": "core/src/soc/uart.c",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "c62e89bc07d51e20a893fbe87974f32c55c27b77de1c11b52720acbfba1a5454",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "e70c9f651f45475e44219d18a04e62cdd0ed27bbd6ae70e6a7cc5cd4efc5b97f",
+      "identical_to_upstream_current": false
+    },
+    {
+      "path": "core/src/soc/usbotg.c",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "6b28cef400d8a67748bf9b6251c6c6b3646c63fea8cc38a91a9beb873363763d",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "769acf3a3c11880b4cb8e33fb37467d2745613f8d1cbebe07da07bbbcf6fa3f4",
+      "identical_to_upstream_current": false
+    },
+    {
+      "path": "core/src/soc/vic.c",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "33c31babd6c0ba1ee43f1387f1ea1597f6d0f735f4e60351683e904a33dd60c2",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "33c31babd6c0ba1ee43f1387f1ea1597f6d0f735f4e60351683e904a33dd60c2",
+      "identical_to_upstream_current": true
+    },
+    {
+      "path": "core/src/soc/wm8991.c",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "5732c17dbd935f03f96c69ee261b6d1ff7369bed23aa445ee0dd117a48a8f95f",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "5732c17dbd935f03f96c69ee261b6d1ff7369bed23aa445ee0dd117a48a8f95f",
+      "identical_to_upstream_current": true
+    },
+    {
+      "path": "core/src/vm_block.c",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "20af606fba001cac6f6c8a3c21dd0aca08b71b16f583796c6f44df4e88c49208",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "20af606fba001cac6f6c8a3c21dd0aca08b71b16f583796c6f44df4e88c49208",
+      "identical_to_upstream_current": true
+    },
+    {
+      "path": "core/src/vm_source.c",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "de2cf8cb07cfc8ae2a9d57472cd9755499f8fd21e238ddcdf7bfb19e14479440",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "de2cf8cb07cfc8ae2a9d57472cd9755499f8fd21e238ddcdf7bfb19e14479440",
+      "identical_to_upstream_current": true
+    },
+    {
+      "path": "core/tests/check_app_execution_policy.cmake",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "406cb6f71eb7985c0391a16620b1f79e651baa6c1cdf043db5b3dc859678a130",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "3870e6b9dd67a6154fad29345053fd13a91ffa90c2c5696294b36c0ddbefebd3",
+      "identical_to_upstream_current": false
+    },
+    {
+      "path": "core/tests/check_app_stock_policy.cmake",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "9fe44a60464bb06b568d323aec652a5865ffcfbbf0a1a5b9b72930f71198142b",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "f58c09bf1a604e644b437ca80d6c3cb3cd1da722e87a423bf7cc9ccfeaf8c3e9",
+      "identical_to_upstream_current": false
+    },
+    {
+      "path": "core/tests/check_bootkernel_external_md.cmake",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "cf71fbc6fde4aa907470d3550d36115ad9b571fa9d1adfba433508879c16e7f1",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "cf71fbc6fde4aa907470d3550d36115ad9b571fa9d1adfba433508879c16e7f1",
+      "identical_to_upstream_current": true
+    },
+    {
+      "path": "core/tests/check_bootkernel_options.cmake",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "c97caacb4df30a7a34d0ec20c0e992f53f33682765ca2138a07303bfda2d8192",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "c97caacb4df30a7a34d0ec20c0e992f53f33682765ca2138a07303bfda2d8192",
+      "identical_to_upstream_current": true
+    },
+    {
+      "path": "core/tests/check_info_plist.cmake",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "0813e6ee665f2574d3165a49c0a3c39ba48ff6f8eca734581da46ab404ee1800",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "0813e6ee665f2574d3165a49c0a3c39ba48ff6f8eca734581da46ab404ee1800",
+      "identical_to_upstream_current": true
+    },
+    {
+      "path": "core/tests/check_option_mirror.cmake",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "38c929e191b1d74e3e34dc857b77ee8c667df6962b8a4e87c57d8dd14b37ad9c",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "38c929e191b1d74e3e34dc857b77ee8c667df6962b8a4e87c57d8dd14b37ad9c",
+      "identical_to_upstream_current": true
+    },
+    {
+      "path": "core/tests/test_a64_emit.c",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "956f7e157ed53c4a5610528249195e244ac105172005d90d84325a6f8769f0e8",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "956f7e157ed53c4a5610528249195e244ac105172005d90d84325a6f8769f0e8",
+      "identical_to_upstream_current": true
+    },
+    {
+      "path": "core/tests/test_aes.c",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "e9795f6081fc0e31644e14e88fd1a40f76c09f557c3003b4ac144abb9397898f",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "e9795f6081fc0e31644e14e88fd1a40f76c09f557c3003b4ac144abb9397898f",
+      "identical_to_upstream_current": true
+    },
+    {
+      "path": "core/tests/test_arm.c",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "0d4aaa59946b1e6f7e6daf66a1baa726f748c1b7b7886fa448d1ecdb03df88e6",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "dfd7119dcebfdea3efba962529f5dc89325baabda59faaf9a738d3164c8dc3fc",
+      "identical_to_upstream_current": false
+    },
+    {
+      "path": "core/tests/test_audio_capture.c",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "1b27ef2694159f6ea2aa20e0ffaa56731062aa0bcf2a872e12937036618b739a",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "1b27ef2694159f6ea2aa20e0ffaa56731062aa0bcf2a872e12937036618b739a",
+      "identical_to_upstream_current": true
+    },
+    {
+      "path": "core/tests/test_bringup.c",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "6258c3a94e24ae0f2625056b106d4b80d4cfa7a19e3498dea4326181901c8c61",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "bbd7a8ad63b0c17f1257f15dfd693125941d85360636ad1a55f7258923719abb",
+      "identical_to_upstream_current": false
+    },
+    {
+      "path": "core/tests/test_buttons.c",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "4a4f31841018bec973a0dc079454721c7ccac8a8e2a3ecaf6bf45306a924001f",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "2477ad0964c9d70cb88c3d7698359a1f7845a7bde0a47edb1a698b2f0d5a5fc5",
+      "identical_to_upstream_current": false
+    },
+    {
+      "path": "core/tests/test_devicetree.c",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "b66e54926d2dcfb1ab63f5d90287c5185761932ee9e4de665f0e38ce04070efc",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "b66e54926d2dcfb1ab63f5d90287c5185761932ee9e4de665f0e38ce04070efc",
+      "identical_to_upstream_current": true
+    },
+    {
+      "path": "core/tests/test_file_block.c",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "1f74246b915e68244ecd31ca962ae8a050a4f57bd06cfb0c864037034dfb1876",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "1f74246b915e68244ecd31ca962ae8a050a4f57bd06cfb0c864037034dfb1876",
+      "identical_to_upstream_current": true
+    },
+    {
+      "path": "core/tests/test_gpioic.c",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "c4ec0a0f36ef78b2f58b9f5164a67b1719d9b0830b168be58e01c3479742c7d9",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "c4ec0a0f36ef78b2f58b9f5164a67b1719d9b0830b168be58e01c3479742c7d9",
+      "identical_to_upstream_current": true
+    },
+    {
+      "path": "core/tests/test_guest_patch.c",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "efdde462162fbe4cb585fe9921527861a575f49cdbc4e2c4f7f0289ab45a76d2",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "efdde462162fbe4cb585fe9921527861a575f49cdbc4e2c4f7f0289ab45a76d2",
+      "identical_to_upstream_current": true
+    },
+    {
+      "path": "core/tests/test_i2c.c",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "afe3ca2322f41cf5d10ab010bd788a8664d6899cd7a3c7cc74bfe93d0f03862b",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "c0fb3ab948841f64a96a263f600cfc162720b6f09e8493e3118ae7f66137fb2a",
+      "identical_to_upstream_current": false
+    },
+    {
+      "path": "core/tests/test_img3.c",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "93781580c83b7f1b741106e401413f6fb3fd9145cf2ece2782e7988d717adf3f",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "93781580c83b7f1b741106e401413f6fb3fd9145cf2ece2782e7988d717adf3f",
+      "identical_to_upstream_current": true
+    },
+    {
+      "path": "core/tests/test_ios3_hle.c",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "5ba365559c62f6b01a98dc406b3b17503190e8eaea306b70abc0009e293ea99e",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "5ba365559c62f6b01a98dc406b3b17503190e8eaea306b70abc0009e293ea99e",
+      "identical_to_upstream_current": true
+    },
+    {
+      "path": "core/tests/test_ios3_kernel_patch.c",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "913a3daedd988b92e678852143f743aa0548e2423683c688c9720f71cccaf8db",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "4891ca32a1ff46eb7fdfb380aff45f7738cd3dc8a20b0dd42266726a5090357d",
+      "identical_to_upstream_current": false
+    },
+    {
+      "path": "core/tests/test_jit.c",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "3da335c7f6f6c22fff2844d499bdc9dd3085a0c8899831dfbf36df5c6a9083c1",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "3da335c7f6f6c22fff2844d499bdc9dd3085a0c8899831dfbf36df5c6a9083c1",
+      "identical_to_upstream_current": true
+    },
+    {
+      "path": "core/tests/test_jit_exec.c",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "8a85438c9020681a2c58af63f833b78ac267171bd54d44080d9ae78aba3b3919",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "8a85438c9020681a2c58af63f833b78ac267171bd54d44080d9ae78aba3b3919",
+      "identical_to_upstream_current": true
+    },
+    {
+      "path": "core/tests/test_jit_mem.c",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "715e4e9179f6531659c90ff8ee21e033263e9a801698704d01b2f74f48ac8f88",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "715e4e9179f6531659c90ff8ee21e033263e9a801698704d01b2f74f48ac8f88",
+      "identical_to_upstream_current": true
+    },
+    {
+      "path": "core/tests/test_ksyms.c",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "69ae37bb657733c8c2a33df9bfabbe5443adc741aa29b9a6862aebc049c7ace9",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "69ae37bb657733c8c2a33df9bfabbe5443adc741aa29b9a6862aebc049c7ace9",
+      "identical_to_upstream_current": true
+    },
+    {
+      "path": "core/tests/test_loader.c",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "4e01c460d4768afd618288a3727b836e6af6bd26129af01c5feb17a823e23075",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "4e01c460d4768afd618288a3727b836e6af6bd26129af01c5feb17a823e23075",
+      "identical_to_upstream_current": true
+    },
+    {
+      "path": "core/tests/test_lzss.c",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "bfa2298e537dbec27ff0f4c31c0da06d17bb51c3950c7af12a9da1d337def2c1",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "bfa2298e537dbec27ff0f4c31c0da06d17bb51c3950c7af12a9da1d337def2c1",
+      "identical_to_upstream_current": true
+    },
+    {
+      "path": "core/tests/test_macho.c",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "b9887117624a34cbeeefc00fff53eebfdfb1945ba1c81db6632310f97988c3c8",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "b9887117624a34cbeeefc00fff53eebfdfb1945ba1c81db6632310f97988c3c8",
+      "identical_to_upstream_current": true
+    },
+    {
+      "path": "core/tests/test_mbx.c",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "99ac8953d17d39ef17a3c7174b0586d15201b61eebe78adc99d420265a30386a",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "ac83f8bcb8a520d21a285ec0d08ba0ed1855aedc699ad386511a507439f7f27a",
+      "identical_to_upstream_current": false
+    },
+    {
+      "path": "core/tests/test_md_bridge.c",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "80552dc89eafb134e8b2d184a86195b49b8af7e124877c8e32e33e5b4fb8a078",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "d273a8fc26c83889c617f30fdc2e7f28bba94d42c902600797510faf709e810d",
+      "identical_to_upstream_current": false
+    },
+    {
+      "path": "core/tests/test_md_raw_bridge.c",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "740a3dc272c25f3daf47da31c57134fe2fe4d8f623c5826ab25208dafcb12c58",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "5092e508b99326a2be081f731e2bd924ca7d7d556e6354e81adb49b18f0fe83e",
+      "identical_to_upstream_current": false
+    },
+    {
+      "path": "core/tests/test_mt_drag.c",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "c0eb389b71f946b34dccf360adddeee423d5bffc6b86f3e30c82bf01f4f8ec4e",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "c0eb389b71f946b34dccf360adddeee423d5bffc6b86f3e30c82bf01f4f8ec4e",
+      "identical_to_upstream_current": true
+    },
+    {
+      "path": "core/tests/test_mtz2.c",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "eab656b4acba9d15f3848ef4f36a5f61ccd444bd64569ce17053b9871703aa25",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "857e4a69046bea4de3f078632aa65d0b8bf84fcf86f5547288b46d24e4b5dfb4",
+      "identical_to_upstream_current": false
+    },
+    {
+      "path": "core/tests/test_nand.c",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "ea2c1c2a329b3c2e756ad66d92468db490b3f07d32482df266da077dadeadda4",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "ea2c1c2a329b3c2e756ad66d92468db490b3f07d32482df266da077dadeadda4",
+      "identical_to_upstream_current": true
+    },
+    {
+      "path": "core/tests/test_net.c",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "94771979bf7c2d9eb5b9a84ab9f49596ed64038a6deed0ecb8dde86f013dd330",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "67e9ecbfe63a0b5536799f2a48c2d1316f0b7fcd2fa275c7828cd7d404c1b629",
+      "identical_to_upstream_current": false
+    },
+    {
+      "path": "core/tests/test_net_host.c",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "e746439da897c71979af6b92a73ac836434e04da3a469e6f4a3863d2477b52dd",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "e746439da897c71979af6b92a73ac836434e04da3a469e6f4a3863d2477b52dd",
+      "identical_to_upstream_current": true
+    },
+    {
+      "path": "core/tests/test_payload_tar.c",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "9f0a9583210e8be17587acdf75f259ae279424bb85a225e865adcd2b09ba0c58",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "9f0a9583210e8be17587acdf75f259ae279424bb85a225e865adcd2b09ba0c58",
+      "identical_to_upstream_current": true
+    },
+    {
+      "path": "core/tests/test_pl080.c",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "00e1c7cb04f8c6b31d31b903056ebe8b5dfc21812eb43dffb4defbad4d7a3df9",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "da39fa7130f9dccb7cd22598802d6371eb70a49b3b92e43c8e4242ef27d0928e",
+      "identical_to_upstream_current": false
+    },
+    {
+      "path": "core/tests/test_ppp.c",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "ce6b469fd1f1b0a50d7f31706ceeae83b15a21fd04f8ddebaefeb45974286f20",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "bfff0510c8141bbe0f3d4ecb15261e51e250648c3ecd65fe6378c8247105883d",
+      "identical_to_upstream_current": false
+    },
+    {
+      "path": "core/tests/test_rootfs_provision.c",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "bc55649219c9f59e27306fd03a85fcd21d899497fe99d0c486d7dd39d3b6808e",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "cc26e05dab02e4f7e240a68227671647cf6b80e182272bcb5b4bbf7c9c68ddec",
+      "identical_to_upstream_current": false
+    },
+    {
+      "path": "core/tests/test_rootfs_work.c",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "d18eee651026f4a0570f636c47bf1331eb44fd9a0d4e94a32b780ae3786bb077",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "d177204caf47f8a2fc22c2a8dff2c071d1b457d81e6e48214e859b3dfbff0140",
+      "identical_to_upstream_current": false
+    },
+    {
+      "path": "core/tests/test_snapshot.c",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "3c90e6ef98b8b27e2f3db9be2e58cf7d623d4d665a96dc3fd2eb7a3aa60b5de3",
+      "different_from_reference": true,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "d7a28d2dfc6cd83871648372f61323325b8d2ffb84dac86425d2ce60c57e3769",
+      "identical_to_upstream_current": false
+    },
+    {
+      "path": "core/tests/test_snapshot_cow.c",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "d1e3db3af4398b9675139de9fbc5cdc88448cb554fea81759df32868661f9bdc",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "d1e3db3af4398b9675139de9fbc5cdc88448cb554fea81759df32868661f9bdc",
+      "identical_to_upstream_current": true
+    },
+    {
+      "path": "core/tests/test_snapshot_store.c",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "72915780bb9b6509b75d4c5e9a230f364f158a5c8d52e5c787d295cc8e011a86",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "72915780bb9b6509b75d4c5e9a230f364f158a5c8d52e5c787d295cc8e011a86",
+      "identical_to_upstream_current": true
+    },
+    {
+      "path": "core/tests/test_soc.c",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "be10e8007c854b2c17d5362a62c152b00df18e4842a982be078f9deeba0ae467",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "5782b10aa12c2df7396a387e822e786ef080c6ff8ae3d9d2206492eb1a307f5f",
+      "identical_to_upstream_current": false
+    },
+    {
+      "path": "core/tests/test_spi.c",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "181725ce806494473dedb63f7bd076d33e1418a1beb6be8963af955012f66690",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "181725ce806494473dedb63f7bd076d33e1418a1beb6be8963af955012f66690",
+      "identical_to_upstream_current": true
+    },
+    {
+      "path": "core/tests/test_uart4.c",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "f61dca74da0ddc3505f66b5c649b10e7864fbee131e09d8e4b99a9e08549cc3d",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "45cbef81900c0c79ed59e4268b736484a928e4fc8c52f7874a4b7e604f437729",
+      "identical_to_upstream_current": false
+    },
+    {
+      "path": "core/tests/test_vfp.c",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "61feb78f65c8c6c08dffc9d534621e5bef3cc1046955b86bd535851f79d9f11b",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "61feb78f65c8c6c08dffc9d534621e5bef3cc1046955b86bd535851f79d9f11b",
+      "identical_to_upstream_current": true
+    },
+    {
+      "path": "core/tests/test_vm_block.c",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "9736ec7cf46c4c66ea0e502692953b738cdadfd20b964d5f95330661ac1e943e",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "9736ec7cf46c4c66ea0e502692953b738cdadfd20b964d5f95330661ac1e943e",
+      "identical_to_upstream_current": true
+    },
+    {
+      "path": "core/tests/test_vm_source.c",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "9985ae414e4066e596f08f1e0324982db883ec56ecb28ccd2873c9e19db1b29e",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "9985ae414e4066e596f08f1e0324982db883ec56ecb28ccd2873c9e19db1b29e",
+      "identical_to_upstream_current": true
+    },
+    {
+      "path": "core/tests/test_vmfirmwarehle.c",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "4bbce019a5f3c68064f68c8a312d6769a9607688762bdd103190696c3f279d09",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "4bbce019a5f3c68064f68c8a312d6769a9607688762bdd103190696c3f279d09",
+      "identical_to_upstream_current": true
+    },
+    {
+      "path": "core/tests/test_wm8991.c",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "ffd5aa64445efe0515a9ec745b4221fcc6ece484f13db34cb30b7f3ca70d5e55",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "ffd5aa64445efe0515a9ec745b4221fcc6ece484f13db34cb30b7f3ca70d5e55",
+      "identical_to_upstream_current": true
+    },
+    {
+      "path": "docs/ARCHITECTURE.md",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "b24b6449f28fc2368f6fabcf7dad071413a89ffb3d6d2085d4a841bc41875e76",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "e3049a386969de917834ebfcceda89214f651cc60bcd57a49d319ea977335661",
+      "identical_to_upstream_current": false
+    },
+    {
+      "path": "docs/BOOT_CHAIN.md",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "084bde126d5a0e72710fbd4373e55b7ccb83ff27b2b6142fbd96f11de51a172f",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "084bde126d5a0e72710fbd4373e55b7ccb83ff27b2b6142fbd96f11de51a172f",
+      "identical_to_upstream_current": true
+    },
+    {
+      "path": "docs/activation.md",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "235e5ab37ec7b4f87db10ea069d72ba6141f3cf5d8c9f0fdaa980457ea5e6cd0",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "235e5ab37ec7b4f87db10ea069d72ba6141f3cf5d8c9f0fdaa980457ea5e6cd0",
+      "identical_to_upstream_current": true
+    },
+    {
+      "path": "docs/audio.md",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "1888e76e7a4c354c052d8f8598cc1ae7cef331599e02635846a49ee16c8c5d17",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "1888e76e7a4c354c052d8f8598cc1ae7cef331599e02635846a49ee16c8c5d17",
+      "identical_to_upstream_current": true
+    },
+    {
+      "path": "docs/dynarec.md",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "689c9afdce548527f8b2041fd881c331d091f704412cef34f3b1a59adb81891b",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "689c9afdce548527f8b2041fd881c331d091f704412cef34f3b1a59adb81891b",
+      "identical_to_upstream_current": true
+    },
+    {
+      "path": "docs/multitouch.md",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "3cb5c3b0fa41d44a1def35f726b75f3efcb6b7f95a31a1a2cc89887af9d81ad3",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "bdd21eb23040dbb21d68c1d734840ef11cbaba054f56711c579066ae82c9ecaa",
+      "identical_to_upstream_current": false
+    },
+    {
+      "path": "docs/networking.md",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "c70a32457e84e62c641ac0a8cdaec2d03af1086d2b729fa7aed09d37eec5d852",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "c70a32457e84e62c641ac0a8cdaec2d03af1086d2b729fa7aed09d37eec5d852",
+      "identical_to_upstream_current": true
+    },
+    {
+      "path": "tools/a64_static.c",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "93e8d4c42ba1c7427238df76d992b7a7cb74189f8d7ec14c5a53c2de92757a94",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "6a6cb4bed903a7476f4fd35736ec48d249252f9f7f4b706456a0aad52b28151d",
+      "identical_to_upstream_current": false
+    },
+    {
+      "path": "tools/a64_static.h",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "30e6132e17c85ac15d9c6b315ba18e7551a2f4c11552f44f41727b788e93b87f",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "3eabbe86ca3dec8e3324880cac8cb6132a13733a8987b032ea1bcc1616bd7dad",
+      "identical_to_upstream_current": false
+    },
+    {
+      "path": "tools/audio_capture.c",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "74fcf4fefd2d7598b9b5123ec6f07ae3628c78fa26c98e89b765eb58e23705a4",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "74fcf4fefd2d7598b9b5123ec6f07ae3628c78fa26c98e89b765eb58e23705a4",
+      "identical_to_upstream_current": true
+    },
+    {
+      "path": "tools/audio_capture.h",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "31bd8874b4d96a895ca5cc92786f3907d0b3812420e96c61d06d837dc6690f6a",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "31bd8874b4d96a895ca5cc92786f3907d0b3812420e96c61d06d837dc6690f6a",
+      "identical_to_upstream_current": true
+    },
+    {
+      "path": "tools/bootkernel.c",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "d00f9cae842a6c5160b36f54e3d14d2fe69e0bfa96736bec7b0b5bfc56399c76",
+      "different_from_reference": true,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "17ee75e7bea54b2a1c991c1b62da84ff26556fc7f005cb2a81ac8c9aec64eb86",
+      "identical_to_upstream_current": false
+    },
+    {
+      "path": "tools/dscmap.py",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "31752288d9b7b3984dfcdb9ec361bdf6d2b444ec8082528acd6f911967c39a3c",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "31752288d9b7b3984dfcdb9ec361bdf6d2b444ec8082528acd6f911967c39a3c",
+      "identical_to_upstream_current": true
+    },
+    {
+      "path": "tools/dscsym.py",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "e8aaa5fdab1bfea82d15baf8ca91ad0adce3f8d969dc8df40c9971aea59bd3fc",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "e8aaa5fdab1bfea82d15baf8ca91ad0adce3f8d969dc8df40c9971aea59bd3fc",
+      "identical_to_upstream_current": true
+    },
+    {
+      "path": "tools/dscxref.py",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "52baffe486be45a3f72f1d516f21fa0e34cd7f428927aebce0548e9eb45663f9",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "52baffe486be45a3f72f1d516f21fa0e34cd7f428927aebce0548e9eb45663f9",
+      "identical_to_upstream_current": true
+    },
+    {
+      "path": "tools/dt_inplace.h",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "18e37a3475475a619230de604f407e6b6110df23d306900577f3f5310e20b802",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "18e37a3475475a619230de604f407e6b6110df23d306900577f3f5310e20b802",
+      "identical_to_upstream_current": true
+    },
+    {
+      "path": "tools/dtwalk.py",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "964f0ac2733daed3368df6209d546ee309223db640135c3de4e2449f5bed8f53",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "964f0ac2733daed3368df6209d546ee309223db640135c3de4e2449f5bed8f53",
+      "identical_to_upstream_current": true
+    },
+    {
+      "path": "tools/file_block.c",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "b9f30e8aeb419ad9f182ac4cc5b41d31444fb1573e215c9816d41ef82fd063a7",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "b9f30e8aeb419ad9f182ac4cc5b41d31444fb1573e215c9816d41ef82fd063a7",
+      "identical_to_upstream_current": true
+    },
+    {
+      "path": "tools/file_block.h",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "b25320bbc8d4c3daef3df2230b9681c2e62944e9f383e7c0d2103e576dbe9adc",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "b25320bbc8d4c3daef3df2230b9681c2e62944e9f383e7c0d2103e576dbe9adc",
+      "identical_to_upstream_current": true
+    },
+    {
+      "path": "tools/findcalls.py",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "f1671316761d80e5b57c192556920bf4d2e38f2eeb00807be3e930ee079cae40",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "f1671316761d80e5b57c192556920bf4d2e38f2eeb00807be3e930ee079cae40",
+      "identical_to_upstream_current": true
+    },
+    {
+      "path": "tools/findstr.py",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "daeec0f04700d351f177159eb91693457846d4d3b19a8045067a6baed86b84d8",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "daeec0f04700d351f177159eb91693457846d4d3b19a8045067a6baed86b84d8",
+      "identical_to_upstream_current": true
+    },
+    {
+      "path": "tools/fwimport.c",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "1bdc998bc859726b9ef8e85d27a508bf13142eb90c7c59935f0d959470d56eb5",
+      "different_from_reference": true,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "afb451b91cf0451780e0f2ee3d80f1b9062d086c2f6d2804b780aadf520facf8",
+      "identical_to_upstream_current": false
+    },
+    {
+      "path": "tools/gen_a64_static.py",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "665353bf2bb7b45a41a76258dce37b918b35b10154b7a6adaa28ea18d72ceaa4",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "566352a2cfe619204686121f915a366c86d2197e660d77e93626c6a8f96f3335",
+      "identical_to_upstream_current": false
+    },
+    {
+      "path": "tools/guest_patch.c",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "d1edc09b4b3ae13da8998397a9df29fd816fa5b571345c92cb85e4093031a507",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "d1edc09b4b3ae13da8998397a9df29fd816fa5b571345c92cb85e4093031a507",
+      "identical_to_upstream_current": true
+    },
+    {
+      "path": "tools/guest_patch.h",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "0a52ae3665b55d88e5a0848361fb29c826efb8be99e6962a87b88148ef8287cc",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "0a52ae3665b55d88e5a0848361fb29c826efb8be99e6962a87b88148ef8287cc",
+      "identical_to_upstream_current": true
+    },
+    {
+      "path": "tools/hfsx_extract.py",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "0243315465d442aa7a9b96bb1e0132bee26c03011af42069b9ec3302cb805a3c",
+      "different_from_reference": true,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "bb854cfd1022fe706ac9f621178c97dd5f2429ff9f0ea6f4019cd067a8d853dc",
+      "identical_to_upstream_current": false
+    },
+    {
+      "path": "tools/img3dump.c",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "ba57a973628160321c9b7abfdde833ad4140e68dee7ad8959d793120df935764",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "ba57a973628160321c9b7abfdde833ad4140e68dee7ad8959d793120df935764",
+      "identical_to_upstream_current": true
+    },
+    {
+      "path": "tools/insnbench.c",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "4c9b74fa909a98554d481202690193a74b8a4d849cbe63c5bdcbf82ae96204f7",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "4c9b74fa909a98554d481202690193a74b8a4d849cbe63c5bdcbf82ae96204f7",
+      "identical_to_upstream_current": true
+    },
+    {
+      "path": "tools/ios3_bringup_gate.c",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "6ab3b969d8dabe9225f7d35343c483bfe00c00b38af51ab444a870f5f3dba706",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "841447a5be61cc9687d251afb0fd0c223816c234fbbd42fc35d1493db69bccb1",
+      "identical_to_upstream_current": false
+    },
+    {
+      "path": "tools/ios3_bringup_gate.h",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "0429e2e63efc4b961864e8e1f33da46156b73db802e16cb7b07107928f86278f",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "0429e2e63efc4b961864e8e1f33da46156b73db802e16cb7b07107928f86278f",
+      "identical_to_upstream_current": true
+    },
+    {
+      "path": "tools/ios3_hle.c",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "9cfe792a2221f1cd8be9fe10af74ee1fcb7d3881e93d2c9ea3fbdcf4d70c105e",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "9cfe792a2221f1cd8be9fe10af74ee1fcb7d3881e93d2c9ea3fbdcf4d70c105e",
+      "identical_to_upstream_current": true
+    },
+    {
+      "path": "tools/ios3_hle.h",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "0b7325cef58b652dd0acf44107d9d7f93723213b7c96cd2466fa140b5d44a390",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "0b7325cef58b652dd0acf44107d9d7f93723213b7c96cd2466fa140b5d44a390",
+      "identical_to_upstream_current": true
+    },
+    {
+      "path": "tools/ios3_kernel_patch.c",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "3aad0ddbb882c161b2aa40faf428e317d49238069b162be51e34cd589cb68aa1",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "bce33d5392c170663f8798bc603050da9834a814d98c06f2ffe2bc157478885d",
+      "identical_to_upstream_current": false
+    },
+    {
+      "path": "tools/ios3_kernel_patch.h",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "78f4dceb126cd7c715838b90e80466c5348e130549e895e166374a6398a1a09f",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "0fdf4155040d0c64361c83a522a7418e7fa07aed54a3951b816670214ef0216c",
+      "identical_to_upstream_current": false
+    },
+    {
+      "path": "tools/ipsw_explore.py",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "6970777839bb63b2fec38135ecfb641c67c56576262dfb8a821f267cb0bc3a44",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "6970777839bb63b2fec38135ecfb641c67c56576262dfb8a821f267cb0bc3a44",
+      "identical_to_upstream_current": true
+    },
+    {
+      "path": "tools/jitbench.c",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "4fb72019a4df200d0c8cb921e843ab77ba1f3aeae61bfe377159009b37b2b8de",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "5cbcabfd652bb273e9a6dcf891d9ae0aeecb0f70ee4ecd65adcd95bc782f33fd",
+      "identical_to_upstream_current": false
+    },
+    {
+      "path": "tools/kcensus.py",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "2abef4f339075a5ef1b75cbac5203db64f19762b9cd493f0c9109ecf16c7668e",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "2abef4f339075a5ef1b75cbac5203db64f19762b9cd493f0c9109ecf16c7668e",
+      "identical_to_upstream_current": true
+    },
+    {
+      "path": "tools/kdisasm.py",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "a8aec84d60bf1284c7c66fb7ad243a8c2029a547422c5bd02022efd94931319a",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "a8aec84d60bf1284c7c66fb7ad243a8c2029a547422c5bd02022efd94931319a",
+      "identical_to_upstream_current": true
+    },
+    {
+      "path": "tools/macho64syms.py",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "5018c2826f5a19e7c6664c0b8545a51f68791414b110bd3ade495d3aee00563b",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "5018c2826f5a19e7c6664c0b8545a51f68791414b110bd3ade495d3aee00563b",
+      "identical_to_upstream_current": true
+    },
+    {
+      "path": "tools/machoinfo.c",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "e937cabc9de4a6f96e321bc6aa07b5bf97bc532fbbd87b0c7cb2dd05540b5b18",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "e937cabc9de4a6f96e321bc6aa07b5bf97bc532fbbd87b0c7cb2dd05540b5b18",
+      "identical_to_upstream_current": true
+    },
+    {
+      "path": "tools/machosyms.py",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "4c8202577d9fac4c048022d705df07777eec6fb87ea78a3e50467f30dfadd795",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "4c8202577d9fac4c048022d705df07777eec6fb87ea78a3e50467f30dfadd795",
+      "identical_to_upstream_current": true
+    },
+    {
+      "path": "tools/mt_drag.c",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "180cb9dd3378a176ddd48a3c1f317bfcc5c7953af041db579ceb1646200febbe",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "180cb9dd3378a176ddd48a3c1f317bfcc5c7953af041db579ceb1646200febbe",
+      "identical_to_upstream_current": true
+    },
+    {
+      "path": "tools/mt_drag.h",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "f19956f7a6c134874648294b4cff7ec9f2983b43c305b7c061c22af83c9a499b",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "f19956f7a6c134874648294b4cff7ec9f2983b43c305b7c061c22af83c9a499b",
+      "identical_to_upstream_current": true
+    },
+    {
+      "path": "tools/net_host.c",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "89fb674bf5bbaa400e7b37efd17e408ced6b777fc19625539c3e5915ed1efbce",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "89fb674bf5bbaa400e7b37efd17e408ced6b777fc19625539c3e5915ed1efbce",
+      "identical_to_upstream_current": true
+    },
+    {
+      "path": "tools/net_host.h",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "09bc36f9538ce24724bb23aa5631794e48d9102ceb183d73fb2ab3f8175e8a4a",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "09bc36f9538ce24724bb23aa5631794e48d9102ceb183d73fb2ab3f8175e8a4a",
+      "identical_to_upstream_current": true
+    },
+    {
+      "path": "tools/objcsel.py",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "8a69c55fe941cda86abf9154f03b6a8483f376feb3cf8accae8c1da43a58e62f",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "8a69c55fe941cda86abf9154f03b6a8483f376feb3cf8accae8c1da43a58e62f",
+      "identical_to_upstream_current": true
+    },
+    {
+      "path": "tools/payload_tar.c",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "d5bb07403b1a825a76351d0df97d28d522766c3ce879f78586889663fa7f4734",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "d5bb07403b1a825a76351d0df97d28d522766c3ce879f78586889663fa7f4734",
+      "identical_to_upstream_current": true
+    },
+    {
+      "path": "tools/payload_tar.h",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "0d1b162183b4fade1225115256d3c6ef976c7141a4e4526f683335236e43fbc4",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "0d1b162183b4fade1225115256d3c6ef976c7141a4e4526f683335236e43fbc4",
+      "identical_to_upstream_current": true
+    },
+    {
+      "path": "tools/ppm2png.py",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "a79a791009b476e492d13aa0eebc7a18b043794b6ca16c4ef0d1e0422df1501a",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "a79a791009b476e492d13aa0eebc7a18b043794b6ca16c4ef0d1e0422df1501a",
+      "identical_to_upstream_current": true
+    },
+    {
+      "path": "tools/rootfs_work.c",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "d3a8369f00b1058f7cdabfd36e6aa7acefa6d8c127dda0584f2dc3cc8d06d885",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "0911dce179ef732c1dc5092b2102aca8e8548ca2a8170b42e4ad370a37d81976",
+      "identical_to_upstream_current": false
+    },
+    {
+      "path": "tools/rootfs_work.h",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "13efb5878a6a155316e5a3ecc870eede5c698441a0dd5eb89e1f6a578095b3f4",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "7053ee8990cea6c69b25c7d4c73f8ddacd5bd404db54dd8d66388f2e2f67d36f",
+      "identical_to_upstream_current": false
+    },
+    {
+      "path": "tools/run23-cold-replay.ps1",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "62b6dc016ade10ddf57ef7c634e39fe3c349a3fc63c0e53baa2c213a24435a4e",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "62b6dc016ade10ddf57ef7c634e39fe3c349a3fc63c0e53baa2c213a24435a4e",
+      "identical_to_upstream_current": true
+    },
+    {
+      "path": "tools/runfw.c",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "85977a767fc1c4197a9b5d37a6c63ee2ef2adb4f981f068bed9f1d8c876fe221",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "cab83ef74b294585a123c07feaa18a54ff81a0cc3d73f0bf52aead3781caa63a",
+      "identical_to_upstream_current": false
+    },
+    {
+      "path": "tools/sha256.c",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "414087b43a2d64bb3f8209dcc878d5920e0c37a4df46b2624b164f215da652f7",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "414087b43a2d64bb3f8209dcc878d5920e0c37a4df46b2624b164f215da652f7",
+      "identical_to_upstream_current": true
+    },
+    {
+      "path": "tools/sha256.h",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "f5637c25de2946623d03f59445edbad308f65b195ff225325c1c04defdc1cb80",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "f5637c25de2946623d03f59445edbad308f65b195ff225325c1c04defdc1cb80",
+      "identical_to_upstream_current": true
+    },
+    {
+      "path": "tools/snapboot.c",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "80f3ac0157a4fe0b80a0c512a159d3c2dcee371a31a6b4d55082eade60e6788a",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "80f3ac0157a4fe0b80a0c512a159d3c2dcee371a31a6b4d55082eade60e6788a",
+      "identical_to_upstream_current": true
+    },
+    {
+      "path": "tools/udif.py",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "9e54102b563c1da9968efb8f65d11c8bfc651040258d3bf96e66b57024ebde01",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "9e54102b563c1da9968efb8f65d11c8bfc651040258d3bf96e66b57024ebde01",
+      "identical_to_upstream_current": true
+    },
+    {
+      "path": "tools/udis.py",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "3718101df2ad98578b66f4d02e7d48e7b3fce2bc0d7cd0e076572dd73fb40b00",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "3718101df2ad98578b66f4d02e7d48e7b3fce2bc0d7cd0e076572dd73fb40b00",
+      "identical_to_upstream_current": true
+    },
+    {
+      "path": "tools/unlzss.c",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "fee667e0c613a1eefdeae33aa4b0ef5982908401aadee4091ef1372c5f03e27a",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "fee667e0c613a1eefdeae33aa4b0ef5982908401aadee4091ef1372c5f03e27a",
+      "identical_to_upstream_current": true
+    },
+    {
+      "path": "tools/vfdecrypt.py",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "b20ed8fa313adeba1a425f447f402db6616a404103f2ae4fddbda4092283c58f",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "b20ed8fa313adeba1a425f447f402db6616a404103f2ae4fddbda4092283c58f",
+      "identical_to_upstream_current": true
+    },
+    {
+      "path": "tools/vtscan.py",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "ee09bb8a2326cfc49328f00b5fd8455e63b02ce3db4c30c0d0d1d49fc5429a70",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "ee09bb8a2326cfc49328f00b5fd8455e63b02ce3db4c30c0d0d1d49fc5429a70",
+      "identical_to_upstream_current": true
+    },
+    {
+      "path": "tools/whatinsn.py",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "d10cb50e7345f39358ec9721c77ef2d0c965042e9d02ecd9fc300a6a87cbe883",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "d10cb50e7345f39358ec9721c77ef2d0c965042e9d02ecd9fc300a6a87cbe883",
+      "identical_to_upstream_current": true
+    },
+    {
+      "path": "docs/upstream/README.md",
+      "origin": "S5LBox MIT baseline",
+      "local_sha256": "966d425e087be61bb0dbf3ef67b20f47c94679d1ae5e837cf529328592a957be",
+      "different_from_reference": false,
+      "upstream_current_present": true,
+      "upstream_current_sha256": "34a541fa55d26799eac382b05d7684f420db5ec389d09cb65d2a84323f6c84ca",
+      "identical_to_upstream_current": false
+    },
+    {
+      "path": "core/include/mbx_vgp.h",
+      "origin": "Original local IOSretroMob adaptation/test/tool",
+      "local_sha256": "9d0e30bf596390be9edb3bd30cb637c15fc929e06cfb8aa61ebf3df702ba08eb",
+      "different_from_reference": true,
+      "upstream_current_present": false
+    },
+    {
+      "path": "core/src/soc/mbx_vgp.c",
+      "origin": "Original local IOSretroMob adaptation/test/tool",
+      "local_sha256": "976487d352dab1e668801670db5677f89c8a371c3094daf5299c639f99aca9ee",
+      "different_from_reference": true,
+      "upstream_current_present": false
+    },
+    {
+      "path": "core/tests/test_mbx_vgp.c",
+      "origin": "Original local IOSretroMob adaptation/test/tool",
+      "local_sha256": "59b9b9fc1e2a98816bda2e300f53b0f53ea7ac66cbfd29a6b3a5b489fcde30a4",
+      "different_from_reference": true,
+      "upstream_current_present": false
+    },
+    {
+      "path": "tools/guest_clcd_capture.h",
+      "origin": "Original local IOSretroMob adaptation/test/tool",
+      "local_sha256": "bd6f05976570c40772ff167192b8226bfe33a3ea33042274da03ee7494c30067",
+      "different_from_reference": true,
+      "upstream_current_present": false
+    },
+    {
+      "path": "tools/guest_z_journal_capture.h",
+      "origin": "Original local IOSretroMob adaptation/test/tool",
+      "local_sha256": "ff164c63cf8a05fe95c920691b84bea2195f2192d1b368b8cbe336c2404834b8",
+      "different_from_reference": true,
+      "upstream_current_present": false
+    },
+    {
+      "path": "tests/guest-apps/test_ta_inspect.py",
+      "origin": "Original local IOSretroMob adaptation/test/tool",
+      "local_sha256": "62475043edd820bb377158b862d9f55c1d2dca682f4bbfa9b459e43a9a77a04b",
+      "different_from_reference": true,
+      "upstream_current_present": false
+    },
+    {
+      "path": "tests/guest-apps/layout.ld",
+      "origin": "Original local IOSretroMob adaptation/test/tool",
+      "local_sha256": "42b385ce7acca07a5b62f81a3fa6219ff9023c7b38659e045a28638a3af1fcb2",
+      "different_from_reference": true,
+      "upstream_current_present": false
+    },
+    {
+      "path": "tests/guest-apps/test_package.py",
+      "origin": "Original local IOSretroMob adaptation/test/tool",
+      "local_sha256": "7fe0e5efa3b86860d10fa4831200a9c296df53c03a5ca18cdd00930e36410089",
+      "different_from_reference": true,
+      "upstream_current_present": false
+    },
+    {
+      "path": "tests/guest-apps/gles1.c",
+      "origin": "Original local IOSretroMob adaptation/test/tool",
+      "local_sha256": "88470b09fa0d7e3e542ea56151f9d507dec461b5d2ae2fd6331d0f88986973c7",
+      "different_from_reference": true,
+      "upstream_current_present": false
+    },
+    {
+      "path": "tests/guest-apps/texture.c",
+      "origin": "Original local IOSretroMob adaptation/test/tool",
+      "local_sha256": "f756f6e1f89314718e0d82ccfca2abb739460f53f0ac5e741055b86f23df2be2",
+      "different_from_reference": true,
+      "upstream_current_present": false
+    },
+    {
+      "path": "tests/guest-apps/depth.c",
+      "origin": "Original local IOSretroMob adaptation/test/tool",
+      "local_sha256": "689055393f95000a7ad2e0e25e3a1b287494df08b2a3fa43d8304c04b36ad975",
+      "different_from_reference": true,
+      "upstream_current_present": false
+    },
+    {
+      "path": "tests/guest-apps/start.S",
+      "origin": "Original local IOSretroMob adaptation/test/tool",
+      "local_sha256": "d1c4ea73430faadd75a0479cbb846861770c846b0c016b91dd6aa436f63ec9bd",
+      "different_from_reference": true,
+      "upstream_current_present": false
+    },
+    {
+      "path": "tests/guest-apps/uikit.c",
+      "origin": "Original local IOSretroMob adaptation/test/tool",
+      "local_sha256": "c2761bcd0776b5852cd88a9a4c0d084b92d0284c53e32b08730f68fa8e159e38",
+      "different_from_reference": true,
+      "upstream_current_present": false
+    },
+    {
+      "path": "tests/guest-apps/runtime.h",
+      "origin": "Original local IOSretroMob adaptation/test/tool",
+      "local_sha256": "bd0331729cf7c3785fcab513f224553fe397762833ad33bbdb597db596e870cd",
+      "different_from_reference": true,
+      "upstream_current_present": false
+    },
+    {
+      "path": "tests/guest-apps/zprobe.c",
+      "origin": "Original local IOSretroMob adaptation/test/tool",
+      "local_sha256": "237330738daacbeb28429de410b310345ddbeae42d05b1115832c86b457e7181",
+      "different_from_reference": true,
+      "upstream_current_present": false
+    },
+    {
+      "path": "tests/guest-apps/blend.c",
+      "origin": "Original local IOSretroMob adaptation/test/tool",
+      "local_sha256": "fae5720b4904b5a1f2d7e0dd60ba33f3ffb1ea253603aaa5eb4747b27ec083db",
+      "different_from_reference": true,
+      "upstream_current_present": false
+    },
+    {
+      "path": "tests/guest-apps/test_builder.py",
+      "origin": "Original local IOSretroMob adaptation/test/tool",
+      "local_sha256": "2ca8f66b635ceca73f8193187dfb0f9a9dda82bbfbb703a2b2a022da3a4764f5",
+      "different_from_reference": true,
+      "upstream_current_present": false
+    },
+    {
+      "path": "tools/guest_apps/package.py",
+      "origin": "Original local IOSretroMob adaptation/test/tool",
+      "local_sha256": "0ff65cc86d1219f4e8ec1b23d378cd643aa6d2bcebeb2a5c88421f0e3e57beab",
+      "different_from_reference": true,
+      "upstream_current_present": false
+    },
+    {
+      "path": "tools/guest_apps/build.py",
+      "origin": "Original local IOSretroMob adaptation/test/tool",
+      "local_sha256": "3c1fe58d7396bab334ae6959494c3a3948c444ed7b68056946e8f1d2b27796fc",
+      "different_from_reference": true,
+      "upstream_current_present": false
+    },
+    {
+      "path": "tools/guest_apps/inspect_hfs.py",
+      "origin": "Original local IOSretroMob adaptation/test/tool",
+      "local_sha256": "7470ddcbafdc59bc454604d1e85fa7750e44a6b72d192fc79a26c5997982b3a6",
+      "different_from_reference": true,
+      "upstream_current_present": false
+    },
+    {
+      "path": "tools/guest_apps/reference_depth.py",
+      "origin": "Original local IOSretroMob adaptation/test/tool",
+      "local_sha256": "a4da49471128229d2aa24abb4df80602ef3b36e183dd2097e4a0f32b13892fdc",
+      "different_from_reference": true,
+      "upstream_current_present": false
+    },
+    {
+      "path": "tools/guest_apps/reference_texture.py",
+      "origin": "Original local IOSretroMob adaptation/test/tool",
+      "local_sha256": "e6728180c7ba5a3a7f03370ceb58c592e55031a51e8e001f8f9cd40464678e37",
+      "different_from_reference": true,
+      "upstream_current_present": false
+    },
+    {
+      "path": "tools/guest_apps/reference_triangle.py",
+      "origin": "Original local IOSretroMob adaptation/test/tool",
+      "local_sha256": "671afd71c5fbd3a22112b8c9612695726baad3f319b86d1e50aafff167d94b74",
+      "different_from_reference": true,
+      "upstream_current_present": false
+    },
+    {
+      "path": "tools/guest_apps/reference_blend.py",
+      "origin": "Original local IOSretroMob adaptation/test/tool",
+      "local_sha256": "de4da665d63828705cf16a216d1ba5512bf535bf844935541f483696ad75fd72",
+      "different_from_reference": true,
+      "upstream_current_present": false
+    },
+    {
+      "path": "tools/guest_apps/ta_inspect.py",
+      "origin": "Original local IOSretroMob adaptation/test/tool",
+      "local_sha256": "e4130b4865f2d13527564b67deaea86a2fe5013cbd1d7932f9e6c6742d2ff66b",
+      "different_from_reference": true,
+      "upstream_current_present": false
+    }
+  ]
+}

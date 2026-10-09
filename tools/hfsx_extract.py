@@ -175,4 +175,5 @@ def main():
         raise SystemExit("no file record named %r found" % needle)
 
 
-main()
+if __name__ == '__main__':
+    main()

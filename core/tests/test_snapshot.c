@@ -157,6 +157,10 @@ static void test_mbx_ta_fifo_midstream_round_trip(void) {
           a.mbx.reg[S5L_MBX_TA_START / 4u] == 1u,
           "partial TA stream completed before its terminator");
     CHECK(roundtrip(&a, &b), "mid-TA FIFO round trip");
+    CHECK(a.mbx.ta_fifo_words == 3u && b.mbx.ta_fifo_words == 3u &&
+          !a.mbx.ta_fifo_complete && !b.mbx.ta_fifo_complete &&
+          memcmp(a.mbx.ta_fifo, b.mbx.ta_fifo, sizeof a.mbx.ta_fifo) == 0,
+          "private partial TA FIFO was not restored exactly");
 
     for (unsigned i = 3u; i < 5u; i++) {
         a.bus.write32(a.bus.ctx,
@@ -172,6 +176,11 @@ static void test_mbx_ta_fifo_midstream_round_trip(void) {
     }
     CHECK(mismatches == 0u,
           "%u staged TA words differed after mid-stream restore", mismatches);
+    CHECK(a.mbx.ta_fifo_words == 5u && b.mbx.ta_fifo_words == 5u &&
+          a.mbx.ta_fifo_complete && b.mbx.ta_fifo_complete &&
+          memcmp(a.mbx.ta_fifo, stream, sizeof stream) == 0 &&
+          memcmp(b.mbx.ta_fifo, stream, sizeof stream) == 0,
+          "private completed TA FIFO differs after restore/continuation");
     CHECK(a.mbx.status == S5L_MBX_STATUS_TA_COMPLETE &&
           b.mbx.status == S5L_MBX_STATUS_TA_COMPLETE &&
           a.mbx.reg[S5L_MBX_TA_START / 4u] == 0u &&

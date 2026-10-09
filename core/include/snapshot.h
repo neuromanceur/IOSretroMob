@@ -44,10 +44,9 @@
 
 /*
  * Bump this whenever the serialised form changes in any way — a new field, a
- * reordered field, a changed section. There is deliberately no compatibility
- * shim: an old snapshot restored into a newer emulator would be a machine with
- * one register quietly holding the wrong value, which is the single most
- * expensive class of bug this feature exists to prevent.
+ * reordered field, a changed section. Compatibility must be explicit and
+ * fail closed: v33 reads v32 without inventing retained VGP input. A v32
+ * restore must submit a fresh TA stream before using the new VGP path.
  */
 /* v2: the VFP register file (arm_cpu_t.vfp_s, s0-s31 aliasing d0-d15) joined
  *     the CPU section when real VFPv2 arithmetic was implemented. */
@@ -189,7 +188,10 @@
  *      only thing in this machine that can distinguish "the guest never
  *      programmed a transfer" from "it programmed one and this model refused
  *      it", and refused_flow/width/chain/softreq/endian name which refusal. */
-#define SNAPSHOT_VERSION   32u
+/* v33: private retained TA FIFO, word count and completion state. v32 input
+ * remains readable; its FIFO is absent, so VGP refuses until a new submission.
+ * Old quad rendering continues through its original object-database path. */
+#define SNAPSHOT_VERSION   33u
 
 typedef enum {
     SNAP_OK = 0,
