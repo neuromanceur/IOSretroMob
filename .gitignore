@@ -15,3 +15,26 @@ __pycache__/
 *.bin
 .env
 .env.*
+
+# Generated payloads and native/compiler output, including nested examples.
+*.mdimage
+*.mdstate
+*.o
+*.a
+*.elf
+*.dylib
+*.so
+*.exe
+*.dll
+*.tar
+*.app/
+
+# Private redundant PPM originals: retained locally, PNG identities verified.
+/reports/relic-maze/AFTER_SIX_MOVES.ppm
+/reports/relic-maze/FIRST_GAME_FRAME.ppm
+/reports/relic-maze/full-playthrough/crate_first_push.ppm
+/reports/relic-maze/full-playthrough/first_relic.ppm
+/reports/relic-maze/full-playthrough/plate_and_gate_open.ppm
+/reports/relic-maze/full-playthrough/second_relic.ppm
+/reports/relic-maze/full-playthrough/third_relic.ppm
+/reports/relic-maze/full-playthrough/victory.ppm

@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>Relic Maze · IOSretroMob</title>
+<style>
+:root {color-scheme:dark; font-family: ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace}
+* {box-sizing:border-box}
+body {margin:0; padding:24px 10px; min-height:100vh; display:flex; align-items:center; justify-content:center; background: radial-gradient(ellipse at 50% 0,#304f48 0,#142522 48%,#091310 100%); color:#e9e1ca}
+.shell {width:min(420px,100%); background:#182923; border:4px solid #826b41; box-shadow:0 0 0 4px #08120e,0 26px 60px #0008; padding:12px; border-radius:8px}
+.heading {text-align:center; letter-spacing:.15em; margin:8px 0 2px; font-weight:900; font-size:26px; color:#ead495; text-shadow:2px 3px #111}
+.sub {text-align:center;font-size:10px;color:#9fbdab;letter-spacing:.13em;margin:0 0 10px}
+.hud {border:1px solid #625b3f;background:#0b1b16;padding:10px;display:flex;justify-content:space-between;gap:8px;font-size:12px}
+#board {width:100%;height:auto;display:block;background:#1b2b24;image-rendering:pixelated;margin:8px 0;border:2px solid #3b4c37}
+.prompt {font-size:12px;text-align:center;min-height:32px;line-height:1.5;color:#d1bd83;margin:3px 0}
+.controls {display:grid;grid-template-columns:repeat(3,56px);grid-template-rows:repeat(2,46px);gap:5px;justify-content:center;margin:7px auto}
+.control {border:2px solid #857248;background:#304438;color:#f9e7b6;border-radius:4px;font-size:21px;font-weight:900;touch-action:manipulation;cursor:pointer;box-shadow:inset 0 -4px #1b2922}
+.control:active {background:#607b56;transform:translateY(1px)}
+.control.up {grid-column:2;grid-row:1}.control.left {grid-column:1;grid-row:2}.control.down {grid-column:2;grid-row:2}.control.right {grid-column:3;grid-row:2}
+footer {display:flex;align-items:center;justify-content:space-between;gap:8px;margin:8px 0 2px;font-size:10px;color:#88a797}
+footer button {color:#efe2af;background:#3b4d3a;border:1px solid #968451;padding:7px 9px;cursor:pointer;font:inherit}
+.notice{color:#a7b5a1;text-align:center;font-size:10px;margin-top:10px;line-height:1.5}
+</style>
+</head>
+<body>
+<main class="shell">
+  <h1 class="heading">RELIC MAZE</h1>
+  <p class="sub">THE LOST TEMPLE · 2011 EDITION</p>
+  <div class="hud"><span id="relics">RELIQUES 0/3</span><span id="plate">DALLE ○</span><span id="moves">PAS 0</span></div>
+  <canvas id="board" width="342" height="342" aria-label="Niveau Relic Maze"></canvas>
+  <p class="prompt" id="message" aria-live="polite">Trouve les 3 reliques. Pousse le bloc sur la dalle.</p>
+  <div class="controls">
+    <button class="control up" data-dir="U" aria-label="Haut">▲</button>
+    <button class="control left" data-dir="L" aria-label="Gauche">◀</button>
+    <button class="control down" data-dir="D" aria-label="Bas">▼</button>
+    <button class="control right" data-dir="R" aria-label="Droite">▶</button>
+  </div>
+  <footer><span>CLAVIER : ↑↓←→ / WASD</span><button id="restart">↻ RECOMMENCER</button></footer>
+  <div class="notice">Démo navigateur originale · la version Unity 3.3 / iPhone est fournie en sources séparées.</div>
+</main>
+<script src="game.js"></script>
+<script>
+(function () {
+  'use strict';
+  const game=new RelicMaze.Game();
+  const canvas=document.getElementById('board'), ctx=canvas.getContext('2d');
+  const S=36, X=9, Y=9;
+  function rect(x,y,w,h,color){ctx.fillStyle=color;ctx.fillRect(x,y,w,h)}
+  function tileBackground(x,y,wall){
+    const a=X+x*S,b=Y+y*S;
+    rect(a,b,S,S,wall?'#253c37':(x+y)%2?'#465648':'#516253');
+    rect(a+2,b+2,S-4,2,wall?'#496358':'#697665');
+    rect(a+2,b+S-5,S-4,2,wall?'#13241f':'#2c4035');
+    if((x*7+y*13)%4===0) {rect(a+9,b+12,7,2,wall?'#344e47':'#77806a'); rect(a+22,b+22,5,2,wall?'#203832':'#344d3e')}
+  }
+  function jewel(x,y){const a=X+x*S,b=Y+y*S;ctx.fillStyle='#d9a947';ctx.beginPath();ctx.moveTo(a+18,b+6);ctx.lineTo(a+29,b+18);ctx.lineTo(a+18,b+29);ctx.lineTo(a+7,b+18);ctx.closePath();ctx.fill();ctx.fillStyle='#ffe398';ctx.beginPath();ctx.moveTo(a+18,b+6);ctx.lineTo(a+18,b+18);ctx.lineTo(a+7,b+18);ctx.closePath();ctx.fill();rect(a+16,b+14,5,5,'#fff0ad')}
+  function crate(x,y){const a=X+x*S,b=Y+y*S;rect(a+3,b+4,30,29,'#5b331d');rect(a+5,b+5,26,25,'#ad7942');rect(a+9,b+9,18,17,'#82603b');rect(a+11,b+11,14,3,'#c69a58');rect(a+8,b+26,21,3,'#593c25');rect(a+17,b+6,3,24,'#c69559')}
+  function explorer(x,y){const a=X+x*S,b=Y+y*S;rect(a+8,b+27,21,5,'#111e1a');rect(a+10,b+10,17,18,'#d3a565');rect(a+7,b+8,23,8,'#e0c175');rect(a+14,b+4,10,5,'#b0803e');rect(a+13,b+15,5,5,'#23372b');rect(a+24,b+21,5,8,'#658d81');rect(a+12,b+27,5,5,'#59482f');rect(a+22,b+27,5,5,'#59482f')}
+  function draw(){
+    rect(0,0,342,342,'#16281f');
+    for(let y=0;y<9;y++)for(let x=0;x<9;x++){
+      const t=game.tile(x,y),a=X+x*S,b=Y+y*S;
+      tileBackground(x,y,t==='#');
+      if(t==='#') {rect(a+5,b+7,26,18,'#394e44');rect(a+6,b+7,24,3,'#607264');}
+      if(t==='T'){rect(a+5,b+5,26,26,game.plate()?'#368e81':'#415a63');rect(a+9,b+9,18,18,'#213c45');rect(a+13,b+13,10,10,game.plate()?'#77d3a8':'#637c83')}
+      if(t==='G') {rect(a+3,b+3,30,30,game.plate()?'#35795b':'#402f35');if(!game.plate()){for(let q=7;q<31;q+=7)rect(a+q,b+5,3,26,'#d09b54');}else{rect(a+9,b+9,18,18,'#213e30')}}
+      if(t==='E'){rect(a+5,b+5,26,26,'#124f43');rect(a+10,b+10,16,16,'#4dc29b');rect(a+14,b+14,8,8,'#c8f7a3')}
+      if(t==='R'){
+        const idx=RelicMaze.RELICS.findIndex(v=>v[0]===x&&v[1]===y);
+        if((game.mask&(1<<idx))===0) jewel(x,y);
+      }
+    }
+    crate(game.bx,game.by); explorer(game.x,game.y);
+    if(game.won){rect(19,129,304,86,'#0b1e1a');rect(24,134,294,76,'#c6a45a');rect(29,139,284,66,'#1b3c31');ctx.fillStyle='#ffe9a1';ctx.font='bold 25px monospace';ctx.textAlign='center';ctx.fillText('VICTOIRE!',171,169);ctx.font='13px monospace';ctx.fillText(game.moves+' mouvements',171,190)}
+    document.getElementById('relics').textContent='RELIQUES '+game.collected()+'/3';
+    document.getElementById('plate').textContent='DALLE '+(game.plate()?'●':'○');
+    document.getElementById('moves').textContent='PAS '+game.moves;
+    document.getElementById('message').textContent=game.won?'Le temple est à toi ! Recommence pour rejouer.':(game.plate()?'Porte ouverte ! Récupère les reliques et rejoins la sortie.':'Pousse le bloc sur la dalle pour ouvrir la porte.');
+  }
+  const delta={U:[0,-1],D:[0,1],L:[-1,0],R:[1,0]};
+  function step(dir){const d=delta[dir];if(d){game.move(d[0],d[1]);draw()}}
+  document.querySelectorAll('[data-dir]').forEach(b=>b.addEventListener('click',()=>step(b.dataset.dir)));
+  document.getElementById('restart').addEventListener('click',()=>{game.reset();draw()});
+  document.addEventListener('keydown',e=>{const k=e.key.toLowerCase();const key={arrowup:'U',w:'U',arrowdown:'D',s:'D',arrowleft:'L',a:'L',arrowright:'R',d:'R'}[k];if(key){e.preventDefault();step(key)}if(k==='r'){game.reset();draw()}});
+  canvas.addEventListener('click',e=>{const b=canvas.getBoundingClientRect();const x=(e.clientX-b.left)*342/b.width,y=(e.clientY-b.top)*342/b.height;const tx=Math.floor((x-X)/S),ty=Math.floor((y-Y)/S);const dx=tx-game.x,dy=ty-game.y;if(Math.abs(dx)+Math.abs(dy)===1){game.move(dx,dy);draw()}});
+  draw();
+})();
+</script>
+</body>
+</html>

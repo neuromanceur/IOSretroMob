@@ -37,3 +37,6 @@ add_subdirectory(core)
 
 # Public firmware-free preservation and compatibility tools.
 add_subdirectory(lab)
+
+# Original firmware-free game logic and guest-builder checks.
+add_subdirectory(examples/RelicMaze)

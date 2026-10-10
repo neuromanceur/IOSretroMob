@@ -1,0 +1,15 @@
+build/
+.DS_Store
+*.ipa
+*.ipsw
+*.dmg
+*.snap
+*.mdimage
+*.mdstate
+*.o
+*.a
+*.elf
+*.macho
+Library/
+Temp/
+obj/
