@@ -379,6 +379,23 @@ expect_config(touch_is_counted
 expect_config(touch_repeats
     "touch taps           3" absent-kernel --touch 1000:0:0 --touch 2000:319:479
     --touch 3000:1:2:500 --print-config)
+# A long interaction sequence remains bounded and is resolved before boot.
+set(touch_capacity_args)
+foreach(i RANGE 1 32)
+    list(APPEND touch_capacity_args --touch "${i}:160:240:1000000")
+endforeach()
+expect_config(touch_capacity_is_32
+    "touch taps           32" absent-kernel ${touch_capacity_args} --print-config)
+expect_refused(touch_33rd_is_refused "at most 32 taps"
+    absent-kernel ${touch_capacity_args} --touch 33:160:240:1000000 --print-config)
+# Prior eight-tap invocations still resolve with their original count.
+set(touch_legacy_args)
+foreach(i RANGE 1 8)
+    list(APPEND touch_legacy_args --touch "${i}:160:240:1000000")
+endforeach()
+expect_config(touch_legacy_eight_is_preserved
+    "touch taps           8" absent-kernel ${touch_legacy_args} --print-config)
+
 expect_config(no_touch_is_zero
     "touch taps           0" absent-kernel --print-config)
 expect_refused(touch_off_panel_x "off a 320x480 panel"

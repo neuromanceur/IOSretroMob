@@ -1392,3 +1392,25 @@ target_link_libraries(snapboot PRIVATE emucore)
 add_executable(insnbench ../tools/insnbench.c)
 target_link_libraries(insnbench PRIVATE emucore)
 target_compile_definitions(insnbench PRIVATE INSNBENCH_BUILD_TYPE="$<CONFIG>")
+
+# Independent, read-only native CLCD observer; no guest device state changes.
+add_library(host_clcd_multilayer STATIC ../tools/clcd_multilayer_capture.c)
+target_include_directories(host_clcd_multilayer PUBLIC include ../tools)
+target_link_libraries(host_clcd_multilayer PUBLIC emucore host_sha256)
+if(MSVC)
+    target_compile_options(host_clcd_multilayer PRIVATE /W4 /WX)
+else()
+    target_compile_options(host_clcd_multilayer PRIVATE -Wall -Wextra -Werror -pedantic)
+endif()
+target_link_libraries(bootkernel PRIVATE host_clcd_multilayer)
+add_executable(test_clcd_multilayer tests/test_clcd_multilayer.c)
+target_link_libraries(test_clcd_multilayer PRIVATE host_clcd_multilayer)
+add_test(NAME clcd_native_multilayer COMMAND test_clcd_multilayer)
+find_package(Python3 REQUIRED COMPONENTS Interpreter)
+add_test(NAME clcd_native_independent_reference
+    COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/tests/test_clcd_layers.py
+    $<TARGET_FILE:test_clcd_multilayer>)
+
+# Mathematical hypothesis checks only; not CLCD hardware-fidelity acceptance.
+add_test(NAME clcd_experimental_composition_reference
+    COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/tests/test_clcd_composition.py)

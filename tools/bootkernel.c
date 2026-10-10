@@ -53,6 +53,7 @@ static rootfs_work_entry_t *g_jb_entries = NULL;
 #include "snapshot.h"
 #include "soc.h"
 #include "guest_clcd_capture.h"
+#include "guest_clcd_multilayer.h"
 #include "guest_z_journal_capture.h"
 #if defined(S5LBOX_STATIC_A64_ENGINE)
 #include "a64_static.h"
@@ -6829,7 +6830,8 @@ typedef struct {
  * drained the first report" and "the injection was never attempted" are
  * different failures that must not look alike.
  */
-#define TOUCH_TAP_MAX  8u
+/* Bounded sequences can span a complete application interaction campaign. */
+#define TOUCH_TAP_MAX  32u
 /* Default hold. ~24 M instructions is a few tens of milliseconds of guest time
  * at this machine's rate -- long enough to be a tap and not a flick, short
  * enough that a boot cap of 1.6e9 leaves room for both halves. */
@@ -37800,7 +37802,10 @@ external_md_work_ready:
 #undef RUN_API_SLOW_CALLS
     } else {
         guest_clcd_capture_init(n);
+        guest_clcd_layers_init();
         for (; n < steps; n++) {
+        if(guest_clcd_layers.enabled && n>=guest_clcd_layers.next)
+            guest_clcd_layers_sample(&mach,n);
         if(guest_clcd_capture.enabled && n>=guest_clcd_capture.next)
             guest_clcd_capture_sample(&mach,n);
         G.hot_now = n;
