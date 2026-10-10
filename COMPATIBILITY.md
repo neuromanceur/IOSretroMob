@@ -9,6 +9,8 @@ Evidence is scoped to a specific source revision, input and observation. Unit te
 | RMUIKit | Historical guest execution | Window and controlled touch/no-touch outcomes. Gallery shows the authentic blue no-touch control. |
 | RMGLES1 | Historical guest execution | Matrix-transformed RGB triangle and distinct 190°/330° sampled scanouts. Dither-disabled diagnostic variant. |
 | RMTexture | Historical guest execution | Own opaque RGBA8 8×8 texture, triangle/two-triangle square, nearest then linear. Publicly recheckable own input metadata. |
+| Relic Maze | Native ARMv6 guest game completed | Original MIT C logic, SDK-free UIKit/EAGL ES1 frontend, 25 real callbacks, `won=1`. No Unity; Objective-C variant uncompiled. |
+| CLCD multi-window capture | Native pixels observed | Separate GLES and UIKit layers with preserved alpha and registers. Hardware composition remains unvalidated; experimental previews are hypotheses. |
 | VGP decoder | Narrow measured support | Six complete normalized envelopes, not arbitrary shaders or VGP instruction interpretation. Firmware-free tests exercise rejection and semantic geometry; private program-byte acceptance requires local authorized inputs. |
 | Public scene replays | Reproducible without firmware | Five original synthetic decoded scenes, production semantic C rasterizer and independent image comparison. |
 | Z-buffer | Unresolved | Observer only. No validated 16/24-bit tiled format, clear, compare, write or true depth-tested guest scene. |

@@ -4,7 +4,7 @@
 
 An experimental preservation platform for legacy iOS games, built on [S5LBox](https://github.com/j0shua-SYSON/S5LBox) by **j0shua-SYSON**. S5LBox supplies the ARMv6 CPU, S5L8900 device models, boot infrastructure and application shell. IOSretroMob adds a bounded graphics compatibility pipeline, original diagnostics and a firmware-free verification laboratory.
 
-This is an early research project. Historical iPhone OS and our own diagnostic applications have executed locally. **A historical Unity game and an Android runtime have not been demonstrated.** No firmware, Apple SDK, game or decryption key is distributed.
+This is an early research project. Historical iPhone OS and our own diagnostic applications have executed locally. **A historical Unity game and an Android runtime have not been demonstrated.** The original MIT mini-game Relic Maze is included; no firmware, Apple SDK, proprietary game or decryption key is distributed.
 
 ## Origin and what IOSretroMob adds
 
@@ -36,12 +36,35 @@ These are **authentic sampled guest CLCD scanouts**, copied byte-for-byte from l
 
 [Gallery provenance and hashes](demos/gallery/manifest.json) identifies every artifact and its historical source. The UIKit image includes the guest status bar; no Apple logo, commercial artwork or game asset is included. The three texture scanouts can be checked again against their own geometric inputs using `./iosretromob verify-gallery`.
 
+## Relic Maze: a completed native ARMv6 guest game
+
+The original [Relic Maze](examples/RelicMaze/README.md) was **actually completed
+inside iPhone OS 3.1.3**: PID 39, 25 UIKit callbacks/moves, 26 successful GLES1
+presentations and final `won=1`. It is a native C game, **not Unity**. The
+SDK-free `armv6_main.c` frontend ran; the separate Objective-C `main.m` remains
+uncompiled. [Guest journal and full playthrough](reports/relic-maze/FULL_GUEST_PLAYTHROUGH.md)
+and [ARMv6 build report](reports/relic-maze/ARMV6_FIRST_LAUNCH.md) provide evidence.
+
+| Authentic GLES window after victory | Authentic UIKit window, alpha preserved |
+|---|---|
+| ![Guest game board](reports/relic-maze/clcd-multilayer/victory/window-0-native.png) | ![Guest UIKit layer](reports/relic-maze/clcd-multilayer/victory/window-2-native.png) |
+
+These are **separate guest layers**, not a hardware-validated full display.
+The [CLCD laboratory](reports/relic-maze/CLCD_COMPOSITION.md) preserves native
+alpha, registers and same-instant manifests. Its source-over comparisons are
+explicitly labelled hypotheses; layer priority and hardware alpha coefficients
+remain unresolved. Sustained real-time gameplay has not been measured.
+
+[Integration audit](reports/relic-maze/INTEGRATION_AUDIT.md) explains the curated
+proofs, private original data and local-only commits.
+
 ## Current compatibility
 
 | Milestone | Evidence and boundary |
 |---|---|
 | iPhone OS 3.1.3 (iPhone 3G, 7E18) | Historical local XNU → launchd → SpringBoard execution. Inherited boot path; authorized firmware required for reproduction. |
 | UIKit and touch | Own guest diagnostic executed; blue no-touch and red touch controls retained privately. Published blue image is the no-touch control. |
+| Relic Maze | Own native ARMv6 game completed in the guest, 25 moves; separate GLES/UIKit captures, no Unity or sustained FPS claim. |
 | OpenGL ES 1.1 | Own RMGLES1/RMTexture subset: colour triangles, rotations, opaque RGBA8 nearest/linear textures. No GLES conformance claim. |
 | Depth / transparency / dithering | Depth format and Z pipeline unresolved; host straight-alpha semantic tests exist, guest blend envelopes unsupported. Local GLES dithering remains rejected. |
 | Historical Unity / Temple Trouble | Not executed or validated. No game resources distributed. |
@@ -73,6 +96,6 @@ Resolve and independently validate Z state and framebuffer formats; expand only 
 
 ## Credits and licensing
 
-MIT. The original [LICENSE](LICENSE), copyright © 2026 j0shua-SYSON, is preserved unchanged. Original IOSretroMob diagnostic and lab additions are also MIT. [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) and [UPSTREAM.md](UPSTREAM.md) document attribution. No SHMUP GPL code, Apple framework, game asset or historical SDK is included.
+MIT. The original [LICENSE](LICENSE), copyright © 2026 j0shua-SYSON, is preserved unchanged. Original IOSretroMob diagnostic and lab additions are also MIT. [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) and [UPSTREAM.md](UPSTREAM.md) document attribution. No SHMUP GPL code, Apple framework, proprietary game asset or historical SDK is included.
 
 [French introduction](README.fr.md) · [Architecture](ARCHITECTURE.md) · [Diagnostic source guide](demos/README.md) · [Publication audit](reports/PUBLIC_REPOSITORY_AUDIT.md)

@@ -1,0 +1,657 @@
+{
+  "status": "PASS_MATHEMATICS_ONLY",
+  "hardware_composition_validated": false,
+  "no_guest_execution": true,
+  "inputs_verified": "27 manifests / 54 native hashes, no partial files",
+  "states": {
+    "initial": {
+      "hypotheses": {
+        "schema": 1,
+        "status": "HYPOTHESIS ONLY - NOT HARDWARE VALIDATED",
+        "hardware_validated": false,
+        "instruction": 7525000000,
+        "manifest_sha256": "a5ac30891af76c8ce312f63d61a4fc78cf433f9a127ccc1813fc3e504b564ff3",
+        "input_windows": [
+          {
+            "index": 0,
+            "raw_sha256": "e827da5f93902c285df97bb5763419f1aaeea16f9417565ad642d0b34f632ac6",
+            "raw_file": "layers-0001-at-7525000000-win0.raw"
+          },
+          {
+            "index": 2,
+            "raw_sha256": "fcb1ef5ba32bd969cc735d4e32b443fe9a128c8821a0b2bb701a7e9a46c6ff0e",
+            "raw_file": "layers-0001-at-7525000000-win2.raw"
+          }
+        ],
+        "assumptions": {
+          "backdrop_rgb": [
+            0,
+            0,
+            0
+          ],
+          "backdrop_alpha": 255,
+          "rounding": "nearest /255 after each layer, not a hardware rounding claim",
+          "clipping": "panel intersection; unsigned register positions; no scaling, CSC, gamma, key or constant-alpha interpretation"
+        },
+        "hypotheses": [
+          {
+            "id": "w0-under-w2-premultiplied",
+            "bottom_to_top": [
+              0,
+              2
+            ],
+            "equation": "premultiplied",
+            "panel_width": 320,
+            "panel_height": 480,
+            "rgba_sha256": "b8e72baeb7547f828fc95d571e76257a562b6bc4548ec29c6dcf12783c91b8a2",
+            "status": "HYPOTHESIS ONLY - NOT HARDWARE VALIDATED",
+            "panel": {
+              "file": "HYPOTHESIS-w0-under-w2-premultiplied.png",
+              "sha256": "7939e3f8d0724ac56c8a36abdd615d64191b269cdaba2f070bbfa026f78962a6",
+              "width": 320,
+              "height": 480
+            },
+            "labelled_preview": {
+              "file": "HYPOTHESIS-w0-under-w2-premultiplied-labelled.png",
+              "sha256": "0faf419544d0952ee08cd89e7e9fdf61e46f244a0d7c26575427350c82a0885d",
+              "width": 320,
+              "height": 504
+            }
+          },
+          {
+            "id": "w0-under-w2-straight",
+            "bottom_to_top": [
+              0,
+              2
+            ],
+            "equation": "straight",
+            "panel_width": 320,
+            "panel_height": 480,
+            "rgba_sha256": "7314765625a7ab5b50dffcbb13f5dae832837207d9cd63da2fc19fce847e719f",
+            "status": "HYPOTHESIS ONLY - NOT HARDWARE VALIDATED",
+            "panel": {
+              "file": "HYPOTHESIS-w0-under-w2-straight.png",
+              "sha256": "c8eb219d7efd34c2c45878863b323144bdbfd9e249ff7472381faee793447a5d",
+              "width": 320,
+              "height": 480
+            },
+            "labelled_preview": {
+              "file": "HYPOTHESIS-w0-under-w2-straight-labelled.png",
+              "sha256": "dc6e13465566fbb7a57ffdfe2540d11e989c8e87c1c228c6d01c58eb7025ca9e",
+              "width": 320,
+              "height": 504
+            }
+          },
+          {
+            "id": "w2-under-w0-premultiplied",
+            "bottom_to_top": [
+              2,
+              0
+            ],
+            "equation": "premultiplied",
+            "panel_width": 320,
+            "panel_height": 480,
+            "rgba_sha256": "37e3c11ce06e80b4536b875994b32b4cde266b3c2d9853ac25ea72b270a5a213",
+            "status": "HYPOTHESIS ONLY - NOT HARDWARE VALIDATED",
+            "panel": {
+              "file": "HYPOTHESIS-w2-under-w0-premultiplied.png",
+              "sha256": "6c261735b66ed3d55be4efd973d6c1d75e90715d7f79a928048a865a7bc90be4",
+              "width": 320,
+              "height": 480
+            },
+            "labelled_preview": {
+              "file": "HYPOTHESIS-w2-under-w0-premultiplied-labelled.png",
+              "sha256": "fb0d72f9410c04e6fe60cdb2244f7fad5c71aa6c6eb4d6862423149bf7db3908",
+              "width": 320,
+              "height": 504
+            }
+          },
+          {
+            "id": "w2-under-w0-straight",
+            "bottom_to_top": [
+              2,
+              0
+            ],
+            "equation": "straight",
+            "panel_width": 320,
+            "panel_height": 480,
+            "rgba_sha256": "37e3c11ce06e80b4536b875994b32b4cde266b3c2d9853ac25ea72b270a5a213",
+            "status": "HYPOTHESIS ONLY - NOT HARDWARE VALIDATED",
+            "panel": {
+              "file": "HYPOTHESIS-w2-under-w0-straight.png",
+              "sha256": "55cf8f61e333403584a8d83c7d1d208a01e086292b90d5bc28168b625cfaacbc",
+              "width": 320,
+              "height": 480
+            },
+            "labelled_preview": {
+              "file": "HYPOTHESIS-w2-under-w0-straight-labelled.png",
+              "sha256": "d71e6419e7ed51efd58f10eceeb671da113c3b04adbf622e247e0bcedf9a3cb9",
+              "width": 320,
+              "height": 504
+            }
+          }
+        ],
+        "pairwise_comparisons": [
+          {
+            "a": "w0-under-w2-premultiplied",
+            "b": "w0-under-w2-straight",
+            "different_pixels": 1892,
+            "maximum_channel_difference": 64
+          },
+          {
+            "a": "w0-under-w2-premultiplied",
+            "b": "w2-under-w0-premultiplied",
+            "different_pixels": 12319,
+            "maximum_channel_difference": 240
+          },
+          {
+            "a": "w0-under-w2-premultiplied",
+            "b": "w2-under-w0-straight",
+            "different_pixels": 12319,
+            "maximum_channel_difference": 240
+          },
+          {
+            "a": "w0-under-w2-straight",
+            "b": "w2-under-w0-premultiplied",
+            "different_pixels": 12274,
+            "maximum_channel_difference": 240
+          },
+          {
+            "a": "w0-under-w2-straight",
+            "b": "w2-under-w0-straight",
+            "different_pixels": 12274,
+            "maximum_channel_difference": 240
+          },
+          {
+            "a": "w2-under-w0-premultiplied",
+            "b": "w2-under-w0-straight",
+            "different_pixels": 0,
+            "maximum_channel_difference": 0
+          }
+        ]
+      },
+      "checks": [
+        {
+          "hypothesis": "w0-under-w2-premultiplied",
+          "whole_153600_pixels_vs_independent_fraction_oracle": "PASS",
+          "opaque_UIKit_pixels": 16827,
+          "transparent_UIKit_pixels": 134881,
+          "partial_UIKit_pixels": 1892,
+          "opaque_copy_mismatches": 0,
+          "transparent_passthrough_mismatches": 0,
+          "opaque_UIKit_pixels_surviving": 16827,
+          "visible_condition_scope": "Expected display of guest UIKit controls, not an independent hardware photograph",
+          "example_control_xy": [
+            140,
+            380
+          ],
+          "example_control_RGBA": [
+            255,
+            255,
+            255,
+            255
+          ]
+        },
+        {
+          "hypothesis": "w0-under-w2-straight",
+          "whole_153600_pixels_vs_independent_fraction_oracle": "PASS",
+          "opaque_UIKit_pixels": 16827,
+          "transparent_UIKit_pixels": 134881,
+          "partial_UIKit_pixels": 1892,
+          "opaque_copy_mismatches": 0,
+          "transparent_passthrough_mismatches": 0,
+          "opaque_UIKit_pixels_surviving": 16827,
+          "visible_condition_scope": "Expected display of guest UIKit controls, not an independent hardware photograph",
+          "example_control_xy": [
+            140,
+            380
+          ],
+          "example_control_RGBA": [
+            255,
+            255,
+            255,
+            255
+          ]
+        },
+        {
+          "hypothesis": "w2-under-w0-premultiplied",
+          "whole_153600_pixels_vs_independent_fraction_oracle": "PASS",
+          "opaque_UIKit_pixels": 16827,
+          "transparent_UIKit_pixels": 134881,
+          "partial_UIKit_pixels": 1892,
+          "opaque_copy_mismatches": 0,
+          "transparent_passthrough_mismatches": 0,
+          "opaque_UIKit_pixels_surviving": 6400,
+          "visible_condition_scope": "Expected display of guest UIKit controls, not an independent hardware photograph",
+          "example_control_xy": [
+            140,
+            380
+          ],
+          "example_control_RGBA": [
+            15,
+            33,
+            28,
+            255
+          ]
+        },
+        {
+          "hypothesis": "w2-under-w0-straight",
+          "whole_153600_pixels_vs_independent_fraction_oracle": "PASS",
+          "opaque_UIKit_pixels": 16827,
+          "transparent_UIKit_pixels": 134881,
+          "partial_UIKit_pixels": 1892,
+          "opaque_copy_mismatches": 0,
+          "transparent_passthrough_mismatches": 0,
+          "opaque_UIKit_pixels_surviving": 6400,
+          "visible_condition_scope": "Expected display of guest UIKit controls, not an independent hardware photograph",
+          "example_control_xy": [
+            140,
+            380
+          ],
+          "example_control_RGBA": [
+            15,
+            33,
+            28,
+            255
+          ]
+        }
+      ],
+      "white_hud_partial_pixels": 844,
+      "white_hud_all_RGB_equal_alpha": true,
+      "white_hud_examples": [
+        [
+          1,
+          1,
+          1,
+          1
+        ],
+        [
+          29,
+          29,
+          29,
+          29
+        ],
+        [
+          62,
+          62,
+          62,
+          62
+        ],
+        [
+          94,
+          94,
+          94,
+          94
+        ],
+        [
+          129,
+          129,
+          129,
+          129
+        ],
+        [
+          162,
+          162,
+          162,
+          162
+        ],
+        [
+          194,
+          194,
+          194,
+          194
+        ],
+        [
+          224,
+          224,
+          224,
+          224
+        ],
+        [
+          254,
+          254,
+          254,
+          254
+        ]
+      ],
+      "representation_scope": "Strong evidence of stored premultiplied UIKit white text, conditional on whiteColor rasterization over transparent backing; does not determine CLCD consumption or coefficients.",
+      "native_representation_checks": [
+        {
+          "index": 0,
+          "premultiplied_invariant_violations": 0,
+          "nonzero_rgb_at_zero_alpha": 0
+        },
+        {
+          "index": 2,
+          "premultiplied_invariant_violations": 0,
+          "nonzero_rgb_at_zero_alpha": 0
+        }
+      ]
+    },
+    "victory": {
+      "hypotheses": {
+        "schema": 1,
+        "status": "HYPOTHESIS ONLY - NOT HARDWARE VALIDATED",
+        "hardware_validated": false,
+        "instruction": 10125000000,
+        "manifest_sha256": "b356e3ef59e509be1ab21f7145a67e1e754a2c275605f4af17d72eb9f02e415a",
+        "input_windows": [
+          {
+            "index": 0,
+            "raw_sha256": "f538a189891e94c424a2ffd774830e29a2d4c9def558b60ac2fc4c60db5bd776",
+            "raw_file": "layers-0026-at-10125000000-win0.raw"
+          },
+          {
+            "index": 2,
+            "raw_sha256": "af3198ee990fd30dbdfc2382701978db1b9f0d3735f3d4cfbf822f9a946f4c02",
+            "raw_file": "layers-0026-at-10125000000-win2.raw"
+          }
+        ],
+        "assumptions": {
+          "backdrop_rgb": [
+            0,
+            0,
+            0
+          ],
+          "backdrop_alpha": 255,
+          "rounding": "nearest /255 after each layer, not a hardware rounding claim",
+          "clipping": "panel intersection; unsigned register positions; no scaling, CSC, gamma, key or constant-alpha interpretation"
+        },
+        "hypotheses": [
+          {
+            "id": "w0-under-w2-premultiplied",
+            "bottom_to_top": [
+              0,
+              2
+            ],
+            "equation": "premultiplied",
+            "panel_width": 320,
+            "panel_height": 480,
+            "rgba_sha256": "168f0e1c9a8f2206f581247edcb7c8f2a0520a4bdfeba54d9a8dba28d7ecc3aa",
+            "status": "HYPOTHESIS ONLY - NOT HARDWARE VALIDATED",
+            "panel": {
+              "file": "HYPOTHESIS-w0-under-w2-premultiplied.png",
+              "sha256": "8a8f83a2d59eb9a9e44c51c962fdf1df1e6419ffc5b208181ee1c4afa5f1b4e9",
+              "width": 320,
+              "height": 480
+            },
+            "labelled_preview": {
+              "file": "HYPOTHESIS-w0-under-w2-premultiplied-labelled.png",
+              "sha256": "08443b3bff7d8e08d7f73807bc391f1dbc799beb014067134778341a4742f70d",
+              "width": 320,
+              "height": 504
+            }
+          },
+          {
+            "id": "w0-under-w2-straight",
+            "bottom_to_top": [
+              0,
+              2
+            ],
+            "equation": "straight",
+            "panel_width": 320,
+            "panel_height": 480,
+            "rgba_sha256": "ca36f897283b131dde288ee7ba87e957dd4c86592267b9c4393e9c846eec165c",
+            "status": "HYPOTHESIS ONLY - NOT HARDWARE VALIDATED",
+            "panel": {
+              "file": "HYPOTHESIS-w0-under-w2-straight.png",
+              "sha256": "288ff341ec0a7d982d0c0ce6625cb54bda01198bd923557d76ff0531ba00db13",
+              "width": 320,
+              "height": 480
+            },
+            "labelled_preview": {
+              "file": "HYPOTHESIS-w0-under-w2-straight-labelled.png",
+              "sha256": "7fbca0698b4b3e297c60f5cc0dc1261f503489c23a0384a7da205e280fa648cc",
+              "width": 320,
+              "height": 504
+            }
+          },
+          {
+            "id": "w2-under-w0-premultiplied",
+            "bottom_to_top": [
+              2,
+              0
+            ],
+            "equation": "premultiplied",
+            "panel_width": 320,
+            "panel_height": 480,
+            "rgba_sha256": "9de8d75ff7828be7c5768166f24e0ce3d1c613c0982924c9fad704a953fc605a",
+            "status": "HYPOTHESIS ONLY - NOT HARDWARE VALIDATED",
+            "panel": {
+              "file": "HYPOTHESIS-w2-under-w0-premultiplied.png",
+              "sha256": "fc21aa2b64e3437ca7d6adc9b9f650fd29eab1d81ff524ff1afacd182c327339",
+              "width": 320,
+              "height": 480
+            },
+            "labelled_preview": {
+              "file": "HYPOTHESIS-w2-under-w0-premultiplied-labelled.png",
+              "sha256": "99a4f2671a574d3084599b85cdb700cc74e65787eea57e5843fe33fe797b7835",
+              "width": 320,
+              "height": 504
+            }
+          },
+          {
+            "id": "w2-under-w0-straight",
+            "bottom_to_top": [
+              2,
+              0
+            ],
+            "equation": "straight",
+            "panel_width": 320,
+            "panel_height": 480,
+            "rgba_sha256": "9de8d75ff7828be7c5768166f24e0ce3d1c613c0982924c9fad704a953fc605a",
+            "status": "HYPOTHESIS ONLY - NOT HARDWARE VALIDATED",
+            "panel": {
+              "file": "HYPOTHESIS-w2-under-w0-straight.png",
+              "sha256": "eaf83d600f87f933cc754f013591c487ad9638d3ef79c141aad81717beb9e2a7",
+              "width": 320,
+              "height": 480
+            },
+            "labelled_preview": {
+              "file": "HYPOTHESIS-w2-under-w0-straight-labelled.png",
+              "sha256": "e2c360af8e1557a1be20d9a6fbf0a2637ff75c906332c83323212687a21b7ffd",
+              "width": 320,
+              "height": 504
+            }
+          }
+        ],
+        "pairwise_comparisons": [
+          {
+            "a": "w0-under-w2-premultiplied",
+            "b": "w0-under-w2-straight",
+            "different_pixels": 2145,
+            "maximum_channel_difference": 64
+          },
+          {
+            "a": "w0-under-w2-premultiplied",
+            "b": "w2-under-w0-premultiplied",
+            "different_pixels": 12602,
+            "maximum_channel_difference": 240
+          },
+          {
+            "a": "w0-under-w2-premultiplied",
+            "b": "w2-under-w0-straight",
+            "different_pixels": 12602,
+            "maximum_channel_difference": 240
+          },
+          {
+            "a": "w0-under-w2-straight",
+            "b": "w2-under-w0-premultiplied",
+            "different_pixels": 12550,
+            "maximum_channel_difference": 240
+          },
+          {
+            "a": "w0-under-w2-straight",
+            "b": "w2-under-w0-straight",
+            "different_pixels": 12550,
+            "maximum_channel_difference": 240
+          },
+          {
+            "a": "w2-under-w0-premultiplied",
+            "b": "w2-under-w0-straight",
+            "different_pixels": 0,
+            "maximum_channel_difference": 0
+          }
+        ]
+      },
+      "checks": [
+        {
+          "hypothesis": "w0-under-w2-premultiplied",
+          "whole_153600_pixels_vs_independent_fraction_oracle": "PASS",
+          "opaque_UIKit_pixels": 16857,
+          "transparent_UIKit_pixels": 134598,
+          "partial_UIKit_pixels": 2145,
+          "opaque_copy_mismatches": 0,
+          "transparent_passthrough_mismatches": 0,
+          "opaque_UIKit_pixels_surviving": 16857,
+          "visible_condition_scope": "Expected display of guest UIKit controls, not an independent hardware photograph",
+          "example_control_xy": [
+            140,
+            380
+          ],
+          "example_control_RGBA": [
+            255,
+            255,
+            255,
+            255
+          ]
+        },
+        {
+          "hypothesis": "w0-under-w2-straight",
+          "whole_153600_pixels_vs_independent_fraction_oracle": "PASS",
+          "opaque_UIKit_pixels": 16857,
+          "transparent_UIKit_pixels": 134598,
+          "partial_UIKit_pixels": 2145,
+          "opaque_copy_mismatches": 0,
+          "transparent_passthrough_mismatches": 0,
+          "opaque_UIKit_pixels_surviving": 16857,
+          "visible_condition_scope": "Expected display of guest UIKit controls, not an independent hardware photograph",
+          "example_control_xy": [
+            140,
+            380
+          ],
+          "example_control_RGBA": [
+            255,
+            255,
+            255,
+            255
+          ]
+        },
+        {
+          "hypothesis": "w2-under-w0-premultiplied",
+          "whole_153600_pixels_vs_independent_fraction_oracle": "PASS",
+          "opaque_UIKit_pixels": 16857,
+          "transparent_UIKit_pixels": 134598,
+          "partial_UIKit_pixels": 2145,
+          "opaque_copy_mismatches": 0,
+          "transparent_passthrough_mismatches": 0,
+          "opaque_UIKit_pixels_surviving": 6400,
+          "visible_condition_scope": "Expected display of guest UIKit controls, not an independent hardware photograph",
+          "example_control_xy": [
+            140,
+            380
+          ],
+          "example_control_RGBA": [
+            15,
+            33,
+            28,
+            255
+          ]
+        },
+        {
+          "hypothesis": "w2-under-w0-straight",
+          "whole_153600_pixels_vs_independent_fraction_oracle": "PASS",
+          "opaque_UIKit_pixels": 16857,
+          "transparent_UIKit_pixels": 134598,
+          "partial_UIKit_pixels": 2145,
+          "opaque_copy_mismatches": 0,
+          "transparent_passthrough_mismatches": 0,
+          "opaque_UIKit_pixels_surviving": 6400,
+          "visible_condition_scope": "Expected display of guest UIKit controls, not an independent hardware photograph",
+          "example_control_xy": [
+            140,
+            380
+          ],
+          "example_control_RGBA": [
+            15,
+            33,
+            28,
+            255
+          ]
+        }
+      ],
+      "white_hud_partial_pixels": 1097,
+      "white_hud_all_RGB_equal_alpha": true,
+      "white_hud_examples": [
+        [
+          1,
+          1,
+          1,
+          1
+        ],
+        [
+          32,
+          32,
+          32,
+          32
+        ],
+        [
+          62,
+          62,
+          62,
+          62
+        ],
+        [
+          96,
+          96,
+          96,
+          96
+        ],
+        [
+          127,
+          127,
+          127,
+          127
+        ],
+        [
+          159,
+          159,
+          159,
+          159
+        ],
+        [
+          192,
+          192,
+          192,
+          192
+        ],
+        [
+          223,
+          223,
+          223,
+          223
+        ],
+        [
+          252,
+          252,
+          252,
+          252
+        ]
+      ],
+      "representation_scope": "Strong evidence of stored premultiplied UIKit white text, conditional on whiteColor rasterization over transparent backing; does not determine CLCD consumption or coefficients.",
+      "native_representation_checks": [
+        {
+          "index": 0,
+          "premultiplied_invariant_violations": 0,
+          "nonzero_rgb_at_zero_alpha": 0
+        },
+        {
+          "index": 2,
+          "premultiplied_invariant_violations": 0,
+          "nonzero_rgb_at_zero_alpha": 0
+        }
+      ]
+    }
+  },
+  "forbidden_authentic_names_created": false
+}

@@ -1,0 +1,182 @@
+{
+  "schema": 1,
+  "scope": "Explicitly reviewed original-game captures and labelled mathematical hypotheses only; native originals remain private.",
+  "files": [
+    {
+      "path": "reports/relic-maze/AFTER_SIX_MOVES.png",
+      "sha256": "0f854964909dd89ad9f8afc8ebedda66fbad1dc5db37d15194496841e63cea3b",
+      "kind": "guest-window-rgb"
+    },
+    {
+      "path": "reports/relic-maze/FIRST_GAME_FRAME.png",
+      "sha256": "5255e4086857eb65a195c762746de41a1f5bb0f893ebc8c426d280ea59efdd36",
+      "kind": "guest-window-rgb"
+    },
+    {
+      "path": "reports/relic-maze/clcd-composition-hypotheses/initial/HYPOTHESIS-w0-under-w2-premultiplied-labelled.png",
+      "sha256": "0faf419544d0952ee08cd89e7e9fdf61e46f244a0d7c26575427350c82a0885d",
+      "kind": "hypothesis",
+      "hardware_validated": false
+    },
+    {
+      "path": "reports/relic-maze/clcd-composition-hypotheses/initial/HYPOTHESIS-w0-under-w2-premultiplied.png",
+      "sha256": "7939e3f8d0724ac56c8a36abdd615d64191b269cdaba2f070bbfa026f78962a6",
+      "kind": "hypothesis",
+      "hardware_validated": false
+    },
+    {
+      "path": "reports/relic-maze/clcd-composition-hypotheses/initial/HYPOTHESIS-w0-under-w2-straight-labelled.png",
+      "sha256": "dc6e13465566fbb7a57ffdfe2540d11e989c8e87c1c228c6d01c58eb7025ca9e",
+      "kind": "hypothesis",
+      "hardware_validated": false
+    },
+    {
+      "path": "reports/relic-maze/clcd-composition-hypotheses/initial/HYPOTHESIS-w0-under-w2-straight.png",
+      "sha256": "c8eb219d7efd34c2c45878863b323144bdbfd9e249ff7472381faee793447a5d",
+      "kind": "hypothesis",
+      "hardware_validated": false
+    },
+    {
+      "path": "reports/relic-maze/clcd-composition-hypotheses/initial/HYPOTHESIS-w2-under-w0-premultiplied-labelled.png",
+      "sha256": "fb0d72f9410c04e6fe60cdb2244f7fad5c71aa6c6eb4d6862423149bf7db3908",
+      "kind": "hypothesis",
+      "hardware_validated": false
+    },
+    {
+      "path": "reports/relic-maze/clcd-composition-hypotheses/initial/HYPOTHESIS-w2-under-w0-premultiplied.png",
+      "sha256": "6c261735b66ed3d55be4efd973d6c1d75e90715d7f79a928048a865a7bc90be4",
+      "kind": "hypothesis",
+      "hardware_validated": false
+    },
+    {
+      "path": "reports/relic-maze/clcd-composition-hypotheses/initial/HYPOTHESIS-w2-under-w0-straight-labelled.png",
+      "sha256": "d71e6419e7ed51efd58f10eceeb671da113c3b04adbf622e247e0bcedf9a3cb9",
+      "kind": "hypothesis",
+      "hardware_validated": false
+    },
+    {
+      "path": "reports/relic-maze/clcd-composition-hypotheses/initial/HYPOTHESIS-w2-under-w0-straight.png",
+      "sha256": "55cf8f61e333403584a8d83c7d1d208a01e086292b90d5bc28168b625cfaacbc",
+      "kind": "hypothesis",
+      "hardware_validated": false
+    },
+    {
+      "path": "reports/relic-maze/clcd-composition-hypotheses/victory/HYPOTHESIS-w0-under-w2-premultiplied-labelled.png",
+      "sha256": "08443b3bff7d8e08d7f73807bc391f1dbc799beb014067134778341a4742f70d",
+      "kind": "hypothesis",
+      "hardware_validated": false
+    },
+    {
+      "path": "reports/relic-maze/clcd-composition-hypotheses/victory/HYPOTHESIS-w0-under-w2-premultiplied.png",
+      "sha256": "8a8f83a2d59eb9a9e44c51c962fdf1df1e6419ffc5b208181ee1c4afa5f1b4e9",
+      "kind": "hypothesis",
+      "hardware_validated": false
+    },
+    {
+      "path": "reports/relic-maze/clcd-composition-hypotheses/victory/HYPOTHESIS-w0-under-w2-straight-labelled.png",
+      "sha256": "7fbca0698b4b3e297c60f5cc0dc1261f503489c23a0384a7da205e280fa648cc",
+      "kind": "hypothesis",
+      "hardware_validated": false
+    },
+    {
+      "path": "reports/relic-maze/clcd-composition-hypotheses/victory/HYPOTHESIS-w0-under-w2-straight.png",
+      "sha256": "288ff341ec0a7d982d0c0ce6625cb54bda01198bd923557d76ff0531ba00db13",
+      "kind": "hypothesis",
+      "hardware_validated": false
+    },
+    {
+      "path": "reports/relic-maze/clcd-composition-hypotheses/victory/HYPOTHESIS-w2-under-w0-premultiplied-labelled.png",
+      "sha256": "99a4f2671a574d3084599b85cdb700cc74e65787eea57e5843fe33fe797b7835",
+      "kind": "hypothesis",
+      "hardware_validated": false
+    },
+    {
+      "path": "reports/relic-maze/clcd-composition-hypotheses/victory/HYPOTHESIS-w2-under-w0-premultiplied.png",
+      "sha256": "fc21aa2b64e3437ca7d6adc9b9f650fd29eab1d81ff524ff1afacd182c327339",
+      "kind": "hypothesis",
+      "hardware_validated": false
+    },
+    {
+      "path": "reports/relic-maze/clcd-composition-hypotheses/victory/HYPOTHESIS-w2-under-w0-straight-labelled.png",
+      "sha256": "e2c360af8e1557a1be20d9a6fbf0a2637ff75c906332c83323212687a21b7ffd",
+      "kind": "hypothesis",
+      "hardware_validated": false
+    },
+    {
+      "path": "reports/relic-maze/clcd-composition-hypotheses/victory/HYPOTHESIS-w2-under-w0-straight.png",
+      "sha256": "eaf83d600f87f933cc754f013591c487ad9638d3ef79c141aad81717beb9e2a7",
+      "kind": "hypothesis",
+      "hardware_validated": false
+    },
+    {
+      "path": "reports/relic-maze/clcd-multilayer/initial/window-0-native.png",
+      "sha256": "998995ebecca96dc10a8d1075355c50bd097ef1bc858a46edc4f4c4d373da80b",
+      "kind": "native-window"
+    },
+    {
+      "path": "reports/relic-maze/clcd-multilayer/initial/window-0-panel-placement.png",
+      "sha256": "6040aedae247d6baab15dd6d1dd808d7b23c0be3ac9e586ad0120e56888cbde9",
+      "kind": "single-window-placement"
+    },
+    {
+      "path": "reports/relic-maze/clcd-multilayer/initial/window-2-native.png",
+      "sha256": "1dc883e77823bc31f5940fee8a19fae61175855cc3060bd9742f8ba8c6411923",
+      "kind": "native-window"
+    },
+    {
+      "path": "reports/relic-maze/clcd-multilayer/initial/window-2-panel-placement.png",
+      "sha256": "1dc883e77823bc31f5940fee8a19fae61175855cc3060bd9742f8ba8c6411923",
+      "kind": "single-window-placement"
+    },
+    {
+      "path": "reports/relic-maze/clcd-multilayer/victory/window-0-native.png",
+      "sha256": "7682b4c1016becc20fd074ee841c8b899f10bc415b9da3e723b02e7c4fd29d0b",
+      "kind": "native-window"
+    },
+    {
+      "path": "reports/relic-maze/clcd-multilayer/victory/window-0-panel-placement.png",
+      "sha256": "3c5d0af3a5f9c308920f2fc7664fa41fa3af85a00fb738909dc9113b7c3d9b83",
+      "kind": "single-window-placement"
+    },
+    {
+      "path": "reports/relic-maze/clcd-multilayer/victory/window-2-native.png",
+      "sha256": "69b7f12503deddfbcd75efbdd62c57cf86f521eff0bed098d310bdac4e812510",
+      "kind": "native-window"
+    },
+    {
+      "path": "reports/relic-maze/clcd-multilayer/victory/window-2-panel-placement.png",
+      "sha256": "69b7f12503deddfbcd75efbdd62c57cf86f521eff0bed098d310bdac4e812510",
+      "kind": "single-window-placement"
+    },
+    {
+      "path": "reports/relic-maze/full-playthrough/crate_first_push.png",
+      "sha256": "014182e7811665199c0c6d9b51b39f2f30f37b01ea8fddb3a8d09aa48f4d0911",
+      "kind": "guest-window-rgb"
+    },
+    {
+      "path": "reports/relic-maze/full-playthrough/first_relic.png",
+      "sha256": "b80f3e13ed7c378ec558bfd082d6c5df17b696719d6f1a957ef25184a7be3e48",
+      "kind": "guest-window-rgb"
+    },
+    {
+      "path": "reports/relic-maze/full-playthrough/plate_and_gate_open.png",
+      "sha256": "59a52bd2e504722db8bad566bc1509cf1342ac2e4633be29bfb84184521c3e45",
+      "kind": "guest-window-rgb"
+    },
+    {
+      "path": "reports/relic-maze/full-playthrough/second_relic.png",
+      "sha256": "58c9143bd0432a05a6080914b56b667fc2dce7af9b4c82a8e60c061ad2a4b224",
+      "kind": "guest-window-rgb"
+    },
+    {
+      "path": "reports/relic-maze/full-playthrough/third_relic.png",
+      "sha256": "9ea3ea74a42c6d5bef5b8d29b20e6a598a8c059d62cc80ff48680a7890d0aecd",
+      "kind": "guest-window-rgb"
+    },
+    {
+      "path": "reports/relic-maze/full-playthrough/victory.png",
+      "sha256": "c81b2999a445944390b527006294530042b6224ebf5a9d4175da140726921aab",
+      "kind": "guest-window-rgb"
+    }
+  ]
+}

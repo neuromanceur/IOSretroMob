@@ -1,0 +1,165 @@
+{
+  "schema": 1,
+  "status": "HYPOTHESIS ONLY - NOT HARDWARE VALIDATED",
+  "hardware_validated": false,
+  "instruction": 10125000000,
+  "manifest_sha256": "b356e3ef59e509be1ab21f7145a67e1e754a2c275605f4af17d72eb9f02e415a",
+  "input_windows": [
+    {
+      "index": 0,
+      "raw_sha256": "f538a189891e94c424a2ffd774830e29a2d4c9def558b60ac2fc4c60db5bd776",
+      "raw_file": "layers-0026-at-10125000000-win0.raw"
+    },
+    {
+      "index": 2,
+      "raw_sha256": "af3198ee990fd30dbdfc2382701978db1b9f0d3735f3d4cfbf822f9a946f4c02",
+      "raw_file": "layers-0026-at-10125000000-win2.raw"
+    }
+  ],
+  "assumptions": {
+    "backdrop_rgb": [
+      0,
+      0,
+      0
+    ],
+    "backdrop_alpha": 255,
+    "rounding": "nearest /255 after each layer, not a hardware rounding claim",
+    "clipping": "panel intersection; unsigned register positions; no scaling, CSC, gamma, key or constant-alpha interpretation"
+  },
+  "hypotheses": [
+    {
+      "id": "w0-under-w2-premultiplied",
+      "bottom_to_top": [
+        0,
+        2
+      ],
+      "equation": "premultiplied",
+      "panel_width": 320,
+      "panel_height": 480,
+      "rgba_sha256": "168f0e1c9a8f2206f581247edcb7c8f2a0520a4bdfeba54d9a8dba28d7ecc3aa",
+      "status": "HYPOTHESIS ONLY - NOT HARDWARE VALIDATED",
+      "panel": {
+        "file": "HYPOTHESIS-w0-under-w2-premultiplied.png",
+        "sha256": "8a8f83a2d59eb9a9e44c51c962fdf1df1e6419ffc5b208181ee1c4afa5f1b4e9",
+        "width": 320,
+        "height": 480
+      },
+      "labelled_preview": {
+        "file": "HYPOTHESIS-w0-under-w2-premultiplied-labelled.png",
+        "sha256": "08443b3bff7d8e08d7f73807bc391f1dbc799beb014067134778341a4742f70d",
+        "width": 320,
+        "height": 504
+      }
+    },
+    {
+      "id": "w0-under-w2-straight",
+      "bottom_to_top": [
+        0,
+        2
+      ],
+      "equation": "straight",
+      "panel_width": 320,
+      "panel_height": 480,
+      "rgba_sha256": "ca36f897283b131dde288ee7ba87e957dd4c86592267b9c4393e9c846eec165c",
+      "status": "HYPOTHESIS ONLY - NOT HARDWARE VALIDATED",
+      "panel": {
+        "file": "HYPOTHESIS-w0-under-w2-straight.png",
+        "sha256": "288ff341ec0a7d982d0c0ce6625cb54bda01198bd923557d76ff0531ba00db13",
+        "width": 320,
+        "height": 480
+      },
+      "labelled_preview": {
+        "file": "HYPOTHESIS-w0-under-w2-straight-labelled.png",
+        "sha256": "7fbca0698b4b3e297c60f5cc0dc1261f503489c23a0384a7da205e280fa648cc",
+        "width": 320,
+        "height": 504
+      }
+    },
+    {
+      "id": "w2-under-w0-premultiplied",
+      "bottom_to_top": [
+        2,
+        0
+      ],
+      "equation": "premultiplied",
+      "panel_width": 320,
+      "panel_height": 480,
+      "rgba_sha256": "9de8d75ff7828be7c5768166f24e0ce3d1c613c0982924c9fad704a953fc605a",
+      "status": "HYPOTHESIS ONLY - NOT HARDWARE VALIDATED",
+      "panel": {
+        "file": "HYPOTHESIS-w2-under-w0-premultiplied.png",
+        "sha256": "fc21aa2b64e3437ca7d6adc9b9f650fd29eab1d81ff524ff1afacd182c327339",
+        "width": 320,
+        "height": 480
+      },
+      "labelled_preview": {
+        "file": "HYPOTHESIS-w2-under-w0-premultiplied-labelled.png",
+        "sha256": "99a4f2671a574d3084599b85cdb700cc74e65787eea57e5843fe33fe797b7835",
+        "width": 320,
+        "height": 504
+      }
+    },
+    {
+      "id": "w2-under-w0-straight",
+      "bottom_to_top": [
+        2,
+        0
+      ],
+      "equation": "straight",
+      "panel_width": 320,
+      "panel_height": 480,
+      "rgba_sha256": "9de8d75ff7828be7c5768166f24e0ce3d1c613c0982924c9fad704a953fc605a",
+      "status": "HYPOTHESIS ONLY - NOT HARDWARE VALIDATED",
+      "panel": {
+        "file": "HYPOTHESIS-w2-under-w0-straight.png",
+        "sha256": "eaf83d600f87f933cc754f013591c487ad9638d3ef79c141aad81717beb9e2a7",
+        "width": 320,
+        "height": 480
+      },
+      "labelled_preview": {
+        "file": "HYPOTHESIS-w2-under-w0-straight-labelled.png",
+        "sha256": "e2c360af8e1557a1be20d9a6fbf0a2637ff75c906332c83323212687a21b7ffd",
+        "width": 320,
+        "height": 504
+      }
+    }
+  ],
+  "pairwise_comparisons": [
+    {
+      "a": "w0-under-w2-premultiplied",
+      "b": "w0-under-w2-straight",
+      "different_pixels": 2145,
+      "maximum_channel_difference": 64
+    },
+    {
+      "a": "w0-under-w2-premultiplied",
+      "b": "w2-under-w0-premultiplied",
+      "different_pixels": 12602,
+      "maximum_channel_difference": 240
+    },
+    {
+      "a": "w0-under-w2-premultiplied",
+      "b": "w2-under-w0-straight",
+      "different_pixels": 12602,
+      "maximum_channel_difference": 240
+    },
+    {
+      "a": "w0-under-w2-straight",
+      "b": "w2-under-w0-premultiplied",
+      "different_pixels": 12550,
+      "maximum_channel_difference": 240
+    },
+    {
+      "a": "w0-under-w2-straight",
+      "b": "w2-under-w0-straight",
+      "different_pixels": 12550,
+      "maximum_channel_difference": 240
+    },
+    {
+      "a": "w2-under-w0-premultiplied",
+      "b": "w2-under-w0-straight",
+      "different_pixels": 0,
+      "maximum_channel_difference": 0
+    }
+  ]
+}

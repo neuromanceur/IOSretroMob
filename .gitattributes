@@ -8,3 +8,10 @@
 *.ipa  binary
 *.img3 binary
 *.dmg  binary
+
+# Preserve byte identities of measured logs and native capture manifests.
+reports/relic-maze/GUEST_EXECUTION.log -text
+reports/relic-maze/full-playthrough/GUEST_EXECUTION.log -text
+reports/relic-maze/full-playthrough/CLCD_REGISTERS.log -text whitespace=-blank-at-eof
+reports/relic-maze/clcd-multilayer/initial/CAPTURE.json -text
+reports/relic-maze/clcd-multilayer/victory/CAPTURE.json -text

@@ -1,0 +1,15 @@
+=== CLCD LIVE REGISTER STATE ===
+    enable/disable=00000001/00000000 ctrl/fifo=01110051/000f0f0f preenable/backdrop=00000000/ff000000
+    irq mask/status=00003f00/00000001 reg1c=00000000 update/update2=00000002/50001000
+    VIDCON0/1=00000441/00000008 unknown208=00000000 VIDTCON0/1/2/3=00030303/000e0e0f/013f01df/00000001
+    window auxiliaries d8/dc/e0/e4/e8/ec=00001000/00000000/00001000/00000000/50001000/00000000
+    window0 raw: pitch=00000500 control=00000700 fb=08982000 geometry=014001cc linewords=00000140 position=00000014
+            decoded: 320x460 stride=1280 fb=08982000 format=7 order=0
+    window1 raw: pitch=00000000 control=00000000 fb=00000000 geometry=00000000 linewords=00000000 position=00000000
+            decoded: disabled
+    window2 raw: pitch=00000500 control=00000700 fb=08a1e000 geometry=014001e0 linewords=00000140 position=00000000
+            decoded: 320x480 stride=1280 fb=08a1e000 format=7 order=0
+    window3 raw: pitch=00000000 control=00000000 fb=00000000 geometry=00000000 linewords=00000000 position=00000000
+            decoded: disabled
+    nonzero overlay/CSC/gamma words=0/0/0; scanning/running=1/1 frames=100731
+

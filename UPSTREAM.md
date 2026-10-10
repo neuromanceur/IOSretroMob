@@ -30,3 +30,20 @@ The retained Objective-C shell is an upstream reference implementation. The publ
 ## Snapshot boundary
 
 Only use a snapshot with the exact compatible IOSretroMob/S5LBox-local binary and its matching media/state components. Our v33 and upstream v33 are divergent formats, even though their version integers coincide. Neither this project nor its tests establish interoperability with current upstream v33. Cross-lineage snapshot detection/migration is a future explicit format-design task; until then, treat provenance as mandatory and reject unknown-lineage inputs operationally.
+
+## Relic Maze and the CLCD laboratory (2026-10-10)
+
+The original MIT game in `examples/RelicMaze` is an IOSretroMob contribution,
+not S5LBox or Unity content. Its ARMv6 frontend reuses the existing SDK-free
+runtime bridge and classic Mach-O writer; the inherited emulator executed the
+actual UIKit/EAGL/ES1 application through a 25-move victory. The C core, browser
+variant and unvalidated Unity 3.3 source prototype are kept separately.
+
+New generic host additions are bounded 32-touch CLI sequences, read-only native
+CLCD multi-window capture, format/hash inspection, independent synthetic tests
+and an explicitly experimental compositor. They do not add a game-name special
+case to emulated hardware or prove layer priority, depth, Unity support or FPS.
+The historical S5LBox checkout and its MIT copyright remain unchanged by this
+integration. OpeniBoot/iDroid research is cited in reports; no GPL implementation
+or Apple code is imported. Historical reports retain their original dates and
+claims; later guest evidence supersedes their earlier incomplete milestones.

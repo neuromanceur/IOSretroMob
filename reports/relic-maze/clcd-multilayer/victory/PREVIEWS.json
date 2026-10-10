@@ -1,0 +1,55 @@
+{
+  "instruction": 10125000000,
+  "manifest_sha256": "b356e3ef59e509be1ab21f7145a67e1e754a2c275605f4af17d72eb9f02e415a",
+  "scope": "Uncomposited native-channel preview; alpha preserved, blend semantics unresolved.",
+  "previews": [
+    {
+      "index": 0,
+      "kind": "native",
+      "file": "window-0-native.png",
+      "sha256": "7682b4c1016becc20fd074ee841c8b899f10bc415b9da3e723b02e7c4fd29d0b",
+      "rgba_sha256": "1f0d4b72dd085eeef13c704750080a506bc3106548444acdd1a3bb7fb4d67f6c",
+      "width": 320,
+      "height": 460,
+      "scope": "one window only; no hardware composition"
+    },
+    {
+      "index": 0,
+      "kind": "panel-placement",
+      "file": "window-0-panel-placement.png",
+      "sha256": "3c5d0af3a5f9c308920f2fc7664fa41fa3af85a00fb738909dc9113b7c3d9b83",
+      "rgba_sha256": "c96257015397dfffcef3a3e10b9f36209d34db2f9eca1e5b236dc528c2f0d4fb",
+      "width": 320,
+      "height": 480,
+      "scope": "one window only; no hardware composition"
+    },
+    {
+      "index": 1,
+      "status": "disabled"
+    },
+    {
+      "index": 2,
+      "kind": "native",
+      "file": "window-2-native.png",
+      "sha256": "69b7f12503deddfbcd75efbdd62c57cf86f521eff0bed098d310bdac4e812510",
+      "rgba_sha256": "58641e30942f50aa3ba458e286cdb628949cf9a6858e88edf16e93618e1c0621",
+      "width": 320,
+      "height": 480,
+      "scope": "one window only; no hardware composition"
+    },
+    {
+      "index": 2,
+      "kind": "panel-placement",
+      "file": "window-2-panel-placement.png",
+      "sha256": "69b7f12503deddfbcd75efbdd62c57cf86f521eff0bed098d310bdac4e812510",
+      "rgba_sha256": "58641e30942f50aa3ba458e286cdb628949cf9a6858e88edf16e93618e1c0621",
+      "width": 320,
+      "height": 480,
+      "scope": "one window only; no hardware composition"
+    },
+    {
+      "index": 3,
+      "status": "disabled"
+    }
+  ]
+}

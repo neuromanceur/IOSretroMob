@@ -21,3 +21,22 @@ Read-only Z instrumentation records observed addresses, surface bytes and hashes
 The local v33 snapshot persists a transient TA FIFO and can reconstruct it empty from v32, requiring fresh TA submission. Current upstream v33 is different. See [UPSTREAM.md](UPSTREAM.md).
 
 `app/Sources` retains the attributed upstream native shell because several portable policies and tests share its C sources. Its Objective-C UI is not the IOSretroMob public front end and has not been built in this validation. The supported project interface here is `iosretromob` and the desktop CMake targets.
+
+## Original game and offline CLCD observations
+
+`examples/RelicMaze/core` is portable C game logic. Its SDK-free ARMv6 frontend
+loads UIKit and OpenGLES from the authorized guest, drives one opaque procedural
+texture per input redraw, and logs real state transitions. It uses the existing
+Mach-O writer and runtime bridge; the emulator does not identify the game by
+name. The original Objective-C frontend is source only, and the Unity 3.3 script
+is an unexported prototype.
+
+The opt-in `guest_clcd_multilayer.h` sampler observes all enabled windows without
+advancing guest time between them. `clcd_multilayer_capture.c` preserves native
+bytes, alpha, stride, positions and control registers, with bounded immutable
+exports and hashes. `clcd_layers.py` decodes supported formats without assigning
+layer priority. `clcd_composition_experimental.py` compares explicit mathematical
+orders/alpha equations; it does not implement unproven hardware behavior. Legacy
+single-window RGB capture is unchanged. `verify_relic_maze_evidence.py` checks
+curated lossless PNGs against historical pixel/raw hashes and journals without
+booting firmware or using private media.

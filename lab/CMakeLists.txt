@@ -8,3 +8,7 @@ set_tests_properties(iosretromob_public_replays iosretromob_diagnostic_tools PRO
 
 add_test(NAME iosretromob_gallery COMMAND "${Python3_EXECUTABLE}" "${CMAKE_SOURCE_DIR}/iosretromob" verify-gallery)
 set_tests_properties(iosretromob_gallery PROPERTIES ENVIRONMENT "PYTHONDONTWRITEBYTECODE=1")
+
+add_test(NAME iosretromob_relic_maze_evidence COMMAND ${Python3_EXECUTABLE} ${CMAKE_SOURCE_DIR}/tools/verify_relic_maze_evidence.py)
+add_test(NAME iosretromob_public_audit_controls COMMAND ${Python3_EXECUTABLE} ${CMAKE_SOURCE_DIR}/core/tests/test_public_audit.py)
+set_tests_properties(iosretromob_relic_maze_evidence iosretromob_public_audit_controls PROPERTIES ENVIRONMENT "PYTHONDONTWRITEBYTECODE=1")

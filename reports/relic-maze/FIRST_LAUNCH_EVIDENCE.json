@@ -1,0 +1,159 @@
+{
+  "status": "PASS",
+  "guest_pid": 39,
+  "states": [
+    {
+      "frame": 1,
+      "player_x": 1,
+      "player_y": 1,
+      "crate_x": 3,
+      "crate_y": 5,
+      "moves": 0,
+      "relic_mask": 0,
+      "plate": 0,
+      "won": 0
+    },
+    {
+      "frame": 2,
+      "player_x": 1,
+      "player_y": 2,
+      "crate_x": 3,
+      "crate_y": 5,
+      "moves": 1,
+      "relic_mask": 0,
+      "plate": 0,
+      "won": 0
+    },
+    {
+      "frame": 3,
+      "player_x": 1,
+      "player_y": 3,
+      "crate_x": 3,
+      "crate_y": 5,
+      "moves": 2,
+      "relic_mask": 0,
+      "plate": 0,
+      "won": 0
+    },
+    {
+      "frame": 4,
+      "player_x": 1,
+      "player_y": 4,
+      "crate_x": 3,
+      "crate_y": 5,
+      "moves": 3,
+      "relic_mask": 0,
+      "plate": 0,
+      "won": 0
+    },
+    {
+      "frame": 5,
+      "player_x": 1,
+      "player_y": 5,
+      "crate_x": 3,
+      "crate_y": 5,
+      "moves": 4,
+      "relic_mask": 0,
+      "plate": 0,
+      "won": 0
+    },
+    {
+      "frame": 6,
+      "player_x": 1,
+      "player_y": 6,
+      "crate_x": 3,
+      "crate_y": 5,
+      "moves": 5,
+      "relic_mask": 0,
+      "plate": 0,
+      "won": 0
+    },
+    {
+      "frame": 7,
+      "player_x": 1,
+      "player_y": 7,
+      "crate_x": 3,
+      "crate_y": 5,
+      "moves": 6,
+      "relic_mask": 2,
+      "plate": 0,
+      "won": 0
+    }
+  ],
+  "touch_callbacks": 6,
+  "successful_steps": 6,
+  "present_calls": 7,
+  "present_errors": 0,
+  "capture_matches": 5,
+  "cell_samples_per_matched_capture": 441,
+  "max_channel_error": 0,
+  "captured_move_counts": [
+    1,
+    2,
+    3,
+    4,
+    6
+  ],
+  "captures": [
+    {
+      "capture": "FIRST_GAME_FRAME",
+      "source": "clcd-0048-at-7200000000.ppm",
+      "instruction": 7200000000,
+      "size": [
+        320,
+        460
+      ],
+      "window": 0,
+      "position": [
+        0,
+        20
+      ],
+      "ppm_sha256": "20216ddfed89722aae664a0a4c12c08a500471f05d4a29cd30aeda789dc9ed79",
+      "png_sha256": "5255e4086857eb65a195c762746de41a1f5bb0f893ebc8c426d280ea59efdd36",
+      "rgb_sha256": "f3d1565268f5773746822a49345188aafc62a3ae757e184d772c7829f088f116",
+      "state": {
+        "player": [
+          1,
+          2
+        ],
+        "moves": 1,
+        "relic_mask": 0,
+        "sampled_points": 441,
+        "mismatching_points": 0,
+        "max_channel_error": 0
+      },
+      "scope": "Authentic raw CLCD window 0. Not a composited 320x480 display; UIKit overlay window 2 is not captured."
+    },
+    {
+      "capture": "AFTER_SIX_MOVES",
+      "source": "clcd-0052-at-7400000000.ppm",
+      "instruction": 7400000000,
+      "size": [
+        320,
+        460
+      ],
+      "window": 0,
+      "position": [
+        0,
+        20
+      ],
+      "ppm_sha256": "892e77f2b8e45206179cdb21f4d9d68dc9644532c7f221e1ee4c510306ef8b49",
+      "png_sha256": "0f854964909dd89ad9f8afc8ebedda66fbad1dc5db37d15194496841e63cea3b",
+      "rgb_sha256": "a71b92953d1bf9e7d3dc677a0ca1309ab390d0800fc1da622e3110194b9e35ab",
+      "state": {
+        "player": [
+          1,
+          7
+        ],
+        "moves": 6,
+        "relic_mask": 2,
+        "sampled_points": 441,
+        "mismatching_points": 0,
+        "max_channel_error": 0
+      },
+      "scope": "Authentic raw CLCD window 0. Not a composited 320x480 display; UIKit overlay window 2 is not captured."
+    }
+  ],
+  "binary_sha256": "e23578d8dd3b7fc1d471efbf5d57dd55b982d82fe5d2f3b644023da7913242ca",
+  "execution_scope": "Game ARMv6 process, UIKit/EAGL/ES1 startup, live MBX scanout, six Down movements and first relic. Guest victory, other directions, reset and full overlay pixels remain unvalidated."
+}
