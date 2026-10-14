@@ -16,11 +16,13 @@ The engine is based on S5LBox [`6f203ba`](https://github.com/j0shua-SYSON/S5LBox
 | Six recognized VGP program/state envelopes | Local `mbx_vgp_decode`; full normalized-envelope digest gates, not a general VGP interpreter. |
 | Diagnostic triangle transformation, clipping, colour and UV interpolation | Local `mbx_vgp_raster`; integration into the guarded MBX/GART path. Current upstream also renders bounded transformed textured quads; this project does not claim to invent transformations or filtering. |
 | Own RGBA8 upload with GL_NEAREST / GL_LINEAR | Local diagnostic subset, tested analytically and observed in historical guest CLCD captures. Distinct from upstream BGRA8 composition samplers. |
-| Snapshot continuity | Local v33 adds a TA FIFO; v32 migration is tested. Upstream v33 has a different layout: **do not interchange snapshots**. |
+| Snapshot continuity | Local v34 expands TA retention; local v32/v33 reads are supported. Upstream v33 has a different layout: **do not interchange snapshots**. |
 | Capture / Z observer | Local CLCD sampling and read-only, opt-in depth-surface journaling; no implemented depth buffer. |
 | Public lab | IOSretroMob CLI, five original synthetic scene replays, independent pixel checks, bounded TA-input inspector and an authenticated capture gallery. |
 
 See [UPSTREAM.md](UPSTREAM.md) for source locations, limitations and the comparison matrix.
+The [runtime source checkpoint](docs/RUNTIME_CHECKPOINT.md) documents bounded IIS,
+MBX and observation changes, their tests and remaining limits.
 
 ## Actual results
 

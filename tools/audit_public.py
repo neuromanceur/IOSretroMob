@@ -63,7 +63,8 @@ def classify(path,data,allowed,issues,label):
         if b'\0'in data:issues.append({'location':label,'reason':'binary NUL in text','path':path})
         for pattern in SECRET:
             if pattern.search(data):issues.append({'location':label,'reason':'secret/personal-path pattern','path':path})
-def audit():
+def audit(size_limit_bytes=MAX_REPOSITORY_BYTES):
+    if size_limit_bytes not in (20*1024**2,32*1024**2):raise ValueError("Only the default 20 MiB or explicitly owner-authorized 32 MiB checkpoint limit is supported")
     allowed=set(json.loads((ROOT/'reports/PUBLIC_FILE_ALLOWLIST.json').read_text())['paths']);issues=[];inventory=[]
     tracked=git('ls-files','-z').decode().split('\0')[:-1]
     for path in tracked:
@@ -95,7 +96,7 @@ def audit():
     tracked_bytes=sum(x['bytes'] for x in inventory)
     metadata_allocated=sum(p.stat().st_blocks*512 for p in (ROOT/'.git').rglob('*') if p.is_file())
     for name,value in [('tracked logical bytes',tracked_bytes),('all Git-object logical bytes',object_bytes),('Git allocated metadata bytes',metadata_allocated)]:
-        if value>MAX_REPOSITORY_BYTES:issues.append({'location':'size gate','reason':name+' exceeds 20 MiB','bytes':value})
+        if value>size_limit_bytes:issues.append({'location':'size gate','reason':name+' exceeds '+str(size_limit_bytes//1024**2)+' MiB','bytes':value})
     links=[]
     for name in('README.md','README.fr.md'):
         txt=(ROOT/name).read_text()
@@ -103,9 +104,9 @@ def audit():
             if target.startswith(('https://','http://','#')):continue
             if not(ROOT/target.split('#')[0]).exists():links.append({'document':name,'missing':target})
     if links:issues+=links
-    return {'pass':not issues,'tracked_files':len(tracked),'tracked_logical_bytes':sum(x['bytes']for x in inventory),'commits':len(history),'historical_tree_entries':trees,'all_git_objects':len(objects),'all_blobs_inspected':blob_count,'all_object_logical_bytes':object_bytes,'git_metadata_allocated_bytes':metadata_allocated,'size_limit_bytes':MAX_REPOSITORY_BYTES,'positive_allowlist_paths':len(allowed),'issues':issues,'inventory':inventory,'scope':'All tracked files and every current Git object, including unreachable objects. Public NIST AES test vectors, register constants and SHA identity/digest values are not secret keys. Image rights/provenance reviewed separately.'}
+    return {'pass':not issues,'tracked_files':len(tracked),'tracked_logical_bytes':sum(x['bytes']for x in inventory),'commits':len(history),'historical_tree_entries':trees,'all_git_objects':len(objects),'all_blobs_inspected':blob_count,'all_object_logical_bytes':object_bytes,'git_metadata_allocated_bytes':metadata_allocated,'size_limit_bytes':size_limit_bytes,'positive_allowlist_paths':len(allowed),'issues':issues,'inventory':inventory,'scope':'All tracked files and every current Git object, including unreachable objects. Public NIST AES test vectors, register constants and SHA identity/digest values are not secret keys. Image rights/provenance reviewed separately.'}
 def main():
-    p=argparse.ArgumentParser();p.add_argument('--output',type=Path);a=p.parse_args();r=audit()
+    p=argparse.ArgumentParser();p.add_argument('--output',type=Path);p.add_argument('--size-limit-mib',type=int,choices=(20,32),default=20,help='Default 20; 32 requires explicit owner authorization for the checkpoint. All content and history checks remain active.');a=p.parse_args();r=audit(a.size_limit_mib*1024**2)
     if a.output:
         with a.output.open('x')as f:json.dump(r,f,indent=2);f.write('\n')
     print(json.dumps({k:v for k,v in r.items()if k!='inventory'},indent=2));return int(not r['pass'])
