@@ -36,7 +36,7 @@
  * ===========================================================================
  *   header  (40 bytes, little-endian)
  *       0  char     magic[16]        "S5LBox SNAPSHOT"
- *      16  uint32   version          current v33 or explicitly supported v32
+ *      16  uint32   version          current v34 or explicitly supported v32/v33
  *      20  uint32   header_len       40
  *      24  uint64   payload_len
  *      32  uint64   flags            0
@@ -120,7 +120,8 @@ SNAP_SIZE_GUARD(s5l_uart_t,        8280,  "snap_uart");
 SNAP_SIZE_GUARD(s5l_vic_t,         16,    "snap_vic");
 SNAP_SIZE_GUARD(s5l_timer_t,       40,    "snap_timer");
 SNAP_SIZE_GUARD(s5l_power_t,       24,    "snap_power");
-SNAP_SIZE_GUARD(s5l_mbx_t,         73752, "snap_mbx");
+/* v34 adds 196608 serialized native TA bytes; legacy v33 reads exactly 16K words. */
+SNAP_SIZE_GUARD(s5l_mbx_t,         270360, "snap_mbx");
 SNAP_SIZE_GUARD(s5l_clcd_window_t, 24,    "snap_clcd");
 SNAP_SIZE_GUARD(s5l_clcd_t,        3368,  "snap_clcd");
 SNAP_SIZE_GUARD(s5l_tvout_t,       12304, "snap_tvout");
@@ -129,7 +130,11 @@ SNAP_SIZE_GUARD(s5l_tvout_t,       12304, "snap_tvout");
 SNAP_SIZE_GUARD(s5l_i2c_t,         320,   "snap_i2c");
 SNAP_SIZE_GUARD(s5l_pcf50635_t,    600,   "snap_pmu");
 SNAP_SIZE_GUARD(s5l_wm8991_t,      496,   "snap_codec");
-SNAP_SIZE_GUARD(s5l_i2s_t,         104,   "snap_i2s");
+/* 216 adds opt-in experimental clock and TX queue runtime fields. Active experimental
+ * machines are refused by snap_machine_valid on both save and load. Inactive
+ * clock counters are diagnostics only; the historical 104-byte visitor and
+ * v33 wire format remain unchanged, with no active phase silently omitted. */
+SNAP_SIZE_GUARD(s5l_i2s_t,         216,   "snap_i2s");
 SNAP_SIZE_GUARD(s5l_spi_t,         240,   "snap_spi");
 /* Four register banks, plus what the board is driving and which lines it
  * drives at all -- see the `driven` note in soc.h. */
@@ -201,7 +206,9 @@ SNAP_SIZE_GUARD(s5l_stub_t,        56,    "snap_stubs");
  * Those host-only fields did not change the file. 191248 additionally includes
  * the private TA FIFO introduced in v33, which IS serialized device state.
  * The guard includes host ABI padding; the format remains field-by-field. */
-SNAP_SIZE_GUARD(s5l8900_t,         191248, "snap_mach");
+/* 191472 adds 2 x 112 opt-in IIS runtime bytes; see refusal above.
+ * v34 then adds 196608 serialized native TA bytes, for 388080 host ABI bytes. */
+SNAP_SIZE_GUARD(s5l8900_t,         388080, "snap_mach");
 #endif
 
 /* ---------------------------------------------------------------- the IO --- */
@@ -557,11 +564,15 @@ static void snap_mbx(sn_io_t *io, s5l_mbx_t *m) {
      */
     FBYTES(m->edram, S5L_MBX_EDRAM_SIZE);
     if (!io->format_version || io->format_version >= 33u) {
-        FA32(m->ta_fifo, S5L_MBX_TA_FIFO_WORDS);
+        uint32_t wire_words = io->format_version == 33u ? 16384u : S5L_MBX_TA_FIFO_WORDS;
+        FA32(m->ta_fifo, wire_words);
+        if (sn_reading(io) && io->format_version == 33u)
+            memset(m->ta_fifo + wire_words, 0,
+                (S5L_MBX_TA_FIFO_WORDS - wire_words) * sizeof *m->ta_fifo);
         F32(m->ta_fifo_words);
         FB(m->ta_fifo_complete);
         if (sn_reading(io) && io->err == SNAP_OK &&
-            (m->ta_fifo_words > S5L_MBX_TA_FIFO_WORDS ||
+            (m->ta_fifo_words > (wire_words < 65535u ? wire_words : 65535u) ||
              (m->ta_fifo_complete && (!m->ta_fifo_words ||
               m->ta_fifo[m->ta_fifo_words - 1u] != S5L_MBX_3D_SUBMIT))))
             io->err = SNAP_ERR_CORRUPT;
@@ -1301,7 +1312,7 @@ static void snap_header(sn_io_t *io, uint64_t *payload_len) {
     if (sn_reading(io) && io->err == SNAP_OK) {
         if (memcmp(magic, SNAPSHOT_MAGIC, SNAPSHOT_MAGIC_LEN) != 0)
             io->err = SNAP_ERR_MAGIC;
-        else if (version != SNAPSHOT_VERSION && version != 32u)
+        else if (version != SNAPSHOT_VERSION && version != 33u && version != 32u)
             io->err = SNAP_ERR_VERSION;
         else if (hlen != SNAP_HEADER_LEN)
             io->err = SNAP_ERR_CORRUPT;
@@ -1356,7 +1367,10 @@ static bool snap_machine_valid(const s5l8900_t *m) {
     if (!pmu_state_valid(&m->pmu)) return false;
     if (!codec_state_valid(&m->codec)) return false;
     for (unsigned i = 0; i < S5L8900_I2S_COUNT; i++)
-        if (!i2s_state_valid(&m->i2s[i])) return false;
+        /* Experimental clock phase is not part of the historical wire
+         * format. Refuse save/load, rather than silently discard it. */
+        if (!i2s_state_valid(&m->i2s[i]) || m->i2s[i].experimental_hz)
+            return false;
     if (!tvout_state_valid(&m->tvout)) return false;
     for (unsigned i = 0; i < S5L8900_SPI_COUNT; i++)
         if (!spi_state_valid(&m->spi[i])) return false;

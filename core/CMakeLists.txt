@@ -229,6 +229,10 @@ add_test(NAME s5l8900_i2c_pmu COMMAND test_i2c)
 # specific slave answers a specific identity, refuses a specific bit, and that
 # the transport window behind it exists — the codec and the window are one
 # milestone and are tested as one.
+add_executable(test_iis_clock tests/test_iis_clock.c)
+target_link_libraries(test_iis_clock PRIVATE emucore)
+add_test(NAME experimental_iis_clock COMMAND test_iis_clock)
+
 add_executable(test_wm8991 tests/test_wm8991.c)
 target_link_libraries(test_wm8991 PRIVATE emucore)
 add_test(NAME wm8991_codec_and_i2s COMMAND test_wm8991)
@@ -1414,3 +1418,31 @@ add_test(NAME clcd_native_independent_reference
 # Mathematical hypothesis checks only; not CLCD hardware-fidelity acceptance.
 add_test(NAME clcd_experimental_composition_reference
     COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/tests/test_clcd_composition.py)
+
+# Synthetic tests of the real diagnostic observer, without proprietary input.
+add_executable(test_guest_runtime_diagnostics tests/test_guest_runtime_diagnostics.c)
+get_target_property(RUNTIME_DIAG_LINK_LIBRARIES bootkernel LINK_LIBRARIES)
+target_link_libraries(test_guest_runtime_diagnostics PRIVATE ${RUNTIME_DIAG_LINK_LIBRARIES})
+add_test(NAME guest_runtime_diagnostics COMMAND test_guest_runtime_diagnostics)
+
+# Synthetic RGB565/Morton/projection bounds, exercising real static parser.
+add_executable(test_mbx_format_bounds tests/test_mbx_format_bounds.c)
+target_link_libraries(test_mbx_format_bounds PRIVATE emucore host_sha256)
+# assert() remains active in Release for this independent safety fixture.
+if(MSVC)
+    target_compile_options(test_mbx_format_bounds PRIVATE /UNDEBUG)
+else()
+    target_compile_options(test_mbx_format_bounds PRIVATE -UNDEBUG)
+endif()
+add_test(NAME power_vr_mbx_format_bounds COMMAND test_mbx_format_bounds)
+
+# Opt-in campaign-9 draw observer: fires per well-framed stream, absent when
+# uninstalled, and leaves the render decision and framebuffer unchanged.
+add_executable(test_mbx_draw_observer tests/test_mbx_draw_observer.c)
+target_link_libraries(test_mbx_draw_observer PRIVATE emucore host_sha256)
+if(MSVC)
+    target_compile_options(test_mbx_draw_observer PRIVATE /UNDEBUG)
+else()
+    target_compile_options(test_mbx_draw_observer PRIVATE -UNDEBUG)
+endif()
+add_test(NAME power_vr_mbx_draw_observer COMMAND test_mbx_draw_observer)

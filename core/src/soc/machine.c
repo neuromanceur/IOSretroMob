@@ -553,7 +553,9 @@ static void bus_write(void *ctx, uint32_t addr, uint32_t val, unsigned bytes) {
     }
     if (mmio_data(addr, bytes, S5L8900_I2S0_BASE, S5L8900_DEV_SIZE)) {
         note_device(m, addr, val, true);
-        s5l_i2s_write(&m->i2s[0], addr - S5L8900_I2S0_BASE, val);
+        if(m->i2s[0].experimental_hz && addr==S5L8900_I2S0_BASE+S5L_I2S_TX_FIFO_OFF)
+            s5l_i2s_tx_write(&m->i2s[0],val,bytes);
+        else s5l_i2s_write(&m->i2s[0], addr - S5L8900_I2S0_BASE, val);
         return;
     }
     if (mmio_data(addr, bytes, S5L8900_I2S1_BASE, S5L8900_DEV_SIZE)) {
@@ -639,7 +641,8 @@ static uint8_t  r8 (void *c, uint32_t a) { return (uint8_t) bus_read(c, a, 1); }
  */
 static bool dma_dst_ready(void *ctx, uint32_t dst, unsigned width) {
     const s5l8900_t *m = ctx;
-    (void)width;
+    if(dst==S5L8900_I2S0_BASE+S5L_I2S_TX_FIFO_OFF && m->i2s[0].experimental_hz)
+        return s5l_i2s_tx_ready(&m->i2s[0],width);
     for (unsigned i = 0; i < S5L8900_SPI_COUNT; i++) {
         static const uint32_t base[] = {
             S5L8900_SPI0_BASE, S5L8900_SPI1_BASE, S5L8900_SPI2_BASE
@@ -969,7 +972,8 @@ static s5l_wake_kind_t wake_edge_uart4(const s5l8900_t *m, uint32_t *ticks) {
 }
 
 /*
- * The two PL080 DMA controllers, and the answer is NEVER for the same reason
+ * Without experimental IIS pacing, the two PL080 DMA controllers answer
+ * NEVER for the same reason
  * the SPI controllers' is — but the reasoning has one extra step, because a DMA
  * transfer is the one thing in this machine that looks like it might complete
  * on its own schedule.
@@ -983,18 +987,37 @@ static s5l_wake_kind_t wake_edge_uart4(const s5l8900_t *m, uint32_t *ticks) {
  * any source is consulted) or there is no transfer in flight at all. There is
  * no future edge to name.
  *
- * That would stop being true the day this model paces transfers against a
- * peripheral's DMA request line instead of completing them in one call, which
- * is exactly the change the burst note in soc.h says has not been made. This
- * entry is where that change would be felt: it would have to start answering
- * S5L_WAKE_AT with the remaining distance, or the machine would fast-forward
- * straight over the completion.
+ * Opt-in IIS pacing invalidates that proof. The conservative UNKNOWN below
+ * prevents fast-forward across a possible completion, without inventing a
+ * distance for a chain not yet traversed.
  */
 static s5l_wake_kind_t wake_edge_dmac(const s5l8900_t *m, uint32_t *ticks) {
-    (void)m; (void)ticks;
+    (void)ticks;
+    /* Experimental paced TX can complete in the future. Exact distance also
+     * depends on an LLI chain, so refuse unsafe WFI fast-forward rather than
+     * reporting a made-up first-frame terminal-count interrupt. */
+    if(m->i2s[0].experimental_hz && m->i2s[0].clock_running &&
+       (m->i2s[0].regs[2]&6u)==6u) {
+        for(unsigned d=0;d<S5L8900_DMAC_COUNT;d++) {
+            if(!(m->dmac[d].config&PL080_CONFIG_EN))continue;
+            for(unsigned c=0;c<S5L_PL080_CHANNELS;c++) {
+                const s5l_pl080_chan_t *ch=&m->dmac[d].ch[c];
+                if((ch->cfg&PL080_CFG_EN) && !(ch->cfg&PL080_CFG_HALT) &&
+                   ch->dst==S5L8900_I2S0_BASE+S5L_I2S_TX_FIFO_OFF)
+                    return S5L_WAKE_UNKNOWN;
+            }
+        }
+    }
     return S5L_WAKE_NEVER;
 }
 
+/* Experimental IIS0 arrives through group4 -> VIC source2, not VIC134. */
+static s5l_wake_kind_t wake_edge_iis0(const s5l8900_t *m,uint32_t *ticks) {
+    if(!(m->gpioic.en[4]&(1u<<6)))return S5L_WAKE_NEVER;
+    uint32_t next=s5l_i2s_next_frame(&m->i2s[0]);
+    if(!next)return S5L_WAKE_NEVER;
+    *ticks=next;return S5L_WAKE_AT;
+}
 static const s5l_wake_source_t WAKE_SOURCES[] = {
     { "timer", S5L8900_IRQ_TIMER, wake_edge_timer },
     { "clcd",  S5L8900_IRQ_CLCD,  wake_edge_clcd  },
@@ -1013,6 +1036,7 @@ static const s5l_wake_source_t WAKE_SOURCES[] = {
     { "uart4-rx", S5L8900_IRQ_UART4, wake_edge_uart4 },
     { "dmac0", S5L8900_IRQ_DMAC0, wake_edge_dmac },
     { "dmac1", S5L8900_IRQ_DMAC1, wake_edge_dmac },
+    { "experimental-iis0-frame", 2u, wake_edge_iis0 },
 };
 #define NWAKE_SOURCES (sizeof WAKE_SOURCES / sizeof WAKE_SOURCES[0])
 
@@ -1719,12 +1743,16 @@ static void s5l8900_refresh(s5l8900_t *m, uint32_t tb) {
      * copy taken at init would route every DMA store past that interposer —
      * which is precisely the tap the guest's audio capture is listening on.
      *
-     * This is before the GPIO cascade for no reason other than that both DMAC
-     * lines are VIC0's and neither feeds the cascade; the order is free.
+     * Experimental IIS clock/FIFO progression precedes DMA request sampling;
+     * the GPIO cascade below then observes the same clock-generated edge.
      */
     /* Before the controllers, so a port that can drain has drained and the
      * request line below reads true rather than stale. */
     for (unsigned i = 0; i < S5L8900_SPI_COUNT; i++) s5l_spi_step(&m->spi[i]);
+
+    /* Opt-in IIS0 frame hypothesis advances using emulated time, not host
+     * time or guest code identity. GPIO/VIC acknowledge and mask normally. */
+    s5l_i2s_tick(&m->i2s[0],tb,&m->gpioic,134u);
 
     for (unsigned i = 0; i < S5L8900_DMAC_COUNT; i++) {
         bool dmac_irq = s5l_pl080_run(&m->dmac[i], &m->bus, dma_dst_ready, m);

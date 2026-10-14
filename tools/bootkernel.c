@@ -458,6 +458,7 @@ typedef struct {
     bool hle;
     bool hle_verify;
     bool uart4_rx_irq;
+    bool experimental_iis_clock;
 } boot_toggles_t;
 
 enum {
@@ -620,6 +621,14 @@ static const boot_toggle_t BOOT_TOGGLES[] = {
       "/private/var/root/Library/Lockdown/data_ark.plist with the values\n"
       "derived from lockdownd. This is offline guest provisioning, not an\n"
       "Apple activation record. Requires --external-md." },
+    { "experimental-iis-clock", NULL, NULL, false, BOOT_GROUP_DIAGNOSTIC,
+      BOOT_FIELD(experimental_iis_clock),
+      "DEVELOPMENT HYPOTHESIS ONLY: IIS0 external frame pulses at assumed\n"
+      "44100 Hz, CLKCON bit0 / TXCON bit20 / TXCOM bit0 gates. Assumed\n"
+      "32-byte stereo16 TX queue, TXCOM bits1/2 request/interface gates.\n"
+      "Audio export limited to an 8 MiB prefix; counters keep measuring.\n"
+      "Not physically validated. OFF by default. Cold boot only;\n"
+      "snapshot save/restore refused. Pulses route via GPIO134/VIC2.\n" },
     { "hle", NULL, NULL, false, BOOT_GROUP_DIAGNOSTIC,
       BOOT_FIELD(hle),
       "arm userspace high-level-emulation sites in tools/ios3_hle.c. A\n"
@@ -6791,6 +6800,9 @@ typedef enum {
 typedef struct {
     uint64_t at;                    /* retired-instruction index of the hit */
     uint32_t pc, lr, sp;
+    uint32_t ttbr0, ttbr1, context_id;
+    uint8_t code[16];
+    bool code_ok;
     /* r0-r15 as the reported bank sees them. r0-r3 are AAPCS arguments 1-4 and
      * r13/r14/r15 are the sp/lr/pc above, read in the same capture. */
     uint32_t r[16];
@@ -7414,6 +7426,7 @@ static struct {
      * otherwise write a line per hit.
      */
     bool              call_probe_live;
+    bool              call_probe_identity;
     call_probe_site_t call_probe_pc[CALL_PROBE_PC_MAX];
     unsigned          call_probe_w;      /* ring write cursor */
     uint64_t          call_probe_total;  /* captures ever made, all PCs */
@@ -17790,6 +17803,10 @@ static bool proc_name_scan(arm_cpu_t *cpu, uint32_t proc,
     return false;
 }
 
+#include "guest_runtime_diagnostics.h"
+#include "guest_gfx_capture.h"
+#include "guest_touch_guard.h"
+
 static void pc_sample(uint32_t va, diagnostic_pc_space_t space, uint32_t as) {
     va &= ~1u;
     uint32_t h = va * 2654435761u ^
@@ -18033,6 +18050,44 @@ static bool call_probe_mode_matches(call_probe_mode_t mode, uint32_t cpsr) {
 /* Defined below, next to the stack-word formatter it uses. */
 static void call_probe_print_one(const call_probe_record_t *rec);
 
+/* Numeric PCs repeat between processes. Opt-in address-space/code evidence
+ * distinguishes a real image entry from a same-address system process. */
+static void call_probe_capture_identity(arm_cpu_t *cpu, call_probe_record_t *rec) {
+    rec->ttbr0 = cpu->cp15.ttbr0;
+    rec->ttbr1 = cpu->cp15.ttbr1;
+    rec->context_id = cpu->cp15.context_id;
+    rec->code_ok = !rec->kernel && guest_read_user_bytes(
+        cpu, rec->pc, rec->code, sizeof rec->code, NULL, NULL);
+}
+
+static bool call_probe_identity_selfcheck(void) {
+    s5l8900_t *saved = g_mach;
+    s5l8900_t *fixture = (s5l8900_t *)calloc(1u, sizeof *fixture);
+    arm_cpu_t *cpu = (arm_cpu_t *)calloc(1u, sizeof *cpu);
+    uint8_t ram[128];
+    if (!fixture || !cpu) { free(fixture); free(cpu); return false; }
+    for (unsigned i = 0; i < sizeof ram; i++) ram[i] = (uint8_t)i;
+    fixture->ram = ram; fixture->ram_base = 0x1000u;
+    fixture->ram_size = sizeof ram; g_mach = fixture;
+    cpu->cp15.ttbr0 = 0x12340000u; cpu->cp15.ttbr1 = 0x56780000u;
+    cpu->cp15.context_id = 0x89abcdefu; cpu->cp15.dfar = 0x13579bdfu;
+    call_probe_record_t rec; memset(&rec, 0, sizeof rec); rec.pc = 0x1010u;
+    call_probe_capture_identity(cpu, &rec);
+    bool ok = rec.code_ok && !memcmp(rec.code, ram + 16u, sizeof rec.code) &&
+              rec.ttbr0 == 0x12340000u && rec.ttbr1 == 0x56780000u &&
+              rec.context_id == 0x89abcdefu;
+    uint32_t first_space = rec.ttbr0;
+    uint8_t first_byte = rec.code[0];
+    cpu->cp15.ttbr0 = 0x23450000u; ram[16] ^= 0xffu;
+    call_probe_capture_identity(cpu, &rec);
+    ok = ok && rec.code_ok && rec.ttbr0 != first_space && rec.code[0] != first_byte;
+    rec.pc = 0x2000u; call_probe_capture_identity(cpu, &rec);
+    ok = ok && !rec.code_ok && cpu->cp15.dfar == 0x13579bdfu;
+    rec.pc = 0x1010u; rec.kernel = 1u; call_probe_capture_identity(cpu, &rec);
+    ok = ok && !rec.code_ok;
+    g_mach = saved; free(fixture); free(cpu); return ok;
+}
+
 static BOOTKERNEL_NOINLINE void call_probe_note(
         arm_cpu_t *cpu, uint64_t at, uint32_t pc) {
     if (!cpu) return;
@@ -18055,6 +18110,7 @@ static BOOTKERNEL_NOINLINE void call_probe_note(
         return;
     }
     G.call_probe_pc[slot].hits++;
+    if(RD.enabled)rd_user_site(cpu,at,slot);
 
     unsigned k = G.call_probe_w;
     call_probe_record_t *rec = &G.call_probe_log[k];
@@ -18092,6 +18148,8 @@ static BOOTKERNEL_NOINLINE void call_probe_note(
         call_probe_read_stack_word(cpu, rec->sp, rec, 0u);
         call_probe_read_stack_word(cpu, rec->sp, rec, 1u);
     }
+
+    if (G.call_probe_identity) call_probe_capture_identity(cpu, rec);
 
     G.call_probe_w = (k + 1u) % CALL_PROBE_RING;
     G.call_probe_total++;
@@ -18159,6 +18217,14 @@ static void call_probe_print_one(const call_probe_record_t *rec) {
            "r0 %08x r1 %08x r2 %08x r3 %08x  [sp+0] %-8s [sp+4] %-8s\n",
            (unsigned long long)rec->at, rec->pc, rec->lr, rec->sp,
            rec->r[0], rec->r[1], rec->r[2], rec->r[3], w0, w1);
+    if (G.call_probe_identity) {
+        printf("        identity ttbr0 %08x ttbr1 %08x context %08x code ",
+               rec->ttbr0, rec->ttbr1, rec->context_id);
+        if (rec->code_ok)
+            for (unsigned i = 0; i < sizeof rec->code; i++) printf("%02x", rec->code[i]);
+        else printf("<unreadable-or-kernel>");
+        printf("\n");
+    }
     if (!G.call_probe_regs) return;
     printf("        r4 %08x r5 %08x r6 %08x r7 %08x r8 %08x r9 %08x "
            "r10 %08x r11 %08x r12 %08x  cpsr %08x %s%s\n",
@@ -18411,6 +18477,11 @@ static BOOTKERNEL_NOINLINE void touch_tap_step(uint64_t n) {
 
         if (t->stage == 0u) {
             if (n < t->at) continue;
+            tap_guard_select(t->at);
+            if(tap_guard.enabled&&t->at==tap_guard.at&&!tap_guard_matches(G.mach)){
+                t->stage=3u;printf("TOUCH_GUARD suppressed at %" PRIu64 " window %u: native SHA differs or window unavailable\n",n,tap_guard.window);fflush(stdout);continue;
+            }
+            if(tap_guard.enabled&&t->at==tap_guard.at){printf("TOUCH_GUARD matched native SHA at %" PRIu64 " window %u\n",n,tap_guard.window);fflush(stdout);}
         } else if (t->stage == 1u) {
             if (n < t->down_at + t->hold) continue;
         } else {
@@ -19100,6 +19171,7 @@ static void touch_report(void) {
                    i, (unsigned long long)t->at, t->x, t->y,
                    (unsigned long long)t->hold);
             if (t->stage == 0u) printf("NEVER ACCEPTED");
+            else if (t->stage == 3u) printf("SUPPRESSED: native-window guard mismatch");
             else if (t->stage == 1u)
                 printf("down @%llu, up NEVER ACCEPTED",
                        (unsigned long long)t->down_at);
@@ -19497,6 +19569,10 @@ static void audio_tap_store(uint32_t addr, uint32_t val) {
         audio_sink_arm(&G.audio, g_external_work_image_path,
                        g_audio_fmt_status == AUDIO_FMT_OK ? &g_audio_fmt
                                                           : NULL);
+        /* Development campaigns must not turn an unpaced DMA storm into a
+         * multi-GiB file. Guest stores and all counters are unaffected. */
+        if(G.mach && G.mach->i2s[0].experimental_hz)
+            audio_sink_set_payload_limit(&G.audio,8u*1024u*1024u);
     }
     audio_sink_word(&G.audio, val);
 }
@@ -19604,6 +19680,7 @@ static void spy_nonram(
     bool mmu_enabled =
         (G.mach->cpu.cp15.sctlr & ARM_SCTLR_M) != 0u;
     tvout_mmio_note(addr, val, bytes, wr);
+    if(RD.graphics)rd_graphics_access(addr,val,bytes,wr);
     note_dev_page(addr, pc, cpsr, mmu_enabled, wr);
     spy_selected_hot(addr, val, bytes, wr);
     /* uart4's transmit register, teed and scanned. Placed before the console
@@ -24602,6 +24679,16 @@ static void spi_report(void) {
 
 static void dmac_report(void) {
     if (!G.mach) return;
+    if(G.mach->i2s[0].experimental_hz) {
+        const s5l_i2s_t *s=&G.mach->i2s[0];
+        printf("IIS0 EXPERIMENTAL final: hz=%u frames=%llu ticks=%llu phase=%llu TXCOM=%08x "
+               "fifo=%u in=%llu out=%llu underflow_frames=%llu refused=%llu; "
+               "assumed 32-byte FIFO, stereo16 frame, hardware fidelity unvalidated\n",
+               s->experimental_hz,(unsigned long long)s->frame_edges,(unsigned long long)s->clock_ticks,
+               (unsigned long long)s->frame_phase,s->regs[2],s->tx_level,
+               (unsigned long long)s->tx_bytes_in,(unsigned long long)s->tx_bytes_out,
+               (unsigned long long)s->tx_underflow_frames,(unsigned long long)s->tx_refused);
+    }
     printf("\n=== PL080 DMA CONTROLLERS ===\n");
     printf("    A refusal here is this model declining a mode it cannot honour,\n"
            "    by name, rather than a channel that quietly did nothing. See the\n"
@@ -33725,6 +33812,9 @@ static void boot_print_usage(FILE *stream, const char *argv0) {
             "      sentinel and the guest is never disturbed. A capture proves\n"
             "      entry, not retirement. Executions of <pc> outside user mode\n"
             "      are counted but not captured.\n"
+            "      IOSRETROMOB_CALL_PROBE_IDENTITY=1 additionally records TTBR0,\n"
+            "      TTBR1, context ID and 16 native bytes at user PC. Unreadable\n"
+            "      code is explicit; numeric PC alone does not identify an app.\n"
             "  --call-probe-kernel <pc>  the same probe aimed at a PRIVILEGED pc,\n"
             "      sharing the same eight slots and the same ring. The register\n"
             "      file is the EXECUTING bank's -- that mode's own r13/r14, and\n"
@@ -35224,12 +35314,30 @@ int main(int argc, char **argv) {
                 "internal error: PMU checkpoint classifier self-check failed\n");
         return 2;
     }
-    if (!call_probe_ring_selfcheck()) {
+    if (!call_probe_ring_selfcheck() || !call_probe_identity_selfcheck()) {
         fprintf(stderr,
                 "internal error: call probe ring self-check failed\n");
         return 2;
     }
 
+    if (!rd_selfcheck()) { fprintf(stderr, "runtime return identity self-check failed\n"); return 2; }
+    if(!rta_parse(steps)){fprintf(stderr,"Invalid native TA capture configuration\n");return 1;}
+    if(!tap_guard_parse(getenv("IOSRETROMOB_TOUCH_GUARD"))){fprintf(stderr,"Invalid exact-window tap guard\n");return 1;}
+    if (!rd_parse(steps)) return 1;
+    if(RD.enabled&&run_api_hot){fprintf(stderr,"runtime diagnostics require the instruction loop, not --run-api\n");return 1;}
+    uint64_t diagnostics_start = UINT64_MAX;
+    const char *diagnostics_env = getenv("IOSRETROMOB_DIAGNOSTICS_START");
+    if (diagnostics_env &&
+        (!parse_u64_arg("IOSRETROMOB_DIAGNOSTICS_START", diagnostics_env,
+                        &diagnostics_start) || diagnostics_start >= steps)) {
+        fprintf(stderr, "diagnostics start must precede the instruction limit\n");
+        return 1;
+    }
+    if (diagnostics_env) {
+        printf("diagnostics: full observers begin at instruction %" PRIu64
+               "; earlier --fast policy retained\n", diagnostics_start);
+        fflush(stdout);
+    }
     /* Everything is resolved and the command line has been accepted, so the
      * configuration is now a fact about this run rather than a guess. */
     boot_values_t resolved;
@@ -35337,6 +35445,10 @@ int main(int argc, char **argv) {
         return 1;
     }
 
+    if(cfg.v.experimental_iis_clock && (restore_path || nsnaps)) {
+        fprintf(stderr,"--experimental-iis-clock is a cold-boot-only hypothesis; snapshots unsupported\n");
+        return 1;
+    }
     /* --print-config: report and stop, before the kernel, the tree, the rootfs
      * or the work image is opened. Nothing on disk is read or written. */
     if (cfg.v.print_config) {
@@ -35394,6 +35506,10 @@ int main(int argc, char **argv) {
      * RAM disk has to live in DRAM alongside everything else. */
     s5l8900_t mach;
     if (!s5l8900_init(&mach, phys_base, ram_size)) { fprintf(stderr, "init failed\n"); return 1; }
+    if(cfg.v.experimental_iis_clock) {
+        if(!s5l_i2s_set_experimental_clock(&mach.i2s[0],44100u))return 1;
+        printf("IIS0 clock : EXPERIMENTAL H1 external-frame, assumed 44100 Hz + 32-byte paced stereo16 TX FIFO; physical fidelity unvalidated\n");
+    }
 #if defined(S5LBOX_STATIC_A64_ENGINE)
     if (interpreter_control &&
         !s5l8900_static_a64_set_enabled(&mach, false)) {
@@ -35433,6 +35549,11 @@ int main(int argc, char **argv) {
     g_virt_base = virt_base;
     g_phys_base = phys_base;
     g_ram_size = ram_size;
+
+    /* Arm the opt-in campaign-9 graphics observer now that g_mach is set, so
+     * s5l_mbx_set_draw_observer has the live machine. No-op unless
+     * IOSRETROMOB_GFX_CAPTURE_DIR names a validated directory. */
+    gfx_capture_arm();
 
     boot_range_t dram_range, kernel_range;
     uint64_t kernel_begin64, kernel_end64;
@@ -36950,6 +37071,8 @@ external_md_work_ready:
     g_hle_enabled = cfg.v.hle || g_hle_verify;
     memset(&g_hle_verifier, 0, sizeof g_hle_verifier);
     G.call_probe_live = cfg.v.call_probe_live;
+    const char *identity_env = getenv("IOSRETROMOB_CALL_PROBE_IDENTITY");
+    G.call_probe_identity = identity_env && !strcmp(identity_env, "1");
     G.call_probe_n = call_probe_n;
     /*
      * The taps, for the same reason and with the same ordering rule: G is
@@ -37264,6 +37387,7 @@ external_md_work_ready:
     discover_commcenter_layout();
     discover_commcenter_wait_layout();
     discover_applebaseband_trace_layout(restore_path != NULL);
+    if (!rd_init()) return 1;
 
     /* Snapshot positions are absolute. Reject requests that the selected
      * starting state has already passed or that the selected run limit cannot
@@ -37813,6 +37937,12 @@ external_md_work_ready:
         last_cpsr = mach.cpu.cpsr;
         last_mmu_enabled =
             (mach.cpu.cp15.sctlr & ARM_SCTLR_M) != 0u;
+        if (fast_hot && n >= diagnostics_start) {
+            fast_hot = false;
+            printf("diagnostics: full observers enabled at %" PRIu64 "\n", n);
+            fflush(stdout);
+        }
+        if (RD.enabled) rd_pre(&mach.cpu, n);
         sequence_profile_observe(&sequence_profile, &mach);
         /*
          * THE OBSERVATIONAL BLOCK, and --fast is the only thing that turns it
@@ -38131,6 +38261,7 @@ external_md_work_ready:
         sequence_profile_note_post_step(&sequence_profile, &mach.cpu,
                                         sequence_literal_step, st);
 #endif
+        if (RD.enabled) rd_post(&mach.cpu, n, last_cpsr, last_pc, lr_before, sp_before);
         hle_verify_note_post_step(&mach.cpu, n);
         springboard_return_note_post_step(&mach.cpu, n, st);
         springboard_exec_trace_note_user_post_step(&mach.cpu, n, st);
@@ -38905,6 +39036,9 @@ external_md_work_ready:
      * instructions regardless of --fast and carries the space tag needed to
      * keep kernel PCs out.
      */
+    rta_finish();
+    gfx_capture_finish();
+    if (RD.enabled) rd_finish(&mach.cpu, n);
     printf("\n=== HOTTEST USER-MODE 4K PAGES (same samples, grouped) ===\n");
     {
         /* Keyed by (page, address space), because one hot page in two
@@ -39170,10 +39304,12 @@ external_md_work_ready:
                G.audio.have_fmt ? "" : "  (HEADERLESS)");
         printf("            %llu payload bytes\n",
                (unsigned long long)audio_sink_data_bytes(&G.audio));
+        if(G.audio.capped)
+            printf("            TRUNCATED PREFIX: host capture cap reached; counts include all stores.\n");
         if (!G.audio.have_fmt)
             printf("            No RIFF header, because no format was"
                    " established. The file is\n"
-                   "            exactly the words the guest stored, "
+                   "            exactly the captured prefix of guest stores, "
                    "little-endian, with no claim\n"
                    "            attached about how to read them.\n");
         if (audio_sink_partial_frame(&G.audio))

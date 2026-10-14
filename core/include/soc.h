@@ -980,7 +980,10 @@ void     s5l_power_write(s5l_power_t *p, uint32_t off, uint32_t val);
  * The public MBX1 register map calls the same aperture offset 3DDATA. */
 #define S5L_MBX_3D_DATA_FIFO 0x00800000u
 #define S5L_MBX_3D_SUBMIT    0xf0000000u
-#define S5L_MBX_TA_FIFO_WORDS 16384u
+/* Host retention, not a claim about physical MBX FIFO depth. The existing
+ * 16-bit capture count can represent 65535 consumed words. One spare slot
+ * keeps allocation regular; v34 snapshots retain the complete 64K array. */
+#define S5L_MBX_TA_FIFO_WORDS 65536u
 
 typedef struct {
     uint32_t reg[S5L_MBX_SIZE / 4u];
@@ -1172,7 +1175,47 @@ bool     s5l_mbx_probe_2d_submit(s5l_mbx_t *m, const arm_bus_t *bus,
  * requires for 3DIdle (ISP, render complete, EVM deallocate) rise. */
 bool     s5l_mbx_process_3d(s5l_mbx_t *m, const arm_bus_t *bus,
                             uint32_t written_off, uint32_t value,
-                            s5l_mbx_telemetry_t *telemetry);
+                             s5l_mbx_telemetry_t *telemetry);
+/* ---- Opt-in graphics-state observer (campaign 9 measurement) ------------
+ * A host installs an observer to capture the native texture/VGP state the
+ * renderer consumes, WITHOUT changing any guest-visible behaviour. When no
+ * observer is installed (the default, and every offline test), the MBX core
+ * makes no capture call, allocates nothing, and behaves exactly as before.
+ * The observer is invoked for a well-framed object-database stream before
+ * draw parsing and raster commit, including streams subsequently refused.
+ * draw_count is zero at this point; the observer can inspect the raw words.
+ * Early refusals and the direct VGP shadow-FIFO path can bypass it. READ-ONLY:
+ * the observer must not mutate guest state. The core ignores its return value. */
+typedef struct {
+    const uint32_t *words;   /* the raw TA object-database words           */
+    uint32_t word_count;     /* number of valid words (includes 0x10000010) */
+    uint32_t draw_count;     /* number of parsed draws in the chain        */
+    uint32_t target;         /* FBSTART (framebuffer GPU VA)               */
+    uint32_t target_width;
+    uint32_t target_height;
+    uint32_t pixel_bytes;    /* 2 (RGB565) or 4 (BGRA8)                    */
+    /* Per-draw texture descriptors, in draw order. source is the decoded GPU
+     * virtual address; textured/morton/format describe the state the renderer
+     * measured. Only draws[0..draw_count-1] are valid. */
+    struct {
+        uint32_t source;
+        uint32_t texture_width;
+        uint32_t texture_height;
+        uint8_t  texel_format;   /* header bits [31:29]                     */
+        bool     textured;
+        bool     is_morton;
+        bool     filtered;
+    } draws[64];
+} s5l_mbx_draw_observation_t;
+
+typedef bool (*s5l_mbx_draw_observer_fn)(void *ctx, const s5l_mbx_t *m,
+                                         const arm_bus_t *bus,
+                                         const s5l_mbx_draw_observation_t *obs);
+/* Install or clear (fn==NULL) the observer. Only one at a time; the last
+ * install wins. Returns false only if m is NULL. */
+bool     s5l_mbx_set_draw_observer(s5l_mbx_t *m,
+                                   s5l_mbx_draw_observer_fn fn, void *ctx);
+
 
 /*
  * THE LINE THE DEVICE TREE SAYS THIS DEVICE HAS. /arm-io/mbx carries
@@ -2358,11 +2401,29 @@ typedef struct {
     uint64_t unknown_reads, unknown_writes;
     uint32_t unknown_off[S5L_I2S_UNKNOWN_OFF];
     unsigned unknown_off_count;
+    /* Opt-in development hypothesis, NOT a proven hardware clock model.
+     * External frame clock independent of TX FIFO/DMA; 6 MHz timebase.
+     * No serialized snapshot state: snapshots refuse this mode. */
+    uint32_t experimental_hz;
+    bool clock_running;
+    uint64_t frame_phase, frame_edges, clock_ticks, clock_generation;
+    /* Development approximation only: 32-byte TX queue, four bytes/frame.
+     * Depth, stereo format and request watermark are hypotheses, not decoded
+     * hardware. No PCM synthesis or RX semantics; off by default. */
+    uint8_t tx_fifo[32];
+    unsigned tx_head, tx_level;
+    uint64_t tx_bytes_in, tx_bytes_out, tx_underflow_frames, tx_refused;
 } s5l_i2s_t;
 
 void     s5l_i2s_reset(s5l_i2s_t *i2s);
 uint32_t s5l_i2s_read(s5l_i2s_t *i2s, uint32_t off);
 void     s5l_i2s_write(s5l_i2s_t *i2s, uint32_t off, uint32_t val);
+bool     s5l_i2s_set_experimental_clock(s5l_i2s_t *i2s, uint32_t frame_hz);
+uint32_t s5l_i2s_next_frame(const s5l_i2s_t *i2s);
+bool     s5l_i2s_tx_ready(const s5l_i2s_t *i2s, unsigned width);
+bool     s5l_i2s_tx_write(s5l_i2s_t *i2s, uint32_t value, unsigned width);
+void     s5l_i2s_tick(s5l_i2s_t *i2s, uint32_t tb_ticks,
+                     s5l_gpioic_t *gpioic, unsigned line);
 /* The byte offset backing slot `index`, or UINT32_MAX past the end. The map is
  * exposed so the tests pin the exact seven the driver writes rather than
  * re-deriving them from this model's own storage order. */

@@ -194,6 +194,10 @@ static const vm_option_omission_t VM_OMITTED[] = {
     { "uart4-rx-irq",
       "a control for one bisection of the uart4 receive path, and it only "
       "means anything alongside --ppp, which this app does not offer" },
+    { "experimental-iis-clock",
+      "a cold-boot-only development hypothesis for an assumed IIS0 frame "
+      "clock; it is not physically validated and its snapshots are refused, "
+      "so it is a terminal bisection step rather than a phone setting" },
 };
 
 #define VM_OMITTED_COUNT \

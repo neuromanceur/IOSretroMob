@@ -293,6 +293,7 @@ static const char *const EXPECTED_OMISSIONS[] = {
     "framebuffer", "iomfb-display", "hle", "hle-verify", "fstab-fixup",
     "ramdisk-low", "stop-on-abort", "kext-map", "print-config",
     "call-probe-regs", "call-probe-live", "uart4-rx-irq",
+    "experimental-iis-clock",
 };
 
 static void test_omissions(void) {

@@ -6,7 +6,8 @@
 #include <stdint.h>
 typedef enum {
     CLCD_NATIVE_OK, CLCD_NATIVE_DISABLED, CLCD_NATIVE_FORMAT,
-    CLCD_NATIVE_GEOMETRY, CLCD_NATIVE_STRIDE, CLCD_NATIVE_MEMORY
+    CLCD_NATIVE_GEOMETRY, CLCD_NATIVE_STRIDE, CLCD_NATIVE_MEMORY,
+    CLCD_NATIVE_RAW_ORDER
 } clcd_native_status_t;
 typedef struct {
     const uint8_t *pixels;
@@ -14,9 +15,10 @@ typedef struct {
     uint32_t width, height, stride, format, order, bytes_per_pixel, x, y;
     s5l_clcd_window_t registers;
 } clcd_native_view_t;
-/* On error, writes nothing to view. Strict interpretation: format 7/order 0
- * is driver-declared ARGB (native BGRA bytes); 3/order 0 is RGB565 LE.
- * Other codes are explicitly unsupported, never guessed from bit depth.
+/* On error, writes nothing to view. Format 7/order 0 is driver-declared
+ * ARGB (native BGRA bytes); 3/order 0 is RGB565 LE. Known format with nonzero
+ * order returns RAW_ORDER with a bounded byte span, not decoded colours.
+ * Unknown formats still fail: never infer their layout from bit depth.
  * A retained alpha byte does NOT establish hardware blend semantics. */
 clcd_native_status_t clcd_native_view(const s5l_clcd_t *, unsigned,
     const uint8_t *, uint32_t, size_t, clcd_native_view_t *);

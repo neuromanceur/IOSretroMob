@@ -46,6 +46,18 @@ class NativeReference(unittest.TestCase):
         self.assertEqual((self.path/'clcd-0000-at-123.ppm').read_bytes(),b'P6\n3 2\n255\n'+bytes(range(1,19)))
     def test_565_independent_primary_colours(self):
         self.assertEqual(layers.load_window(self.path,self.b['windows'][2]),bytes([255,255,255,255,255,0,0,255,0,255,0,255,0,0,255,255]))
+    def test_unknown_order_preserves_bytes_without_png(self):
+        doc=json.loads((self.path/'layers-0002-at-125.json').read_text());row=doc['windows'][2]
+        expected=bytes([255,255,0,248,238,238,238,238,224,7,31,0])
+        self.assertEqual(row['status'],'raw-uninterpreted-order')
+        self.assertEqual(row['order_code'],1)
+        self.assertEqual(layers.load_native_bytes(self.path,row),expected)
+        self.assertEqual(row['sha256'],hashlib.sha256(expected).hexdigest())
+        with self.assertRaises(ValueError):layers.load_window(self.path,row)
+        out=self.path/'raw-only-preview';result=layers.inspect(self.path/'layers-0002-at-125.json',out)
+        self.assertFalse(list(out.glob('window-2*.png')))
+        self.assertEqual(next(v for v in result['previews'] if v['index']==2)['native_sha256'],row['sha256'])
+        with self.assertRaises(ValueError):layers.load_native_bytes(self.path,{**row,'sha256':'0'*64})
     def test_clipping_against_coordinate_oracle(self):
         pixels=bytes(range(24))
         for x,y in [(1,2),(-1,-1),(3,2),(4,3),(65535,65535)]:

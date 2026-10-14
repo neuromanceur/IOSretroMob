@@ -786,12 +786,37 @@ static void test_the_shipped_tree_declares_two_rates(void) {
 #endif
 }
 
+static void test_bounded_prefix_keeps_all_measurements(void) {
+    audio_sink_t s;
+    audio_sink_arm(&s,"bounded-audio",NULL);
+    CHECK(!audio_sink_set_payload_limit(NULL,8),"null policy accepted");
+    CHECK(!audio_sink_set_payload_limit(&s,3),"partial word accepted");
+    CHECK(!audio_sink_set_payload_limit(&s,6),"non-word bound accepted");
+    CHECK(audio_sink_set_payload_limit(&s,8),"small cap rejected");
+    audio_sink_word(&s,0x44332211);audio_sink_word(&s,0x88776655);
+    CHECK(!audio_sink_set_payload_limit(&s,12),"live cap changed");
+    audio_sink_word(&s,0);audio_sink_word(&s,1);
+    CHECK(s.capped && s.words==4 && s.nonzero_words==3 && s.payload_bytes==8,
+          "bounded prefix lost full measurements or exceeded cap");
+    CHECK(audio_sink_close(&s),"bounded file close failed");
+    size_t n=0;uint8_t *b=slurp(s.path,&n);
+    static const uint8_t expected[]={0x11,0x22,0x33,0x44,0x55,0x66,0x77,0x88};
+    CHECK(b && n==8 && !memcmp(b,expected,8),"prefix bytes differ");free(b);remove(s.path);
+    audio_sink_arm(&s,"bounded-audio",&FMT_CD);
+    CHECK(audio_sink_set_payload_limit(&s,8),"WAV cap rejected");
+    audio_sink_word(&s,1);audio_sink_word(&s,2);audio_sink_word(&s,3);
+    CHECK(audio_sink_close(&s) && s.capped,"WAV prefix close failed");
+    b=slurp(s.path,&n);
+    CHECK(b && n==52 && ld32(b+4)==44 && ld32(b+40)==8,"WAV size not prefix size");
+    free(b);remove(s.path);
+}
 int main(void) {
     printf("S5LBox guest audio capture tests\n");
     test_wav_header_is_byte_exact();
     test_wav_header_fields_are_little_endian();
     test_header_refuses_what_it_cannot_describe();
     test_size_fields_match_the_payload();
+    test_bounded_prefix_keeps_all_measurements();
     test_round_trips_a_known_pattern();
     test_absence_and_silence_are_different_files();
     test_no_format_means_no_header();

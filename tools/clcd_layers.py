@@ -14,12 +14,15 @@ from pathlib import Path
 
 LIMIT = 8 * 1024 * 1024
 
-def load_window(folder, row):
-    if row['status'] != 'ok':
-        raise ValueError('window was not exported: ' + row['status'])
+def load_native_bytes(folder, row):
+    """Validate a known-format byte span, including explicitly undecoded order."""
     fmt, order = row['format_code'], row['order_code']
-    if order != 0 or fmt not in (3, 7):
+    if row['status'] not in ('ok', 'raw-uninterpreted-order'):
+        raise ValueError('window was not exported: ' + row['status'])
+    if type(order) is not int or not 0 <= order <= 3 or fmt not in (3, 7):
         raise ValueError('unsupported format or channel order')
+    if (order == 0) != (row['status'] == 'ok'):
+        raise ValueError('status/order inconsistency')
     name = row['file']
     if not isinstance(name, str) or Path(name).name != name or name in ('', '.', '..'):
         raise ValueError('raw path must be a local filename')
@@ -38,6 +41,14 @@ def load_window(folder, row):
     data = path.read_bytes()
     if hashlib.sha256(data).hexdigest() != row['sha256']:
         raise ValueError('raw SHA-256 differs')
+    return data
+
+def load_window(folder, row):
+    if row['status'] != 'ok' or row['order_code'] != 0:
+        raise ValueError('channel order is not decoded')
+    data = load_native_bytes(folder, row)
+    fmt, w, h, stride = row['format_code'], row['width'], row['height'], row['stride']
+    bpp = 4 if fmt == 7 else 2
     rgba = bytearray(w * h * 4)
     for y in range(h):
         for x in range(w):
@@ -89,6 +100,12 @@ def inspect(manifest, output):
     output.mkdir(exist_ok=False)
     results = []
     for row in doc['windows']:
+        if row['status'] == 'raw-uninterpreted-order':
+            data = load_native_bytes(manifest.parent, row)
+            results.append({'index':row['index'],'status':row['status'],
+                'native_sha256':hashlib.sha256(data).hexdigest(),
+                'scope':'Verified byte span only; no PNG or colour interpretation'})
+            continue
         if row['status'] != 'ok':
             results.append({'index':row['index'],'status':row['status']})
             continue

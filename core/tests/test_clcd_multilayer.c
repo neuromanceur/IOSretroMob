@@ -36,7 +36,12 @@ int main(int argc,char **argv) {
     assert(clcd_native_view(&m->clcd,4,ram,m->ram_base,96,&v)==CLCD_NATIVE_DISABLED);
     s5l_clcd_window_t save=m->clcd.win[0];
     for(unsigned fmt=0;fmt<8;fmt++)if(fmt!=3 && fmt!=7){m->clcd.win[0].control=fmt<<8;assert(clcd_native_view(&m->clcd,0,ram,m->ram_base,96,&v)==CLCD_NATIVE_FORMAT);}
-    m->clcd.win[0]=save;m->clcd.win[0].control|=1u<<16;assert(clcd_native_view(&m->clcd,0,ram,m->ram_base,96,&v)==CLCD_NATIVE_FORMAT);
+    m->clcd.win[0]=save;m->clcd.win[0].control|=1u<<16;
+    assert(clcd_native_view(&m->clcd,0,ram,m->ram_base,96,&v)==CLCD_NATIVE_RAW_ORDER);
+    assert(v.bytes==28 && v.order==1 && v.format==7 && v.pixels==ram);
+    m->clcd.win[0].control=0x10300;assert(clcd_native_view(&m->clcd,0,ram,m->ram_base,96,&v)==CLCD_NATIVE_RAW_ORDER);
+    assert(v.bytes==22 && v.bytes_per_pixel==2 && v.order==1);
+    assert(clcd_native_view(&m->clcd,0,ram,m->ram_base,21,&v)==CLCD_NATIVE_MEMORY);
     m->clcd.win[0]=save;m->clcd.win[0].stride=11;assert(clcd_native_view(&m->clcd,0,ram,m->ram_base,96,&v)==CLCD_NATIVE_STRIDE);
     m->clcd.win[0].stride=15;assert(clcd_native_view(&m->clcd,0,ram,m->ram_base,96,&v)==CLCD_NATIVE_STRIDE);
     m->clcd.win[0]=save;m->clcd.win[0].geometry=3u<<16;assert(clcd_native_view(&m->clcd,0,ram,m->ram_base,96,&v)==CLCD_NATIVE_GEOMETRY);
@@ -73,6 +78,11 @@ int main(int argc,char **argv) {
         assert(clcd_native_view(&m->clcd,2,ram,m->ram_base,96,&v)==CLCD_NATIVE_OK && v.bytes==12);
         assert(clcd_multilayer_write(m,124,argv[1],1,100000,&written,hash));
         printf("SYNTHETIC manifest1_sha256=%s bytes=%" PRIu64 "\n",hash,written);
+        m->clcd.win[2].control=0x10300;
+        assert(clcd_multilayer_digest(m,d0));ram[48]^=1;
+        assert(clcd_multilayer_digest(m,d1) && memcmp(d0,d1,32));ram[48]^=1;
+        assert(clcd_multilayer_write(m,125,argv[1],2,100000,&written,hash));
+        printf("SYNTHETIC manifest2_sha256=%s bytes=%" PRIu64 "\n",hash,written);
     }
     m->ram=NULL;free(m);puts("PASS: synthetic CLCD spans, native alpha, formats, bounds and unchanged legacy RGB");return 0;
 }

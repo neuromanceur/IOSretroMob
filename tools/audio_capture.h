@@ -219,6 +219,7 @@ typedef struct {
      * its container, and a capped run must still report what it saw. */
     bool     capped;
     uint64_t payload_bytes;       /* bytes actually in the file */
+    uint64_t payload_limit;       /* 0: historical RIFF limit, otherwise prefix cap */
 
     /*
      * The two counts that must never be collapsed into one. `words` answers
@@ -267,6 +268,10 @@ void audio_sink_arm(audio_sink_t *s, const char *work_image_path,
  * written" stays distinguishable from "the guest transmitted nothing".
  */
 void audio_sink_word(audio_sink_t *s, uint32_t word);
+/* Optional host storage policy. Set only after arm and before the first word.
+ * 0 restores the historical cap; nonzero limits must hold a whole 32-bit word.
+ * Counts remain complete when the file is a bounded prefix, marked capped. */
+bool audio_sink_set_payload_limit(audio_sink_t *s, uint64_t bytes);
 
 /*
  * Finish the file: patch the two size fields and close. Returns true when a

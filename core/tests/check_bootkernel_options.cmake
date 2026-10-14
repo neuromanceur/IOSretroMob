@@ -92,6 +92,9 @@ expect_config(activation_off_is_also_stated
 expect_config(jailbreak_default_off
     "jb-codesign=0|jb-payload=0"
     absent-kernel --print-config)
+expect_config(iis_clock_default_off "experimental-iis-clock=0" absent-kernel --print-config)
+expect_config(iis_clock_explicit "experimental-iis-clock=1" absent-kernel --experimental-iis-clock --print-config)
+expect_config(iis_clock_disabled "experimental-iis-clock=0" absent-kernel --no-experimental-iis-clock --print-config)
 # The code-signing half is APPLIED as of the boot-args/device-tree wiring, and
 # this case pins both halves of what that means: that it is applied, and that
 # the header still refuses to claim it has been demonstrated. Booting clean
@@ -579,3 +582,87 @@ expect_config(call_probe_regs_under_the_kernel_flag
 expect_refused(call_probe_regs_is_not_a_probe_value
     "negative values are not allowed"
     absent-kernel --call-probe --call-probe-regs --print-config)
+
+# Delayed diagnostic selection is validated before even opening a kernel.
+foreach(value IN ITEMS "-1" "100" "bogus")
+    execute_process(COMMAND "${CMAKE_COMMAND}" -E env
+        "IOSRETROMOB_DIAGNOSTICS_START=${value}" "${BOOTKERNEL}"
+        absent-kernel -n 100 --fast --print-config
+        RESULT_VARIABLE result OUTPUT_VARIABLE out ERROR_VARIABLE err)
+    if(result EQUAL 0)
+        message(FATAL_ERROR "invalid delayed diagnostic boundary accepted: ${value}")
+    endif()
+endforeach()
+execute_process(COMMAND "${CMAKE_COMMAND}" -E env
+    IOSRETROMOB_DIAGNOSTICS_START=99 IOSRETROMOB_CALL_PROBE_IDENTITY=1
+    "${BOOTKERNEL}" absent-kernel -n 100 --fast --print-config
+    RESULT_VARIABLE result OUTPUT_VARIABLE out ERROR_VARIABLE err)
+if(NOT result EQUAL 0 OR NOT out MATCHES "full observers begin at instruction 99")
+    message(FATAL_ERROR "valid delayed diagnostic configuration failed: ${out}${err}")
+endif()
+
+# Read-only runtime diagnostics validate before opening firmware or output.
+set(ENV{IOSRETROMOB_RUNTIME_DIAG_PID} "39")
+set(ENV{IOSRETROMOB_RUNTIME_DIAG_LOG} "never-created-runtime-diagnostic.jsonl")
+set(ENV{IOSRETROMOB_RUNTIME_DIAG_START} "71")
+set(ENV{IOSRETROMOB_RUNTIME_DIAG_END} "73")
+expect_config(runtime_diagnostic_preflight "runtime diagnostics: read-only PID=39" absent-kernel -n 85 --print-config)
+if(EXISTS "never-created-runtime-diagnostic.jsonl")
+    message(FATAL_ERROR "runtime diagnostic print-config created a log")
+endif()
+set(ENV{IOSRETROMOB_RUNTIME_DIAG_PID} "0")
+expect_refused(runtime_diagnostic_bad_pid "runtime diagnostics require" absent-kernel -n 85 --print-config)
+set(ENV{IOSRETROMOB_RUNTIME_DIAG_PID} "39")
+set(ENV{IOSRETROMOB_RUNTIME_DIAG_END} "86")
+expect_refused(runtime_diagnostic_unreachable_end "runtime diagnostics require" absent-kernel -n 85 --print-config)
+set(ENV{IOSRETROMOB_RUNTIME_DIAG_END} "73")
+set(ENV{IOSRETROMOB_RUNTIME_DIAG_START} "73")
+expect_refused(runtime_diagnostic_empty_window "runtime diagnostics require" absent-kernel -n 85 --print-config)
+unset(ENV{IOSRETROMOB_RUNTIME_DIAG_PID})
+unset(ENV{IOSRETROMOB_RUNTIME_DIAG_LOG})
+unset(ENV{IOSRETROMOB_RUNTIME_DIAG_START})
+unset(ENV{IOSRETROMOB_RUNTIME_DIAG_END})
+
+# Dynamic executable selection and numeric kernel-site parsing remain opt-in.
+set(ENV{IOSRETROMOB_RUNTIME_DIAG_EXECUTABLES} "/synthetic/service|/synthetic/app")
+set(ENV{IOSRETROMOB_RUNTIME_DIAG_KERNEL_SITES} "0xc001425e,0xc053a3a8")
+set(ENV{IOSRETROMOB_RUNTIME_DIAG_LOG} "never-created-runtime-diagnostic.jsonl")
+expect_config(runtime_dynamic_preflight "runtime diagnostics: read-only PID=0" absent-kernel -n 85 --print-config)
+set(ENV{IOSRETROMOB_RUNTIME_DIAG_KERNEL_SITES} "0x1234")
+expect_refused(runtime_bad_kernel_site "runtime diagnostics require" absent-kernel -n 85 --print-config)
+set(ENV{IOSRETROMOB_RUNTIME_DIAG_KERNEL_SITES} "0xc001425e,")
+expect_refused(runtime_bad_kernel_site_list "runtime diagnostics require" absent-kernel -n 85 --print-config)
+unset(ENV{IOSRETROMOB_RUNTIME_DIAG_KERNEL_SITES})
+set(ENV{IOSRETROMOB_RUNTIME_DIAG_EXECUTABLES} "relative/path")
+expect_refused(runtime_bad_executable "runtime diagnostics require" absent-kernel -n 85 --print-config)
+unset(ENV{IOSRETROMOB_RUNTIME_DIAG_EXECUTABLES})
+unset(ENV{IOSRETROMOB_RUNTIME_DIAG_LOG})
+
+# Call-correlated gate diagnostics require dynamic identities and an even kernel PC.
+set(ENV{IOSRETROMOB_RUNTIME_DIAG_EXECUTABLES} "/synthetic/service")
+set(ENV{IOSRETROMOB_RUNTIME_DIAG_LOG} "never-created-runtime-diagnostic.jsonl")
+set(ENV{IOSRETROMOB_RUNTIME_DIAG_GATE_CALL} "0xc0000200")
+expect_config(runtime_gate_preflight "runtime diagnostics: read-only PID=0" absent-kernel -n 85 --print-config)
+foreach(value IN ITEMS "0x100" "0xc0000201" "bogus" "0xffffffff")
+    set(ENV{IOSRETROMOB_RUNTIME_DIAG_GATE_CALL} "${value}")
+    expect_refused(runtime_gate_bad_call "runtime diagnostics require" absent-kernel -n 85 --print-config)
+endforeach()
+unset(ENV{IOSRETROMOB_RUNTIME_DIAG_GATE_CALL})
+unset(ENV{IOSRETROMOB_RUNTIME_DIAG_EXECUTABLES})
+unset(ENV{IOSRETROMOB_RUNTIME_DIAG_LOG})
+
+set(ENV{IOSRETROMOB_RUNTIME_DIAG_EXECUTABLES} "/synthetic/service")
+set(ENV{IOSRETROMOB_RUNTIME_DIAG_LOG} "never-created-runtime-diagnostic.jsonl")
+set(ENV{IOSRETROMOB_RUNTIME_DIAG_GATE_CALL} "0xc0000200")
+set(ENV{IOSRETROMOB_RUNTIME_DIAG_GATE_FIELDS} "0x70,0x84")
+expect_config(runtime_gate_fields "runtime diagnostics: read-only PID=0" absent-kernel -n 85 --print-config)
+foreach(value IN ITEMS "0x71" "4096" "0x70,0x70" "0x70," "bogus" "")
+    set(ENV{IOSRETROMOB_RUNTIME_DIAG_GATE_FIELDS} "${value}")
+    expect_refused(runtime_gate_bad_fields "runtime diagnostics require" absent-kernel -n 85 --print-config)
+endforeach()
+unset(ENV{IOSRETROMOB_RUNTIME_DIAG_GATE_FIELDS})
+unset(ENV{IOSRETROMOB_RUNTIME_DIAG_GATE_CALL})
+unset(ENV{IOSRETROMOB_RUNTIME_DIAG_EXECUTABLES})
+unset(ENV{IOSRETROMOB_RUNTIME_DIAG_LOG})
+
+expect_refused(iis_clock_snapshot_refused "cold-boot-only hypothesis" absent-kernel --experimental-iis-clock --snapshot-at 100 absent-snapshot --print-config)

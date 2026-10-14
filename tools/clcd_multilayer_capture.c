@@ -14,7 +14,7 @@ clcd_native_status_t clcd_native_view(const s5l_clcd_t *c, unsigned k,
     if (!c || k >= CLCD_WIN_COUNT ||
         !s5l_clcd_window(c,k,&fb,&v.width,&v.height,&v.stride,&v.format,&v.order))
         return CLCD_NATIVE_DISABLED;
-    if ((v.format != 7u && v.format != 3u) || v.order != 0u)
+    if (v.format != 7u && v.format != 3u)
         return CLCD_NATIVE_FORMAT;
     if (!v.width || !v.height) return CLCD_NATIVE_GEOMETRY;
     v.bytes_per_pixel = v.format == 7u ? 4u : 2u;
@@ -28,11 +28,11 @@ clcd_native_status_t clcd_native_view(const s5l_clcd_t *c, unsigned k,
     v.pixels=ram+(fb-base);v.bytes=(size_t)need;
     v.registers=c->win[k];v.x=v.registers.position>>16;v.y=v.registers.position&0xffffu;
     if (out) *out=v;
-    return CLCD_NATIVE_OK;
+    return v.order ? CLCD_NATIVE_RAW_ORDER : CLCD_NATIVE_OK;
 }
 const char *clcd_native_status_name(clcd_native_status_t s) {
     static const char *const names[]={"ok","disabled","unsupported-format-or-order",
-        "empty-geometry","invalid-stride","outside-guest-memory"};
+        "empty-geometry","invalid-stride","outside-guest-memory","raw-uninterpreted-order"};
     return (unsigned)s < sizeof names/sizeof names[0] ? names[s] : "invalid-status";
 }
 static bool add_word(ios3_sha256_context_t *h,uint32_t v) {
@@ -61,7 +61,7 @@ bool clcd_multilayer_digest(const s5l8900_t *m,uint8_t digest[32]) {
         clcd_native_view_t v;
         clcd_native_status_t s=clcd_native_view(&m->clcd,k,m->ram,m->ram_base,m->ram_size,&v);
         if(!add_word(&h,(uint32_t)s))return false;
-        if(s==CLCD_NATIVE_OK && !ios3_sha256_update(&h,v.pixels,v.bytes))return false;
+        if((s==CLCD_NATIVE_OK || s==CLCD_NATIVE_RAW_ORDER) && !ios3_sha256_update(&h,v.pixels,v.bytes))return false;
     }
     return ios3_sha256_final(&h,digest);
 }
@@ -87,7 +87,7 @@ bool clcd_multilayer_write(const s5l8900_t *m,uint64_t n,const char *directory,
     uint64_t bytes=0;
     for(unsigned k=0;k<4;k++) {
         status[k]=clcd_native_view(&m->clcd,k,m->ram,m->ram_base,m->ram_size,&views[k]);
-        if(status[k]==CLCD_NATIVE_OK) {
+        if((status[k]==CLCD_NATIVE_OK || status[k]==CLCD_NATIVE_RAW_ORDER)) {
             if(views[k].bytes>8u*1024u*1024u)return false;
             bytes+=views[k].bytes;
             if(!hex_hash(views[k].pixels,views[k].bytes,hashes[k]))return false;
@@ -97,7 +97,7 @@ bool clcd_multilayer_write(const s5l8900_t *m,uint64_t n,const char *directory,
     }
     /* Worst-case numeric global registers and all gamma words fit in 32 KiB. */
     if(reserve<32768 || bytes>reserve-32768)return false;
-    for(unsigned k=0;k<4;k++)if(status[k]==CLCD_NATIVE_OK &&
+    for(unsigned k=0;k<4;k++)if((status[k]==CLCD_NATIVE_OK || status[k]==CLCD_NATIVE_RAW_ORDER) &&
         !write_file(directory,names[k],views[k].pixels,views[k].bytes))return false;
     char name[128],path[1200];int z=snprintf(name,sizeof name,"layers-%04u-at-%" PRIu64 ".json",sample,n);
     if(z<0 || (size_t)z>=sizeof name)return false;
@@ -113,9 +113,9 @@ bool clcd_multilayer_write(const s5l8900_t *m,uint64_t n,const char *directory,
     for(unsigned k=0;k<4;k++) {
         const s5l_clcd_window_t *w=&c->win[k];
         fprintf(f,"%s{\"index\":%u,\"status\":\"%s\",\"registers\":{\"stride\":%u,\"control\":%u,\"fbaddr\":%u,\"geometry\":%u,\"linewords\":%u,\"position\":%u}",k?",":"",k,clcd_native_status_name(status[k]),w->stride,w->control,w->fbaddr,w->geometry,w->linewords,w->position);
-        if(status[k]==CLCD_NATIVE_OK) {
+        if((status[k]==CLCD_NATIVE_OK || status[k]==CLCD_NATIVE_RAW_ORDER)) {
             const clcd_native_view_t *v=&views[k];
-            fprintf(f,",\"width\":%u,\"height\":%u,\"x\":%u,\"y\":%u,\"stride\":%u,\"format_code\":%u,\"order_code\":%u,\"layout\":\"%s\",\"alpha\":\"%s\",\"span_bytes\":%zu,\"row_bytes\":%u,\"padding\":\"inter-row-preserved;final-row-excluded\",\"file\":\"%s\",\"sha256\":\"%s\"",v->width,v->height,v->x,v->y,v->stride,v->format,v->order,v->format==7?"BGRA8-native":"RGB565-little-endian",v->format==7?"native-byte-preserved;blend-semantics-unresolved":"no-native-alpha",v->bytes,v->width*v->bytes_per_pixel,names[k],hashes[k]);
+            fprintf(f,",\"width\":%u,\"height\":%u,\"x\":%u,\"y\":%u,\"stride\":%u,\"format_code\":%u,\"order_code\":%u,\"layout\":\"%s\",\"alpha\":\"%s\",\"span_bytes\":%zu,\"row_bytes\":%u,\"padding\":\"inter-row-preserved;final-row-excluded\",\"file\":\"%s\",\"sha256\":\"%s\"",v->width,v->height,v->x,v->y,v->stride,v->format,v->order,v->order?"packed-native-uninterpreted-order":(v->format==7?"BGRA8-native":"RGB565-little-endian"),v->order?(v->format==7?"four-native-bytes;alpha-location-unresolved":"no-native-alpha"):(v->format==7?"native-byte-preserved;blend-semantics-unresolved":"no-native-alpha"),v->bytes,v->width*v->bytes_per_pixel,names[k],hashes[k]);
         }
         fputc('}',f);
     }

@@ -269,6 +269,11 @@ static bool patch_sizes(audio_sink_t *s) {
     return true;
 }
 
+bool audio_sink_set_payload_limit(audio_sink_t *s,uint64_t bytes) {
+    if(!s || !s->armed || s->words || s->f || s->closed ||
+       (bytes && (bytes<4u || bytes>AUDIO_MAX_DATA_BYTES || bytes%4u)))return false;
+    s->payload_limit=bytes;return true;
+}
 void audio_sink_word(audio_sink_t *s, uint32_t word) {
     if (!s) return;
 
@@ -296,7 +301,8 @@ void audio_sink_word(audio_sink_t *s, uint32_t word) {
         }
     }
 
-    if (s->payload_bytes + 4u > AUDIO_MAX_DATA_BYTES) {
+    if (s->payload_bytes + 4u > AUDIO_MAX_DATA_BYTES ||
+        (s->payload_limit && s->payload_bytes + 4u > s->payload_limit)) {
         s->capped = true;
         return;
     }

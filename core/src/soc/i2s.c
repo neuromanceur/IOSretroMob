@@ -2,9 +2,9 @@
  * S5LBox — the two S5L8900 I2S controller windows.
  *
  * Honest storage for the seven offsets AppleS5L8900XI2SController writes, and
- * bounded visibility for anything else. It stores rather than interprets: no
- * semantics are claimed for any of the seven, because the driver never reads
- * one back and nothing in the kernelcache documents them.
+ * bounded visibility for anything else. Default behaviour is storage only.
+ * An explicit development option adds an experimental clock/TX queue below;
+ * its gates, rate, depth and frame layout are not proven hardware semantics.
  *
  * See the I2S block in soc.h for the enumeration of the seven write sites and
  * for the four checks that establish `readRegister` is dead code.
@@ -56,6 +56,84 @@ uint32_t s5l_i2s_fifo_pa(unsigned index, s5l_i2s_fifo_t which) {
     return UINT32_MAX;
 }
 
+/* Development H1: CLKCON power, TXCON sync-request bit 20 and LRCK-on
+ * (TXCOM bit 0 clear) permit a free-running external frame pulse. TXCOM bit 2
+ * is deliberately NOT required: the native driver sleeps before writing 6.
+ * Bit20 gates native startTransfer's sync branch; its physical meaning and
+ * pulse shape are unproved. Nominal frame rate is a caller-supplied hypothesis.
+ * No GPL code, guest function addresses, sample production or DMA kick. */
+static bool clock_condition(const s5l_i2s_t *s) {
+    return s->experimental_hz && (s->regs[0]&1u) &&
+        (s->regs[1]&(1u<<20)) && !(s->regs[2]&1u);
+}
+static uint64_t saturated_add(uint64_t a,uint64_t b) {
+    return UINT64_MAX-a<b ? UINT64_MAX : a+b;
+}
+static void clock_configure(s5l_i2s_t *s) {
+    bool running=clock_condition(s);
+    if(running!=s->clock_running) {
+        s->clock_running=running;s->frame_phase=0;
+        s->clock_generation=saturated_add(s->clock_generation,1);
+    }
+}
+bool s5l_i2s_set_experimental_clock(s5l_i2s_t *s,uint32_t hz) {
+    if(!s || hz>192000u)return false;
+    if(s->experimental_hz!=hz) {
+        s->experimental_hz=hz;s->clock_running=false;s->frame_phase=0;
+        /* No active queue may be dropped silently by an inactive snapshot. */
+        memset(s->tx_fifo,0,sizeof s->tx_fifo);s->tx_head=s->tx_level=0;
+        s->clock_generation=saturated_add(s->clock_generation,1);
+    }
+    clock_configure(s);return true;
+}
+uint32_t s5l_i2s_next_frame(const s5l_i2s_t *s) {
+    if(!s || !s->clock_running)return 0;
+    return (uint32_t)((S5L8900_TB_HZ-s->frame_phase+s->experimental_hz-1)/s->experimental_hz);
+}
+/* Historical TXCOM bit 1 enables DMA requests, bit 2 the TX interface.
+ * A four-byte free watermark accommodates PL080's largest source chunk;
+ * it prevents a split-width transfer losing staged bytes. Depth and the
+ * four-byte frame consumption remain explicitly experimental assumptions. */
+bool s5l_i2s_tx_ready(const s5l_i2s_t *s,unsigned width) {
+    return s && s->experimental_hz && s->clock_running &&
+        (s->regs[2]&6u)==6u && (width==1u||width==2u||width==4u) &&
+        s->tx_level<=sizeof s->tx_fifo-4u;
+}
+bool s5l_i2s_tx_write(s5l_i2s_t *s,uint32_t value,unsigned width) {
+    if(!s || !s->experimental_hz)return false;
+    if((width!=1u&&width!=2u&&width!=4u) || width>sizeof s->tx_fifo-s->tx_level) {
+        s->tx_refused=saturated_add(s->tx_refused,1);return false;
+    }
+    for(unsigned i=0;i<width;i++) {
+        s->tx_fifo[(s->tx_head+s->tx_level)%sizeof s->tx_fifo]=(uint8_t)(value>>(8*i));
+        s->tx_level++;
+    }
+    s->tx_bytes_in=saturated_add(s->tx_bytes_in,width);return true;
+}
+void s5l_i2s_tick(s5l_i2s_t *s,uint32_t tb,s5l_gpioic_t *g,unsigned line) {
+    if(!s || !s->clock_running || !tb)return;
+    s->clock_ticks=saturated_add(s->clock_ticks,tb);
+    uint64_t scaled=s->frame_phase+(uint64_t)tb*s->experimental_hz;
+    uint64_t frames=scaled/S5L8900_TB_HZ;s->frame_phase=scaled%S5L8900_TB_HZ;
+    s->frame_edges=saturated_add(s->frame_edges,frames);
+    if(frames && (s->regs[2]&4u)) {
+        uint64_t need=frames*4u;
+        unsigned drained=need<s->tx_level?(unsigned)need:s->tx_level;
+        uint64_t complete=s->tx_level/4u;
+        if(frames>complete)s->tx_underflow_frames=saturated_add(s->tx_underflow_frames,frames-complete);
+        s->tx_head=(s->tx_head+drained)%sizeof s->tx_fifo;s->tx_level-=drained;
+        s->tx_bytes_out=saturated_add(s->tx_bytes_out,drained);
+    }
+    if(frames && g) {
+        /* GPIO has one edge latch; elapsed edges coalesce while unserviced.
+         * WFI forecast prevents sleeping across the first deliverable edge.
+         * Pulse/ack at GPIO, no invented IIS register W1C semantics. */
+        s5l_gpioic_set_line(g,line,false);
+        s5l_gpioic_set_line(g,line,true);
+        s5l_gpioic_set_line(g,line,false);
+    }
+}
+
 static int slot_for(uint32_t off) {
     for (unsigned i = 0; i < S5L_I2S_REGS; i++)
         if (I2S_OFFSETS[i] == off) return (int)i;
@@ -97,6 +175,7 @@ void s5l_i2s_write(s5l_i2s_t *i2s, uint32_t off, uint32_t val) {
     int slot = slot_for(off);
     if (slot >= 0) {
         i2s->regs[slot] = val;
+        clock_configure(i2s);
         return;
     }
     i2s->unknown_writes++;

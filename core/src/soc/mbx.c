@@ -53,6 +53,7 @@
 #include "soc.h"
 #include "mbx_vgp.h"
 #include "../../../tools/sha256.h"
+#include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -160,7 +161,7 @@
 #define MBX_TA_CAPTURE_MAGIC_M     0xfff00000u
 #define MBX_TA_CAPTURE_FAILED      0x54500000u
 #define MBX_TA_CAPTURE_COUNT_M     0x0000ffffu
-#define MBX_TA_CAPTURE_MAX_WORDS   S5L_MBX_TA_FIFO_WORDS
+#define MBX_TA_CAPTURE_MAX_WORDS   MBX_TA_CAPTURE_COUNT_M
 
 /* Later _mbx3DCtxQuadCopyPerspective records and live object streams recover
  * the padlock, `Searching...`, and battery status sprites, plus clipped
@@ -187,6 +188,25 @@ static uint64_t mbx_3d_rejected;
 static uint64_t mbx_3d_pixels;
 static uint64_t mbx_3d_fifo_words;
 static uint64_t mbx_3d_fifo_scene_words;
+
+/* ---- Opt-in campaign-9 graphics observer ---------------------------------
+ * A single host-installed read-only observer for the native texture/VGP state
+ * the TA renderer consumes. It lives here, outside s5l_mbx_t, so it is host
+ * session state and never guest state: it is not snapshotted and adding it did
+ * not move any SNAP_SIZE_GUARD. NULL by default (the offline tests and every
+ * normal run), so with no observer installed the capture path allocates
+ * nothing, opens nothing and behaves exactly as before. One machine runs per
+ * process, so a single static slot is the whole state the observer needs. */
+static s5l_mbx_draw_observer_fn mbx_draw_observer;
+static void *mbx_draw_observer_ctx;
+
+bool s5l_mbx_set_draw_observer(s5l_mbx_t *m,
+                               s5l_mbx_draw_observer_fn fn, void *ctx) {
+    if (!m) return false;
+    mbx_draw_observer = fn;
+    mbx_draw_observer_ctx = ctx;
+    return true;
+}
 
 static void mbx_counter_add(uint64_t *counter, uint64_t amount) {
     if (!counter) return;
@@ -3757,6 +3777,16 @@ struct mbx_ta_draw {
     bool textured;
     bool filtered;
     bool affine;
+    bool is_clear;
+    bool is_morton;
+    /* Texture-header pixel-format class captured from the descriptor, bits
+     * [31:29]. The Morton twiddle (source mode 0x12) is a measured layout
+     * shared across Guerrilla Bob scenes, but the texel width is NOT: the
+     * C7 title proved only class 5 as 4-byte BGRA8. C8 scenes emit class 0
+     * with the identical addressing and dimensions. Capturing the class lets
+     * the parser recognise the family while the rasterizer refuses any class
+     * it has not measured, rather than inventing texel bytes. */
+    uint8_t texel_format;
     uint32_t source;
     uint32_t source_stride;
     uint32_t texture_width;
@@ -3799,17 +3829,44 @@ static bool mbx_ta_texture_state(const uint32_t *words, uint32_t start,
         uint32_t expected_source =
             (filtered ? 0x8e000000u : 0x0e000000u) |
             ((pitch_units & ~3u) << 16);
-        if (!pitch_units || width > 512u || height > 512u ||
-            header != expected_header ||
-            (source_word & ~MBX_3D_ADDRESS_MASK) != expected_source)
+        if (pitch_units && width <= 512u && height <= 512u &&
+            header == expected_header &&
+            (source_word & ~MBX_3D_ADDRESS_MASK) == expected_source) {
+            matches++;
+            draw->filtered = filtered;
+            draw->source = mbx_3d_decode_address(source_word);
+            draw->source_stride = pitch_units * 16u;
+            draw->texture_width = width;
+            draw->texture_height = height;
+            draw->is_morton = false;
             continue;
+        }
 
-        matches++;
-        draw->filtered = filtered;
-        draw->source = mbx_3d_decode_address(source_word);
-        draw->source_stride = pitch_units * 16u;
-        draw->texture_width = width;
-        draw->texture_height = height;
+        /* Morton twiddled family. The addressing (source mode 0x12), the
+         * square power-of-two dimensions and the width/height exponent fields
+         * are the SAME measured layout the C7 title proved as 4-byte BGRA8.
+         * C8 scenes reuse that exact addressing and geometry but carry a
+         * different pixel-format class in header bits [31:29]. We recognise
+         * the twiddle structurally so a scene is captured and classified, but
+         * record the class so the rasterizer can refuse an unmeasured texel
+         * width instead of guessing. Only class 5 (0xa6.. top bits, the C7
+         * title form) is proven 4-byte BGRA8; every other class is captured
+         * and then refused at draw time. */
+        if ((source_word & 0x7f000000u) == 0x12000000u &&
+            width <= 512u && height <= 512u &&
+            width == height &&
+            (width & (width - 1u)) == 0u &&
+            ((header >> 24) & 7u) <= 6u && ((header >> 20) & 7u) <= 6u) {
+            matches++;
+            draw->filtered = filtered;
+            draw->source = (source_word & 0x0003ffffu) << 7;
+            draw->source_stride = width * 4u;
+            draw->texture_width = width;
+            draw->texture_height = height;
+            draw->is_morton = true;
+            draw->texel_format = (uint8_t)((header >> 29) & 7u);
+            continue;
+        }
     }
     return matches == 1u;
 }
@@ -4012,6 +4069,92 @@ static enum mbx_ta_parse_result mbx_ta_parse_vertices(
     return MBX_TA_DRAW_OK;
 }
 
+static enum mbx_ta_parse_result mbx_ta_parse_vertices_transformed(
+        const uint32_t *words, uint32_t count, uint32_t start, uint32_t control,
+        struct mbx_ta_draw *draw, const char **why) {
+    uint32_t term = control + 1u + 4u * 9u;
+    if (term >= count || words[term] != 0x00000003u) {
+        if (why) *why = "TA transformed draw has an unknown vertex boundary";
+        return MBX_TA_DRAW_BAD;
+    }
+    draw->next_word = term + 1u;
+
+    /* Search backwards for uniform matrix at 0xa0000003 */
+    float mat[16];
+    bool has_mat = false;
+    for (int32_t i = (int32_t)start - 1; i >= 0 && !has_mat; i--) {
+        if (words[i] == 0xa0000003u && i + 16 < (int32_t)count) {
+            for (int k = 0; k < 16; k++) {
+                if (!mbx_3d_word_to_finite_float(words[i + 1 + k], &mat[k])) return MBX_TA_DRAW_BAD;
+            }
+            has_mat = true;
+        }
+    }
+    if (!has_mat) {
+        if (why) *why = "TA transformed draw has no uniform matrix";
+        return MBX_TA_DRAW_BAD;
+    }
+
+    /* Read viewport from words between start and control */
+    float cx = 0.0f, sx = 0.0f, cy = 0.0f, sy = 0.0f;
+    bool has_viewport = false;
+    for (uint32_t i = start; i + 5 < control; i++) {
+        float f0, f1, f2, f3;
+        if (mbx_3d_word_to_finite_float(words[i], &f0) &&
+            mbx_3d_word_to_finite_float(words[i + 1], &f1) &&
+            mbx_3d_word_to_finite_float(words[i + 2], &f2) &&
+            mbx_3d_word_to_finite_float(words[i + 3], &f3)) {
+            if (fabsf(f0 - 160.0f) < 1.0f && fabsf(f1 - 160.0f) < 1.0f &&
+                fabsf(f2 - 240.0f) < 1.0f && fabsf(f3 - (-240.0f)) < 1.0f) {
+                cx = f0; sx = f1; cy = f2; sy = f3;
+                has_viewport = true;
+                break;
+            }
+        }
+    }
+
+    if (!has_viewport) {
+        if (why) *why = "TA transformed viewport is outside the measured profile";
+        return MBX_TA_DRAW_BAD;
+    }
+    float scr_x[4], scr_y[4];
+    for (uint32_t v = 0; v < 4; v++) {
+        uint32_t base = control + 1u + v * 9u;
+        float in_x, in_y, in_z;
+        if (!mbx_3d_word_to_finite_float(words[base + 1u], &in_x) ||
+            !mbx_3d_word_to_finite_float(words[base + 2u], &in_y) ||
+            !mbx_3d_word_to_finite_float(words[base + 3u], &in_z)) {
+            if (why) *why = "TA transformed vertex position is nonfinite";
+            return MBX_TA_DRAW_BAD;
+        }
+        float clip_x = mat[0] * in_x + mat[1] * in_y + mat[2] * in_z + mat[3];
+        float clip_y = mat[4] * in_x + mat[5] * in_y + mat[6] * in_z + mat[7];
+        float clip_w = mat[12] * in_x + mat[13] * in_y + mat[14] * in_z + mat[15];
+        if (!isfinite(clip_x) || !isfinite(clip_y) ||
+            !isfinite(clip_w) || clip_w <= 1e-6f) {
+            if (why) *why = "TA transformed clip coordinates are invalid";
+            return MBX_TA_DRAW_BAD;
+        }
+        scr_x[v] = cx + (clip_x / clip_w) * sx;
+        scr_y[v] = cy + (clip_y / clip_w) * sy;
+        if (!isfinite(scr_x[v]) || !isfinite(scr_y[v])) {
+            if (why) *why = "TA transformed screen coordinates are nonfinite";
+            return MBX_TA_DRAW_BAD;
+        }
+    }
+    draw->x0 = scr_x[0]; draw->x1 = scr_x[0];
+    draw->y0 = scr_y[0]; draw->y1 = scr_y[0];
+    for (uint32_t v = 1; v < 4; v++) {
+        if (scr_x[v] < draw->x0) draw->x0 = scr_x[v];
+        if (scr_x[v] > draw->x1) draw->x1 = scr_x[v];
+        if (scr_y[v] < draw->y0) draw->y0 = scr_y[v];
+        if (scr_y[v] > draw->y1) draw->y1 = scr_y[v];
+    }
+    draw->u0 = 0.0f; draw->v0 = 0.0f; draw->u1 = 1.0f; draw->v1 = 1.0f;
+    draw->colour = words[control + 1u + 4u];
+    return MBX_TA_DRAW_OK;
+}
+
 static enum mbx_ta_parse_result mbx_ta_parse_draw(
         const uint32_t *words, uint32_t count, uint32_t start,
         float origin_x, float origin_y,
@@ -4025,28 +4168,71 @@ static enum mbx_ta_parse_result mbx_ta_parse_draw(
     uint32_t control = UINT32_MAX;
     uint32_t stride = 0u;
     for (uint32_t i = start + 1u; i < limit; i++) {
-        uint32_t candidate_stride = words[i] == 0xf0020004u ? 6u :
-                                    words[i] == 0xf0020044u ? 8u : 0u;
+        if ((words[i] & 0xff000000u) == 0x10000000u) break;
+        uint32_t candidate_stride =
+            words[i] == 0xb00e4000u ? 5u :
+            words[i] == 0xf0020004u ? 6u :
+            words[i] == 0xf0020044u ? 8u :
+            words[i] == 0xf00200c4u ? 9u : 0u;
         if (!candidate_stride) continue;
-        if (control != UINT32_MAX) {
-            if (why) *why = "TA draw contains multiple raster controls";
-            return MBX_TA_DRAW_BAD;
+        uint32_t vbound = words[i - 1u];
+        if (vbound != 0x48020000u && vbound != 0x48000000u &&
+            vbound != 0x480a0000u && vbound != 0x78020000u) {
+            continue;
         }
         control = i;
         stride = candidate_stride;
+        break;
     }
     if (control == UINT32_MAX) return MBX_TA_NOT_DRAW;
-    if (control == start + 1u || words[control - 1u] != 0x48020000u) {
+    if (control == start + 1u) {
         if (why) *why = "TA draw has an unknown vertex boundary";
         return MBX_TA_DRAW_BAD;
     }
 
     memset(draw, 0, sizeof *draw);
-    draw->textured = stride == 8u;
-    if (draw->textured &&
-        !mbx_ta_texture_state(words, start, control, draw)) {
-        if (why) *why = "TA draw has no unique measured BGRA8 texture state";
-        return MBX_TA_DRAW_BAD;
+    if (stride == 5u) {
+        uint32_t term = control + 1u;
+        while (term < count && words[term] != 0x00000003u) term++;
+        if (term >= count || words[term] != 0x00000003u) {
+            if (why) *why = "TA clear draw has no vertex terminator";
+            return MBX_TA_DRAW_BAD;
+        }
+        uint32_t num_v = (term - (control + 1u)) / 5u;
+        draw->next_word = term + 1u;
+        draw->is_clear = true;
+        draw->textured = false;
+        if (num_v >= 4u) {
+            uint32_t base = control + 1u;
+            float x0, y0, x1, y1;
+            if (mbx_3d_word_to_finite_float(words[base + 1u], &x0) &&
+                mbx_3d_word_to_finite_float(words[base + 2u], &y0) &&
+                mbx_3d_word_to_finite_float(words[base + 15u + 1u], &x1) &&
+                mbx_3d_word_to_finite_float(words[base + 15u + 2u], &y1)) {
+                draw->x0 = x0; draw->y0 = y0;
+                draw->x1 = x1; draw->y1 = y1;
+            }
+            draw->colour = words[base + 4u];
+        }
+        return MBX_TA_DRAW_OK;
+    }
+
+    draw->textured = (stride == 8u || stride == 9u);
+    if (draw->textured) {
+        if (!mbx_ta_texture_state(words, start, control, draw)) {
+            if (why) *why = "TA draw has no unique measured BGRA8 texture state";
+            return MBX_TA_DRAW_BAD;
+        }
+    } else {
+        if (stride != 6u || control - start != 4u ||
+            words[start + 1u] != 0x22600e80u ||
+            words[start + 2u] != 0x00000504u) {
+            if (why) *why = "TA solid draw has an unknown pipeline state";
+            return MBX_TA_DRAW_BAD;
+        }
+    }
+    if (stride == 9u) {
+        return mbx_ta_parse_vertices_transformed(words, count, start, control, draw, why);
     }
     return mbx_ta_parse_vertices(words, count, control, stride,
                                  origin_x, origin_y, draw, why);
@@ -4187,7 +4373,7 @@ static bool mbx_ta_apply_draw(
         const s5l_mbx_t *m, const arm_bus_t *bus,
         const struct mbx_ta_draw *draw, uint32_t target,
         uint32_t target_width, uint32_t target_height,
-        uint32_t target_bytes,
+        uint32_t target_bytes, uint32_t pixel_bytes,
         uint32_t clip_left, uint32_t clip_top,
         uint32_t clip_right, uint32_t clip_bottom,
         uint8_t *target_pixels,
@@ -4195,7 +4381,9 @@ static bool mbx_ta_apply_draw(
         uint32_t *dirty_right, uint32_t *dirty_bottom,
         uint64_t *pixels_blended, const char **why) {
     const float coordinate_limit = (float)INT32_MAX - 1024.0f;
-    if (draw->x0 <= -coordinate_limit || draw->y0 <= -coordinate_limit ||
+    if (!isfinite(draw->x0) || !isfinite(draw->y0) ||
+        !isfinite(draw->x1) || !isfinite(draw->y1) ||
+        draw->x0 <= -coordinate_limit || draw->y0 <= -coordinate_limit ||
         draw->x1 >= coordinate_limit || draw->y1 >= coordinate_limit) {
         if (why) *why = "TA draw destination coordinates overflow";
         return false;
@@ -4229,23 +4417,124 @@ static bool mbx_ta_apply_draw(
     uint32_t height = bottom - top;
     uint64_t draw_pixels = 0u;
     if (!draw->textured) {
-        if (!mbx_ta_premultiplied(draw->colour)) {
-            if (why) *why = "TA solid colour is not premultiplied BGRA8";
+        if (pixel_bytes == 2u) {
+            uint16_t clear16 = 0u;
+            if (draw->colour != 0x05000000u && draw->colour != 0u) {
+                uint32_t r = (draw->colour >> 16) & 0xffu;
+                uint32_t g = (draw->colour >> 8) & 0xffu;
+                uint32_t b = draw->colour & 0xffu;
+                clear16 = (uint16_t)(((r >> 3) << 11) | ((g >> 2) << 5) | (b >> 3));
+            }
+            for (uint32_t y = top; y < bottom; y++) {
+                for (uint32_t x = left; x < right; x++) {
+                    uint8_t *pixel = target_pixels + (y * target_width + x) * 2u;
+                    pixel[0] = (uint8_t)clear16;
+                    pixel[1] = (uint8_t)(clear16 >> 8);
+                }
+            }
+            draw_pixels = (uint64_t)width * height;
+        } else if (draw->is_clear) {
+            for (uint32_t y = top; y < bottom; y++) {
+                for (uint32_t x = left; x < right; x++) {
+                    uint8_t *pixel = target_pixels + (y * target_width + x) * 4u;
+                    pixel[0] = (uint8_t)draw->colour;
+                    pixel[1] = (uint8_t)(draw->colour >> 8);
+                    pixel[2] = (uint8_t)(draw->colour >> 16);
+                    pixel[3] = (uint8_t)(draw->colour >> 24);
+                }
+            }
+            draw_pixels = (uint64_t)width * height;
+        } else {
+            if (!mbx_ta_premultiplied(draw->colour)) {
+                if (why) *why = "TA solid colour is not premultiplied BGRA8";
+                return false;
+            }
+            for (uint32_t y = top; y < bottom; y++) {
+                for (uint32_t x = left; x < right; x++) {
+                    uint8_t *pixel = target_pixels +
+                        (y * target_width + x) * 4u;
+                    uint32_t output = mbx_source_over_clamped(
+                        mbx_load_le32(pixel), draw->colour);
+                    pixel[0] = (uint8_t)output;
+                    pixel[1] = (uint8_t)(output >> 8);
+                    pixel[2] = (uint8_t)(output >> 16);
+                    pixel[3] = (uint8_t)(output >> 24);
+                }
+            }
+            draw_pixels = (uint64_t)width * height;
+        }
+    } else if (draw->is_morton) {
+        /* Only the measured square power-of-two Z order is implemented.
+         * Interleaving nine bits on a rectangular allocation can escape it. */
+        if (!draw->texture_width || draw->texture_width > 512u ||
+            draw->texture_width != draw->texture_height ||
+            (draw->texture_width & (draw->texture_width - 1u)) ||
+            !isfinite(draw->u0) || !isfinite(draw->v0) ||
+            !isfinite(draw->u1) || !isfinite(draw->v1) ||
+            draw->u0 < 0 || draw->v0 < 0 ||
+            draw->u1 > 1 || draw->v1 > 1 ||
+            draw->u0 >= draw->u1 || draw->v0 >= draw->v1) {
+            if (why) *why = "TA Morton dimensions or normalized UV are unsupported";
+            return false;
+        }
+        /* The twiddle layout is measured, but only pixel-format class 5 was
+         * proven 4-byte BGRA8 by the C7 title. C8 scenes carry the identical
+         * addressing and geometry under a different class; rasterizing those
+         * as BGRA8 would invent texel bytes, so refuse atomically instead.
+         * No framebuffer write, no completion, no IRQ. */
+        if (draw->texel_format != 5u) {
+            if (why) *why = "TA Morton texture pixel-format class is unmeasured";
+            return false;
+        }
+        uint32_t tex_bytes = draw->texture_width * draw->texture_height * 4u;
+        uint8_t *source_pixels = malloc(tex_bytes);
+        if (!source_pixels) {
+            if (why) *why = "host allocation for staged TA Morton texture failed";
+            return false;
+        }
+        if (mbx_2d_ranges_overlap(draw->source, tex_bytes, target, target_bytes)) {
+            free(source_pixels);
+            if (why) *why = "TA sampled texture aliases FBSTART";
+            return false;
+        }
+        bool ok = mbx_gart_read(m, bus, draw->source, source_pixels, tex_bytes, why);
+        if (!ok) {
+            free(source_pixels);
             return false;
         }
         for (uint32_t y = top; y < bottom; y++) {
+            float v_frac = height > 1u ? (float)(y - top) / (float)height : 0.0f;
             for (uint32_t x = left; x < right; x++) {
-                uint8_t *pixel = target_pixels +
-                    (y * target_width + x) * 4u;
-                uint32_t output = mbx_source_over_clamped(
-                    mbx_load_le32(pixel), draw->colour);
-                pixel[0] = (uint8_t)output;
-                pixel[1] = (uint8_t)(output >> 8);
-                pixel[2] = (uint8_t)(output >> 16);
-                pixel[3] = (uint8_t)(output >> 24);
+                float u_frac = width > 1u ? (float)(x - left) / (float)width : 0.0f;
+                float u_coord = draw->u0 + u_frac * (draw->u1 - draw->u0);
+                float v_coord = draw->v0 + v_frac * (draw->v1 - draw->v0);
+                uint32_t tx = (uint32_t)(v_coord * (float)draw->texture_width);
+                uint32_t ty = (uint32_t)(u_coord * (float)draw->texture_height);
+                if (tx >= draw->texture_width) tx = draw->texture_width - 1u;
+                if (ty >= draw->texture_height) ty = draw->texture_height - 1u;
+                uint32_t index = 0u;
+                for (uint32_t b = 0u; b < 9u; b++)
+                    index |= ((ty >> b) & 1u) << (2 * b) | ((tx >> b) & 1u) << (2 * b + 1);
+                const uint8_t *texel = source_pixels + index * 4u;
+                if (pixel_bytes == 2u) {
+                    uint8_t *dst = target_pixels + (y * target_width + x) * 2u;
+                    uint16_t r5 = (uint16_t)(texel[2] >> 3);
+                    uint16_t g6 = (uint16_t)(texel[1] >> 2);
+                    uint16_t b5 = (uint16_t)(texel[0] >> 3);
+                    uint16_t rgb565 = (r5 << 11) | (g6 << 5) | b5;
+                    dst[0] = (uint8_t)rgb565;
+                    dst[1] = (uint8_t)(rgb565 >> 8);
+                } else {
+                    uint8_t *dst = target_pixels + (y * target_width + x) * 4u;
+                    dst[0] = texel[0];
+                    dst[1] = texel[1];
+                    dst[2] = texel[2];
+                    dst[3] = texel[3];
+                }
+                draw_pixels++;
             }
         }
-        draw_pixels = (uint64_t)width * height;
+        free(source_pixels);
     } else {
         uint32_t pitch_pixels = draw->source_stride / 4u;
         if (!pitch_pixels || draw->u1 > (float)pitch_pixels ||
@@ -4461,13 +4750,22 @@ static bool mbx_ta_apply_draw(
                 source_pixel = mbx_modulate_vertex_alpha(
                     source_pixel, vertex_alpha);
                 uint8_t *destination = target_pixels +
-                    ((top + y) * target_width + left + x) * 4u;
-                uint32_t output = mbx_source_over_clamped(
-                    mbx_load_le32(destination), source_pixel);
-                destination[0] = (uint8_t)output;
-                destination[1] = (uint8_t)(output >> 8);
-                destination[2] = (uint8_t)(output >> 16);
-                destination[3] = (uint8_t)(output >> 24);
+                    ((top + y) * target_width + left + x) * pixel_bytes;
+                if (pixel_bytes == 2u) {
+                    uint16_t r5 = (uint16_t)(((source_pixel >> 16) & 0xffu) >> 3);
+                    uint16_t g6 = (uint16_t)(((source_pixel >> 8) & 0xffu) >> 2);
+                    uint16_t b5 = (uint16_t)((source_pixel & 0xffu) >> 3);
+                    uint16_t rgb565 = (r5 << 11) | (g6 << 5) | b5;
+                    destination[0] = (uint8_t)rgb565;
+                    destination[1] = (uint8_t)(rgb565 >> 8);
+                } else {
+                    uint32_t output = mbx_source_over_clamped(
+                        mbx_load_le32(destination), source_pixel);
+                    destination[0] = (uint8_t)output;
+                    destination[1] = (uint8_t)(output >> 8);
+                    destination[2] = (uint8_t)(output >> 16);
+                    destination[3] = (uint8_t)(output >> 24);
+                }
                 draw_pixels++;
             }
         }
@@ -4558,6 +4856,28 @@ static bool mbx_execute_vgp_stream(
     return true;
 }
 
+/* Measured transform shader/state envelope. This is a bounded semantic
+ * specialization, not an instruction interpreter. Unknown inter-draw state
+ * must never acquire completion through a scan to the next draw. */
+static bool mbx_ta_transform_state(const uint32_t *words, uint32_t count,
+                                  uint32_t start, uint32_t *next) {
+    enum { N = 379, MATRIX = 259 };
+    static const uint8_t expected[32] = {0x9f,0x5e,0xa2,0xbf,0xd6,0xa8,0xa2,0xcf,0x2b,0x2f,0x88,0x83,0xed,0x42,0x3a,0x63,0x76,0xa1,0x42,0x99,0x1b,0x52,0x30,0x9a,0xc8,0x58,0x62,0x05,0xac,0xf7,0xa6,0x10};
+    if (start > count || count - start < N + 1u ||
+        words[start + MATRIX] != 0xa0000003u ||
+        (words[start + N] & 0xff000000u) != 0x10000000u)
+        return false;
+    uint8_t normalized[N * 4u], digest[32];
+    for (uint32_t i = 0; i < N; i++) {
+        uint32_t v = i > MATRIX && i <= MATRIX + 16u ? 0u : words[start+i];
+        for (unsigned b = 0; b < 4; b++) normalized[4*i+b]=(uint8_t)(v>>(8*b));
+    }
+    if (!ios3_sha256(normalized, sizeof normalized, digest)) return false;
+    if (memcmp(digest, expected, sizeof digest)) return false;
+    *next = start + N;
+    return true;
+}
+
 static bool mbx_execute_ta_stream(s5l_mbx_t *m, const arm_bus_t *bus,
                                   const char **why,
                                   uint32_t *pixels_blended) {
@@ -4576,10 +4896,19 @@ static bool mbx_execute_ta_stream(s5l_mbx_t *m, const arm_bus_t *bus,
         if (why) *why = "staged TA stream does not belong to this render";
         return false;
     }
+    uint32_t fbctl = m->reg[S5L_MBX_FBCTL / 4u];
+    uint32_t pixel_bytes = 0u;
+    if (fbctl == 0x00000006u) {
+        pixel_bytes = 4u;
+    } else if (fbctl == 0x00000009u) {
+        pixel_bytes = 2u;
+    } else {
+        if (why) *why = "TA render registers are outside the measured framebuffer formats";
+        return false;
+    }
     if ((object & 3u) || (target & 3u) ||
-        m->reg[S5L_MBX_3DPIXSAMP / 4u] != 0x00020007u ||
-        m->reg[S5L_MBX_FBCTL / 4u] != 0x00000006u) {
-        if (why) *why = "TA render registers are outside the measured BGRA8 form";
+        m->reg[S5L_MBX_3DPIXSAMP / 4u] != 0x00020007u) {
+        if (why) *why = "TA render registers are outside the measured 3D sample form";
         return false;
     }
     uint32_t xclip = m->reg[S5L_MBX_FBXCLIP / 4u];
@@ -4588,7 +4917,13 @@ static bool mbx_execute_ta_stream(s5l_mbx_t *m, const arm_bus_t *bus,
     uint32_t clip_top = yclip & 0xffffu;
     uint32_t clip_right = (xclip >> 16) + 1u;
     uint32_t clip_bottom = (yclip >> 16) + 1u;
-    uint32_t target_width = m->reg[S5L_MBX_FBLINESTRIDE / 4u];
+    uint32_t stride_words = m->reg[S5L_MBX_FBLINESTRIDE / 4u];
+    if (!stride_words || stride_words > MBX_3D_WIDTH) {
+        if (why) *why = "TA framebuffer stride is invalid";
+        return false;
+    }
+    uint32_t stride_bytes = stride_words * 4u;
+    uint32_t target_width = stride_bytes / pixel_bytes;
     uint32_t target_height = clip_bottom;
     if (!target_width || target_width > MBX_3D_WIDTH ||
         clip_left >= clip_right || clip_right > target_width ||
@@ -4596,7 +4931,7 @@ static bool mbx_execute_ta_stream(s5l_mbx_t *m, const arm_bus_t *bus,
         if (why) *why = "TA framebuffer stride or clip is invalid";
         return false;
     }
-    uint32_t target_bytes = target_width * target_height * 4u;
+    uint32_t target_bytes = target_width * target_height * pixel_bytes;
     if (target > UINT32_MAX - target_bytes) {
         if (why) *why = "TA framebuffer target span overflows";
         return false;
@@ -4635,6 +4970,28 @@ static bool mbx_execute_ta_stream(s5l_mbx_t *m, const arm_bus_t *bus,
         free(draws);
         if (ok && why) *why = "TA stream framing is unknown or incomplete";
         return false;
+    }
+
+    /* Campaign-9 opt-in observation. Fired once per well-framed native stream,
+     * BEFORE the VGP/TA grammar split and before any draw parsing, so a stream
+     * the renderer later refuses (an unmeasured texture mode, an unknown pixel
+     * format, a novel VGP profile) is still captured with its raw words. The
+     * object-database words and the GART texture bytes hold their consumed
+     * values here. Read-only: the core passes a const bus, the observer's
+     * return value is ignored, and with no observer installed this block is
+     * skipped entirely and changes nothing. draw_count is 0 because parsing has
+     * not run yet; the observer decodes descriptors from words[] itself. */
+    if (mbx_draw_observer) {
+        s5l_mbx_draw_observation_t obs;
+        memset(&obs, 0, sizeof obs);
+        obs.words = words;
+        obs.word_count = count;
+        obs.draw_count = 0u;
+        obs.target = target;
+        obs.target_width = target_width;
+        obs.target_height = target_height;
+        obs.pixel_bytes = pixel_bytes;
+        (void)mbx_draw_observer(mbx_draw_observer_ctx, m, bus, &obs);
     }
 
     /* Distinct VGP-input grammar. An invalid VGP stream never falls back to
@@ -4710,6 +5067,15 @@ static bool mbx_execute_ta_stream(s5l_mbx_t *m, const arm_bus_t *bus,
                 words, count, cursor, transform.origin_x, transform.origin_y,
                 &draws[draw_count - 1u], &draws[draw_count], why);
         }
+        if (parsed == MBX_TA_NOT_DRAW) {
+            uint32_t next;
+            if (mbx_ta_transform_state(words, count, cursor, &next)) {
+                cursor = next;
+                parsed = mbx_ta_parse_draw(
+                    words, count, cursor, transform.origin_x, transform.origin_y,
+                    &draws[draw_count], why);
+            }
+        }
         if (parsed != MBX_TA_DRAW_OK) {
             ok = false;
             if (parsed == MBX_TA_NOT_DRAW && why) {
@@ -4747,7 +5113,7 @@ static bool mbx_execute_ta_stream(s5l_mbx_t *m, const arm_bus_t *bus,
     for (uint32_t i = 0u; i < draw_count && ok; i++) {
         ok = mbx_ta_apply_draw(
             m, bus, &draws[i], target, target_width, target_height,
-            target_bytes,
+            target_bytes, pixel_bytes,
             clip_left, clip_top, clip_right, clip_bottom,
             target_pixels, &dirty_left, &dirty_top,
             &dirty_right, &dirty_bottom, &total_pixels, why);
@@ -4757,15 +5123,16 @@ static bool mbx_execute_ta_stream(s5l_mbx_t *m, const arm_bus_t *bus,
         if (why) *why = "TA scene covers no pixels or exceeds telemetry bounds";
         ok = false;
     }
+    uint32_t row_stride_bytes = target_width * pixel_bytes;
     uint32_t dirty_row_bytes = dirty_right > dirty_left
-        ? (dirty_right - dirty_left) * 4u : 0u;
+        ? (dirty_right - dirty_left) * pixel_bytes : 0u;
     for (uint32_t row = dirty_top; row < dirty_bottom && ok; row++) {
         ok = mbx_gart_validate(m, bus,
-            target + row * target_width * 4u + dirty_left * 4u,
+            target + row * row_stride_bytes + dirty_left * pixel_bytes,
             dirty_row_bytes, why);
     }
     for (uint32_t row = dirty_top; row < dirty_bottom && ok; row++) {
-        uint32_t offset = row * target_width * 4u + dirty_left * 4u;
+        uint32_t offset = row * row_stride_bytes + dirty_left * pixel_bytes;
         ok = mbx_gart_write(m, bus, target + offset,
                             target_pixels + offset,
                             dirty_row_bytes, why);

@@ -191,7 +191,9 @@
 /* v33: private retained TA FIFO, word count and completion state. v32 input
  * remains readable; its FIFO is absent, so VGP refuses until a new submission.
  * Old quad rendering continues through its original object-database path. */
-#define SNAPSHOT_VERSION   33u
+/* v34: 64K-word retained native TA buffer. Readers accept the exact v32 and
+ * v33 layouts; old v33 readers refuse v34. No active words are discarded. */
+#define SNAPSHOT_VERSION   34u
 
 typedef enum {
     SNAP_OK = 0,
