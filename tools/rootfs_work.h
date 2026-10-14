@@ -117,7 +117,7 @@ extern "C" {
  */
 #define ROOTFS_WORK_MAX_ENTRIES 1024u
 #define ROOTFS_WORK_MAX_FILE_REPAIRS 16u
-#define ROOTFS_WORK_MAX_ENTRY_BYTES (16u * 1024u * 1024u)
+#define ROOTFS_WORK_MAX_ENTRY_BYTES (32u * 1024u * 1024u)
 /*
  * 4096 catalog nodes one request may TOUCH -- not a bound on the tree, which
  * may be any size.  Every node this writer touches is a node of the tree, so

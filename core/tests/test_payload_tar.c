@@ -56,6 +56,14 @@ static void tb_octal(unsigned char *p, size_t n, unsigned long long v) {
 static void tb_add_owned(tarbuf_t *t, const char *name, char type,
                          unsigned mode, unsigned uid, unsigned gid,
                          const void *body, size_t body_len, const char *link) {
+    size_t required = t->used + BLOCK +
+                      (body_len + BLOCK - 1u) / BLOCK * BLOCK + 2u * BLOCK;
+    if (required > t->cap) {
+        unsigned char *grown = (unsigned char *)realloc(t->buf, required);
+        if (!grown) { fprintf(stderr, "fixture allocation failed\n"); exit(2); }
+        memset(grown + t->cap, 0, required - t->cap);
+        t->buf = grown; t->cap = required;
+    }
     unsigned char *h = t->buf + t->used;
     memset(h, 0, BLOCK);
     (void)snprintf((char *)h + 0, 100u, "%s", name);
@@ -312,8 +320,44 @@ static void test_a_missing_payload_says_so(void) {
     CHECK(p == NULL, "an oversized memory payload was accepted");
 }
 
+/* Large bodies must not inflate the name arena or lose bytes. */
+static void test_large_bodies_and_limits(void) {
+    size_t n = 17u * 1024u * 1024u;
+    unsigned char *body = (unsigned char *)malloc(n);
+    CHECK(body != NULL, "large fixture allocation");
+    if (!body) return;
+    for (size_t i = 0; i < n; i++) body[i] = (unsigned char)(i * 37u);
+    tarbuf_t t; tb_init(&t);
+    for (unsigned i = 0; i < 4u; i++) {
+        char name[32]; (void)snprintf(name, sizeof name, "Applications/Large%u", i);
+        tb_add(&t, name, '0', 0755u, body, n, NULL);
+    }
+    tb_end(&t); tb_write(&t, "payload-large.tar"); tb_free(&t);
+    char why[PAYLOAD_TAR_DETAIL_CAPACITY] = {0};
+    payload_tar_t *p = payload_tar_open("payload-large.tar", "", why, sizeof why);
+    CHECK(p != NULL, "68 MiB archive: %s", why);
+    if (p) {
+        CHECK(payload_tar_entry_count(p) == 4u, "large member count");
+        const rootfs_work_entry_t *e = payload_tar_entries(p);
+        for (unsigned i = 0; i < 4u; i++)
+            CHECK(e[i].content_size == n && memcmp(e[i].content, body, n) == 0,
+                  "large member %u content", i);
+    }
+    payload_tar_close(&p); remove("payload-large.tar"); free(body);
+    n = ROOTFS_WORK_MAX_ENTRY_BYTES + 1u;
+    body = (unsigned char *)calloc(1u, n);
+    CHECK(body != NULL, "oversized fixture allocation");
+    if (!body) return;
+    tb_init(&t); tb_add(&t, "too-large", '0', 0644u, body, n, NULL);
+    tb_end(&t); free(body);
+    p = payload_tar_open_memory(t.buf, t.used, "", why, sizeof why);
+    CHECK(p == NULL && strstr(why, "limit") != NULL, "large file refused: %s", why);
+    payload_tar_close(&p); tb_free(&t);
+}
+
 int main(void) {
     printf("S5LBox payload tar reader tests\n");
+    test_large_bodies_and_limits();
     test_the_shapes_a_real_payload_has();
     test_a_hard_link_is_materialised_and_counted();
     test_the_refusals();

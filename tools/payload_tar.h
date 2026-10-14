@@ -45,7 +45,7 @@ extern "C" {
 #endif
 
 #define PAYLOAD_TAR_DETAIL_CAPACITY 256u
-#define PAYLOAD_TAR_MAX_BYTES (64u * 1024u * 1024u)
+#define PAYLOAD_TAR_MAX_BYTES (128u * 1024u * 1024u)
 
 typedef struct payload_tar payload_tar_t;
 

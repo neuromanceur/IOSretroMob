@@ -115,7 +115,7 @@ static char *arena_put(payload_tar_t *t, const char *prefix, const char *name) {
     size_t pl = prefix ? strlen(prefix) : 0u;
     size_t nl = strlen(name);
     size_t need = pl + nl + 2u;              /* '/' + text + NUL */
-    if (t->names_used + need > t->names_cap) return NULL;
+    if (need > ROOTFS_WORK_MAX_PATH || t->names_used + need > t->names_cap) return NULL;
     char *out = t->names + t->names_used;
     int wrote = snprintf(out, t->names_cap - t->names_used, "%s%s%s",
                          pl ? prefix : "", (pl && prefix[pl - 1u] == '/') ? "" : "/",
@@ -159,9 +159,10 @@ static payload_tar_t *payload_tar_parse_owned(uint8_t *image,
     }
     t->image = image;
     t->image_size = image_size;
-    /* One name arena sized from the archive: every path is shorter than the
-     * header it came from, so the block count is a safe upper bound. */
-    t->names_cap = t->image_size / TAR_BLOCK * 300u + 4096u;
+    /* At most one path and one link target per entry. Large file bodies
+     * do not require a proportionally large path arena. */
+    t->names_cap = (size_t)ROOTFS_WORK_MAX_ENTRIES *
+                   ROOTFS_WORK_MAX_PATH * 2u;
     t->names = (char *)malloc(t->names_cap);
     t->entries = (rootfs_work_entry_t *)calloc(ROOTFS_WORK_MAX_ENTRIES,
                                                sizeof *t->entries);

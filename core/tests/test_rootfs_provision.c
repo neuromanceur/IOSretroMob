@@ -5082,8 +5082,38 @@ static void test_status_and_stage_names(void) {
                  "provision-write") == 0, "write stage is unnamed");
 }
 
+static void test_large_file_roundtrip(void) {
+    fixture_t *fx = fx_create(FX_DATA_BLOCKS - 1u);
+    size_t size = 20u * 1024u * 1024u;
+    uint8_t *body = (uint8_t *)malloc(size);
+    CHECK(fx && body, "large file fixture allocation");
+    if (!fx || !body) { free(fx); free(body); return; }
+    for (size_t i = 0; i < size; i++) body[i] = (uint8_t)(i * 29u + 7u);
+    rootfs_work_entry_t entry; run_t run;
+    entry_file(&entry, "/alpha/large.bin", body, size, 0755u);
+    if (run_provision(&run, fx, "largefile", &entry, 1u, 24u * 1024u * 1024u)) {
+        expect_success(&run, "a 20 MiB executable body");
+        if (run.status == ROOTFS_WORK_OK) {
+            tr_volume_t vol; tr_record_t record;
+            if (tr_open(run.output, run.output_size, &vol)) {
+                CHECK(tr_find(&vol, FX_ALPHA, "large.bin", &record), "large file catalog entry");
+                /* Synthetic contiguous allocation is independently checked against
+                 * every byte at the data extent, not the writer's plan. */
+                CHECK(get_be64(record.data + 88) == size, "large file logical size");
+                size_t off = (size_t)get_be32(record.data + 104) * vol.block_size;
+                CHECK(off <= run.output_size && size <= run.output_size - off &&
+                      memcmp(run.output + off, body, size) == 0, "large body roundtrip");
+                tr_close(&vol);
+            } else CHECK(0, "large file volume independently readable");
+        }
+        run_release(&run);
+    } else CHECK(0, "large file run setup");
+    free(body); free(fx);
+}
+
 int main(void) {
     printf("HFS+ catalog provisioning tests\n");
+    test_large_file_roundtrip();
     test_status_and_stage_names();
     test_fixture_is_a_valid_volume();
     test_create_directory();
